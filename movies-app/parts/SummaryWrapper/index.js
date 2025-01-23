@@ -11,9 +11,9 @@ const SummaryWrapper = ({
   <>
     {/* TODO: double check if we really need LazyLoad */}
     <LazyLoad height={500}>
-      <div className='summary-wrapper'>
+      <section data-testId="movie-summary" className='summary-wrapper'>
         {children}
-      </div>
+      </section>
     </LazyLoad>
     <style jsx>{`
       .summary-wrapper {

@@ -12,7 +12,7 @@ const RecommendedMovieList = ({
   recommendedMovies,
   baseUrl
 }) => (
-  <section>
+  <section data-testId="recommended-movies">
     <PaddingWrapper>
       <Element name={SCROLL_TO_ELEMENT}>
         <Header
