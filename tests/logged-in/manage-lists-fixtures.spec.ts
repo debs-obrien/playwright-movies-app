@@ -9,26 +9,29 @@ test('editing an existing list', async ({ listPage }) => {
   await page.getByRole('link', { name: 'Edit' }).click();
 
   await test.step('update list name and description', async () => {
-    await page.getByLabel('Name').fill('my action movies');
-    await page.getByLabel('Description').fill('my favorite action movies');
+    await page.getByRole('textbox', { name: 'Name' }).fill('my action movies');
+    await page.getByRole('textbox', { name: 'Description' }).fill('my favorite action movies');
     await page.getByRole('button', { name: 'Save' }).click();
 
     // Verify that the list name and description have been updated
-    await expect.soft(page.getByLabel('Name')).toHaveValue('my action movies');
-    await expect
-      .soft(page.getByLabel('Description'))
+    await expect(page.getByRole('textbox', { name: 'Name' })).toHaveValue('my action movies');
+    await expect(page.getByRole('textbox', { name: 'Description' }))
       .toHaveValue('my favorite action movies');
+    // TODO: replace regex with text when Playwright is rolled.
+    await expect(page.locator('main')).toMatchAriaSnapshot(`
+      - heading "my action movies" [level=1]
+      - textbox "Name": my action movies
+      - textbox "Description": /my favorite action movies/
+    `);
     await page.getByRole('button', { name: 'Save' }).click();
   });
 
   await test.step('verify updated list name and description on my list page', async () => {
     await page.getByRole('link', { name: 'View List' }).click();
-    await expect
-      .soft(page.getByRole('heading', { level: 1 }))
-      .toHaveText('my action movies');
-    await expect.soft(page.getByRole('heading').nth(1)).toHaveText(
-      'my favorite action movies',
-    );
+    await expect(page.getByRole('main')).toMatchAriaSnapshot(`
+      - heading "my action movies" [level=1]
+      - heading "my favorite action movies" [level=2]
+    `);
   });
 });
 
@@ -41,13 +44,13 @@ test('adding movies to a list', async ({ listPage }) => {
   await addMovie(page, 'Gunner');
 
   // Verify that the movies have been added to the list
-  await expect.soft(page.getByRole('listitem', { name: 'movie' })).toHaveText([
-    /Twisters/,
-    /The Garfield Movie/,
-    /Bad Boys: Ride or Die/,
-    /Inside Out 2/,
-    /Gunner/,
-  ]);
+  await expect(page.getByRole('list', { name: 'movies' })).toMatchAriaSnapshot(`
+    - listitem: "Twisters"
+    - listitem: "The Garfield Movie"
+    - listitem: "Bad Boys: Ride or Die"
+    - listitem: "Inside Out 2"
+    - listitem: "Gunner"
+  `);
 });
 
 test('deleting movies from a list', async ({ listPage }) => {
@@ -55,21 +58,24 @@ test('deleting movies from a list', async ({ listPage }) => {
   const page = listPage;
 
   await page.getByRole('button', { name: 'Add/Remove Movies' }).click();
-  await expect
-    .soft(page.getByRole('listitem', { name: 'movie' }))
-    .toHaveText([/Twisters/, /The Garfield Movie/, /Bad Boys: Ride or Die/]);
+  await expect(page.getByRole('list', { name: 'movies' })).toMatchAriaSnapshot(`
+    - listitem: "Twisters"
+    - listitem: "The Garfield Movie"
+    - listitem: "Bad Boys: Ride or Die"
+  `);
 
   await test.step('delete the second movie from list', async () => {
     const movie2 = page
       .getByRole('listitem')
       .filter({ hasText: /The Garfield Movie/ });
-    await movie2.getByLabel('Remove').click();
+    await movie2.getByRole('button', { name: 'Remove' }).click();
   });
 
-  await expect.soft(page.getByRole('listitem', { name: 'movie' })).toHaveText([
-    /Twisters/,
-    /Bad Boys: Ride or Die/,
-  ]);
+  await expect(page.getByRole('list', { name: 'movies' })).toMatchAriaSnapshot(`
+    - listitem: "Twisters"
+    - listitem: "Bad Boys: Ride or Die"
+  `);
+  await expect(page.getByRole('listitem', { name: 'movie' })).toHaveCount(2);
 });
 
 test('sharing a list', async ({ listPage }) => {
@@ -77,19 +83,15 @@ test('sharing a list', async ({ listPage }) => {
   const page = listPage;
 
   await page.getByRole('button', { name: 'Share' }).click();
-  await expect
-    .soft(page.getByRole('dialog').getByRole('heading'))
-    .toHaveText('Share my favorite movies');
-
-  // Verify that the URL input in the dialog contains a value with "list"
-  await expect
-    .soft(page.getByRole('dialog').getByLabel('URL'))
-    .toHaveValue(/list/);
+  await expect(page.getByRole('dialog')).toMatchAriaSnapshot(`
+    - heading "Share my favorite movies" [level=2]
+    - textbox "URL": /list/
+  `);
 
   await test.step('close the share dialog', async () => {
     // Close the dialog by clicking outside of it
     await page.locator('body').click({ position: { x: 0, y: 0 } });
-    await expect.soft(page.getByRole('dialog')).not.toBeVisible();
+    await expect(page.getByRole('dialog')).not.toBeVisible();
   });
 });
 
@@ -101,14 +103,13 @@ test('deleting a list', async ({ listPage }) => {
   await page.getByRole('link', { name: 'Delete List' }).click();
 
   await test.step('confirm the deletion', async () => {
-    await page.getByLabel(/Click the button below/).click();
+    await page.getByRole('button', { name: /Click the button below/ }).click();
     await page.getByRole('button', { name: 'Yes' }).click();
   });
 
   // Verify that the list has been deleted
-  await expect.soft(page).toHaveURL(/my-lists/);
-  await expect
-    .soft(page.getByRole('heading', { level: 3 }))
+  await expect(page).toHaveURL(/my-lists/);
+  await expect(page.getByRole('heading', { level: 3 }))
     .toHaveText(/no lists/);
-  await expect.soft(page.getByRole('listitem', { name: 'movie' })).toHaveCount(0);
+  await expect(page.getByRole('listitem', { name: 'movie' })).toHaveCount(0);
 });

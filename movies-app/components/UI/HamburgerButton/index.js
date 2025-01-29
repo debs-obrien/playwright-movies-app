@@ -19,7 +19,7 @@ const Bar = withTheme(({ theme }) => (
 
 const HamburgerButton = props => (
   <>
-    <div aria-label="menu" className='hamburger-button' {...props}>
+    <div role="menu" className='hamburger-button' {...props}>
       <Bar />
       <Bar />
       <Bar />

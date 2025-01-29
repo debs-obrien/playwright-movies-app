@@ -6,18 +6,17 @@ test('search for "Twisters" movie', async ({ page }) => {
   await searchForMovie(page, 'twisters');
 
   // Verify that the URL contains the search term 'twisters'
-  await expect.soft(page).toHaveURL(/searchTerm=twisters/);
+  await expect(page).toHaveURL(/searchTerm=twisters/);
 
   // Verify that the search results contain an image with the alt text matching 'Twisters'
-  await expect
-    .soft(page.getByRole('list').getByLabel('movie').getByRole('img'))
+  await expect(page.getByRole('list').getByLabel('movie').getByRole('img'))
     .toHaveAttribute('alt', /Twisters/);
 
   // Click on the link for the movie 'Twisters'
   await page.getByRole('link', { name: /twisters/i }).click();
 
   // Verify that the main heading on the movie page is 'Twisters'
-  await expect.soft(page.getByRole('main')).toMatchAriaSnapshot(`
+  await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - heading "Twisters" [level=1]
   `);
 });
@@ -28,9 +27,9 @@ test('search for non-existent-movie', async ({ page }) => {
   await searchForMovie(page, 'non-existent-movie');
 
   // Verify that the URL contains the search term 'non-existent movie'
-  await expect.soft(page).toHaveURL(/searchTerm=non-existent-movie/);
+  await expect(page).toHaveURL(/searchTerm=non-existent-movie/);
 
-  await expect.soft(page.getByRole('main')).toMatchAriaSnapshot(`
+  await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - heading "Sorry!"
     - heading /There were no results for/
     - img "Not found!"
@@ -43,7 +42,7 @@ test('search for non-existent-movie', async ({ page }) => {
     await page.getByRole('button', { name: 'Home' }).click();
 
     // Verify that the URL is the homepage URL with the default category and page
-    await expect.soft(page).toHaveURL('/?category=Popular&page=1');
+    await expect(page).toHaveURL('/?category=Popular&page=1');
   });
 });
 

@@ -35,16 +35,15 @@ test.describe('navigates to menu items', async () => {
     for (const item of discover) {
       await test.step(`navigates to ${item}`, async () => {
         // Click on the menu and navigate to the discover item
-        await page.getByLabel('menu').click();
+        await page.getByRole('menu').click();
         await page
           .getByRole('navigation')
           .getByRole('link', { name: item })
           .click();
         // Verify the heading and URL
-        await expect
-          .soft(page.getByRole('heading', { level: 1 }))
+        await expect(page.getByRole('heading', { level: 1 }))
           .toHaveText(item);
-        await expect.soft(page).toHaveURL(new RegExp(item.replace(/\s+/g, '\\+')));
+        await expect(page).toHaveURL(new RegExp(item.replace(/\s+/g, '\\+')));
       });
     }
   });
@@ -53,14 +52,14 @@ test.describe('navigates to menu items', async () => {
     for (const genre of genres) {
       await test.step(`navigates to ${genre}`, async () => {
         // Click on the menu and navigate to the genre
-        await page.getByLabel('menu').click();
+        await page.getByRole('menu').click();
         await page
           .getByRole('navigation')
           .getByRole('link', { name: genre })
           .click();
         // Verify the URL and heading
-        await expect.soft(page).toHaveURL(/genre/);
-        await expect.soft(page.getByRole('heading', { level: 1 })).toHaveText(genre);
+        await expect(page).toHaveURL(/genre/);
+        await expect(page.getByRole('heading', { level: 1 })).toHaveText(genre);
       });
     }
   });
@@ -77,10 +76,8 @@ test.describe('navigates to Discover and Genres menu items with larger viewport'
         .getByRole('navigation')
         .getByRole('link', { name: item })
         .click();
-      await expect
-        .soft(page.getByRole('heading', { level: 1 }))
-        .toHaveText(item);
-      await expect.soft(page).toHaveURL(new RegExp(item.replace(/\s+/g, '\\+')));
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText(item);
+      await expect(page).toHaveURL(new RegExp(item.replace(/\s+/g, '\\+')));
     }
   });
 
@@ -91,8 +88,8 @@ test.describe('navigates to Discover and Genres menu items with larger viewport'
         .getByRole('navigation')
         .getByRole('link', { name: genre })
         .click();
-      await expect.soft(page).toHaveURL(/genre/);
-      await expect.soft(page.getByRole('heading', { level: 1 })).toHaveText(genre);
+      await expect(page).toHaveURL(/genre/);
+      await expect(page.getByRole('heading', { level: 1 })).toHaveText(genre);
     }
   });
 });

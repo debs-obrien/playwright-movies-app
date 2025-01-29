@@ -7,13 +7,13 @@ setup('log user in and verify profile access', async ({ page }) => {
 
   // Fill in the username and password fields and submit the form
   await page
-    .getByPlaceholder('you@example.com')
+    .getByRole('textbox', { name: 'Email address' })
     .fill(process.env.MOVIES_USERNAME!);
-  await page.getByPlaceholder('Password').fill(process.env.MOVIES_PASSWORD!);
+  await page.getByRole('textbox', { name: 'Password' }).fill(process.env.MOVIES_PASSWORD!);
   await page.getByRole('button', { name: 'login' }).click();
 
   // Click on the 'User Profile' label to ensure the user is logged in
-  await page.getByLabel('User Profile').click();
+  await page.getByRole('button', { name: 'User Profile' }).click();
 
   // Verify that the 'Create New List' link is visible
   await expect(

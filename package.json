@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
-    "@playwright/test": "^1.51.0-alpha-2025-01-22",
+    "@playwright/test": "^1.51.0-alpha-2025-01-29",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^22.5.4",
     "eslint": "^9.18.0",

@@ -10,9 +10,9 @@ test('sort movies by average votes and original title', async ({ page }) => {
 
   await test.step('sort by average votes and verify order', async () => {
     // Sort movies by average votes
-    await page.getByPlaceholder('Sort By').click();
+    await page.getByRole('textbox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Votes Average' }).click();
-    await expect.soft(movies).toHaveCount(20);
+    await expect(movies).toHaveCount(20);
 
     // Extracts and parses the number of votes from a list of movie elements.
     const movieVotes = await movies.evaluateAll((movies) =>
@@ -38,7 +38,7 @@ test('sort movies by average votes and original title', async ({ page }) => {
     const movieTitles = movies.getByRole('heading');
 
     // Sort movies by original title
-    await page.getByPlaceholder('Sort By').click();
+    await page.getByRole('textbox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Original Title' }).click();
 
     // Get text content of the first four movies after sorting
@@ -99,8 +99,7 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
 
   await test.step('check initial movies', async () => {
     // Verify the text content of all movies matches the expected array
-    await expect
-      .soft(movieTitles)
+    await expect(movieTitles)
       .toHaveText([
         'Deadpool and Wolverine',
         'The Garfield movie',
@@ -111,12 +110,11 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
 
   await test.step('sort by average votes', async () => {
     // Sort movies by average votes
-    await page.getByPlaceholder('Sort By').click();
+    await page.getByRole('textbox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Votes Average' }).click();
 
     // Check the text content for all the movies contains an array with the following
-    await expect
-      .soft(movieTitles)
+    await expect(movieTitles)
       .toHaveText([
         'The Garfield movie',
         'Deadpool and Wolverine',
@@ -127,12 +125,11 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
 
   await test.step('sort by original title', async () => {
     // Sort movies by original title
-    await page.getByPlaceholder('Sort By').click();
+    await page.getByRole('textbox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Original Title' }).click();
 
     // Check the text content for all the movies contains an array with the following
-    await expect
-      .soft(movieTitles)
+    await expect(movieTitles)
       .toHaveText([
         'Deadpool and Wolverine',
         'Kung Fu Panda 4',
@@ -143,12 +140,11 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
 
   await test.step('sort by release date', async () => {
     // Sort movies by release date
-    await page.getByPlaceholder('Sort By').click();
+    await page.getByRole('textbox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Release Date' }).click();
 
     // Check the text content for all the movies contains an array with the following
-    await expect
-      .soft(movieTitles)
+    await expect(movieTitles)
       .toHaveText([
         'Kung Fu Panda 4',
         'Deadpool and Wolverine',
@@ -159,7 +155,7 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
 
   await test.step('sort by popularity', async () => {
     // Sort movies by popularity
-    await page.getByPlaceholder('Sort By').click();
+    await page.getByRole('textbox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Popularity' }).click();
 
     // Check the text content for all the movies contains an array with the following

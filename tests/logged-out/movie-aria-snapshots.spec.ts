@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('movie page snapshot', async ({ page }) => {
   await page.goto('movie?id=1022789&page=1');
-  await expect.soft(page.getByRole('main')).toMatchAriaSnapshot(`
+  await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - heading "Inside Out 2" [level=1]
     - heading "Make room for new emotions." [level=2]
     - text: ★ ★ ★ ★ ★ ★

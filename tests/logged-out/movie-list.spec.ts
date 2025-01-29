@@ -8,17 +8,17 @@ test('Avengers: Infinity is the first top rated movie', async ({
   const firstMovie = page.getByRole('listitem', { name: 'movie' }).first();
   const firstMovieRating = page.getByLabel('rating').first();
 
-  await expect.soft(firstMovie).toContainText('Avengers: Infinity');
-  await expect
-    .soft(firstMovie.getByRole('img'))
-    .toHaveAccessibleName('poster of Avengers: Infinity War');
-  await expect.soft(firstMovieRating).toHaveAccessibleName('rating');
+  await expect(firstMovie).toMatchAriaSnapshot(`
+    - 'link /Avengers: Infinity/':
+      - 'img "poster of Avengers: Infinity War"'
+  `);
+  await expect(firstMovieRating).toHaveAccessibleName('rating');
 
   await test.step('Verify movie rating tooltip content', async () => {
     await firstMovieRating.hover();
     const tooltip = page.getByRole('tooltip');
     const tooltipText = await tooltip.textContent() ?? '';
-    await expect.soft(tooltip).toContainText(/average rating on/);
+    await expect(tooltip).toContainText(/average rating on/);
 
     // Attach the tooltip text content to the test report
     await testInfo.attach('first movies tooltip text content', {
@@ -29,8 +29,8 @@ test('Avengers: Infinity is the first top rated movie', async ({
 
   await test.step('Click on movie and verify details page', async () => {
     await firstMovie.click();
-    await expect.soft(page).toHaveURL(/id=299536/);
-    await expect.soft(page.getByRole('main')).toMatchAriaSnapshot(`
+    await expect(page).toHaveURL(/id=299536/);
+    await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - 'heading "Avengers: Infinity War" [level=1]'
     - heading "An entire universe. Once and for all." [level=2]
     - heading "The Genres" [level=3]
@@ -59,17 +59,16 @@ test('dynamic content for first upcoming movie', async ({ page }, testInfo) => {
     contentType: 'text/markdown',
   });
 
-  await expect.soft(firstMovie).toContainText(movieName ?? '');
-  await expect
-    .soft(firstMovie.getByRole('img'))
+  await expect(firstMovie).toContainText(movieName ?? '');
+  await expect(firstMovie.getByRole('img'))
     .toHaveAccessibleName(`poster of ${movieName ?? ''}`);
-  await expect.soft(firstMovieRating).toHaveAccessibleName('rating');
+  await expect(firstMovieRating).toHaveAccessibleName('rating');
 
   await test.step('Verify movie rating tooltip content', async () => {
     await firstMovieRating.hover();
     const tooltip = page.getByRole('tooltip');
     const tooltipText = await tooltip.textContent() ?? '';
-    await expect.soft(tooltip).toContainText(/average rating on/);
+    await expect(tooltip).toContainText(/average rating on/);
 
     // Attach the tooltip text content to the test report
     await testInfo.attach('first movies tooltip text content', {
@@ -80,11 +79,11 @@ test('dynamic content for first upcoming movie', async ({ page }, testInfo) => {
 
   await test.step('Click on movie and verify details page', async () => {
     await firstMovie.click();
-    await expect.soft(page).toHaveURL(/id/);
-    await expect.soft(page.getByRole('main')).toMatchAriaSnapshot(`
+    await expect(page).toHaveURL(/id/);
+    await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - 'heading "${movieName ?? ''}" [level=1]'
     `);
-    await expect.soft(page.getByRole('main')).toMatchAriaSnapshot(`
+    await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - 'heading "${movieName ?? ''}" [level=1]'
     - heading [level=2]
     - heading "The Genres" [level=3]
