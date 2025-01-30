@@ -23,7 +23,8 @@ export async function createList(
     await page.getByLabel('Name').fill(listName);
     await page.getByLabel('Description').fill(listDescription);
     await page.getByRole('button', { name: 'Continue' }).click();
-    await page.waitForTimeout(1000);
+    // wait until the list was created and we're on its add/remove movies page
+    await page.waitForURL(url => url.searchParams.has('listId'));
   });
 }
 
