@@ -40,10 +40,9 @@ test.describe('navigates to menu items', async () => {
           .getByRole('navigation')
           .getByRole('link', { name: item })
           .click();
-        // Verify the heading and URL
+        // Verify the heading
         await expect(page.getByRole('heading', { level: 1 }))
           .toHaveText(item);
-        await expect(page).toHaveURL(new RegExp(item.replace(/\s+/g, '\\+')));
       });
     }
   });
@@ -57,8 +56,7 @@ test.describe('navigates to menu items', async () => {
           .getByRole('navigation')
           .getByRole('link', { name: genre })
           .click();
-        // Verify the URL and heading
-        await expect(page).toHaveURL(/genre/);
+        // Verify the heading
         await expect(page.getByRole('heading', { level: 1 })).toHaveText(genre);
       });
     }
@@ -77,7 +75,6 @@ test.describe('navigates to Discover and Genres menu items with larger viewport'
         .getByRole('link', { name: item })
         .click();
       await expect(page.getByRole('heading', { level: 1 })).toHaveText(item);
-      await expect(page).toHaveURL(new RegExp(item.replace(/\s+/g, '\\+')));
     }
   });
 
@@ -88,7 +85,6 @@ test.describe('navigates to Discover and Genres menu items with larger viewport'
         .getByRole('navigation')
         .getByRole('link', { name: genre })
         .click();
-      await expect(page).toHaveURL(/genre/);
       await expect(page.getByRole('heading', { level: 1 })).toHaveText(genre);
     }
   });

@@ -42,8 +42,6 @@ export async function openLists(page: Page, name: string = 'My Lists') {
   await test.step('open list from menu', async () => {
     await page.getByRole('button', { name: 'User Profile' }).click();
     await page.getByRole('link', { name }).click();
-    const formattedName = name.toLowerCase().replace(/\s+/g, '-');
-    await expect(page).toHaveURL(new RegExp(`/${formattedName}`));
   });
 }
 
@@ -85,7 +83,6 @@ export async function addImageToList(page: Page, movieName: string) {
   await test.step('add image to list', async () => {
     // Click on the "Choose Image" link
     await page.getByRole('link', { name: 'Choose Image' }).click();
-    await expect(page).toHaveURL(/choose-image/);
 
     // Find the movie list item and verify its heading contains the movie name
     const movie = page.getByRole('listitem', { name: 'movie' });

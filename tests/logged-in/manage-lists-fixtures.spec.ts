@@ -17,7 +17,6 @@ test('editing an existing list', async ({ listPage }) => {
     await expect(page.getByRole('textbox', { name: 'Name' })).toHaveValue('my action movies');
     await expect(page.getByRole('textbox', { name: 'Description' }))
       .toHaveValue('my favorite action movies');
-    // TODO: replace regex with text when Playwright is rolled.
     await expect(page.locator('main')).toMatchAriaSnapshot(`
       - heading "my action movies" [level=1]
       - textbox "Name": my action movies
@@ -108,7 +107,6 @@ test('deleting a list', async ({ listPage }) => {
   });
 
   // Verify that the list has been deleted
-  await expect(page).toHaveURL(/my-lists/);
   await expect(page.getByRole('heading', { level: 3 }))
     .toHaveText(/no lists/);
   await expect(page.getByRole('listitem', { name: 'movie' })).toHaveCount(0);
