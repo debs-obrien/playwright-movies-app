@@ -49,11 +49,13 @@ test.describe('Movie Details Page - Links', () => {
 
   test('action genre link', async ({ page }) => {
     await page.getByRole('link', { name: 'Action' }).click();
+    await expect(page).toHaveURL(/Action/);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText('Action');
   });
 
   test('thriller genre link', async ({ page }) => {
     await page.getByRole('link', { name: 'Thriller' }).click();
+    await expect(page).toHaveURL(/Thriller/);
     await expect(page.getByRole('heading', { level: 1 })).toHaveText(
       'Thriller',
     );
