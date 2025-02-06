@@ -35,6 +35,8 @@ jobs:
         working-directory: movies-app
         env:
           BASEPATH: /playwright-movies-app
+      - name: List build directory (debugging)
+        run: ls -la movies-app/out
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
