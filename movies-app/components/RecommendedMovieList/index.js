@@ -16,8 +16,8 @@ const RecommendedMovieList = ({
     <PaddingWrapper>
       <Element name={SCROLL_TO_ELEMENT}>
         <Header
-          title='Recommended'
-          subtitle='movies'
+          subtitle='Recommended Movies'
+          size='large'
         />
       </Element>
       {recommendedMovies.loading ? (

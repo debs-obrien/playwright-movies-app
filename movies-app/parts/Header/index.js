@@ -75,11 +75,13 @@ const Header = ({
     <div
       {...rest}
       className={clsx('header', className)}>
-      <Title
-        theme={theme}
-        size={size}>
-        {title}
-      </Title>
+      { title && (
+        <Title
+          theme={theme}
+          size={size}>
+          {title}
+        </Title>
+      )}
       <Subtitle
         theme={theme}
         size={size}>
