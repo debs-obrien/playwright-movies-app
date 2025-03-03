@@ -149,7 +149,7 @@ test(
   {
     annotation: {
       type: 'issue',
-      description: 'https://github.com/microsoft/demo.playwright.dev/issues/58',
+      description: 'https://github.com/debs-obrien/playwright-movies-app/issues/28',
     },
   },
   async ({ page }) => {

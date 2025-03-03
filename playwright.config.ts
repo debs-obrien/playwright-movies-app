@@ -34,6 +34,7 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
   captureGitInfo: { commit: true, diff: true },
+  metadata: { title: 'movie app tests' },
 
   /* Configure projects for major browsers */
   projects: [
