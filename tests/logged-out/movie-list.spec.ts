@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('Avengers: Infinity is the first top rated movie', async ({
   page,
-}, testInfo) => {
+}) => {
   await page.goto('/?category=Top+Rated&page=1');
 
   const firstMovie = page.getByRole('listitem', { name: 'movie' }).first();
@@ -14,17 +14,14 @@ test('Avengers: Infinity is the first top rated movie', async ({
   `);
   await expect(firstMovieRating).toHaveAccessibleName('rating');
 
-  await test.step('Verify movie rating tooltip content', async () => {
+  await test.step('Verify movie rating tooltip content', async (step) => {
     await firstMovieRating.hover();
     const tooltip = page.getByRole('tooltip');
     const tooltipText = await tooltip.textContent() ?? '';
     await expect(tooltip).toContainText(/average rating on/);
 
     // Attach the tooltip text content to the test report
-    await testInfo.attach('first movies tooltip text content', {
-      body: tooltipText,
-      contentType: 'text/markdown',
-    });
+    await step.attach('first movies tooltip text content', { body: tooltipText, contentType: 'text/markdown' });
   });
 
   await test.step('Click on movie and verify details page', async () => {
@@ -63,14 +60,14 @@ test('dynamic content for first upcoming movie', async ({ page }, testInfo) => {
     .toHaveAccessibleName(`poster of ${movieName ?? ''}`);
   await expect(firstMovieRating).toHaveAccessibleName('rating');
 
-  await test.step('Verify movie rating tooltip content', async () => {
+  await test.step('Verify movie rating tooltip content', async (step) => {
     await firstMovieRating.hover();
     const tooltip = page.getByRole('tooltip');
     const tooltipText = await tooltip.textContent() ?? '';
     await expect(tooltip).toContainText(/average rating on/);
 
     // Attach the tooltip text content to the test report
-    await testInfo.attach('first movies tooltip text content', {
+    await step.attach('first movies tooltip text content', {
       body: tooltipText,
       contentType: 'text/markdown',
     });

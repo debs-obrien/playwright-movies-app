@@ -7,6 +7,7 @@ test.describe('Theme Mode Switching', () => {
 
   test('should have light mode initially', async ({ page }) => {
     // Assert that the body has the 'light' class initially
+    await page.emulateMedia({contrast: 'more'});
     await expect(page.locator('body')).toHaveClass(/light/);
   });
 
