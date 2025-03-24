@@ -1,5 +1,3 @@
-
-
 import PageWrapper from 'parts/PageWrapper';
 import TitleSection from './TitleSection';
 import NotFoundImage from './NotFoundImage';
@@ -18,7 +16,7 @@ const NotFound = ({
   <>
     <PageWrapper className='not-found'>
       <div className='title-section'>
-        <h3 className='title'>{title}</h3>
+        <h2 className='title'>{title}</h2>
         <h4 className='subtitle'>{subtitle}</h4>
       </div>
       <NotFoundImage
@@ -49,7 +47,7 @@ const NotFound = ({
       }
 
       .title-section .title {
-        color: var(--palette-text-primary);
+        color: var(--palette-purple-main);
         font-weight: ${theme.typography.fontWeightLight};
         font-size: 3.75rem;
       }

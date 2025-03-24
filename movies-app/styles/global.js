@@ -1,4 +1,3 @@
-
 import css from 'styled-jsx/css';
 
 import theme from './theme';
@@ -58,6 +57,11 @@ export default css.global`
     --palette-warning-light: #c3c633;
     --palette-warning-contrast-text: rgba(0, 0, 0, 0.87); /* at MUI */
 
+    --palette-purple-main: #6a0dad;
+    --palette-purple-dark: #4b0979;
+    --palette-purple-light: #8a35dd;
+    --palette-purple-contrast-text: #fff;
+
     --background-blend-gradient: linear-gradient(rgba(255, 255, 255, 0) 68%, rgb(255, 255, 255) 100%);
   }
 
@@ -97,6 +101,11 @@ export default css.global`
     --palette-warning-dark: #afb20c;
     --palette-warning-light: #fbff41;
     --palette-warning-contrast-text: rgba(0, 0, 0, 0.87); /* at MUI */
+
+    --palette-purple-main: #9c27b0;
+    --palette-purple-dark: #6d1b7b;
+    --palette-purple-light: #ba68c8;
+    --palette-purple-contrast-text: #fff;
 
     --background-blend-gradient: linear-gradient(rgba(255, 255, 255, 0) 68%, rgb(48, 48, 48) 100%);
   }

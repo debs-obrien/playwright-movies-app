@@ -1,5 +1,3 @@
-
-
 import { useEffect } from 'react';
 import Head from 'next/head';
 import { useDispatch, useSelector } from 'react-redux';
@@ -21,10 +19,10 @@ const Title = ({
   children
 }) => (
   <>
-    <h1 className='title'>{children}</h1>
+    <h2 className='title'>{children}</h2>
     <style jsx>{`
       .title {
-        color: var(--palette-text-primary);
+        color: var(--palette-purple-main);
         font-size: 3.75rem;
         font-weight: ${theme.typography.fontWeightLight};
       }
