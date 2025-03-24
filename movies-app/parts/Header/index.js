@@ -1,5 +1,3 @@
-
-
 import clsx from 'clsx';
 
 import withTheme from 'utils/hocs/withTheme';
@@ -11,11 +9,11 @@ const Title = ({
   children
 }) => (
   <>
-    <h1 className='title'>{children}</h1>
+    <h2 className='title'>{children}</h2>
     <style jsx>{`
       .title {
         margin-bottom: 0.5rem;
-        color: var(--palette-text-primary);
+        color: var(--palette-purple-main);
         font-size: ${size === SIZE_TYPES.LARGE ? '3.75rem' : '3rem'};
         font-weight: ${theme.typography.fontWeightLight};
         line-height: ${size === SIZE_TYPES.LARGE ? '1.2' : '1'};
