@@ -28,11 +28,9 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+      - run: npm ci
       - name: Build movies site
-        run: |
-          npm ci
-          npm run build
-        working-directory: movies-app
+        run: npm run build
         env:
           BASEPATH: /playwright-movies-app
       - name: List build directory (debugging)

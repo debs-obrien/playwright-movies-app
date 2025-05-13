@@ -6,22 +6,23 @@
     "dev": "cd movies-app && npm run dev",
     "build": "cd movies-app && next build",
     "start": "cd movies-app && next start",
-    "pretest": "tsc --noEmit && eslint tests/**/*.ts",
+    "lint": "tsc --noEmit && eslint tests/**/*.ts",
     "test": "playwright test",
     "format": "prettier --write tests/**/*"
   },
-  "dependencies": {
-    "dotenv": "^16.4.5"
-  },
   "devDependencies": {
     "@eslint/js": "^9.18.0",
-    "@playwright/test": "^1.52.0-alpha-1741100475000",
+    "@playwright/test": "^1.52.0",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^22.5.4",
+    "dotenv": "^16.5.0",
     "eslint": "^9.18.0",
     "prettier": "^3.4.2",
     "tslint": "^6.1.3",
     "typescript": "^5.7.3",
     "typescript-eslint": "^8.20.0"
-  }
+  },
+  "workspaces": [
+    "movies-app"
+  ]
 }

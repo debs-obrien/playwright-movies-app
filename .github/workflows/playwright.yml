@@ -15,8 +15,8 @@ jobs:
         node-version: lts/*
     - name: Install dependencies
       run: npm ci
-    - name: Install app dependencies
-      run: cd movies-app && npm ci
+    - name: Lint
+      run: npm run lint
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
     - name: Setup .env file with mock credentials
