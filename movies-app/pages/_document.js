@@ -83,8 +83,6 @@ class MyDocument extends Document {
           {/* <script async src="https://www.google-analytics.com/analytics.js"></script> */}
         </Head>
         <body className={CLASS_NAMES.LIGHT}>
-          <div style={{ height: "50px"}} />
-
           {/* MEMO: inspired by https://github.com/donavon/use-dark-mode#that-flash */}
           <Script>
             {() => {

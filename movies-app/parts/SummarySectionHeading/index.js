@@ -13,7 +13,8 @@ const SummarySectionHeading = ({
     <h3 className={clsx('summary-section-heading', className)}>{children}</h3>
     <style jsx>{`
       .summary-section-heading {
-        margin-bottom: 1rem;
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
         color: var(--palette-text-primary);
         font-size: 1.5rem;
         font-weight: ${theme.typography.fontWeightBold};

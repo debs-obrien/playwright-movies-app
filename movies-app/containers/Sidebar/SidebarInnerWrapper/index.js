@@ -8,7 +8,7 @@ const SidebarInnerWrapper = ({ children }) => (
         flex-direction: column;
         width: 25rem;
         padding: 2rem;
-        margin-top: 4rem;
+        padding-top: 8rem;
         border-right: 1px solid var(--palette-divider);
       }
     `}</style>

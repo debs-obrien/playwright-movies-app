@@ -19,7 +19,7 @@ const AppBar = ({
       .app-bar {
         position: fixed;
         top: 30px;
-        left: auto;
+        left: 0;
         right: 0;
         width: 100%;
         z-index: ${theme.zIndex.appBar};
@@ -30,7 +30,7 @@ const AppBar = ({
       }
 
       .toolbar {
-        min-height: 64px;
+        min-height: 50px;
         padding: 0 24px;
         display: flex;
         align-items: center;
@@ -39,14 +39,16 @@ const AppBar = ({
 
       @media ${theme.mediaQueries.small} {
         .toolbar {
-          min-height: 56px;
+          min-height: 46px;
           padding: 0 16px;
         }
       }
 
       @media ${theme.mediaQueries.smaller} {
         .app-bar {
-          background-color: transparent;
+          background-color: var(--palette-background-paper);
+          width: 100%;
+          left: 0;
         }
       }
     `}</style>

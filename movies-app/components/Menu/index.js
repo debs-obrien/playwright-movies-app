@@ -1,7 +1,6 @@
 
 import { useSelector } from 'react-redux';
 
-import Logo from 'components/Logo';
 import SectionHeading from './SectionHeading';
 import MenuItem from './MenuItem';
 import MenuItemLink from './MenuItemLink';
@@ -51,7 +50,6 @@ const renderGenres = (genres, selectedMenuItemName, closeMenu = null) => {
 };
 
 const Menu = ({
-  isMobile,
   closeMenu,
   ...rest
 }) => {
@@ -62,7 +60,6 @@ const Menu = ({
   return (
     <>
       <nav {...rest}>
-        {!isMobile && <Logo />}
         <SectionHeading>Discover</SectionHeading>
         {renderStaticCategories(staticCategories, selectedMenuItemName, closeMenu)}
         <SectionHeading>Genres</SectionHeading>

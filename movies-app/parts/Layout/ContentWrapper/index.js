@@ -22,14 +22,14 @@ const ContentWrapper = ({
       
       @media ${theme.mediaQueries.larger} {
         .content-wrapper {
-          padding-top: 72px;
+          padding-top: 100px;
           padding-bottom: 6rem;
         }
       }
 
       @media ${theme.mediaQueries.large} {
         .content-wrapper {
-          padding-top: 72px;
+          padding-top: 100px;
           padding-bottom: 4rem;
         }
       }
