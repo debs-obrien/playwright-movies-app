@@ -12,7 +12,7 @@ const DemoBanner = () => (
         top: 0;
         left: 0;
         width: 100%;
-        height: 30px;
+        /* height: 30px; */
         background-color: #ffee5b;
         color: #444;
         padding: 0.75rem 1rem;
