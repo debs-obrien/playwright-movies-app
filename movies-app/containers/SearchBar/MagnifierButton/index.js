@@ -12,7 +12,7 @@ const MagnifierButton = ({
       {/* MEMO: inspired by https://web.dev/prefers-color-scheme/#use-currentcolor-for-inline-svgs */}
       <SearchIcon
         fill='currentColor'
-        width='1.125em' />
+        width='1em' />
     </button>
     <style jsx>{`
       .magnifier-button {

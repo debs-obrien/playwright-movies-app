@@ -25,8 +25,8 @@ const Form = React.forwardRef(({
         border: 1px solid var(--palette-secondary-main);
         width: ${opened ? '30rem' : '2rem'};
         cursor: ${opened ? 'auto' : 'pointer'};
-        padding: 2rem;
-        height: 2rem;
+        padding: 1.6rem;
+        height: 1.7rem;
         outline: none;
         border-radius: 100px;
         transition: width ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
@@ -34,7 +34,7 @@ const Form = React.forwardRef(({
     
       @media ${theme.mediaQueries.large} {
         .form {
-          padding: 1.5rem;
+          padding: 1.3rem;
           border: 1px solid transparent;
           background-color: var(--palette-secondary-main);
         }

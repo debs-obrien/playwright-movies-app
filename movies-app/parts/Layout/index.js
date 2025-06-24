@@ -54,8 +54,8 @@ const Layout = ({
               <div className='logo-container'>
                 <img
                   className='logo-img'
-                  width='48'
-                  height='48'
+                  width='56'
+                  height='56'
                   src={LOGO_IMAGE_PATH}
                   alt='movie ticket' />
               </div>
@@ -77,7 +77,7 @@ const Layout = ({
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
-                padding: 0.8rem 2rem;
+                padding: 0.5rem 2rem;
                 z-index: ${theme.zIndex.appBar + 10};
                 background-color: var(--palette-background-paper);
               }
@@ -85,13 +85,14 @@ const Layout = ({
               .logo-container {
                 display: flex;
                 align-items: center;
+                margin-left: 15px;
               }
               
               .logo-img {
-                max-height: 48px;
+                max-height: 56px;
                 width: auto;
-                margin-top: -5px;
-                margin-bottom: -5px;
+                margin-top: -10px;
+                margin-bottom: -10px;
               }
               
               .desktop-widgets-container {

@@ -15,8 +15,8 @@ const BurgerHeader = ({ openMenu }) => (
         <div className='logo-container'>
           <img
             className='logo-img'
-            width='48'
-            height='48'
+            width='56'
+            height='56'
             src={LOGO_IMAGE_PATH}
             alt='movie ticket' />
         </div>
@@ -36,16 +36,16 @@ const BurgerHeader = ({ openMenu }) => (
       }
       
       .logo-container {
-        margin-left: 16px;
+        margin-left: 25px;
         display: flex;
         align-items: center;
       }
       
       .logo-img {
-        max-height: 48px;
+        max-height: 56px;
         width: auto;
-        margin-top: -5px;
-        margin-bottom: -5px;
+        margin-top: -10px;
+        margin-bottom: -10px;
       }
       
       .sticky-bar-widgets-container {

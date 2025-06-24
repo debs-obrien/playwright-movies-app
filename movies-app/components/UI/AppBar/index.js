@@ -30,7 +30,7 @@ const AppBar = ({
       }
 
       .toolbar {
-        min-height: 50px;
+        min-height: 46px;
         padding: 0 24px;
         display: flex;
         align-items: center;
@@ -39,7 +39,7 @@ const AppBar = ({
 
       @media ${theme.mediaQueries.small} {
         .toolbar {
-          min-height: 46px;
+          min-height: 42px;
           padding: 0 16px;
         }
       }
