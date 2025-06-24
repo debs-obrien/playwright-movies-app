@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
@@ -8,6 +7,7 @@ import MyHead from 'components/MyHead';
 import SearchBar from 'containers/SearchBar';
 import DarkModeToggle from 'containers/DarkModeToggle';
 import TheUser from 'containers/TheUser';
+import DemoBanner from 'components/DemoBanner';
 import MainWrapper from './MainWrapper';
 import ContentWrapper from './ContentWrapper';
 import init from 'actions/init';
@@ -30,6 +30,7 @@ const Layout = ({
   return (
     <>
       <MyHead />
+      <DemoBanner />
       {/**
        * TODO: it could be more efficient in using markups.
        * children is duplicated -> looks like it affects the performance (a little).
@@ -75,6 +76,7 @@ const Layout = ({
           </MainWrapper>
         </Media>
       </MediaContextProvider>
+      <DemoBanner />
     </>
   );
 };

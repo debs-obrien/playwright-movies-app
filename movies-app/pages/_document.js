@@ -83,7 +83,6 @@ class MyDocument extends Document {
           {/* <script async src="https://www.google-analytics.com/analytics.js"></script> */}
         </Head>
         <body className={CLASS_NAMES.LIGHT}>
-          <div style={{ position: 'fixed', backgroundColor: "#ffee5b", color: "#444", padding: "0.75rem 1rem", textAlign: "center", borderBottom: "1px solid #cc0", width: "100%", height: '30px', zIndex: 1000 }}>This is a demo intended for testing. Data and images are provided by <a href="https://www.themoviedb.org">TMDB</a>.</div>
           <div style={{ height: "50px"}} />
 
           {/* MEMO: inspired by https://github.com/donavon/use-dark-mode#that-flash */}
