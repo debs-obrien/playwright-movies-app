@@ -12,7 +12,7 @@ test.describe('Viewing Movie Lists', () => {
     await expect(page.getByRole('heading', { name: 'my favorite movies', exact: true })).toBeVisible();
 
     // Verify list description is displayed as subheading
-    await expect(page.getByRole('heading', { name: 'list of my favorite movies' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'list of my favorite movies', exact: true })).toBeVisible();
 
     // Verify Edit button is visible
     await expect(page.getByRole('button', { name: 'Edit' })).toBeVisible();
