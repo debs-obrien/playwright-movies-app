@@ -30,6 +30,13 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
 
     await listTest.step('add image to list', async () => {
       await page.getByRole('link', { name: 'Choose Image' }).click();
+      
+      // Wait for navigation to choose-image page
+      await page.waitForURL(/\/list\/choose-image/);
+      
+      // Wait for movie items to be loaded
+      await page.getByRole('listitem', { name: 'movie' }).first().waitFor();
+      
       const movie = page
         .getByRole('listitem', { name: 'movie' })
         .filter({ hasText: /Garfield/ })
@@ -39,6 +46,12 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
     });
 
     await page.getByRole('link', { name: 'View List' }).click();
+    
+    // Wait for navigation to the list view page
+    await page.waitForURL(/\/list\?id=.+&page=1/);
+    
+    // Wait for the list content to be visible
+    await page.getByRole('heading', { name: 'my favorite movies', level: 1 }).waitFor();
 
     // the value of this fixture is the page object
     await use(page);
