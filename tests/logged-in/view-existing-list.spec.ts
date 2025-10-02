@@ -9,7 +9,7 @@ test.describe('Viewing Movie Lists', () => {
     const page = listPage;
 
     // Verify list title is displayed as heading
-    await expect(page.getByRole('heading', { name: 'my favorite movies', })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'my favorite movies', exact: true })).toBeVisible();
 
     // Verify list description is displayed as subheading
     await expect(page.getByRole('heading', { name: 'list of my favorite movies' })).toBeVisible();

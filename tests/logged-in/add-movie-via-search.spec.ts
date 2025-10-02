@@ -23,8 +23,8 @@ test.describe('Adding Movies to Lists', () => {
     // Verify selected movie appears in the movies section
     await expect(page.getByText('Inside Out 2')).toBeVisible();
 
-    // Verify movie has Remove button
-    await expect(page.getByRole('button', { name: 'Remove' })).toBeVisible();
+    // Verify movie has Remove button (filter by movie name to ensure we check the correct one)
+    await expect(page.locator('li').filter({ hasText: 'Inside Out 2' }).getByRole('button', { name: 'Remove' })).toBeVisible();
 
     // Verify search field clears after selection
     await expect(page.getByRole('textbox', { name: 'Add Item' })).toHaveValue('');
