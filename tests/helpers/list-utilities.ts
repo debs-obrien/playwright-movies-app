@@ -60,11 +60,10 @@ export async function addMovie(page: Page, movieName: string) {
   await test.step('add movie to list', async () => {
     await page.getByRole('textbox', { name: 'Add Item' }).fill(movieName);
     await page.getByRole('button', { name: movieName }).click();
-    await expect(page.getByLabel('movies')).toMatchAriaSnapshot(`
-    - list "movies" :
-      - listitem "movie":
-        - text: "${movieName}"
-    `);
+    // Verify the movie was added to the list
+    await expect(page.getByRole('list', { name: 'movies' }).locator('li').filter({ hasText: movieName })).toBeVisible();
+    // Verify the search field clears after selection
+    await expect(page.getByRole('textbox', { name: 'Add Item' })).toHaveValue('');
   });
 }
 
