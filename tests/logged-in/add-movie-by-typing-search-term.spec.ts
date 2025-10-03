@@ -14,13 +14,13 @@ test.describe('Adding Movies to a List', () => {
     // 2. Click in the "Add Item" search box
     await page.getByRole('textbox', { name: 'Add Item' }).click();
 
-    // 3. Type "Inception" slowly (character by character)
-    await page.getByRole('textbox', { name: 'Add Item' }).pressSequentially('Inception');
+    // 3. Type "Inside" slowly (character by character)
+    await page.getByRole('textbox', { name: 'Add Item' }).pressSequentially('Inside');
 
-    // 4. Wait for autocomplete suggestions to update and click on "Incoming" from the filtered results
-    await page.getByRole('button', { name: 'Incoming Incoming' }).click();
+    // 4. Wait for autocomplete suggestions to update and click on "Inside Out 2" from the filtered results
+    await page.getByRole('button', { name: 'Inside Out 2 Inside Out 2' }).click();
 
-    // Verify "Incoming" appears in the movies list
-    await expect(page.getByText('Incoming')).toBeVisible();
+    // Verify "Inside Out 2" appears in the movies list
+    await expect(page.getByText('Inside Out 2')).toBeVisible();
   });
 });
