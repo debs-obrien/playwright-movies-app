@@ -14,16 +14,15 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
     // 1. Navigate to "Choose Image" page
     await page.getByRole('link', { name: 'Choose Image' }).click();
 
-    // Select Garfield Movie first to establish a selection
-    const garfieldMovie = page
+    // 2. Select Twisters movie
+    const twistersMovie = page
       .getByRole('listitem', { name: 'movie' })
-      .filter({ hasText: /Garfield/ })
+      .filter({ hasText: /Twisters/ })
       .getByRole('button');
-    await garfieldMovie.hover();
-    // Playwright will auto-wait for the SELECT button to be visible and enabled
-    await garfieldMovie.getByRole('heading', { name: 'SELECT' }).click();
+    await twistersMovie.hover();
+    await twistersMovie.getByRole('heading', { name: 'SELECT' }).click();
 
-    // 2. Verify one movie is already selected (marked "SELECTING" or "SELECTED")
+    // Verify it's selected
     await expect(page.getByRole('heading', { name: 'SELECTED' })).toBeVisible();
 
     // 3. Hover over a different movie

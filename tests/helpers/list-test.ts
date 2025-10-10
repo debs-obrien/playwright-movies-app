@@ -34,10 +34,11 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
         .getByRole('listitem', { name: 'movie' })
         .filter({ hasText: /Garfield/ })
         .getByRole('button');
-      // Hover to reveal the SELECT button
+      // Double-hover to ensure the SELECT button appears (hover interactions can be flaky)
       await movie.hover();
-      // Click the SELECT button that appears on hover
       const selectButton = movie.getByRole('heading', { name: 'SELECT' });
+      // If still not visible after first hover, hover again to re-trigger
+      await movie.hover();
       await selectButton.click();
     });
 
