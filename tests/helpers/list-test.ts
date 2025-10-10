@@ -34,8 +34,11 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
         .getByRole('listitem', { name: 'movie' })
         .filter({ hasText: /Garfield/ })
         .getByRole('button');
+      // Hover to reveal the SELECT button
       await movie.hover();
-      await movie.getByRole('heading', { name: 'SELECT' }).click();
+      // Click the SELECT button that appears on hover
+      const selectButton = movie.getByRole('heading', { name: 'SELECT' });
+      await selectButton.click();
     });
 
     await page.getByRole('link', { name: 'View List' }).click();
