@@ -2,956 +2,691 @@
 
 ## Application Overview
 
-The Movies List feature is a core component of the Playwright Movies App that enables authenticated users to create, manage, and share custom movie collections. The feature integrates with The Movie Database (TMDB) API to provide rich movie data and imagery. Key capabilities include:
+The Movies List feature is a comprehensive list management system within the Playwright Movies App that allows authenticated users to create, manage, and share custom movie collections. The application integrates with TMDB (The Movie Database) to provide movie data and imagery. Key features include:
 
-- **List Management**: Create, edit, view, and delete custom movie lists
-- **Movie Operations**: Add and remove movies from lists via search functionality
-- **Visual Customization**: Select custom cover images for lists from available movie backdrops
-- **Sharing**: Generate shareable URLs for public lists
+- **List Creation**: Create new movie lists with name, description, and privacy settings
+- **List Management**: Edit list details, add/remove movies, and choose custom list images
+- **List Viewing**: View all user lists and individual list contents with movie posters and ratings
+- **Sharing**: Share public lists via URL
+- **Navigation**: Intuitive navigation between list management functions
 - **Privacy Controls**: Toggle between public and private list visibility
-- **Organization**: View all personal lists in a dedicated "My Lists" section with visual previews
 
 ## Test Scenarios
 
-### 1. Creating a New List
+### 1. Creating a New Movie List
 
 **Seed:** `tests/logged-in/seed.spec.ts`
 
-**Utility Functions Available:**
-- `createList(page, listName, listDescription)` from `list-utilities.ts`
-- `openLists(page, name)` from `list-utilities.ts`
-
-#### 1.1 Create List with Valid Name and Description
-**Assumptions:** User is logged in and on any page
-
+#### 1.1 Create List with Valid Details
 **Steps:**
-1. Click the "User Profile" button in the header
-2. Click "Create New List" from the dropdown menu
-3. Type "Summer Blockbusters 2024" in the "Name" textbox
-4. Type "Best action movies from summer 2024" in the "Description" textbox
-5. Verify "Public List?" field shows "Yes" by default
-6. Click the "Continue" button
+1. Click on the "User Profile" button in the header
+2. Click on "Create New List" link from the dropdown menu
+3. In the "Name" textbox, enter "My Action Movies"
+4. In the "Description" textbox, enter "Collection of my favorite action films"
+5. Verify "Public List?" field shows "Yes" (default)
+6. Click "Continue" button
 
 **Expected Results:**
-- Redirected to the Add/Remove Movies page for the new list
-- URL contains `listId` parameter
-- List name "Summer Blockbusters 2024" displays as page heading
-- "Add Item" search textbox is visible and ready for input
+- User is redirected to the Add/Remove Movies page for the newly created list
+- URL contains a `listId` parameter
+- Page heading shows "My Action Movies"
+- Page subheading shows "Edit"
 
-#### 1.2 Create List with Minimum Required Fields
-**Assumptions:** User is logged in and on any page
-
+#### 1.2 Create List with Private Setting
 **Steps:**
-1. Click the "User Profile" button
-2. Click "Create New List"
-3. Type "Minimal List" in the "Name" textbox
-4. Leave "Description" textbox empty
-5. Click "Continue"
+1. Click on the "User Profile" button
+2. Click on "Create New List" link
+3. Enter "My Private Collection" in the "Name" field
+4. Enter "Movies I don't want to share" in the "Description" field
+5. Click on the "Public List?" field and select "No"
+6. Click "Continue" button
 
 **Expected Results:**
 - List is created successfully
-- Redirected to Add/Remove Movies page
-- Empty description does not prevent list creation
+- List privacy is set to private
+- User is redirected to Add/Remove Movies page
 
-#### 1.3 Create Private List
-**Assumptions:** User is logged in on the Create New List page
-
+#### 1.3 Create List with Empty Name (Negative Test)
 **Steps:**
-1. Type "My Private Collection" in the "Name" textbox
-2. Type "Personal favorites" in the "Description" textbox
-3. Click the "Public List?" dropdown/textbox
-4. Select "No" option
-5. Click "Continue"
+1. Navigate to Create New List page
+2. Leave the "Name" field empty
+3. Enter "Some description" in the "Description" field
+4. Click "Continue" button
 
 **Expected Results:**
-- List is created as private
-- List appears in My Lists section
-- List visibility indicator shows "PRIVATE"
-
-#### 1.4 Attempt to Create List Without Name
-**Assumptions:** User is on the Create New List page
-
-**Steps:**
-1. Leave "Name" textbox empty
-2. Type "This should fail" in the "Description" textbox
-3. Click "Continue"
-
-**Expected Results:**
-- Error message or validation appears
+- Validation error is displayed
+- User remains on Create New List page
 - List is not created
-- User remains on the Create New List page
 
-#### 1.5 Create Multiple Lists Sequentially
-**Assumptions:** User is logged in
-
+#### 1.4 Create List with Only Name
 **Steps:**
-1. Create first list named "Action Movies"
-2. Navigate to User Profile → Create New List
-3. Create second list named "Comedy Films"
-4. Navigate to User Profile → My Lists
+1. Navigate to Create New List page
+2. Enter "Minimal List" in the "Name" field
+3. Leave the "Description" field empty
+4. Click "Continue" button
 
 **Expected Results:**
-- Both lists appear in My Lists section
-- Each list displays correct name and preview
-- Lists are ordered by creation date (newest first or oldest first)
-
----
+- List is created successfully (description is optional)
+- User is redirected to Add/Remove Movies page
 
 ### 2. Adding Movies to a List
 
 **Seed:** `tests/logged-in/seed.spec.ts`
 
-**Utility Functions Available:**
-- `addMovie(page, movieName)` from `list-utilities.ts`
+**Prerequisite:** Create a list named "Summer Blockbusters" with description "Best summer movies"
 
-#### 2.1 Add Single Movie by Search
-**Assumptions:** List exists and user is on Add/Remove Movies page
-
+#### 2.1 Add Single Movie to List
 **Steps:**
-1. Click in the "Add Item" search textbox
-2. Type "The Matrix"
-3. Wait for search suggestions to appear
-4. Click the "The Matrix" button from the suggestions
+1. From the Add/Remove Movies page, click in the "Add Item" search textbox
+2. Type "Twisters"
+3. Click on the "Twisters" button from the search results
 
 **Expected Results:**
 - Movie appears in the movies list below the search box
-- Movie name displays as "The Matrix"
-- "Remove" button appears next to the movie
-- Search textbox clears and is ready for next entry
+- Movie name "Twisters" is displayed
+- Remove button appears next to the movie name
+- Search field is cleared
 
-#### 2.2 Add Multiple Movies
-**Assumptions:** List exists and user is on Add/Remove Movies page
+**Utility Usage:** `addMovie(page, 'Twisters')`
 
+#### 2.2 Add Multiple Movies to List
 **Steps:**
-1. Add "Inception" using search
-2. Add "Interstellar" using search
-3. Add "Tenet" using search
+1. Add "Twisters" using the search and select
+2. Add "The Garfield Movie" using the search and select
+3. Add "Bad Boys: Ride or Die" using the search and select
 
 **Expected Results:**
 - All three movies appear in the list
-- Movies display in the order they were added
-- Each movie has a "Remove" button
-- List counter updates (if present)
+- Movies are displayed in order of addition
+- Each movie has a Remove button
 
-#### 2.3 Search for Non-Existent Movie
-**Assumptions:** User is on Add/Remove Movies page
+**Utility Usage:** Multiple calls to `addMovie()`
 
+#### 2.3 Search for Non-Existent Movie (Negative Test)
 **Steps:**
-1. Type "ZZZNonExistentMovie12345" in the search textbox
+1. In the "Add Item" search box, type "MovieThatDoesNotExist12345"
 2. Wait for search results
 
 **Expected Results:**
-- No movie suggestions appear, or
-- "No results found" message displays
-- List remains unchanged
+- No results are displayed
+- No buttons appear to select
+- Search field retains the typed text
 
-#### 2.4 Add Duplicate Movie
-**Assumptions:** List contains "The Matrix"
-
+#### 2.4 Add Movie with Partial Name
 **Steps:**
-1. Type "The Matrix" in search
-2. Click "The Matrix" from suggestions
+1. In the "Add Item" search box, type "Garfield"
+2. Select "The Garfield Movie" from results
 
 **Expected Results:**
-- System either prevents duplicate addition with message, or
-- Duplicate movie does not appear twice in list
-- Original movie entry remains intact
-
-#### 2.5 Add Movie with Special Characters in Title
-**Assumptions:** User is on Add/Remove Movies page
-
-**Steps:**
-1. Search for "Amélie"
-2. Click the movie from suggestions
-
-**Expected Results:**
-- Movie adds successfully
-- Special characters display correctly in the list
-- No encoding issues visible
-
----
+- Movie is added successfully
+- Full movie name is displayed in the list
 
 ### 3. Removing Movies from a List
 
-**Seed:** `tests/logged-in/seed.spec.ts` (uses `listPage` fixture which creates a list with 3 movies)
+**Seed:** `tests/logged-in/seed.spec.ts`
+
+**Prerequisite:** Create a list with three movies: "Twisters", "The Garfield Movie", "Bad Boys: Ride or Die"
 
 #### 3.1 Remove Single Movie
-**Assumptions:** List contains "Twisters", "The Garfield Movie", "Bad Boys: Ride or Die"
-
 **Steps:**
-1. Navigate to Add/Remove Movies page
-2. Locate "The Garfield Movie" in the list
-3. Click the "Remove" button next to it
+1. Navigate to Add/Remove Movies page for the list
+2. Locate "The Garfield Movie" in the movies list
+3. Click the "Remove" button next to "The Garfield Movie"
 
 **Expected Results:**
 - "The Garfield Movie" is removed from the list
-- Remaining movies ("Twisters", "Bad Boys: Ride or Die") still display
-- List count updates to 2 items
+- Only "Twisters" and "Bad Boys: Ride or Die" remain
+- No error messages are displayed
 
 #### 3.2 Remove All Movies
-**Assumptions:** List contains 3 movies
-
 **Steps:**
-1. Navigate to Add/Remove Movies page
-2. Click "Remove" for first movie
-3. Click "Remove" for second movie
-4. Click "Remove" for third movie
+1. Navigate to Add/Remove Movies page for the list
+2. Click "Remove" button for each movie in the list
 
 **Expected Results:**
 - All movies are removed
-- List is empty but still exists
-- Message may display: "No movies in this list"
-- Add Item search remains available
+- Movies list is empty
+- Page remains functional for adding new movies
 
-#### 3.3 Remove Movie and Re-add Immediately
-**Assumptions:** List contains "Inception"
-
+#### 3.3 Remove and Re-add Same Movie
 **Steps:**
-1. Remove "Inception" using Remove button
-2. Search for "Inception" in Add Item search
-3. Add "Inception" back to the list
+1. Remove "Twisters" from the list
+2. Search for "Twisters" and add it back
 
 **Expected Results:**
 - Movie is removed successfully
-- Movie can be re-added without issues
-- Movie position may change (appears at end of list)
-
----
+- Movie can be re-added without errors
+- Movie appears in the list again
 
 ### 4. Editing List Details
 
-**Seed:** `tests/logged-in/seed.spec.ts` (uses `listPage` fixture)
+**Seed:** `tests/logged-in/seed.spec.ts`
 
-#### 4.1 Update List Name and Description
-**Assumptions:** List exists with name "my favorite movies" and description "list of my favorite movies"
+**Prerequisite:** Create a list named "Original Name" with description "Original description"
 
+#### 4.1 Edit List Name
 **Steps:**
-1. Navigate to list View page
-2. Click "Edit" button
-3. Change "Name" textbox to "Top Action Films"
-4. Change "Description" textbox to "Best action movies of all time"
+1. Navigate to the list view page
+2. Click on "Edit" link/button
+3. Clear the "Name" field
+4. Enter "Updated List Name"
 5. Click "Save" button
 
 **Expected Results:**
-- Success message appears (if implemented)
-- Name updates to "Top Action Films" in the textbox
-- Description updates to "Best action movies of all time"
-- Page heading reflects new list name
-- Changes persist after navigation
+- List name is updated successfully
+- Page heading reflects new name
+- User is redirected back to list view or remains on edit page with success message
 
-#### 4.2 Change List Privacy Setting
-**Assumptions:** List exists and is public
-
+#### 4.2 Edit List Description
 **Steps:**
 1. Navigate to Edit List page
-2. Click "Public List?" dropdown
-3. Select "No" to make private
-4. Click "Save"
-5. Navigate to My Lists
+2. Clear the "Description" field
+3. Enter "This is my updated description with more details"
+4. Click "Save" button
 
 **Expected Results:**
-- Privacy setting updates successfully
-- List shows "PRIVATE" indicator in My Lists view
-- Share functionality may be disabled/removed for private lists
+- Description is updated successfully
+- New description is visible on the list page
 
-#### 4.3 Clear List Description
-**Assumptions:** List has a description
-
+#### 4.3 Change Privacy Setting from Public to Private
 **Steps:**
 1. Navigate to Edit List page
-2. Clear all text from "Description" textbox
-3. Click "Save"
+2. Verify "Public List?" shows "Yes"
+3. Click on "Public List?" field and select "No"
+4. Click "Save" button
 
 **Expected Results:**
-- Description is removed successfully
-- No description displays on View List page
-- List name still displays correctly
+- Privacy setting is updated to private
+- List is no longer publicly accessible (if tested with public URL)
 
-#### 4.4 Update with Invalid/Empty Name
-**Assumptions:** List has valid name
+#### 4.4 Change Privacy Setting from Private to Public
+**Steps:**
+1. Navigate to Edit List page for a private list
+2. Click on "Public List?" field and select "Yes"
+3. Click "Save" button
 
+**Expected Results:**
+- Privacy setting is updated to public
+- List becomes shareable via public URL
+
+#### 4.5 Edit Without Making Changes
 **Steps:**
 1. Navigate to Edit List page
-2. Clear "Name" textbox completely
-3. Click "Save"
+2. Don't modify any fields
+3. Click "Save" button
 
 **Expected Results:**
-- Validation error appears
-- Changes are not saved
-- Original name remains
-- User stays on Edit page
+- No errors occur
+- User is redirected appropriately
+- List details remain unchanged
 
-#### 4.5 Update Name to Very Long Text
-**Assumptions:** User is on Edit List page
-
-**Steps:**
-1. Type a name with 500+ characters in "Name" textbox
-2. Click "Save"
-
-**Expected Results:**
-- System either truncates name to maximum length, or
-- Validation error displays with character limit
-- List name displays correctly throughout UI without breaking layout
-
----
-
-### 5. Choosing List Cover Image
+### 5. Choosing a List Image
 
 **Seed:** `tests/logged-in/seed.spec.ts`
 
-**Utility Functions Available:**
-- `addImageToList(page, movieName)` from `list-utilities.ts`
+**Prerequisite:** Create a list with at least one movie added (e.g., "Twisters")
 
-#### 5.1 Select Cover Image from List Movies
-**Assumptions:** List contains "Twisters", "The Garfield Movie", "Bad Boys: Ride or Die"
-
+#### 5.1 Select Image from Available Movies
 **Steps:**
-1. Navigate to list View page
-2. Click navigation link "Choose Image"
-3. Hover over "The Garfield Movie" movie item
-4. Click "SELECT" heading/button that appears
+1. Navigate to the list view page
+2. Click on "Choose Image" link from the navigation
+3. Hover over a movie backdrop image (e.g., "Twisters")
+4. Click the "SELECT" button that appears
 
 **Expected Results:**
 - Button text changes to "SELECTED"
-- Navigation back to View List or My Lists shows updated cover image
-- Cover image uses The Garfield Movie backdrop/scenery
+- Image is set as the list cover image
 
-#### 5.2 Change Existing Cover Image
-**Assumptions:** List has cover image from "Twisters"
+**Utility Usage:** `addImageToList(page, 'Twisters')`
 
+#### 5.2 Change Selected Image
 **Steps:**
-1. Navigate to Choose Image page
-2. Verify "Twisters" shows "SELECTED"
-3. Hover over "Bad Boys: Ride or Die"
-4. Click "SELECT" on that movie
+1. Select "Twisters" as the list image
+2. Click on "Choose Image" again
+3. Select "The Garfield Movie" instead
 
 **Expected Results:**
-- "Twisters" no longer shows as selected
-- "Bad Boys: Ride or Die" shows "SELECTED"
-- List cover updates to new image
-- Change reflects in My Lists view
+- Previous selection is deselected
+- New image becomes the list cover
+- List thumbnail on "My Lists" page shows new image
 
-#### 5.3 Select Image from List with One Movie
-**Assumptions:** List contains only one movie
-
+#### 5.3 View List After Image Selection
 **Steps:**
-1. Navigate to Choose Image page
-2. Verify only one movie appears
-3. Hover and click "SELECT"
+1. After selecting an image, navigate back to "My Lists"
+2. Verify the list thumbnail displays the selected image
 
 **Expected Results:**
-- Single movie image can be selected
-- Selection works without errors
-- Cover image applies successfully
+- List card displays selected movie backdrop
+- Image is clearly visible and properly sized
+- List name and description are still visible
 
-#### 5.4 Navigate Without Selecting Image
-**Assumptions:** User is on Choose Image page
-
+#### 5.4 Choose Image with No Movies in List (Edge Case)
 **Steps:**
-1. View available images without clicking
-2. Click "View List" navigation link
+1. Create a new list without adding any movies
+2. Navigate to Choose Image page
 
 **Expected Results:**
-- No image is selected
-- List retains previous cover image (or default)
-- No error occurs from not selecting
-
-#### 5.5 Choose Image with Empty List
-**Assumptions:** List has no movies added
-
-**Steps:**
-1. Navigate to Choose Image page
-
-**Expected Results:**
-- Message displays: "No movies available" or similar
-- No selection options appear
-- User can navigate away without errors
-
----
+- Page displays appropriate message (empty state)
+- Or no images are available to select
+- User can navigate back to add movies first
 
 ### 6. Viewing Lists
 
-**Seed:** `tests/logged-in/seed.spec.ts` (uses `listPage` fixture)
+**Seed:** `tests/logged-in/seed.spec.ts`
 
-#### 6.1 View List with Movies
-**Assumptions:** List contains "Twisters", "The Garfield Movie", "Bad Boys: Ride or Die"
+**Prerequisite:** Create a list with three movies added and an image selected
 
+#### 6.1 View List from My Lists Page
 **Steps:**
-1. Navigate to View List page
+1. Click on "User Profile" button
+2. Click on "My Lists" link
+3. Verify list appears with thumbnail and details
+4. Click on the list card
 
 **Expected Results:**
-- List name displays as heading (level 1)
-- Description displays as heading (level 2)
-- All three movies display with:
+- "My Lists" page displays all user-created lists
+- Each list shows thumbnail, name, and privacy status (PUBLIC/PRIVATE)
+- Clicking list navigates to list view page
+
+**Utility Usage:** `openLists(page, 'My Lists')` and `navigateToMovieList(page, 'list name')`
+
+#### 6.2 View Individual List Details
+**Steps:**
+1. Navigate to a specific list view page
+2. Verify all page elements are present
+
+**Expected Results:**
+- List name is displayed as h1 heading
+- List description is displayed as h2 heading
+- All added movies are displayed with:
   - Movie poster images
   - Movie titles
   - Star ratings
-  - Clickable links to movie detail pages
-- Navigation menu shows: Edit, Share, Add/Remove Movies, Create New List
+- Navigation buttons are visible (Edit, Share, Add/Remove Movies, Create New List)
 
-#### 6.2 View Empty List
-**Assumptions:** List exists with no movies
-
+#### 6.3 View Empty List
 **Steps:**
-1. Navigate to View List page
+1. Create a new list without adding movies
+2. Navigate to View List page
 
 **Expected Results:**
-- List name and description display
-- Message shows: "No movies in this list" or similar
-- Add/Remove Movies option remains available
-- No error occurs from empty state
+- Page displays list name and description
+- No movies are shown (empty state)
+- Navigation options remain available
+- User can click "Add/Remove Movies" to add content
 
-#### 6.3 Click on Movie to View Details
-**Assumptions:** List displays "Twisters"
-
+#### 6.4 Navigate Between List Pages
 **Steps:**
-1. On View List page, click on "Twisters" poster/title link
+1. From list view page, click "Edit List"
+2. From edit page, click "View List"
+3. From view page, click "Add/Remove Movies"
+4. From add/remove page, click "Choose Image"
+5. From choose image page, click "View List"
 
 **Expected Results:**
-- Redirected to movie detail page
-- URL contains movie ID parameter
-- Movie details page loads correctly
-- Browser back button returns to list view
+- All navigation links work correctly
+- Context is preserved (same list throughout)
+- No errors occur during navigation
+- URL updates appropriately for each page
 
-#### 6.4 View List from My Lists Section
-**Assumptions:** User has list named "Action Favorites"
+### 7. Sharing Lists
 
+**Seed:** `tests/logged-in/seed.spec.ts`
+
+**Prerequisite:** Create a public list with movies
+
+#### 7.1 Open Share Dialog
 **Steps:**
-1. Click "User Profile" button
-2. Click "My Lists"
-3. Click on "Action Favorites" card
+1. Navigate to list view page
+2. Click "Share" button
 
 **Expected Results:**
-- List view page opens
-- Correct list content displays
-- URL matches list ID
-- Navigation breadcrumb or back option available
+- Share dialog appears
+- Dialog heading shows "Share [list name]"
+- URL textbox displays the full list URL
+- URL includes list ID parameter
 
-#### 6.5 View Public List as Non-Owner
-**Assumptions:** Another user created a public list with shareable URL
-
+#### 7.2 Copy Share URL
 **Steps:**
-1. Log in as different user (or log out)
-2. Navigate to public list URL directly
-3. View the list content
+1. Click "Share" button to open dialog
+2. Click on the URL textbox to select text
+3. Copy the URL (Cmd+C / Ctrl+C)
 
 **Expected Results:**
-- List displays with name, description, and movies
-- Edit controls are not visible
-- Share button may still be available
-- "Add to My Lists" option may appear (if implemented)
+- URL is selected in the textbox
+- URL can be copied to clipboard
+- URL format is correct (http://localhost:3000/list?id=[listId]&page=1)
 
----
-
-### 7. Deleting Lists
-
-**Seed:** `tests/logged-in/seed.spec.ts` (uses `listPage` fixture)
-
-#### 7.1 Delete List with Confirmation
-**Assumptions:** List exists and user is viewing it
-
+#### 7.3 Close Share Dialog
 **Steps:**
-1. Navigate to View List page
-2. Click "Edit" button
-3. Click "Delete List" navigation link
-4. Read confirmation message
-5. Click "Delete" button
-6. Click "Yes" button in confirmation dialog
+1. Open share dialog
+2. Click outside the dialog on the backdrop
 
 **Expected Results:**
-- List is permanently deleted
-- Redirected to My Lists page
-- Deleted list no longer appears in My Lists
-- Message displays: "no lists" if this was the only list
-
-#### 7.2 Cancel List Deletion
-**Assumptions:** User is on Delete List page
-
-**Steps:**
-1. Navigate to Delete List page
-2. Click "Delete" button
-3. Click "No" or "Cancel" in confirmation dialog
-
-**Expected Results:**
-- List is NOT deleted
-- User can navigate back to list
-- List still appears in My Lists
-- All list data remains intact
-
-#### 7.3 Delete List from Edit Page
-**Assumptions:** User is on Edit List page
-
-**Steps:**
-1. On Edit List page, click "Delete List" link in navigation
-2. Confirm deletion
-
-**Expected Results:**
-- List is deleted successfully
-- Process is same as deleting from View page
-- No duplicate delete actions occur
-
-#### 7.4 Delete Last Remaining List
-**Assumptions:** User has only one list
-
-**Steps:**
-1. Navigate to the list
-2. Delete the list through Edit → Delete List
-3. Confirm deletion
-4. Navigate to My Lists
-
-**Expected Results:**
-- List is deleted
-- My Lists page shows empty state
-- Message: "no lists" or "Create your first list"
-- Create New List option remains available
-
-#### 7.5 Attempt to Access Deleted List URL
-**Assumptions:** List was previously deleted, URL saved
-
-**Steps:**
-1. Navigate directly to deleted list URL
-2. Observe result
-
-**Expected Results:**
-- 404 page displays, or
-- "List not found" error message
-- Redirect to My Lists or home page
-- No application crash
-
----
-
-### 8. Sharing Lists
-
-**Seed:** `tests/logged-in/seed.spec.ts` (uses `listPage` fixture)
-
-#### 8.1 Open Share Dialog for Public List
-**Assumptions:** List is public and contains movies
-
-**Steps:**
-1. Navigate to View List page
-2. Click "Share" button in navigation
-
-**Expected Results:**
-- Dialog/modal opens with heading "Share [list name]"
-- URL textbox displays complete shareable URL
-- URL format: `http://localhost:3000/list?id=[listId]&page=1`
-- URL is pre-selected for easy copying
-
-#### 8.2 Copy Share URL
-**Assumptions:** Share dialog is open
-
-**Steps:**
-1. Click on URL textbox
-2. Use keyboard shortcut Cmd+C (Mac) or Ctrl+C (Windows) to copy
-3. Close dialog
-4. Open new browser tab
-5. Paste and navigate to URL
-
-**Expected Results:**
-- URL copies successfully to clipboard
-- Navigating to URL opens the shared list
-- List displays correctly in new context
-
-#### 8.3 Close Share Dialog
-**Assumptions:** Share dialog is open
-
-**Steps:**
-1. Click outside the dialog on the backdrop
-2. Verify dialog closes
-
-**Expected Results:**
-- Dialog closes smoothly
-- User returns to View List page
+- Dialog closes
+- User returns to list view page
 - No errors occur
 
-#### 8.4 Share Private List
-**Assumptions:** List privacy is set to "No" (private)
-
+#### 7.4 Share Private List
 **Steps:**
-1. Navigate to View List page
-2. Observe Share button availability
+1. Create or edit a list to be private
+2. Attempt to view share functionality
 
 **Expected Results:**
-- Share button may be hidden/disabled for private lists, or
-- Share dialog shows warning about privacy settings
-- Private lists cannot be accessed by non-owners even with URL
+- Share button may not be available for private lists
+- Or share dialog shows warning about privacy
+- URL access should respect privacy settings (requires authentication testing)
 
-#### 8.5 Share URL Persistence
-**Assumptions:** Share URL was generated
-
-**Steps:**
-1. Generate share URL
-2. Navigate away from list
-3. Return to same list
-4. Open Share dialog again
-
-**Expected Results:**
-- URL remains consistent (same ID)
-- URL does not change between sessions
-- URL is permanent unless list is deleted
-
----
-
-### 9. Navigating Between List Views
-
-**Seed:** `tests/logged-in/seed.spec.ts` (uses `listPage` fixture)
-
-#### 9.1 Navigate Through All Tabs
-**Assumptions:** User is viewing a list
-
-**Steps:**
-1. Start on View List page
-2. Click "Edit" navigation link
-3. Verify Edit List page displays
-4. Click "Add/Remove Movies" navigation link
-5. Verify Add/Remove Movies page displays
-6. Click "Choose Image" navigation link
-7. Verify Choose Image page displays
-8. Click "View List" navigation link
-9. Return to View List page
-
-**Expected Results:**
-- Each navigation link works correctly
-- Each page displays appropriate content
-- URL updates with each navigation
-- No 404 or broken page errors
-- List data persists across all views
-
-#### 9.2 Navigate from Edit to Delete
-**Assumptions:** User is on Edit List page
-
-**Steps:**
-1. On Edit List page, click "Delete List" link
-2. Verify Delete confirmation page displays
-
-**Expected Results:**
-- Navigation to Delete page succeeds
-- All navigation links remain functional
-- Confirmation UI displays correctly
-
-#### 9.3 Navigate with Unsaved Changes
-**Assumptions:** User is editing list name
-
-**Steps:**
-1. On Edit List page, change name
-2. Without clicking Save, click "View List" link
-3. Observe behavior
-
-**Expected Results:**
-- Either: Warning dialog "Unsaved changes, continue?" appears, or
-- Navigation proceeds without saving
-- Data consistency maintained
-
-#### 9.4 Navigate Using Browser Back Button
-**Assumptions:** User navigated through several list pages
-
-**Steps:**
-1. Navigate: View → Edit → Add/Remove → Choose Image
-2. Click browser Back button three times
-
-**Expected Results:**
-- Each Back click returns to previous page correctly
-- Page state restores accurately
-- No navigation errors or loops
-
-#### 9.5 Direct URL Access to List Pages
-**Assumptions:** User has list ID
-
-**Steps:**
-1. Navigate directly to Edit page URL: `/list/add-or-edit?id=[listId]`
-2. Navigate to Add/Remove URL: `/list/add-or-remove-items?listId=[listId]&page=1`
-3. Navigate to Choose Image URL: `/list/choose-image?listId=[listId]&page=1`
-
-**Expected Results:**
-- All pages load correctly via direct URL
-- Authorization checks pass (if user owns list)
-- Page content displays without errors
-
----
-
-### 10. My Lists Overview
+### 8. Deleting Lists
 
 **Seed:** `tests/logged-in/seed.spec.ts`
 
-**Utility Functions Available:**
-- `openLists(page, name)` from `list-utilities.ts`
-- `navigateToMovieList(page, name)` from `list-utilities.ts`
+**Prerequisite:** Create a list that can be deleted
 
-#### 10.1 View My Lists Page
-**Assumptions:** User has created "my favorite movies" list with cover image
+#### 8.1 Delete List with Confirmation
+**Steps:**
+1. Navigate to list view page
+2. Click "Edit" link from navigation
+3. Click "Delete List" link from the navigation tabs
+4. Read the confirmation message
+5. Click "Delete" button
 
+**Expected Results:**
+- User is navigated to delete confirmation page
+- Warning message is displayed
+- After clicking Delete button:
+  - List is permanently deleted
+  - User is redirected to My Lists or home page
+  - List no longer appears in My Lists
+
+#### 8.2 Navigate Away from Delete Page Without Deleting
+**Steps:**
+1. Navigate to Delete List page
+2. Click "View List" or "Edit List" link instead of Delete button
+
+**Expected Results:**
+- User navigates away without deleting
+- List is preserved
+- No changes are made to the list
+
+#### 8.3 Delete List with Movies
+**Steps:**
+1. Create list with multiple movies and custom image
+2. Navigate to Delete List page
+3. Click "Delete" button
+
+**Expected Results:**
+- Entire list is deleted including all associations
+- Movies remain in TMDB database (only list association is removed)
+- No orphaned data remains
+
+#### 8.4 Attempt to Access Deleted List
+**Steps:**
+1. Delete a list and note its list ID from URL
+2. Attempt to navigate directly to the list URL using the ID
+
+**Expected Results:**
+- Error page or "List not found" message is displayed
+- User is redirected to appropriate page
+- No server errors occur
+
+### 9. Navigation and User Flow
+
+**Seed:** `tests/logged-in/seed.spec.ts`
+
+#### 9.1 Complete List Creation Flow
+**Steps:**
+1. Navigate to Create New List page
+2. Create a new list
+3. Add three movies
+4. Choose an image
+5. View the list
+6. Share the list
+7. Edit list details
+8. View from My Lists page
+
+**Expected Results:**
+- All steps complete without errors
+- Data persists across navigation
+- All features work cohesively
+
+**Utility Usage:** `createList()`, `addMovie()`, `addImageToList()`, `openLists()`, `navigateToMovieList()`
+
+#### 9.2 Access My Lists from Different Pages
+**Steps:**
+1. From home page, click User Profile → My Lists
+2. From a movie detail page, click User Profile → My Lists
+3. From search page, click User Profile → My Lists
+
+**Expected Results:**
+- My Lists is accessible from any page
+- All lists are displayed correctly regardless of previous page
+- Navigation is consistent
+
+#### 9.3 User Profile Menu Interaction
 **Steps:**
 1. Click "User Profile" button
-2. Click "My Lists" from dropdown
+2. Verify menu items are displayed
+3. Click "User Profile" button again
 
 **Expected Results:**
-- My Lists page displays with heading "My Lists"
-- List card shows:
-  - Cover image (if selected)
-  - List name "my favorite movies"
-  - Privacy indicator "(PUBLIC)"
-  - Clickable link to view list
-- Page title is "My Lists"
+- First click opens the menu showing:
+  - Create New List
+  - My Lists
+  - Logout
+- Second click closes the menu
+- Menu is properly positioned
 
-#### 10.2 View My Lists with Multiple Lists
-**Assumptions:** User has 5+ lists
-
-**Steps:**
-1. Navigate to My Lists page
-2. Observe layout and organization
-
-**Expected Results:**
-- All lists display in grid or list layout
-- Each list shows name, image, and privacy status
-- Lists are visually distinct and organized
-- Scrolling works if lists exceed viewport
-
-#### 10.3 View My Lists with No Lists
-**Assumptions:** User has never created a list
-
-**Steps:**
-1. Navigate to My Lists page
-
-**Expected Results:**
-- Empty state displays
-- Message: "no lists" or similar
-- "Create New List" call-to-action appears
-- No error occurs from empty state
-
-#### 10.4 Click List from My Lists
-**Assumptions:** My Lists page shows multiple lists
-
-**Steps:**
-1. On My Lists page, click on specific list card/link
-
-**Expected Results:**
-- Navigates to View List page for that list
-- Correct list content displays
-- URL contains correct list ID
-
-#### 10.5 List Preview Accuracy
-**Assumptions:** Lists have different images and privacy settings
-
-**Steps:**
-1. Navigate to My Lists
-2. Compare preview images with actual list contents
-3. Verify privacy indicators (PUBLIC/PRIVATE)
-
-**Expected Results:**
-- Preview images match selected cover images
-- Privacy labels are accurate
-- List names display correctly without truncation issues
-- Visual consistency across all list cards
-
----
-
-### 11. Search and Filter Movies
+### 10. Edge Cases and Error Handling
 
 **Seed:** `tests/logged-in/seed.spec.ts`
 
-#### 11.1 Search with Partial Movie Name
-**Assumptions:** User is on Add/Remove Movies page
-
+#### 10.1 List with Special Characters in Name
 **Steps:**
-1. Type "Star" in Add Item search
-2. Observe search results
+1. Create a list with name "My Movie's & Show's: 2024! (Updated)"
+2. Add movies and view the list
 
 **Expected Results:**
-- Multiple matching movies appear (Star Wars, Star Trek, etc.)
-- Results update dynamically as typing
-- Most relevant results appear first
+- List is created successfully
+- Special characters are displayed correctly
+- No encoding issues in URLs or display
 
-#### 11.2 Search with Complete Movie Name
-**Assumptions:** User is on Add/Remove Movies page
-
+#### 10.2 List with Very Long Name and Description
 **Steps:**
-1. Type complete title "The Shawshank Redemption"
-2. Wait for results
+1. Create a list with a name of 200+ characters
+2. Create a list with a description of 1000+ characters
+3. View the list
 
 **Expected Results:**
-- Exact match appears first
-- Other similar titles may appear below
-- User can click exact match to add
+- System handles long text gracefully
+- Text is truncated or wrapped appropriately in UI
+- No layout breaking occurs
+- Full text is preserved in edit view
 
-#### 11.3 Search Results Real-Time Update
-**Assumptions:** User is typing in search
-
+#### 10.3 Rapidly Add/Remove Movies
 **Steps:**
-1. Type "A" - observe results
-2. Add "v" - observe "Av" results
-3. Add "engers" - observe "Avengers" results
+1. Quickly add 5 movies in succession
+2. Immediately remove 3 of them
+3. Add 2 more movies
 
 **Expected Results:**
-- Results update after each character
-- Search is responsive and fast
-- Previous results clear when query changes
+- All operations complete successfully
+- No race conditions or duplicate entries
+- Final state is accurate
 
-#### 11.4 Search with Year or Keywords
-**Assumptions:** User is on Add/Remove Movies page
-
+#### 10.4 Multiple Browser Tabs with Same List
 **Steps:**
-1. Type "2024" in search
-2. Observe results
+1. Open list in two browser tabs
+2. Edit list name in tab 1
+3. Edit list name in tab 2 to different value
+4. Save both
 
 **Expected Results:**
-- Movies from 2024 appear, or
-- No results if search doesn't support year filtering
-- Clear feedback provided to user
-
-#### 11.5 Clear Search Results
-**Assumptions:** Search has been performed with results
-
-**Steps:**
-1. Search for "Batman"
-2. Clear the search textbox completely
-3. Observe result state
-
-**Expected Results:**
-- Search results disappear
-- Empty search state displays
-- User can start new search
-
----
-
-### 12. Edge Cases and Error Scenarios
-
-**Seed:** `tests/logged-in/seed.spec.ts`
-
-#### 12.1 Network Failure During Movie Search
-**Assumptions:** User is on Add/Remove Movies page
-
-**Steps:**
-1. Simulate network failure (disconnect or use dev tools)
-2. Type "Inception" in search
-3. Observe behavior
-
-**Expected Results:**
-- Error message displays: "Unable to load results"
-- Application does not crash
-- User can retry when network restored
-
-#### 12.2 Session Timeout During List Edit
-**Assumptions:** User is editing a list, session expires
-
-**Steps:**
-1. Open Edit List page
-2. Wait for session timeout (or simulate)
-3. Make changes and click Save
-
-**Expected Results:**
-- Redirect to login page, or
-- Error message: "Session expired, please log in"
-- Changes are not saved
-- User can log in and retry
-
-#### 12.3 Access Another User's Private List
-**Assumptions:** Have URL to another user's private list
-
-**Steps:**
-1. Log in as User A
-2. Navigate to User B's private list URL
-
-**Expected Results:**
-- Access denied message displays
-- 403 Forbidden or similar error
-- User cannot view or edit list
-- Redirect to My Lists or home page
-
-#### 12.4 Create List with Maximum Length Inputs
-**Assumptions:** User is on Create New List page
-
-**Steps:**
-1. Paste 1000+ character string in Name field
-2. Paste 5000+ character string in Description field
-3. Click Continue
-
-**Expected Results:**
-- System validates input length
-- Error messages for exceeded limits, or
-- Inputs are truncated to max allowed
-- List creation fails gracefully if invalid
-
-#### 12.5 Rapid Button Clicking
-**Assumptions:** User is on Add/Remove Movies page
-
-**Steps:**
-1. Search for "Matrix"
-2. Rapidly click Add button 10 times in quick succession
-
-**Expected Results:**
-- Movie only adds once (duplicate prevention)
-- No UI freezing or crashes
-- Proper loading states prevent multiple submissions
-
-#### 12.6 Special Characters in List Name
-**Assumptions:** User is creating a new list
-
-**Steps:**
-1. Name list: `<script>alert("XSS")</script>`
-2. Create list
-
-**Expected Results:**
-- Special characters are escaped properly
-- No XSS vulnerability executed
-- Name displays safely as plain text
-- Security validation prevents malicious input
-
-#### 12.7 Navigate to Invalid List ID
-**Assumptions:** None
-
-**Steps:**
-1. Navigate to `/list?id=invalid-uuid-12345`
-2. Observe result
-
-**Expected Results:**
-- 404 page or "List not found" message
-- Application does not crash
-- User can navigate back to valid page
-
-#### 12.8 Delete List While Viewing It in Another Tab
-**Assumptions:** List open in two browser tabs
-
-**Steps:**
-1. Open list in Tab 1 and Tab 2
-2. In Tab 1, delete the list
-3. In Tab 2, try to interact with list
-
-**Expected Results:**
-- Tab 2 shows error when trying actions, or
-- Tab 2 automatically detects deletion and updates
+- Last save wins (or appropriate conflict resolution)
 - No data corruption occurs
+- User sees consistent state after refresh
 
----
+#### 10.5 Navigate Away During List Creation
+**Steps:**
+1. Start creating a new list
+2. Fill in name and description
+3. Navigate away without clicking Continue (e.g., click logo to go home)
+4. Return to Create New List page
 
-## Test Data Requirements
+**Expected Results:**
+- Unsaved data is lost (expected behavior for forms without auto-save)
+- Form is cleared
+- No partial list is created
 
-- **Test User Account**: Authenticated user with permissions to create lists
-- **TMDB API Access**: Valid API connection for movie search
-- **Sample Movies**: Known movies for consistent testing (e.g., "Twisters", "The Matrix", "Inception")
-- **Multiple Lists**: Test scenarios requiring 0, 1, 3, and 10+ lists
-- **Public/Private Lists**: Mix of privacy settings
-- **Lists with/without Images**: Various states of list customization
+#### 10.6 List Operations While Logged Out
+**Steps:**
+1. Create a list while logged in
+2. Simulate session timeout or logout
+3. Attempt to edit the list
 
-## Browser and Device Coverage
+**Expected Results:**
+- User is redirected to login page
+- Authentication is properly enforced
+- After re-login, user can access their lists
 
-- **Desktop Browsers**: Chrome, Firefox, Safari, Edge
-- **Mobile Browsers**: iOS Safari, Android Chrome (responsive design testing)
-- **Screen Sizes**: Desktop (1920x1080), Tablet (768x1024), Mobile (375x667)
+### 11. Visual and Accessibility Testing
+
+**Seed:** `tests/logged-in/seed.spec.ts`
+
+#### 11.1 Dark Mode Toggle
+**Steps:**
+1. View a list in light mode
+2. Toggle to dark mode using the theme switch
+3. Verify all list elements
+
+**Expected Results:**
+- All text remains readable
+- Contrast ratios meet accessibility standards
+- Images and buttons display correctly
+- Theme preference persists across page navigation
+
+#### 11.2 Responsive Design - Mobile View
+**Steps:**
+1. Resize browser to mobile dimensions (375px width)
+2. Navigate through all list pages
+3. Verify all functionality
+
+**Expected Results:**
+- Layout adapts to mobile screen
+- All buttons remain accessible and tappable
+- Navigation menu becomes mobile-friendly
+- Images scale appropriately
+
+#### 11.3 Keyboard Navigation
+**Steps:**
+1. Use Tab key to navigate through list creation form
+2. Use Enter to submit
+3. Navigate list view using keyboard only
+
+**Expected Results:**
+- All interactive elements are keyboard accessible
+- Focus indicators are visible
+- Logical tab order is maintained
+- Enter and Space keys activate buttons appropriately
+
+#### 11.4 Screen Reader Compatibility
+**Steps:**
+1. Navigate list pages with screen reader enabled
+2. Verify announcements for each action
+3. Check ARIA labels and landmarks
+
+**Expected Results:**
+- All images have appropriate alt text
+- Form fields have associated labels
+- List structure is properly announced
+- Navigation landmarks are defined
+
+### 12. Performance and Load Testing
+
+**Seed:** `tests/logged-in/seed.spec.ts`
+
+#### 12.1 List with Many Movies
+**Steps:**
+1. Create a list and add 50+ movies
+2. Navigate to View List page
+3. Scroll through all movies
+
+**Expected Results:**
+- Page loads within acceptable time (< 3 seconds)
+- Scrolling is smooth
+- Images load progressively or with lazy loading
+- No performance degradation
+
+#### 12.2 User with Many Lists
+**Steps:**
+1. Create 20+ different lists
+2. Navigate to My Lists page
+3. Scroll through all lists
+
+**Expected Results:**
+- My Lists page loads efficiently
+- Pagination may be implemented
+- All list thumbnails load appropriately
+- No browser memory issues
+
+#### 12.3 Search Performance in Add Movies
+**Steps:**
+1. Type quickly in the Add Item search field
+2. Observe search results response time
+
+**Expected Results:**
+- Search debouncing is implemented
+- Results appear within 1 second
+- No duplicate searches for same query
+- Smooth typing experience without lag
 
 ## Test Execution Notes
 
-- **Test Isolation**: Each test should start with a clean/known state using the seed file and fixtures
-- **Reusable Utilities**: Use `createList()`, `addMovie()`, `addImageToList()`, `openLists()`, and `navigateToMovieList()` from `list-utilities.ts`
-- **Fixtures**: Use `listPage` fixture from `list-test.ts` for tests requiring a pre-populated list
-- **Aria Snapshots**: Leverage `toMatchAriaSnapshot()` for accessibility-focused assertions
-- **Test Steps**: Wrap logical groups of actions in `test.step()` for better reporting
+### Prerequisites
+- User must be logged in (use login setup from `tests/logged-in/login.setup.ts`)
+- Application must be running on `http://localhost:3000`
+- TMDB API must be accessible for movie data
+
+### Test Data Cleanup
+- Each test should create its own list to avoid conflicts
+- Consider implementing cleanup utilities to delete test lists after execution
+- Use unique, identifiable names for test lists (e.g., "Test List - [timestamp]")
+
+### Reusable Utilities
+The following utilities from `tests/helpers/list-utilities.ts` should be leveraged:
+- `createList(page, listName, listDescription)` - Create a new list
+- `openLists(page, name)` - Navigate to My Lists
+- `addMovie(page, movieName)` - Add a movie to the current list
+- `addImageToList(page, movieName)` - Select a movie backdrop as list image
+- `navigateToMovieList(page, name)` - Navigate to a specific list
+
+### Environment Considerations
+- Tests assume localhost:3000 as the base URL
+- TMDB data may change over time; use stable, popular movies for reliable testing
+- Image loading times may vary based on network conditions
+- Consider mocking TMDB API for consistent test data
 
 ## Success Criteria
 
-- All happy path scenarios pass consistently
-- Edge cases are handled gracefully without crashes
-- Error messages are clear and actionable
-- Data persistence works across sessions
-- UI remains responsive during all operations
-- Accessibility standards are maintained
-- Security vulnerabilities (XSS, unauthorized access) are prevented
+A test scenario passes when:
+- All steps execute without errors
+- Expected results match actual application behavior
+- No console errors are logged (except expected warnings)
+- Visual elements render correctly
+- Data persists and displays accurately
+- Navigation flows work as intended
+- No accessibility violations are detected
+
+## Priority Classification
+
+**P0 (Critical):**
+- Scenarios 1.1, 2.1, 2.2, 4.1, 6.1, 6.2, 8.1, 9.1
+
+**P1 (High):**
+- Scenarios 1.2, 3.1, 3.3, 4.2, 4.3, 5.1, 7.1, 7.2, 9.2
+
+**P2 (Medium):**
+- Scenarios 1.4, 2.4, 3.2, 4.4, 4.5, 5.2, 5.3, 6.3, 6.4, 7.3, 8.2, 8.3, 9.3, 10.1-10.3
+
+**P3 (Low):**
+- Scenarios 1.3, 2.3, 5.4, 7.4, 8.4, 10.4-10.6, 11.1-11.4, 12.1-12.3
