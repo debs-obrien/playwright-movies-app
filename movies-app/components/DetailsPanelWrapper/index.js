@@ -15,12 +15,17 @@ const DetailsPanelWrapper = ({
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        padding: 1.5rem 3rem;
+        padding: 2rem 2.4rem;
+        gap: 1.2rem;
+        background: var(--palette-background-paper);
+        position: relative;
+        z-index: 2;
       }
 
       @media ${theme.mediaQueries.smaller} {
         .${DETAILS_PANEL_WRAPPER} {
-          padding: 1.5rem 1.5rem;
+          padding: 1.6rem 1.6rem;
+          gap: 1rem;
         }
       }
     `}</style>
