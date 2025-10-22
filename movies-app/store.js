@@ -1,15 +1,15 @@
 
 
 import { useMemo } from 'react';
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
+import { legacy_createStore as createStore, applyMiddleware } from 'redux';
+import { thunk as thunkMiddleware } from 'redux-thunk';
 import reducers from './reducers';
 
 let store;
 
 const bindMiddlewares = middlewares => {
   if (process.env.NODE_ENV !== 'production') {
-    const { composeWithDevTools } = require('redux-devtools-extension');
+    const { composeWithDevTools } = require('@redux-devtools/extension');
 
     return composeWithDevTools(applyMiddleware(...middlewares));
   }
