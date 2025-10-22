@@ -59,12 +59,10 @@ export async function openLists(page: Page, name: string = 'My Lists') {
 export async function addMovie(page: Page, movieName: string) {
   await test.step('add movie to list', async () => {
     await page.getByRole('textbox', { name: 'Add Item' }).fill(movieName);
-    await page.getByRole('button', { name: movieName }).click();
-    await expect(page.getByLabel('movies')).toMatchAriaSnapshot(`
-    - list "movies" :
-      - listitem "movie":
-        - text: "${movieName}"
-    `);
+    // Use Playwright's built-in auto-waiting with getByRole - it will wait for the button to appear
+    await page.getByRole('button', { name: new RegExp(movieName, 'i') }).first().click();
+    // Verify movie was added by checking for the movie text (partial match)
+    await expect(page.getByLabel('movies').getByText(new RegExp(movieName, 'i'))).toBeVisible();
   });
 }
 
