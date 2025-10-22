@@ -17,16 +17,32 @@ const TextArea = ({
       textarea {
         width: 100%;
         height: 150px;
-        padding: 12px 16px;
+        padding: 14px 18px;
         color: var(--palette-text-primary);
         font-size: 1.5rem;
+        font-weight: 400;
+        line-height: 1.5;
         font-family: inherit;
         box-sizing: border-box;
-        border: 1px solid var(--palette-divider);
-        transition: color var(--duration) var(--timing), background-color var(--duration) var(--timing);
-        outline: none;
+        border: 2px solid var(--palette-divider);
+        border-radius: 8px;
         background-color: var(--palette-background-paper);
+        transition: all 0.2s ease-in-out;
+        outline: none;
         resize: none;
+      }
+
+      textarea:hover {
+        border-color: var(--palette-text-secondary);
+      }
+
+      textarea:focus {
+        border-color: var(--palette-primary-main);
+        box-shadow: 0 0 0 3px rgba(var(--palette-primary-main-rgb), 0.1);
+      }
+
+      textarea::placeholder {
+        color: var(--palette-text-disabled);
       }
     `}</style>
   </FormControl>

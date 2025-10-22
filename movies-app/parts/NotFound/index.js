@@ -52,12 +52,14 @@ const NotFound = ({
         color: var(--palette-text-primary);
         font-weight: ${theme.typography.fontWeightLight};
         font-size: 3.75rem;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
       }
 
       .title-section .subtitle {
         color: var(--palette-text-secondary);
         font-weight: ${theme.typography.fontWeightBold};
         font-size: 2.125rem;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
       }
       :global(.not-found) {
         display: flex;

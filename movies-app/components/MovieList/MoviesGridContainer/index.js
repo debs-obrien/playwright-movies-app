@@ -12,8 +12,8 @@ const MoviesGridContainer = ({
         grid-template-columns: repeat(auto-fit, minmax(10rem, 25rem));
         grid-gap: 4rem 2rem;
         justify-content: space-evenly;
-        align-content: space-between;
-        align-items: start;
+        align-content: start;
+        align-items: stretch;
         margin: 4rem 0;
       }
     
@@ -24,7 +24,7 @@ const MoviesGridContainer = ({
           grid-gap: 4rem 1.5rem;
         }
       }
-    
+
       @media ${theme.mediaQueries.smaller} {
         .grid-container {
           grid-template-columns: repeat(auto-fit, minmax(10rem, 18rem));

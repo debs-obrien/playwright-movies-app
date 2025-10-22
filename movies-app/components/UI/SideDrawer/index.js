@@ -21,18 +21,19 @@ const SideDrawer = ({
     <style jsx>{`
       .side-drawer {
         position: fixed;
-        width: 250px;
-        max-width: 70%;
+        width: 280px;
+        max-width: 75%;
         height: 100%;
         left: 0;
         top: 0;
         z-index: ${theme.zIndex.drawer};
-        padding: 32px 16px;
+        padding: 2rem 0;
         overflow-y: auto;
         box-sizing: border-box;
         transition: transform ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeOut};
         box-shadow: ${theme.shadows[16]};
-        background-color: var(--palette-background-paper);
+        background: linear-gradient(180deg, var(--palette-background-paper) 0%, var(--palette-background-elevated) 100%);
+        border-right: 1px solid var(--palette-divider);
       }
     `}</style>
     <style jsx>{`

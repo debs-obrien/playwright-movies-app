@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('user can log out', async ({ page }) => {
   await page.goto('');
-  await page.getByLabel('Log In').click();
+  await page.locator('header').getByLabel('Log In').click();
 
   // Fill in the username and password fields and submit the form
   await page.getByRole('textbox', { name: 'Email address' })
@@ -17,5 +17,5 @@ test('user can log out', async ({ page }) => {
   await page.getByRole('button', { name: 'Logout' }).click();
 
   // Verify that the login button is visible
-   await expect(page.getByRole('button', { name: 'Log In' })).toBeVisible();
+   await expect(page.locator('header').getByLabel('Log In')).toBeVisible();
 });

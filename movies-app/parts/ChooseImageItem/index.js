@@ -55,6 +55,15 @@ const ChooseImageItem = ({
         position: relative;
         width: 100%;
         border: none;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .${SCENERY_CONTAINER_CLASS_NAME}:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
       }
 
       .${SCENERY_CONTAINER_CLASS_NAME} > h2 {
@@ -62,22 +71,29 @@ const ChooseImageItem = ({
         visibility: ${textAlwaysVisible ? 'visible' : 'hidden'};
         position: absolute;
         top: 50%;
-        transform: translate(0%, -50%);
-        width: 100%;
-        min-height: 40px;
-        color: var(--palette-text-primary);
-        font-size: 1.5rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 12px 24px;
+        min-height: 44px;
+        color: var(--palette-primary-contrast-text);
+        font-size: 1.4rem;
         font-weight: ${theme.typography.fontWeightBold};
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: var(--palette-custom-tmdbLightBlue);
-        transition: ${theme.transitions.duration.shorter}ms;
+        background: linear-gradient(135deg, var(--palette-primary-main), var(--palette-secondary-main));
+        border-radius: 24px;
+        box-shadow: 0 4px 20px rgba(var(--palette-primary-main-rgb), 0.4);
+        transition: all 0.3s ease;
+        backdrop-filter: blur(10px);
+        border: 2px solid rgba(255, 255, 255, 0.2);
       }
 
       .${SCENERY_CONTAINER_CLASS_NAME}:hover > h2 {
         opacity: 1;
         visibility: visible;
+        transform: translate(-50%, -50%) scale(1.05);
+        box-shadow: 0 6px 28px rgba(var(--palette-primary-main-rgb), 0.6);
       }
 
       .${SCENERY_CONTAINER_CLASS_NAME}:disabled, .${SCENERY_CONTAINER_CLASS_NAME} {
