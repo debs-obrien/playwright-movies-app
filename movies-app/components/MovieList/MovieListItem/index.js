@@ -24,7 +24,7 @@ const MovieListItem = ({
   <>
     <li aria-label="movie">
       <LazyLoad
-        height={200}
+        height={400}
         offset={1400}
       >
         <PosterLink
@@ -57,6 +57,24 @@ const MovieListItem = ({
         </LazyLoad>
       </li>
     <style jsx>{`
+      li {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      :global(.lazy-load-image-background) {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+      }
+
+      :global(.${POSTER_LINK_CLASS_NAME}) {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
       :global(.${POSTER_LINK_CLASS_NAME}:hover .${CLASS_NAMES.IMAGE_LOADING_PLACEHOLDER}) {
         box-shadow: ${theme.shadows[0]};
         border-radius: 0;

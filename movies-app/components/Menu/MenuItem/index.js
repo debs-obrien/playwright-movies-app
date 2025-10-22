@@ -50,8 +50,19 @@ const MenuItem = ({ title }) => (
       .menu-item {
         display: flex;
         align-items: center;
-        padding: 1rem 2rem;
+        padding: 1.2rem 2.4rem;
+        transition: all 0.2s ease-in-out;
+        border-radius: 0 24px 24px 0;
+        margin: 0.2rem 0;
+        position: relative;
       }
+
+      .menu-item:hover {
+        background-color: var(--palette-action-hover);
+        transform: translateX(4px);
+      }
+
+      /* Removed ::before accent bar - handled by MenuItemLink */
     `}</style>
   </>
 );

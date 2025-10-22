@@ -35,23 +35,32 @@ const DropdownMenu = ({
         visibility: hidden;
         position: absolute;
         right: ${align === ALIGNMENTS.RIGHT ? 0 : 'unset'};
-        min-width: 160px;
-        box-shadow: ${theme.shadows[1]};
-        border: 1px solid var(--palette-divider);
-        background-color: var(--palette-background-paper);
-        /* border-radius: ${theme.shape.borderRadius}px; */
+        min-width: 180px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        border: none;
+        background: linear-gradient(135deg, var(--palette-background-paper) 0%, var(--palette-background-elevated) 100%);
+        border-radius: 12px;
         z-index: ${theme.zIndex.modal};
+        margin-top: 8px;
+        padding: 8px 0;
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: all 0.2s ease-in-out;
       }
       
       ul.dropdown-content :global(li) {
         display: flex;
         align-items: center;
-        padding: 0 16px;
-        color: var(--palette-text-primary);
-        font-size: 1.5rem;
-        height: 36px;
-        background-color: var(--palette-background-paper);
-        transition: background-color ${theme.transitions.duration.shortest}ms ${theme.transitions.easing.easeInOut};
+        padding: 12px 20px;
+        margin: 4px 8px;
+        color: var(--palette-text-secondary);
+        font-size: 1.4rem;
+        font-weight: 500;
+        min-height: 40px;
+        background-color: transparent;
+        border-radius: 8px;
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
       }
 
       ul.dropdown-content :global(li > *) {
@@ -65,10 +74,12 @@ const DropdownMenu = ({
       
       ul.dropdown-content :global(li):hover {
         background-color: var(--palette-action-hover);
+        color: var(--palette-text-primary);
+        transform: translateX(4px);
       }
 
-      ul.dropdown-content :global(li):not(:first-child) {
-        border-top: 1px solid var(--palette-divider);
+      ul.dropdown-content :global(li):active {
+        transform: translateX(2px);
       }
 
       /* ul.dropdown-content :global(li):first-child {
@@ -80,6 +91,8 @@ const DropdownMenu = ({
       
       .dropdown:hover ul.dropdown-content {
         visibility: visible;
+        opacity: 1;
+        transform: translateY(0);
       }
     `}</style>
   </>

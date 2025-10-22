@@ -20,6 +20,8 @@ const DetailsPanelWrapper = ({
         background: var(--palette-background-paper);
         position: relative;
         z-index: 2;
+        flex-grow: 1;
+        min-height: 0;
       }
 
       @media ${theme.mediaQueries.smaller} {

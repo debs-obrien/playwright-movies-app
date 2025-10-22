@@ -36,7 +36,7 @@ const ButtonBase = ({
         letter-spacing: 0.02em;
         color: ${contained ? 'var(--palette-primary-contrast-text)' : 'var(--palette-primary-main)'};
         border: ${contained ? 'none' : '2px solid var(--palette-primary-main)'};
-        border-radius: ${theme.shape.borderRadiusMedium}px;
+        border-radius: ${theme.shape.borderRadius}px;
         box-shadow: ${contained ? `${theme.shadows[3]}` : 'none'};
         background-color: ${contained ? 'var(--palette-primary-main)' : 'transparent'};
         transition: all ${theme.transitions.duration.short}ms ${theme.transitions.easing.easeOut};
