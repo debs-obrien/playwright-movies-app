@@ -62,7 +62,6 @@ const MenuItem = ({ title }) => (
         transform: translateX(4px);
       }
 
-      /* Removed ::before accent bar - handled by MenuItemLink */
     `}</style>
   </>
 );

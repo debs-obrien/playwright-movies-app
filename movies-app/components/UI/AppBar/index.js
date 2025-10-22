@@ -24,7 +24,12 @@ const AppBar = ({
         width: 100%;
         z-index: ${theme.zIndex.appBar};
         box-shadow: ${theme.shadows[3]};
-  clip-path: inset(0 -100px -400px -100px);
+        /* 
+          The bottom value of -400px ensures the blurred background and shadow extend
+          far enough below the app bar for all screen sizes and effects.
+          Adjust --app-bar-clip-bottom if design requirements change.
+        */
+        clip-path: inset(0 -100px var(--app-bar-clip-bottom, -400px) -100px);
         background-color: rgba(var(--palette-background-paper-rgb, 255, 255, 255), 0.85);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
