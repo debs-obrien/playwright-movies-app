@@ -26,6 +26,11 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
     // 4. Search for "Avengers"
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Avengers');
 
+    // Wait for search results to load
+    await page.waitForResponse(response => 
+      response.url().includes('search') && response.status() === 200
+    );
+
     // 5. Verify new results appear
     await expect(page.getByRole('menuitem', { name: 'Avengers: Infinity War Avengers: Infinity War' })).toBeVisible({ timeout: 10000 });
 

@@ -29,8 +29,8 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
     const newMovie = page.getByRole('button', { name: 'Scenery image' }).nth(2);
     await newMovie.hover();
 
-    // 4. Click "SELECT" for the new movie (use nth(2) to match the hovered movie)
-    await page.getByRole('button', { name: 'Scenery image SELECT' }).nth(2).click();
+    // 4. Click SELECT within the hovered movie container
+    await newMovie.getByRole('heading', { name: 'SELECT' }).click();
 
     // 5. Navigate to "My Lists" via User Profile menu
     await page.getByRole('button', { name: 'User Profile' }).click();
