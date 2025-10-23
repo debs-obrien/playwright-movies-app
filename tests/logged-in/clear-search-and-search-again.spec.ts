@@ -26,8 +26,9 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
     // 4. Search for "Avengers"
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Avengers');
 
-    // 5. Verify new results appear
-    await expect(page.getByRole('menuitem', { name: 'Avengers: Infinity War Avengers: Infinity War' })).toBeVisible();
+    // 5. Wait for search results to load and verify new results appear
+    await expect(page.getByRole('menuitem', { name: /Avengers/ }).first()).toBeVisible();
+    await expect(page.getByRole('menuitem', { name: /Avengers.*Infinity War/ })).toBeVisible();
 
     // Verify previous results are removed - Deadpool should not appear in Avengers results
     await expect(page.getByRole('menuitem', { name: 'Deadpool & Wolverine Deadpool & Wolverine' })).not.toBeVisible();
