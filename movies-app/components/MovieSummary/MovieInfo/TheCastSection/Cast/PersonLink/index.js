@@ -12,7 +12,6 @@ const PersonLink = ({
 }) => (
   <>
     <Link
-      legacyBehavior
       href={{
         pathname: LINKS.PERSON.HREF,
         query: {
@@ -20,9 +19,9 @@ const PersonLink = ({
           [QUERY_PARAMS.PAGE]: 1
         }
       }}>
-      <a>
-        <Profile src={`${baseUrl}w${W185H278.WIDTH}${person.profile_path}`} alt={person.name} />
-      </a>
+
+      <Profile src={`${baseUrl}w${W185H278.WIDTH}${person.profile_path}`} alt={person.name} />
+
     </Link>
     <style jsx>{`
       a {

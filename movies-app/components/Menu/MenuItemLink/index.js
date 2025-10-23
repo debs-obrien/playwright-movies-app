@@ -13,16 +13,14 @@ const MenuItemLink = React.forwardRef(({
 }, ref) => (
   <>
     <Link
-      legacyBehavior
       href={href}
       as={as}
-      passHref>
-      <a
-        ref={ref}
-        className={selected ? 'menu-item-selected' : ''}
-        {...rest}>
-        {children}
-      </a>
+      ref={ref}
+      className={selected ? 'menu-item-selected' : ''}
+      {...rest}>
+
+      {children}
+
     </Link>
     <style jsx>{`
       a {

@@ -85,14 +85,12 @@ const ListActions = ({
             key={listAction.title}
             invisible={listAction.invisible}>
             {listAction.href ? (
-              <Link
-                legacyBehavior
-                href={listAction.href}>
-                <a>
-                  <TextButton style={{padding: 0}}>
-                    {listAction.title}
-                  </TextButton>
-                </a>
+              <Link href={listAction.href}>
+
+                <TextButton style={{padding: 0}}>
+                  {listAction.title}
+                </TextButton>
+
               </Link>
             ) : (
               <a>

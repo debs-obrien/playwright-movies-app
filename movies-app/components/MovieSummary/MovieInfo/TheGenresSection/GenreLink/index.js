@@ -12,7 +12,6 @@ const GenreLink = ({
 }) => (
   <li>
     <Link
-      legacyBehavior
       href={{
         pathname: LINKS.GENRE.HREF,
         query: {
@@ -21,13 +20,13 @@ const GenreLink = ({
           [QUERY_PARAMS.PAGE]: 1
         }
       }}>
-      <a>
-        <DotCircleIcon
-          fill='currentColor'
-          width='1.25em'
-          style={{marginRight: '4px'}} />
-        {genre.name}
-      </a>
+
+      <DotCircleIcon
+        fill='currentColor'
+        width='1.25em'
+        style={{marginRight: '4px'}} />
+      {genre.name}
+
     </Link>
     <style jsx>{`
       li {

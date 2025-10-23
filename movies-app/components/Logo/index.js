@@ -10,7 +10,6 @@ import STATIC_MOVIE_CATEGORIES from 'utils/constants/static-movie-categories';
 const Logo = () => (
   <>
     <Link
-      legacyBehavior
       href={{
         pathname: LINKS.HOME.HREF,
         query: {
@@ -18,17 +17,17 @@ const Logo = () => (
           [QUERY_PARAMS.PAGE]: 1
         }
       }}>
-      <a>
-        <picture>
-          <source srcSet={LOGO_IMAGE_PATH} media='(min-width: 80em)' />
-          <img
-            className='logo-img'
-            width='150'
-            height='150'
-            src=''
-            alt='movie ticket' />
-        </picture>
-      </a>
+
+      <picture>
+        <source srcSet={LOGO_IMAGE_PATH} media='(min-width: 80em)' />
+        <img
+          className='logo-img'
+          width='150'
+          height='150'
+          src=''
+          alt='movie ticket' />
+      </picture>
+
     </Link>
     <style jsx>{`
       a {

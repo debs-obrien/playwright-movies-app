@@ -65,10 +65,8 @@ const ListNavigation = ({ listId }) => {
           key={listLink.title}
           disabled={listLink.disabled}
           selected={pathname === listLink.href.pathname}>
-          <Link
-            legacyBehavior
-            href={listLink.href}>
-            <a>{listLink.title}</a>
+          <Link href={listLink.href}>
+            {listLink.title}
           </Link>
         </NavbarItem>  
       ))}
