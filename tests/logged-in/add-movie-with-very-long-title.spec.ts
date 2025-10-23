@@ -15,7 +15,7 @@ listTest.describe('Error Handling and Edge Cases', { tag: '@agent' }, () => {
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Night of the Day of the Dawn');
     
     // 3. Add the movie to the list
-    await expect(page.getByRole('button', { name: 'The Ministry of Ungentlemanly' })).toBeVisible({ timeout: 10000 });
+    await expect(page.getByRole('button', { name: 'The Ministry of Ungentlemanly' })).toBeVisible();
     await page.getByRole('button', { name: 'The Ministry of Ungentlemanly' }).click();
     await expect(page.getByText('The Ministry of Ungentlemanly Warfare')).toBeVisible();
 

@@ -15,7 +15,7 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Deadpool');
 
     // Verify Deadpool results appear
-    await expect(page.getByRole('menuitem', { name: 'Deadpool & Wolverine Deadpool & Wolverine' })).toBeVisible({ timeout: 10000 });
+    await expect(page.getByRole('menuitem', { name: 'Deadpool & Wolverine Deadpool & Wolverine' })).toBeVisible();
 
     // 3. Clear the search field
     await page.getByRole('textbox', { name: 'Add Item' }).fill('');
@@ -32,7 +32,7 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
     );
 
     // 5. Verify new results appear
-    await expect(page.getByRole('menuitem', { name: 'Avengers: Infinity War Avengers: Infinity War' })).toBeVisible({ timeout: 10000 });
+    await expect(page.getByRole('menuitem', { name: 'Avengers: Infinity War Avengers: Infinity War' })).toBeVisible();
 
     // Verify previous results are removed - Deadpool should not appear in Avengers results
     await expect(page.getByRole('menuitem', { name: 'Deadpool & Wolverine Deadpool & Wolverine' })).not.toBeVisible();

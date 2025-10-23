@@ -27,7 +27,6 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Inside Out 2');
     
     // 2. Click to add Inside Out 2 to the list
-    await page.waitForSelector('button:has-text("Inside Out 2")', { timeout: 10000 });
     await page.getByRole('button', { name: /Inside Out 2/i }).first().click();
     
     // Wait for movie to be added to the list
@@ -61,7 +60,6 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Deadpool');
     
     // 2. Click to add Deadpool & Wolverine to the list
-    await page.waitForSelector('button:has-text("Deadpool")', { timeout: 10000 });
     await page.getByRole('button', { name: /Deadpool/i }).first().click();
     
     // Wait for movie to be added to the list
@@ -95,7 +93,6 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Furiosa');
     
     // 2. Click to add Furiosa: A Mad Max Saga to the list
-    await page.waitForSelector('button:has-text("Furiosa")', { timeout: 10000 });
     await page.getByRole('button', { name: /Furiosa/i }).first().click();
     
     // Wait for movie to be added to the list

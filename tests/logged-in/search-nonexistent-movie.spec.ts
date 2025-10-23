@@ -14,9 +14,6 @@ test.describe('Adding Movies to Lists', { tag: '@agent' }, () => {
     // 2. Type "zxqwertyjklmnop12345" in the Add Item field
     await page.getByRole('textbox', { name: 'Add Item' }).fill('zxqwertyjklmnop12345');
 
-    // 3. Wait for search results
-    await page.waitForTimeout(1000); // Give time for search to process
-
     // Verify no results found message appears OR search results remain empty
     const searchResults = page.getByRole('button').filter({ hasText: 'zxqwertyjklmnop12345' });
     const hasResults = await searchResults.count();
