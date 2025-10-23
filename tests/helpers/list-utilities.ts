@@ -19,7 +19,7 @@ export async function createList(
 ) {
   await test.step('create a new list', async () => {
     await page.getByRole('button', { name: 'User Profile' }).click();
-    await page.getByRole('link', { name: 'Create New List' }).click();
+    await page.getByRole('link', { name: 'Create New List' }).first().click();
     await page.getByRole('textbox', { name: 'Name' }).fill(listName);
     await page.getByRole('textbox', { name: 'Description' }).fill(listDescription);
     await page.getByRole('button', { name: 'Continue' }).click();

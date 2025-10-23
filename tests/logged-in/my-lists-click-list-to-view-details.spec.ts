@@ -27,7 +27,7 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     await listLink.click();
 
     // 3. Verify the list name is displayed
-    await expect(page.getByRole('heading', { name: 'my favorite movies' })).toBeVisible({ timeout: 10000 });
+    await expect(page.getByRole('heading', { name: 'my favorite movies', exact: true })).toBeVisible({ timeout: 10000 });
 
     // 3. Verify all movies display correctly - Twisters
     await expect(page.getByRole('heading', { name: 'Twisters' })).toBeVisible();
