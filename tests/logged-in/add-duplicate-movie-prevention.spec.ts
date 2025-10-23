@@ -26,6 +26,9 @@ test.describe('Adding Movies to Lists', { tag: '@agent' }, () => {
     // 4. Attempt to click "Twisters" from search results
     await page.getByRole('button', { name: 'Twisters' }).click();
 
+    // Wait for the operation to complete (loading message should disappear)
+    await expect(page.getByText('Adding an item to the list...')).toBeHidden();
+
     // Verify system prevents adding duplicate movie OR only one instance appears
     const finalCount = await page.getByRole('listitem', { name: 'movie' }).count();
     const finalTwistersCount = await page.getByRole('listitem', { name: 'movie' }).filter({ hasText: 'Twisters' }).count();
