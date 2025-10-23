@@ -12,6 +12,9 @@ test.describe('Adding Movies to Lists', { tag: '@agent' }, () => {
     // 1. Navigate to Add/Remove Movies page using `addMovie` utility
     await page.getByRole('link', { name: 'Add/Remove Movies' }).click();
 
+    // Wait for the page to be fully loaded
+    await expect(page.getByRole('textbox', { name: 'Add Item' })).toBeVisible();
+
     // Get initial movie count
     const initialCount = await page.getByRole('listitem', { name: 'movie' }).count();
 
