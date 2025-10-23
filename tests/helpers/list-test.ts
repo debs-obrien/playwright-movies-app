@@ -34,8 +34,12 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
         .getByRole('listitem', { name: 'movie' })
         .filter({ hasText: /Garfield/ })
         .getByRole('button');
+      // Hover over the movie to reveal the SELECT button
       await movie.hover();
-      await movie.getByRole('heading', { name: 'SELECT' }).click();
+      const selectButton = movie.getByRole('heading', { name: 'SELECT' });
+      // Wait for the SELECT button to be visible before clicking
+      await selectButton.waitFor({ state: 'visible', timeout: 10000 });
+      await selectButton.click();
     });
 
     await page.getByRole('link', { name: 'View List' }).click();

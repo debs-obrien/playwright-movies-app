@@ -11,14 +11,10 @@ const LinkButton = ({
   buttonProps = {}
 }) => (
   <>
-    <Link
-      legacyBehavior
-      passHref
-      as={as}
-      href={href}>
-      <a {...anchorProps}>
-        <Button {...buttonProps} />
-      </a>
+    <Link as={as} href={href} {...anchorProps}>
+
+      <Button {...buttonProps} />
+
     </Link>
   </>
 );

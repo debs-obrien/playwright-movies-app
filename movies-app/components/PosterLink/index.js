@@ -11,16 +11,10 @@ const PosterLink = React.forwardRef(({
   ...rest
 }, ref) => (
   <>
-    <Link
-      legacyBehavior
-      passHref
-      as={as}
-      href={href}>
-      <a
-        ref={ref}
-        {...rest}>
-        {children}
-      </a>
+    <Link as={as} href={href} ref={ref} {...rest}>
+
+      {children}
+
     </Link>
     <style jsx>{`
       a {

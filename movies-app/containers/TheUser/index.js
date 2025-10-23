@@ -42,20 +42,22 @@ const TheUser = ({
               style={style} />
           )}>
           <DropdownMenuItem>
-            <Link legacyBehavior href={{
-              pathname: LINKS.ADD_OR_EDIT_LIST.HREF
-            }}>
-              <a>Create New List</a>
+            <Link
+              href={{
+                pathname: LINKS.ADD_OR_EDIT_LIST.HREF
+              }}>
+              Create New List
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
-            <Link legacyBehavior href={{
-              pathname: LINKS.MY_LISTS.HREF,
-              query: {
-                [QUERY_PARAMS.PAGE]: 1
-              }
-            }}>
-              <a>My Lists</a>
+            <Link
+              href={{
+                pathname: LINKS.MY_LISTS.HREF,
+                query: {
+                  [QUERY_PARAMS.PAGE]: 1
+                }
+              }}>
+              My Lists
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
