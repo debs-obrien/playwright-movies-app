@@ -12,6 +12,12 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     // 1. Navigate to My Lists page
     await openLists(page);
 
+    // Wait for the My Lists page to fully load
+    await expect(page.getByRole('heading', { name: 'My Lists' })).toBeVisible();
+    
+    // Ensure the list with cover image is visible before clicking
+    await expect(page.getByRole('heading', { name: 'my favorite movies' })).toBeVisible();
+
     // 2. Click on my favorite movies list to view details
     await page.getByRole('link', { name: 'poster of my favorite movies' }).click();
 

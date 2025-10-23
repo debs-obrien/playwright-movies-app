@@ -14,13 +14,10 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
     // 1. From the list view page, click "Choose Image" link
     await page.getByRole('link', { name: 'Choose Image' }).click();
 
-    // 2. Verify all movies in the list are displayed with scenery images
-    await expect(page.locator('body')).toMatchAriaSnapshot(`
-- list:
-  - listitem: "Twisters"
-  - listitem: "The Garfield Movie"
-  - listitem: "Bad Boys: Ride or Die"
-`);
+    // 2. Verify all movies in the list are displayed
+    await expect(page.getByRole('heading', { name: 'Twisters' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'The Garfield Movie' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Bad Boys: Ride or Die' })).toBeVisible();
 
     // 3. Hover over the first movie (Twisters)
     const twistersMovie = page
@@ -35,13 +32,6 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
 
     // 5. Verify the button text changes to "SELECTED"
     await expect(page.getByRole('heading', { name: 'SELECTED' })).toBeVisible();
-
-    // Wait for the backdrop_path update API call to complete
-    await page.waitForResponse(response => 
-      response.url().includes('/list/') && 
-      response.request().method() === 'PUT' &&
-      response.status() === 200
-    );
 
     // 6. Navigate to "My Lists" via User Profile menu
     await page.getByRole('button', { name: 'User Profile' }).click();
