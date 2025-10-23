@@ -19,7 +19,9 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     await expect(page.getByRole('heading', { name: 'my favorite movies' })).toBeVisible();
 
     // 2. Click on my favorite movies list to view details
-    await page.getByRole('link', { name: 'poster of my favorite movies' }).click();
+    const listLink = page.getByRole('link', { name: 'poster of my favorite movies' });
+    await expect(listLink).toBeVisible();
+    await listLink.click();
 
     // 3. Verify the list name is displayed
     await expect(page.getByRole('heading', { name: 'my favorite movies' })).toBeVisible();

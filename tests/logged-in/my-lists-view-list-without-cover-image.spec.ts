@@ -18,6 +18,9 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     // 3. Navigate to My Lists
     await openLists(page);
 
+    // Wait for My Lists page to fully load
+    await expect(page.getByRole('heading', { name: 'My Lists' })).toBeVisible();
+
     // 4. Verify the list without selected cover image is displayed
     await expect(page.getByRole('heading', { name: 'List Without Cover' })).toBeVisible();
 

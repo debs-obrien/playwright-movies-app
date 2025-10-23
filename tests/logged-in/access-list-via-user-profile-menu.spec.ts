@@ -13,17 +13,20 @@ test.describe('Navigation and User Experience', { tag: '@agent' }, () => {
 
     // 2. Verify dropdown menu appears by checking for the menu items
     // 3. Observe "Create New List" and "My Lists" options
+    const myListsLink = page.getByRole('link', { name: 'My Lists' });
+    await expect(myListsLink).toBeVisible();
     await expect(page.getByRole('link', { name: 'Create New List' }).first()).toBeVisible();
-    await expect(page.getByRole('link', { name: 'My Lists' })).toBeVisible();
 
     // 4. Click "My Lists"
-    await page.getByRole('link', { name: 'My Lists' }).click();
+    await myListsLink.click();
 
     // 5. Verify "My Lists" page loads
     await expect(page.getByRole('heading', { name: 'My Lists' })).toBeVisible();
 
     // 6. Click a list to view it
-    await page.getByRole('link', { name: 'poster of my favorite movies' }).click();
+    const listLink = page.getByRole('link', { name: 'poster of my favorite movies' });
+    await expect(listLink).toBeVisible();
+    await listLink.click();
 
     // 7. Click "User Profile" again
     await page.getByRole('button', { name: 'User Profile' }).click();
