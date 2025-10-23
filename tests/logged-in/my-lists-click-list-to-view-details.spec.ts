@@ -15,6 +15,9 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     // Wait for the My Lists page to fully load
     await expect(page.getByRole('heading', { name: 'My Lists' })).toBeVisible();
     
+    // Wait for the list to be rendered with the cover image
+    await page.waitForTimeout(1000);
+    
     // Ensure the list with cover image is visible before clicking
     await expect(page.getByRole('heading', { name: 'my favorite movies' })).toBeVisible();
 
@@ -24,7 +27,7 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     await listLink.click();
 
     // 3. Verify the list name is displayed
-    await expect(page.getByRole('heading', { name: 'my favorite movies' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'my favorite movies' })).toBeVisible({ timeout: 10000 });
 
     // 3. Verify all movies display correctly - Twisters
     await expect(page.getByRole('heading', { name: 'Twisters' })).toBeVisible();

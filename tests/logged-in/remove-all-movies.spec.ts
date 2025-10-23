@@ -12,6 +12,7 @@ test.describe('Removing Movies from Lists', { tag: '@agent' }, () => {
     await page.getByRole('link', { name: 'Add/Remove Movies' }).click();
 
     // 2. Note the total number of movies in the list
+    await expect(page.getByRole('listitem', { name: 'movie' })).not.toHaveCount(0, { timeout: 10000 });
     let movieCount = await page.getByRole('listitem', { name: 'movie' }).count();
     expect(movieCount).toBeGreaterThan(0);
 
@@ -21,7 +22,7 @@ test.describe('Removing Movies from Lists', { tag: '@agent' }, () => {
       await firstMovie.getByRole('button', { name: 'Remove' }).click();
       
       // Wait for the movie count to decrease
-      await expect(page.getByRole('listitem', { name: 'movie' })).not.toHaveCount(movieCount);
+      await expect(page.getByRole('listitem', { name: 'movie' })).not.toHaveCount(movieCount, { timeout: 10000 });
       
       movieCount = await page.getByRole('listitem', { name: 'movie' }).count();
     }

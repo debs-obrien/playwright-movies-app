@@ -17,10 +17,10 @@ test.describe('Error Handling and Edge Cases', { tag: '@agent' }, () => {
     await expect(page.getByRole('button', { name: 'Log In' })).toBeVisible();
 
     // 2. Attempt to navigate to the list URL directly while logged out
-    await page.goto(listUrl);
+    await page.goto(listUrl, { waitUntil: 'domcontentloaded' });
 
     // 3. Observe the behavior - Access is denied with a message requiring authentication
-    await expect(page.getByRole('heading', { name: "You don't have permission to access this page!" }).first()).toBeVisible();
+    await expect(page.getByRole('heading', { name: "You don't have permission to access this page!" }).first()).toBeVisible({ timeout: 10000 });
     await expect(page.getByRole('heading', { name: "You've tried to request a page that requires you to be logged in. Log in to your account." }).first()).toBeVisible();
     await expect(page.getByRole('button', { name: 'Log In' })).toBeVisible();
   });

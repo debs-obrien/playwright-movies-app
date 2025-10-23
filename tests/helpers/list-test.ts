@@ -34,11 +34,11 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
         .getByRole('listitem', { name: 'movie' })
         .filter({ hasText: /Garfield/ })
         .getByRole('button');
-      // Double-hover to ensure the SELECT button appears (hover interactions can be flaky)
+      // Hover over the movie to reveal the SELECT button
       await movie.hover();
       const selectButton = movie.getByRole('heading', { name: 'SELECT' });
-      // If still not visible after first hover, hover again to re-trigger
-      await movie.hover();
+      // Wait for the SELECT button to be visible before clicking
+      await selectButton.waitFor({ state: 'visible', timeout: 10000 });
       await selectButton.click();
     });
 

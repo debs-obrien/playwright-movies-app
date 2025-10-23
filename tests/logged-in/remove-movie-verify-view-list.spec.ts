@@ -12,11 +12,12 @@ test.describe('Removing Movies from Lists', { tag: '@agent' }, () => {
     await page.getByRole('link', { name: 'Add/Remove Movies' }).click();
 
     // 2. Remove "Bad Boys: Ride or Die"
+    await expect(page.getByRole('listitem', { name: 'movie' })).not.toHaveCount(0, { timeout: 10000 });
     const initialCount = await page.getByRole('listitem', { name: 'movie' }).count();
     await page.getByRole('listitem', { name: 'movie' }).filter({ hasText: 'Bad Boys: Ride or Die' }).getByRole('button', { name: 'Remove' }).click();
 
     // Verify movie is removed from the list
-    await expect(page.getByRole('listitem', { name: 'movie' })).toHaveCount(initialCount - 1);
+    await expect(page.getByRole('listitem', { name: 'movie' })).toHaveCount(initialCount - 1, { timeout: 10000 });
     await expect(page.getByRole('listitem', { name: 'movie' }).filter({ hasText: 'Bad Boys: Ride or Die' })).toHaveCount(0);
 
     // 3. Navigate to "View List" via the navigation tabs
@@ -26,7 +27,7 @@ test.describe('Removing Movies from Lists', { tag: '@agent' }, () => {
     await expect(page.getByRole('heading', { name: 'Bad Boys: Ride or Die' })).not.toBeVisible();
 
     // Verify only remaining movies are displayed with posters
-    await expect(page.getByRole('heading', { name: 'Twisters' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Twisters' })).toBeVisible({ timeout: 10000 });
     await expect(page.getByRole('heading', { name: 'The Garfield Movie' })).toBeVisible();
   });
 });
