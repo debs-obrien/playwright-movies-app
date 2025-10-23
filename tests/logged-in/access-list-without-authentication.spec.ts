@@ -20,8 +20,8 @@ test.describe('Error Handling and Edge Cases', { tag: '@agent' }, () => {
     await page.goto(listUrl);
 
     // 3. Observe the behavior - Access is denied with a message requiring authentication
-    await expect(page.getByRole('heading', { name: "You don't have permission to access this page!" })).toBeVisible();
-    await expect(page.getByRole('heading', { name: "You've tried to request a page that requires you to be logged in. Log in to your account." })).toBeVisible();
+    await expect(page.getByRole('heading', { name: "You don't have permission to access this page!" }).first()).toBeVisible();
+    await expect(page.getByRole('heading', { name: "You've tried to request a page that requires you to be logged in. Log in to your account." }).first()).toBeVisible();
     await expect(page.getByRole('button', { name: 'Log In' })).toBeVisible();
   });
 });
