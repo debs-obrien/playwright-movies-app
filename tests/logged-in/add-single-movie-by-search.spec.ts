@@ -20,9 +20,6 @@ test.describe('Adding Movies to Lists', { tag: '@agent' }, () => {
     // 3. Type "Inside Out 2"
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Inside Out 2');
 
-    // 4. Wait for search results to appear
-    await page.waitForSelector('button:has-text("Inside Out 2")');
-
     // 5. Click the movie button matching "Inside Out 2" from the search results
     await page.getByRole('button', { name: 'Inside Out 2' }).click();
 

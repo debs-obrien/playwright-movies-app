@@ -18,7 +18,7 @@ test.describe('Persistence and Data Integrity', { tag: '@agent' }, () => {
 
     // 2. Navigate to another page (home)
     await page.goto('http://localhost:3000');
-    await page.getByText("Popular").first().waitFor({ state: 'visible' });
+    await expect(page.getByText("Popular").first()).toBeVisible();
 
     // 3. Return to "My Lists"
     await page.getByRole('button', { name: 'User Profile' }).click();

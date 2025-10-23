@@ -26,7 +26,7 @@ test.describe('Adding Movies to Lists', { tag: '@agent' }, () => {
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Inside Out');
     
     // Verify new search works after clearing
-    await page.waitForSelector('button:has-text("Inside Out")');
+    await expect(page.getByRole('button', { name: /Inside Out/ }).first()).toBeVisible();
     const newSearchResults = await page.getByRole('button', { name: /Inside Out/ }).count();
     expect(newSearchResults).toBeGreaterThan(0);
   });

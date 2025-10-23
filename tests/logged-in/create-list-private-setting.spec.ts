@@ -27,15 +27,9 @@ test.describe('Creating New Lists', { tag: '@agent' }, () => {
     // 6. Click the "Continue" button
     await page.getByRole('button', { name: 'Continue' }).click();
 
-    // Wait for navigation to the Add/Remove Movies page
-    await page.waitForURL('**/list/add-or-remove-items**');
-
     // 7. Navigate to "My Lists" via User Profile menu
     await page.getByRole('button', { name: 'User Profile' }).click();
     await page.getByRole('link', { name: 'My Lists' }).click();
-
-    // Wait for the My Lists page to load
-    await page.waitForURL('**/my-lists**');
 
     // Verify list appears in "My Lists" with "(PRIVATE)" label
     await expect(page.getByRole('heading', { name: /movies \(PRIVATE\)/ })).toBeVisible();

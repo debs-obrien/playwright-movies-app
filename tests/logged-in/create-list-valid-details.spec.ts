@@ -31,9 +31,6 @@ test.describe('Creating New Lists', { tag: '@agent' }, () => {
     // 7. Click the "Continue" button
     await page.getByRole('button', { name: 'Continue' }).click();
 
-    // Verify form is successfully submitted and user is redirected to the "Add/Remove Movies" page
-    await page.waitForURL(url => url.searchParams.has('listId'));
-
     // Verify page title shows the new list name "My Action Movies"
     await expect(page.getByRole('heading', { name: 'My Action Movies' })).toBeVisible();
 

@@ -13,7 +13,6 @@ test.describe('Navigation and User Experience', { tag: '@agent' }, () => {
 
     // 2. Add a movie
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Inside Out 2');
-    await page.waitForSelector('button:has-text("Inside Out 2")');
     await page.getByRole('button', { name: 'Inside Out 2' }).click();
     
     // Wait for movie to be added to the list

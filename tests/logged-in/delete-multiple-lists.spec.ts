@@ -21,7 +21,6 @@ test.describe('Deleting Movie Lists', { tag: '@agent' }, () => {
 
     // Add movie to first list
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Twisters');
-    await page.getByText("Twisters").first().waitFor({ state: 'visible' });
     await page.getByRole('button', { name: /Twisters/ }).first().click();
 
     // Create second list - Action Movies
@@ -33,7 +32,6 @@ test.describe('Deleting Movie Lists', { tag: '@agent' }, () => {
 
     // 2. Add movie to second list
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Deadpool');
-    await page.getByText("Deadpool & Wolverine").first().waitFor({ state: 'visible' });
     await page.getByRole('button', { name: 'Deadpool & Wolverine Deadpool' }).click();
 
     // Create third list - Comedy Movies
@@ -45,7 +43,6 @@ test.describe('Deleting Movie Lists', { tag: '@agent' }, () => {
 
     // 2. Add movie to third list
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Inside Out');
-    await page.getByText("Inside Out 2").first().waitFor({ state: 'visible' });
     await page.getByRole('button', { name: 'Inside Out 2 Inside Out' }).click();
 
     // 3. Navigate to "My Lists" and verify all three lists appear
