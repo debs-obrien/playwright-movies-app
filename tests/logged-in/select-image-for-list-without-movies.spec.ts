@@ -3,7 +3,6 @@
 
 import { expect } from '@playwright/test';
 import { listTest as test } from '../helpers/list-test';
-import { createList } from '../helpers/list-utilities';
 
 test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
   test('Select Image for List Without Movies', async ({ listPage }) => {

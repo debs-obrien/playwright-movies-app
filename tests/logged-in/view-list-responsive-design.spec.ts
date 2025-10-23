@@ -5,7 +5,7 @@ import { expect } from '@playwright/test';
 import { listTest as test } from '../helpers/list-test';
 
 test.describe('Viewing Movie Lists', { tag: '@agent' }, () => {
-  test('View List on Different Screen Sizes (Responsive Design)', async ({ listPage, context }) => {
+  test('View List on Different Screen Sizes (Responsive Design)', async ({ listPage }) => {
     const page = listPage;
 
     // 1. Load the list view page (fixture already navigates here)

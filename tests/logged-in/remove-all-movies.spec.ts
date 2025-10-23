@@ -18,7 +18,6 @@ test.describe('Removing Movies from Lists', { tag: '@agent' }, () => {
     // 3. Click "Remove" button for each movie sequentially until list is empty
     while (movieCount > 0) {
       const firstMovie = page.getByRole('listitem', { name: 'movie' }).first();
-      const movieName = await firstMovie.textContent();
       await firstMovie.getByRole('button', { name: 'Remove' }).click();
       
       // Wait for the movie count to decrease
