@@ -24,10 +24,10 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
     await expect(page.locator('.select-search-container.is-loading')).toBeVisible({ timeout: 1000 });
 
     // 6. Wait for search results to load and verify dropdown appears
-    await expect(page.locator('.select-search-option button')).toBeVisible({ timeout: 10000 });
+    await expect(page.locator('.movie-option-wrapper button')).toBeVisible({ timeout: 10000 });
     
     // 7. Verify results display with movie titles and relevant info (images and text)
-    const searchResults = page.locator('.select-search-option button').first();
+    const searchResults = page.locator('.movie-option-wrapper button').first();
     await expect(searchResults).toBeVisible();
     await expect(searchResults.locator('img')).toBeVisible();
     await expect(searchResults.locator('span')).toBeVisible();

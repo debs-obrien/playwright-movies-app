@@ -136,7 +136,7 @@ const MovieSelectSearch = props => {
               {results.map((option, index) => (
                 <div
                   key={option.value || index}
-                  className="select-search-option"
+                  className="movie-option-wrapper"
                 >
                   {option.disabled ? (
                     // No results or error state - show as text, not clickable button
