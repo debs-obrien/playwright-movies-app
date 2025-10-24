@@ -183,7 +183,6 @@ export default css.global`
     line-height: 1.2;
     letter-spacing: -0.025em;
   }
-
   h1 {
     font-size: 3.6rem;
     font-weight: 800;
@@ -235,4 +234,5 @@ export default css.global`
   .${CLASS_NAMES.INVISIBLE} {
     visibility: hidden;
   }
+
 `;
