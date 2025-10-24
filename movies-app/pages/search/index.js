@@ -74,7 +74,7 @@ const Search = () => {
         subtitle={`There were no results for ${searchTerm}...`} />
     );
   } else {
-    const { secure_base_url: baseUrl } = general.base.images;
+    const { secure_base_url: baseUrl } = general.base.images || {};
 
     return (
       <PageWrapper>
