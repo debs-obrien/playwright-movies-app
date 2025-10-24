@@ -19,41 +19,36 @@ const GenreLink = ({
           [QUERY_PARAMS.NAME]: genre.name,
           [QUERY_PARAMS.PAGE]: 1
         }
+      }}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        padding: '5px 8px',
+        background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)',
+        border: '1px solid rgba(236, 72, 153, 0.3)',
+        borderRadius: '16px',
+        color: 'var(--palette-secondary-main)',
+        textDecoration: 'none',
+        lineHeight: '1',
+        fontSize: '12px',
+        fontWeight: '700',
+        textTransform: 'uppercase',
+        letterSpacing: '0.5px',
+        transition: 'all 0.3s ease',
+        whiteSpace: 'nowrap'
       }}>
 
       <DotCircleIcon
         fill='currentColor'
-        width='1.25em'
-        style={{marginRight: '4px'}} />
+        width='12px'
+        height='12px'
+        style={{marginRight: '5px', flexShrink: 0}} />
       {genre.name}
 
     </Link>
     <style jsx>{`
       li {
         list-style-type: none;
-      }
-      a {
-        display: flex;
-        align-items: center;
-        padding: 0.5rem 0rem;
-        color: var(--palette-secondary-main);
-        line-height: 1;
-        font-size: 1.25rem;
-        font-weight: ${theme.typography.fontWeightBold};
-        text-transform: uppercase;
-        margin-right: 1em;
-      }
-    
-      a:not(:last-child) {
-        margin-right: 2rem;
-      }
-    
-      a:hover {
-        text-decoration: underline;
-      }
-    
-      a:active {
-        transform: translateY(2px);
       }
     `}</style>
   </li>

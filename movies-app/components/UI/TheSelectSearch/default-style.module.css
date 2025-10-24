@@ -47,6 +47,7 @@
   background: linear-gradient(135deg, var(--palette-background-paper) 0%, var(--palette-background-elevated) 100%);
   transition: all 0.2s ease-in-out;
   border: 2px solid var(--palette-divider);
+  outline: none;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   outline: none;
@@ -61,16 +62,28 @@
 }
 
 .input:hover {
-  border-color: var(--palette-text-secondary);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-  transform: translateY(-1px);
+  border-color: var(--palette-divider);
+  box-shadow: none;
+  transform: none;
+  outline: none;
 }
 
 .input:focus {
-  border-color: var(--palette-primary-main);
-  box-shadow: 0 0 0 3px rgba(var(--palette-primary-main-rgb), 0.1), 0 4px 20px rgba(0, 0, 0, 0.15);
-  transform: translateY(-1px);
+  border-color: var(--palette-divider);
+  box-shadow: none;
+  outline: none;
+  transform: none;
 }
+
+.input:focus-visible,
+.input:active,
+.has-focus .input {
+  border-color: var(--palette-divider);
+  box-shadow: none;
+  outline: none;
+  transform: none;
+}
+
 
 .input::-webkit-search-decoration,
 .input::-webkit-search-cancel-button,

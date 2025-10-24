@@ -7,7 +7,7 @@ import path from 'path'; // Add this line to import the 'path' module
  */
 import dotenv from 'dotenv';
 import assert from 'assert';
-dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config({ path: path.resolve(__dirname, '.env'), quiet: true });
 
 assert(process.env.MOVIES_USERNAME, 'MOVIES_USERNAME env var is not set');
 assert(process.env.MOVIES_PASSWORD, 'MOVIES_PASSWORD env var is not set');

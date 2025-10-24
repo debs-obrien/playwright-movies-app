@@ -10,19 +10,20 @@ import QUERY_PARAMS from 'utils/constants/query-params';
 
 const renderStaticCategories = (staticCategories, selectedMenuItemName, closeMenu = null) => {
   const menuItemLinks = staticCategories.map(staticCategory => (
-    <MenuItemLink
-      key={staticCategory.id}
-      href={{
-        pathname: LINKS.HOME.HREF,
-        query: {
-          [QUERY_PARAMS.CATEGORY]: staticCategory.name,
-          [QUERY_PARAMS.PAGE]: 1
-        }
-      }}
-      onClick={closeMenu}
-      selected={staticCategory.name === selectedMenuItemName}>
-      <MenuItem title={staticCategory.name} />
-    </MenuItemLink>
+    <li key={staticCategory.id}>
+      <MenuItemLink
+        href={{
+          pathname: LINKS.HOME.HREF,
+          query: {
+            [QUERY_PARAMS.CATEGORY]: staticCategory.name,
+            [QUERY_PARAMS.PAGE]: 1
+          }
+        }}
+        onClick={closeMenu}
+        selected={staticCategory.name === selectedMenuItemName}>
+        <MenuItem title={staticCategory.name} />
+      </MenuItemLink>
+    </li>
   ));
 
   return menuItemLinks;
@@ -30,20 +31,21 @@ const renderStaticCategories = (staticCategories, selectedMenuItemName, closeMen
 
 const renderGenres = (genres, selectedMenuItemName, closeMenu = null) => {
   const menuItemLinks = genres.map(genre => (
-    <MenuItemLink
-      key={genre.id}
-      href={{
-        pathname: LINKS.GENRE.HREF,
-        query: {
-          [QUERY_PARAMS.ID]: genre.id,
-          [QUERY_PARAMS.NAME]: genre.name,
-          [QUERY_PARAMS.PAGE]: 1
-        }
-      }}
-      onClick={closeMenu}
-      selected={genre.name === selectedMenuItemName}>
-      <MenuItem title={genre.name} />
-    </MenuItemLink>
+    <li key={genre.id}>
+      <MenuItemLink
+        href={{
+          pathname: LINKS.GENRE.HREF,
+          query: {
+            [QUERY_PARAMS.ID]: genre.id,
+            [QUERY_PARAMS.NAME]: genre.name,
+            [QUERY_PARAMS.PAGE]: 1
+          }
+        }}
+        onClick={closeMenu}
+        selected={genre.name === selectedMenuItemName}>
+        <MenuItem title={genre.name} />
+      </MenuItemLink>
+    </li>
   ));
 
   return menuItemLinks;
@@ -60,13 +62,36 @@ const Menu = ({
   return (
     <>
       <nav {...rest}>
-        <SectionHeading>Discover</SectionHeading>
-        {renderStaticCategories(staticCategories, selectedMenuItemName, closeMenu)}
-        <SectionHeading>Genres</SectionHeading>
-        {renderGenres(genres, selectedMenuItemName, closeMenu)}
+        <section>
+          <SectionHeading>Discover</SectionHeading>
+          <ul role="list">
+            {renderStaticCategories(staticCategories, selectedMenuItemName, closeMenu)}
+          </ul>
+        </section>
+        <section>
+          <SectionHeading>Genres</SectionHeading>
+          <ul role="list">
+            {renderGenres(genres, selectedMenuItemName, closeMenu)}
+          </ul>
+        </section>
         <TMDBMark className='tmdb-mark' />
       </nav>
       <style jsx>{`
+        ul {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+        }
+
+        li {
+          margin: 0;
+          padding: 0;
+        }
+
+        section {
+          margin-bottom: 2rem;
+        }
+
         :global(.copyright) {
           display: flex;
           justify-content: center;

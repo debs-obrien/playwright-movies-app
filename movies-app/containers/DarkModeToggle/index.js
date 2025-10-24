@@ -3,7 +3,7 @@
 // MEMO: inspired by https://web.dev/prefers-color-scheme/#the-lessdark-mode-togglegreater-custom-element
 import Head from 'next/head';
 import clsx from 'clsx';
-import useDarkMode from 'use-dark-mode';
+import useDarkMode from 'utils/hooks/useDarkMode';
 
 import Toggle from 'components/UI/Toggle';
 import CLASS_NAMES from 'utils/constants/class-names';

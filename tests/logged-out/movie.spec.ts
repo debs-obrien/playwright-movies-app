@@ -78,7 +78,8 @@ test.describe('Movie Details Page - Links', () => {
       await page.getByRole('button', { name: 'Trailer' }).click();
       await expect(page.frameLocator('iframe').getByRole('link', { name: 'Twisters' }))
         .toBeVisible();
-      await page.getByRole('button', { name: 'Close the modal by clicking' }).click();
+      // Test both methods: close button should now be clickable, but escape key is more reliable
+      await page.getByRole('button', { name: 'Close video' }).click();
       await expect(
         page.getByRole('main').getByRole('heading', { level: 1 }).first(),
       ).toHaveText('Twisters');

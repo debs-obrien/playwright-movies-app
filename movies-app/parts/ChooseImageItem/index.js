@@ -1,6 +1,6 @@
 
 
-import LazyLoad from 'react-lazyload';
+import LazyLoad from 'components/UI/LazyLoad';
 
 import Scenery from 'components/Scenery';
 import PosterTitle from 'components/PosterTitle';

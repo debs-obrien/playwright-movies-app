@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "cross-env DOTENV_CONFIG_QUIET=true next dev",
+    "build": "cross-env DOTENV_CONFIG_QUIET=true next build",
+    "start": "cross-env DOTENV_CONFIG_QUIET=true next start",
     "lint": "next lint",
     "format": "prettier --write tests/**/*"
   },
@@ -15,18 +15,14 @@
     "clsx": "^2.1.1",
     "dotenv": "^17.2.3",
     "next": "^16.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "react-glider": "^2.2.1",
-    "react-lazyload": "^3.0.0",
-    "react-modal-video": "^2.0.2",
-    "react-redux": "^8.1.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-redux": "^9.2.0",
     "react-scroll": "^1.8.1",
     "react-select-search": "^4.1.9",
     "redaxios": "^0.5.1",
-    "redux": "^4.2.1",
-    "redux-thunk": "^2.4.2",
-    "use-dark-mode": "^2.3.1"
+    "redux": "^5.0.1",
+    "redux-thunk": "^3.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
@@ -40,7 +36,6 @@
     "eslint": "^9.38.0",
     "eslint-config-next": "^16.0.0",
     "prettier": "^3.6.2",
-    "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.2"
