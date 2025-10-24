@@ -1,4 +1,4 @@
-import { test as baseTest, Page } from '@playwright/test';
+import { test as baseTest, Page, expect } from '@playwright/test';
 import { createList, addMovie } from './list-utilities';
 
 /**
@@ -36,9 +36,8 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
       await firstMovie.hover();
       
       // Wait for any SELECT button to appear and click it
-      const selectButton = page.getByRole('heading', { name: 'SELECT' }).first();
-      await selectButton.waitFor({ state: 'visible', timeout: 10000 });
-      await selectButton.click();
+      await expect(firstMovie).toContainText('SELECT');
+      await firstMovie.click();
     });
 
     await page.getByRole('link', { name: 'View List' }).click();

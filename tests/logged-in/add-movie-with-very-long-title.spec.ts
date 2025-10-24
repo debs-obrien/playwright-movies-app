@@ -12,12 +12,16 @@ listTest.describe('Error Handling and Edge Cases', { tag: '@agent' }, () => {
     await page.getByRole('link', { name: 'Add/Remove Movies' }).click();
 
     // 2. Search for a movie with a very long title
-    await page.getByRole('textbox', { name: 'Add Item' }).fill('Night of the Day of the Dawn');
+    await page.getByRole('textbox', { name: 'Add Item' }).fill('The Ministry of Ungentlemanly Warfare');
     
-    // 3. Add the movie to the list
-    await expect(page.getByRole('button', { name: 'The Ministry of Ungentlemanly' })).toBeVisible();
-    await page.getByRole('button', { name: 'The Ministry of Ungentlemanly' }).click();
-    await expect(page.getByText('The Ministry of Ungentlemanly Warfare')).toBeVisible();
+    // 3. Wait for search results and add the movie to the list
+    await expect(page.getByRole('menuitem', { name: /The Ministry of Ungentlemanly Warfare/ })).toBeVisible();
+    
+    // Click the button within the menuitem to add the movie
+    await page.getByRole('menuitem', { name: /The Ministry of Ungentlemanly Warfare/ }).getByRole('button').click();
+    
+    // Verify movie was added to the list
+    await expect(page.getByRole('listitem', { name: 'movie' }).filter({ hasText: 'The Ministry of Ungentlemanly Warfare' })).toBeVisible();
 
     // 4. Navigate to View List
     await page.getByRole('link', { name: 'View List' }).click();

@@ -28,10 +28,11 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
 
     // 4. Click the "SELECT" button when it appears
     // Playwright will auto-wait for the SELECT button to be visible and enabled
-    await twistersMovie.getByRole('heading', { name: 'SELECT' }).click();
+    await expect(twistersMovie).toContainText('SELECT');
+    await twistersMovie.click();
 
     // 5. Verify the button text changes to "SELECTED"
-    await expect(page.getByRole('heading', { name: 'SELECTED' })).toBeVisible();
+    await expect(page.getByText('SELECTED')).toBeVisible();
 
     // 6. Navigate to "My Lists" via User Profile menu
     await page.getByRole('button', { name: 'User Profile' }).click();

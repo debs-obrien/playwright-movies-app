@@ -108,7 +108,8 @@ test('should add an image to a list', async ({ page }) => {
 
     // Hover over the movie list item and select image
     await movie.hover();
-    await movie.getByRole('heading', { name: 'SELECT' }).click();
+    await expect(movie).toContainText('SELECT');
+    await movie.click();
 
     // Verify that the button text has changed to "SELECTED"
     await expect(movie.getByRole('button')).toHaveText('SELECTED');

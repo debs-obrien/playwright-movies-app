@@ -39,7 +39,7 @@ const ChooseImageItem = ({
           // TODO: placeholder is broken with it
           // srcSet={`${baseUrl}/${W355_AND_H200_BESTV2.FULL}${movie.backdrop_path} 1x, ${baseUrl}/${W710_AND_H400_BESTV2.FULL}${movie.backdrop_path} 2x`} 
           src={`${baseUrl}${W355_AND_H200_BESTV2.FULL}${movie.backdrop_path}`} />
-        <h2>{text}</h2>
+        <span className="button-text">{text}</span>
       </button>
       <PosterTitle
         // TODO: hack for UI adjusting
@@ -66,7 +66,7 @@ const ChooseImageItem = ({
         box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
       }
 
-      .${SCENERY_CONTAINER_CLASS_NAME} > h2 {
+      .${SCENERY_CONTAINER_CLASS_NAME} > .button-text {
         opacity: ${textAlwaysVisible ? '1' : '0'};
         visibility: ${textAlwaysVisible ? 'visible' : 'hidden'};
         position: absolute;
@@ -89,7 +89,7 @@ const ChooseImageItem = ({
         border: 2px solid rgba(255, 255, 255, 0.2);
       }
 
-      .${SCENERY_CONTAINER_CLASS_NAME}:hover > h2 {
+      .${SCENERY_CONTAINER_CLASS_NAME}:hover > .button-text {
         opacity: 1;
         visibility: visible;
         transform: translate(-50%, -50%) scale(1.05);
