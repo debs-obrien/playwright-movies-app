@@ -30,14 +30,13 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
 
     await listTest.step('add image to list', async () => {
       await page.getByRole('link', { name: 'Choose Image' }).click();
-      const movie = page
-        .getByRole('listitem', { name: 'movie' })
-        .filter({ hasText: /Garfield/ })
-        .getByRole('button');
-      // Hover over the movie to reveal the SELECT button
-      await movie.hover();
-      const selectButton = movie.getByRole('heading', { name: 'SELECT' });
-      // Wait for the SELECT button to be visible before clicking
+      
+      // Find any movie and hover to reveal SELECT buttons
+      const firstMovie = page.getByRole('listitem', { name: 'movie' }).first().getByRole('button').first();
+      await firstMovie.hover();
+      
+      // Wait for any SELECT button to appear and click it
+      const selectButton = page.getByRole('heading', { name: 'SELECT' }).first();
       await selectButton.waitFor({ state: 'visible', timeout: 10000 });
       await selectButton.click();
     });

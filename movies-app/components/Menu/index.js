@@ -77,13 +77,13 @@ const Menu = ({
         <TMDBMark className='tmdb-mark' />
       </nav>
       <style jsx>{`
-        ul {
+        nav section ul {
           list-style: none;
           margin: 0;
           padding: 0;
         }
 
-        li {
+        nav section li {
           margin: 0;
           padding: 0;
         }
