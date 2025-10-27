@@ -1,5 +1,3 @@
-
-
 import TheSelectSearch from 'components/UI/TheSelectSearch';
 import classes from './style.module.css';
 

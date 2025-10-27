@@ -1,6 +1,7 @@
 
 {
   "compilerOptions": {
+    "ignoreDeprecations": "6.0",
     // This must be specified if "paths" is set
     "baseUrl": ".",
     // Relative to "baseUrl"
