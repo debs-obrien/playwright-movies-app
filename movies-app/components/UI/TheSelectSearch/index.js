@@ -75,22 +75,32 @@ const TheSelectSearch = React.forwardRef(({
         {isOpen && !disabled && (
           <div className={mergedClasses.select}>
             <ul {...getMenuProps()} className={mergedClasses.options}>
-              {options.map((item, index) => (
-                <li
-                  key={item.value}
-                  {...getItemProps({ item, index })}
-                  className={clsx(
-                    'select-search-option',
-                    mergedClasses.option,
-                    {
-                      [clsx('is-highlighted', defaultClasses?.['is-highlighted'])]: highlightedIndex === index,
-                      [clsx('is-selected', defaultClasses?.['is-selected'])]: selectedItem?.value === item.value,
-                    }
-                  )}
-                >
-                  {item.name}
-                </li>
-              ))}
+              {options.map((item, index) => {
+                const itemProps = getItemProps({ item, index });
+                return (
+                  <li
+                    key={item.value}
+                    className={clsx(
+                      'select-search-row',
+                      {
+                        [clsx('is-highlighted', defaultClasses?.['is-highlighted'])]: highlightedIndex === index,
+                        [clsx('is-selected', defaultClasses?.['is-selected'])]: selectedItem?.value === item.value,
+                      }
+                    )}
+                  >
+                    <button
+                      type="button"
+                      {...itemProps}
+                      className={clsx(
+                        'select-search-option',
+                        mergedClasses.option,
+                      )}
+                    >
+                      {item.name}
+                    </button>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         )}
