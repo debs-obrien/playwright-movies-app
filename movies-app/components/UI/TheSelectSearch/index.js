@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SelectSearch from 'react-select-search/dist/cjs';
+import { useSelect } from 'downshift';
 import clsx from 'clsx';
 
 import Label from 'components/UI/Label';
@@ -12,85 +12,89 @@ const TheSelectSearch = React.forwardRef(({
   name,
   label,
   classes,
+  options = [],
+  value,
+  onChange,
+  placeholder = 'Select an option',
+  disabled = false,
   ...rest
 }, ref) => {
-  const classNameMap = React.useMemo(() => {
-    const libraryClasses = {
-      container: 'select-search-container',
-      value: 'select-search-value',
-      input: 'select-search-input',
-      select: 'select-search-select',
-      options: 'select-search-options',
-      row: 'select-search-row',
-      option: 'select-search-option',
-      group: 'select-search-group',
-      'group-header': 'select-search-group-header',
-      'not-found': 'select-search-not-found',
-      'is-disabled': 'select-search-is-disabled',
-      'is-loading': 'select-search-is-loading',
-      'is-multiple': 'select-search-is-multiple',
-      'has-focus': 'select-search-has-focus',
-      'is-highlighted': 'select-search-is-highlighted',
-      'is-selected': 'select-search-is-selected',
-    };
+  // Find the selected item from options based on value prop
+  const selectedItem = React.useMemo(() => {
+    if (!value) return null;
+    return options.find(option => option.value === value) || null;
+  }, [options, value]);
 
-    const moduleKeyMap = {
-      container: 'container',
-      value: 'value',
-      input: 'input',
-      select: 'select',
-      options: 'options',
-      row: 'row',
-      option: 'option',
-      group: 'group',
-      'group-header': 'group-header',
-      'not-found': 'not-found',
-      'is-disabled': 'is-disabled',
-      'is-loading': 'is-loading',
-      'is-multiple': 'container--multiple',
-      'has-focus': 'has-focus',
-      'is-highlighted': 'is-highlighted',
-      'is-selected': 'is-selected',
-    };
+  const {
+    isOpen,
+    getToggleButtonProps,
+    getLabelProps,
+    getMenuProps,
+    highlightedIndex,
+    getItemProps,
+  } = useSelect({
+    items: options,
+    itemToString: (item) => (item ? item.name : ''),
+    selectedItem,
+    onSelectedItemChange: ({ selectedItem: newSelectedItem }) => {
+      if (newSelectedItem && onChange) {
+        onChange(newSelectedItem.value);
+      }
+    },
+  });
 
-    return Object.entries(libraryClasses).reduce((acc, [key, libraryClass]) => {
-      const moduleKey = moduleKeyMap[key];
-      acc[key] = clsx(
-        libraryClass,
-        moduleKey ? defaultClasses?.[moduleKey] : null,
-        moduleKey ? classes?.[moduleKey] : null,
-        classes?.[key],
-      );
-      return acc;
-    }, {});
-  }, [classes]);
+  const mergedClasses = React.useMemo(() => ({
+    container: clsx('select-search-container', defaultClasses?.container, classes?.container, {
+      [clsx('is-disabled', defaultClasses?.['is-disabled'])]: disabled,
+      [clsx('has-focus', defaultClasses?.['has-focus'])]: isOpen,
+    }),
+    input: clsx('select-search-input', defaultClasses?.input, classes?.input),
+    select: clsx('select-search-select', defaultClasses?.select, classes?.select),
+    options: clsx('select-search-options', defaultClasses?.options, classes?.options),
+    option: defaultClasses?.option,
+  }), [classes, defaultClasses, disabled, isOpen]);
 
   return (
     <FormControl>
-      {label && <Label htmlFor={id}>{label}</Label>}
-      <SelectSearch
-        ref={ref}
-        className={classNameMap}
-        renderValue={valueProps => (
-          <input
-            id={id}
-            name={name}
-            type="text"
-            inputMode="search"
-            role="combobox"
-            aria-autocomplete="list"
-            className={clsx('select-search-input', defaultClasses?.['input'], classes?.['input'])}
-            autoComplete="off"
-            autoCorrect="off"
-            autoCapitalize="off"
-            spellCheck="false"
-            data-lpignore="true"
-            data-1p-ignore="true"
-            data-ms-editor="false"
-            data-webkit-autofill="false"
-            {...valueProps} />
+      {label && <Label {...getLabelProps()} htmlFor={id}>{label}</Label>}
+      <div className={mergedClasses.container} ref={ref}>
+        <div className={defaultClasses?.value}>
+          <button
+            type="button"
+            {...getToggleButtonProps({
+              disabled,
+              id,
+              name,
+              'aria-labelledby': label ? undefined : id,
+            })}
+            className={mergedClasses.input}
+          >
+            {selectedItem ? selectedItem.name : placeholder}
+          </button>
+        </div>
+        {isOpen && !disabled && (
+          <div className={mergedClasses.select}>
+            <ul {...getMenuProps()} className={mergedClasses.options}>
+              {options.map((item, index) => (
+                <li
+                  key={item.value}
+                  {...getItemProps({ item, index })}
+                  className={clsx(
+                    'select-search-option',
+                    mergedClasses.option,
+                    {
+                      [clsx('is-highlighted', defaultClasses?.['is-highlighted'])]: highlightedIndex === index,
+                      [clsx('is-selected', defaultClasses?.['is-selected'])]: selectedItem?.value === item.value,
+                    }
+                  )}
+                >
+                  {item.name}
+                </li>
+              ))}
+            </ul>
+          </div>
         )}
-        {...rest} />
+      </div>
     </FormControl>
   );
 });
