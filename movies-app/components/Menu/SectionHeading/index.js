@@ -7,11 +7,11 @@ const SectionHeading = ({
   children
 }) => (
   <>
-    <div role="heading" aria-level="2">
+    <h2>
       {children}
-    </div>
+    </h2>
     <style jsx>{`
-      div {
+      h2 {
         font-weight: ${theme.typography.fontWeightBold};
         font-size: 1.25rem;
         color: var(--palette-text-primary);
@@ -22,7 +22,7 @@ const SectionHeading = ({
         position: relative;
       }
 
-      div:not(:first-child) {
+      h2:not(:first-child) {
         margin-top: 4rem;
       }
     `}</style>

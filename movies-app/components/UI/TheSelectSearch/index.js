@@ -66,41 +66,32 @@ const TheSelectSearch = React.forwardRef(({
   }, [classes]);
 
   return (
-    <>
-      {/* Hidden fake password field to confuse autofill */}
-      <input
-        type="password"
-        style={{ display: 'none' }}
-        autoComplete="new-password"
-        tabIndex="-1"
-      />
-      <FormControl>
-        {label && <Label htmlFor={id}>{label}</Label>}
-        <SelectSearch
-          ref={ref}
-          className={classNameMap}
-          renderValue={valueProps => (
-            <input
-              id={id}
-              name="search-movies-query"
-              type="text"
-              inputMode="search"
-              role="combobox"
-              aria-autocomplete="list"
-              className={clsx('select-search-input', defaultClasses?.['input'], classes?.['input'])}
-              autoComplete="nope"
-              autoCorrect="off"
-              autoCapitalize="off"
-              spellCheck="false"
-              data-lpignore="true"
-              data-1p-ignore="true"
-              data-ms-editor="false"
-              data-webkit-autofill="false"
-              {...valueProps} />
-          )}
-          {...rest} />
-      </FormControl>
-    </>
+    <FormControl>
+      {label && <Label htmlFor={id}>{label}</Label>}
+      <SelectSearch
+        ref={ref}
+        className={classNameMap}
+        renderValue={valueProps => (
+          <input
+            id={id}
+            name={name}
+            type="text"
+            inputMode="search"
+            role="combobox"
+            aria-autocomplete="list"
+            className={clsx('select-search-input', defaultClasses?.['input'], classes?.['input'])}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false"
+            data-lpignore="true"
+            data-1p-ignore="true"
+            data-ms-editor="false"
+            data-webkit-autofill="false"
+            {...valueProps} />
+        )}
+        {...rest} />
+    </FormControl>
   );
 });
 

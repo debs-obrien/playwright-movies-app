@@ -31,6 +31,7 @@ const ChooseImageItem = ({
       offset={200}>
       <button
         className={SCENERY_CONTAINER_CLASS_NAME}
+        aria-label={`${text} for ${movie.title}`}
         {...rest}>
         <Scenery
           overlayClass={GRAY_FILTERED_CLASS_NAME}

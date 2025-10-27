@@ -1,4 +1,3 @@
-
 import React from 'react';
 import clsx from 'clsx';
 import { TMDB_API_VERSION, TMDB_IMAGE_BASE_URL } from 'config/tmdb';
@@ -54,6 +53,7 @@ const MovieSelectSearch = props => {
   const [results, setResults] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
   const [showDropdown, setShowDropdown] = React.useState(false);
+  const timeoutRef = React.useRef(null);
   
   const handleSearch = async (searchQuery) => {
     if (!searchQuery || searchQuery.trim().length === 0) {
@@ -87,8 +87,8 @@ const MovieSelectSearch = props => {
     setQuery(value);
     
     // Debounce the search
-    clearTimeout(window.searchTimeout);
-    window.searchTimeout = setTimeout(() => {
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
       handleSearch(value);
     }, 300);
   };
