@@ -19,7 +19,7 @@
     "react-dom": "^19.2.0",
     "react-redux": "^9.2.0",
     "react-scroll": "^1.8.1",
-    "react-select-search": "^4.1.9",
+    "react-select": "^5.10.2",
     "redaxios": "^0.5.1",
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0"
