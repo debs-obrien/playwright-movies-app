@@ -20,8 +20,6 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm ci
-      - name: Install movies-app dependencies
-        run: cd movies-app && npm ci
       - name: Lint
         run: npm run lint
       - name: Install Playwright Browsers
@@ -50,8 +48,6 @@ jobs:
           node-version: lts/*
       - name: Install dependencies
         run: npm ci
-      - name: Install movies-app dependencies
-        run: cd movies-app && npm ci
       - name: Download blob reports from GitHub Actions Artifacts
         uses: actions/download-artifact@v4
         with:
