@@ -16,7 +16,7 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
 
     // 2. Select an image from \"Bad Boys: Ride or Die\"
     const badBoysMovie = page.getByRole('listitem', { name: 'movie' }).filter({ hasText: 'Bad Boys: Ride or Die' });
-    const sceneryButton = badBoysMovie.getByRole('button', { name: /Scenery image/ });
+    const sceneryButton = badBoysMovie.getByRole('button');
     
     // Wait for the button to be visible and enabled before clicking
     await expect(sceneryButton).toBeVisible({ timeout: 10000 });

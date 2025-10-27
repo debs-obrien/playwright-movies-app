@@ -26,8 +26,11 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
     // Verify it's selected
     await expect(page.getByText('SELECTED')).toBeVisible();
 
-    // 3. Hover over a different movie and click SELECT for it
-    const newMovie = page.getByRole('button', { name: 'Scenery image' }).nth(2);
+    // 3. Hover over a different movie and click SELECT for it (Bad Boys: Ride or Die)
+    const newMovie = page
+      .getByRole('listitem', { name: 'movie' })
+      .filter({ hasText: 'Bad Boys: Ride or Die' })
+      .getByRole('button');
     await newMovie.hover();
 
     // 4. Click SELECT within the hovered movie container

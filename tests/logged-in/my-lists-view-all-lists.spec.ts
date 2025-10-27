@@ -35,11 +35,12 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     // 3. Navigate to Choose Image to select a cover image for the first list
     await page.getByRole('link', { name: 'Choose Image' }).click();
 
-    // 3. Hover over the Inside Out 2 movie to reveal the SELECT button
-    await page.getByRole('button', { name: 'Scenery image' }).hover();
-
-    // 3. Click SELECT to set Inside Out 2 as the cover image
-    await page.getByRole('button', { name: 'Scenery image SELECT' }).click();
+    // 3. Select Inside Out 2 as the cover image
+    const insideOutButton = page
+      .getByRole('listitem', { name: 'movie' })
+      .filter({ hasText: 'Inside Out 2' })
+      .getByRole('button');
+    await insideOutButton.click();
 
     // 1. Navigate to User Profile menu to create second list
     await page.getByRole('button', { name: 'User Profile' }).click();
@@ -68,11 +69,12 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     // 3. Navigate to Choose Image to select a cover image for the second list
     await page.getByRole('link', { name: 'Choose Image' }).click();
 
-    // 3. Hover over the Deadpool & Wolverine movie to reveal the SELECT button
-    await page.getByRole('button', { name: 'Scenery image' }).hover();
-
-    // 3. Click SELECT to set Deadpool & Wolverine as the cover image
-    await page.getByRole('button', { name: 'Scenery image SELECT' }).click();
+    // 3. Select Deadpool & Wolverine as the cover image
+    const deadpoolButton = page
+      .getByRole('listitem', { name: 'movie' })
+      .filter({ hasText: /Deadpool/ })
+      .getByRole('button');
+    await deadpoolButton.click();
 
     // 1. Navigate to User Profile menu to create third list
     await page.getByRole('button', { name: 'User Profile' }).click();
@@ -101,11 +103,12 @@ test.describe('My Lists Overview Page', { tag: '@agent' }, () => {
     // 3. Navigate to Choose Image to select a cover image for the third list
     await page.getByRole('link', { name: 'Choose Image' }).click();
 
-    // 3. Hover over the Furiosa scenery image to reveal the SELECT button
-    await page.getByRole('button', { name: 'Scenery image' }).hover();
-
-    // 3. Click SELECT to set Furiosa as the cover image
-    await page.getByRole('button', { name: 'Scenery image SELECT' }).click();
+    // 3. Select Furiosa as the cover image
+    const furiosaButton = page
+      .getByRole('listitem', { name: 'movie' })
+      .filter({ hasText: /Furiosa/ })
+      .getByRole('button');
+    await furiosaButton.click();
 
     // 4. Navigate to User Profile menu to access My Lists
     await page.getByRole('button', { name: 'User Profile' }).click();
