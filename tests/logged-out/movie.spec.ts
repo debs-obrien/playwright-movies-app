@@ -28,13 +28,15 @@ test.describe('Movie Details Page - Content', () => {
       await expect(movie).toMatchAriaSnapshot(`
         - heading "Twisters" [level=1]
         - heading "Chase. Ride. Survive." [level=2]
+        - text: /★/
+        - paragraph: "7.02"
         - text: English / 123 min. / 2024
         - heading "The Genres" [level=3]
         - list:
           - listitem:
-            - link "Thriller"
-          - listitem:
             - link "Action"
+          - listitem:
+            - link "Thriller"
         - heading "The Synopsis" [level=3]
         - paragraph: /As storm season intensifies/
       `);
@@ -78,7 +80,8 @@ test.describe('Movie Details Page - Links', () => {
       await page.getByRole('button', { name: 'Trailer' }).click();
       await expect(page.frameLocator('iframe').getByRole('link', { name: 'Twisters' }))
         .toBeVisible();
-      await page.getByRole('button', { name: 'Close the modal by clicking' }).click();
+      // Test both methods: close button should now be clickable, but escape key is more reliable
+      await page.getByRole('button', { name: 'Close video' }).click();
       await expect(
         page.getByRole('main').getByRole('heading', { level: 1 }).first(),
       ).toHaveText('Twisters');

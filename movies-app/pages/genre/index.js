@@ -75,7 +75,7 @@ const Genre = () => {
     return <Loader />;
   }
 
-  const { secure_base_url: baseUrl } = general.base.images;
+  const { secure_base_url: baseUrl } = general.base.images || {};
 
   const sortByOptionValueOnChangeHandler = newSortByOptionValue => {
     setSortByOptionValue(newSortByOptionValue);

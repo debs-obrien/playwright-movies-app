@@ -23,7 +23,7 @@ jobs:
       - name: Lint
         run: npm run lint
       - name: Install Playwright Browsers
-        run: npx playwright install --with-deps
+        run: npx playwright install --with-deps chromium
       - name: Setup .env file with mock credentials
         run: cp .env.example .env
       - name: Run Playwright tests

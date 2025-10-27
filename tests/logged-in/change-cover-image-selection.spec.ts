@@ -20,17 +20,23 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
       .filter({ hasText: /Twisters/ })
       .getByRole('button');
     await twistersMovie.hover();
-    await twistersMovie.getByRole('heading', { name: 'SELECT' }).click();
+    await expect(twistersMovie).toContainText('SELECT');
+    await twistersMovie.click();
 
-    // Verify it's selected
-    await expect(page.getByRole('heading', { name: 'SELECTED' })).toBeVisible();
+    // Verify it's selected and wait for the state to settle
+    await expect(twistersMovie).toContainText('SELECTED');
+    await expect(twistersMovie).toBeDisabled();
 
-    // 3. Hover over a different movie and click SELECT for it
-    const newMovie = page.getByRole('button', { name: 'Scenery image' }).nth(2);
+    // 3. Hover over a different movie and click SELECT for it (Bad Boys: Ride or Die)
+    const newMovie = page
+      .getByRole('listitem', { name: 'movie' })
+      .filter({ hasText: 'Bad Boys: Ride or Die' })
+      .getByRole('button');
     await newMovie.hover();
 
     // 4. Click SELECT within the hovered movie container
-    await newMovie.getByRole('heading', { name: 'SELECT' }).click();
+    await expect(newMovie).toContainText('SELECT');
+    await newMovie.click();
 
     // 5. Navigate to "My Lists" via User Profile menu
     await page.getByRole('button', { name: 'User Profile' }).click();

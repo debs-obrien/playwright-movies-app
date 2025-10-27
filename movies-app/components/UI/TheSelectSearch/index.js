@@ -13,23 +13,86 @@ const TheSelectSearch = React.forwardRef(({
   label,
   classes,
   ...rest
-}, ref) => (
-  <>
+}, ref) => {
+  const classNameMap = React.useMemo(() => {
+    const libraryClasses = {
+      container: 'select-search-container',
+      value: 'select-search-value',
+      input: 'select-search-input',
+      select: 'select-search-select',
+      options: 'select-search-options',
+      row: 'select-search-row',
+      option: 'select-search-option',
+      group: 'select-search-group',
+      'group-header': 'select-search-group-header',
+      'not-found': 'select-search-not-found',
+      'is-disabled': 'select-search-is-disabled',
+      'is-loading': 'select-search-is-loading',
+      'is-multiple': 'select-search-is-multiple',
+      'has-focus': 'select-search-has-focus',
+      'is-highlighted': 'select-search-is-highlighted',
+      'is-selected': 'select-search-is-selected',
+    };
+
+    const moduleKeyMap = {
+      container: 'container',
+      value: 'value',
+      input: 'input',
+      select: 'select',
+      options: 'options',
+      row: 'row',
+      option: 'option',
+      group: 'group',
+      'group-header': 'group-header',
+      'not-found': 'not-found',
+      'is-disabled': 'is-disabled',
+      'is-loading': 'is-loading',
+      'is-multiple': 'container--multiple',
+      'has-focus': 'has-focus',
+      'is-highlighted': 'is-highlighted',
+      'is-selected': 'is-selected',
+    };
+
+    return Object.entries(libraryClasses).reduce((acc, [key, libraryClass]) => {
+      const moduleKey = moduleKeyMap[key];
+      acc[key] = clsx(
+        libraryClass,
+        moduleKey ? defaultClasses?.[moduleKey] : null,
+        moduleKey ? classes?.[moduleKey] : null,
+        classes?.[key],
+      );
+      return acc;
+    }, {});
+  }, [classes]);
+
+  return (
     <FormControl>
       {label && <Label htmlFor={id}>{label}</Label>}
       <SelectSearch
         ref={ref}
-        className={key => clsx(defaultClasses?.[key], classes?.[key])}
+        className={classNameMap}
         renderValue={valueProps => (
           <input
             id={id}
             name={name}
-            className={clsx(defaultClasses?.['input'], classes?.['input'])}
+            type="text"
+            inputMode="search"
+            role="combobox"
+            aria-autocomplete="list"
+            className={clsx('select-search-input', defaultClasses?.['input'], classes?.['input'])}
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false"
+            data-lpignore="true"
+            data-1p-ignore="true"
+            data-ms-editor="false"
+            data-webkit-autofill="false"
             {...valueProps} />
         )}
         {...rest} />
     </FormControl>
-  </>
-));
+  );
+});
 
 export default TheSelectSearch;

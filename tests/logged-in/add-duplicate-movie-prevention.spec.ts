@@ -28,6 +28,15 @@ test.describe('Adding Movies to Lists', { tag: '@agent' }, () => {
 
     // Wait for the operation to complete (loading message should disappear)
     await expect(page.getByText('Adding an item to the list...')).toBeHidden();
+    
+    // Wait for the movie count to stabilize (duplicate prevention logic to complete)
+    await expect(async () => {
+      const currentCount = await page.getByRole('listitem', { name: 'movie' }).count();
+      const currentTwistersCount = await page.getByRole('listitem', { name: 'movie' }).filter({ hasText: 'Twisters' }).count();
+      
+      expect(currentTwistersCount).toBe(initialTwistersCount);
+      expect(currentCount).toBe(initialCount);
+    }).toPass({ timeout: 5000 });
 
     // Verify system prevents adding duplicate movie OR only one instance appears
     const finalCount = await page.getByRole('listitem', { name: 'movie' }).count();

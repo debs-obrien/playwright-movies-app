@@ -10,7 +10,7 @@ test('sort movies by average votes and original title', async ({ page }) => {
 
   await test.step('sort by average votes and verify order', async () => {
     // Sort movies by average votes
-    await page.getByRole('textbox', { name: 'Sort By' }).click();
+    await page.getByRole('combobox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Votes Average' }).click();
     await expect(movies).toHaveCount(20);
 
@@ -38,7 +38,7 @@ test('sort movies by average votes and original title', async ({ page }) => {
     const movieTitles = movies.getByRole('heading');
 
     // Sort movies by original title
-    await page.getByRole('textbox', { name: 'Sort By' }).click();
+    await page.getByRole('combobox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Original Title' }).click();
 
     // Get text content of the first four movies after sorting
@@ -57,6 +57,60 @@ test('sort movies by average votes and original title', async ({ page }) => {
       a.localeCompare(b),
     );
     expect(movieTitlesArray).toEqual(sortedMovieTitles);
+  });
+});
+
+test('dropdown options should be hidden until clicked', async ({ page }) => {
+  // Navigate to the movies page with Action genre
+  await page.goto('/genre?id=28&name=Action&page=1');
+
+  await test.step('verify options are hidden before clicking', async () => {
+    // Check that the dropdown options are not visible before clicking
+    const votesAverageButton = page.getByRole('button', { name: 'Votes Average' });
+    const popularityButton = page.getByRole('button', { name: 'Popularity' });
+    const originalTitleButton = page.getByRole('button', { name: 'Original Title' });
+    const releaseDateButton = page.getByRole('button', { name: 'Release Date' });
+
+    // All options should be hidden initially
+    await expect(votesAverageButton).toBeHidden();
+    await expect(popularityButton).toBeHidden();
+    await expect(originalTitleButton).toBeHidden();
+    await expect(releaseDateButton).toBeHidden();
+  });
+
+  await test.step('verify options are visible after clicking textbox', async () => {
+    // Click the dropdown textbox
+    await page.getByRole('combobox', { name: 'Sort By' }).click();
+
+    // Now all options should be visible
+    const votesAverageButton = page.getByRole('button', { name: 'Votes Average' });
+    const popularityButton = page.getByRole('button', { name: 'Popularity' });
+    const originalTitleButton = page.getByRole('button', { name: 'Original Title' });
+    const releaseDateButton = page.getByRole('button', { name: 'Release Date' });
+
+    await expect(votesAverageButton).toBeVisible();
+    await expect(popularityButton).toBeVisible();
+    await expect(originalTitleButton).toBeVisible();
+    await expect(releaseDateButton).toBeVisible();
+  });
+
+  await test.step('verify options are hidden after selecting one', async () => {
+    // Select one option
+    await page.getByRole('button', { name: 'Votes Average' }).click();
+
+    // Wait a bit for the dropdown to close
+    await page.waitForTimeout(100);
+
+    // All options should be hidden again after selection
+    const votesAverageButton = page.getByRole('button', { name: 'Votes Average' });
+    const popularityButton = page.getByRole('button', { name: 'Popularity' });
+    const originalTitleButton = page.getByRole('button', { name: 'Original Title' });
+    const releaseDateButton = page.getByRole('button', { name: 'Release Date' });
+
+    await expect(votesAverageButton).toBeHidden();
+    await expect(popularityButton).toBeHidden();
+    await expect(originalTitleButton).toBeHidden();
+    await expect(releaseDateButton).toBeHidden();
   });
 });
 
@@ -110,7 +164,7 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
 
   await test.step('sort by average votes', async () => {
     // Sort movies by average votes
-    await page.getByRole('textbox', { name: 'Sort By' }).click();
+    await page.getByRole('combobox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Votes Average' }).click();
 
     // Check the text content for all the movies contains an array with the following
@@ -125,7 +179,7 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
 
   await test.step('sort by original title', async () => {
     // Sort movies by original title
-    await page.getByRole('textbox', { name: 'Sort By' }).click();
+    await page.getByRole('combobox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Original Title' }).click();
 
     // Check the text content for all the movies contains an array with the following
@@ -140,7 +194,7 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
 
   await test.step('sort by release date', async () => {
     // Sort movies by release date
-    await page.getByRole('textbox', { name: 'Sort By' }).click();
+    await page.getByRole('combobox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Release Date' }).click();
 
     // Check the text content for all the movies contains an array with the following
@@ -155,7 +209,7 @@ test('sort by with api mocking', { tag: '@mocking' }, async ({ page }) => {
 
   await test.step('sort by popularity', async () => {
     // Sort movies by popularity
-    await page.getByRole('textbox', { name: 'Sort By' }).click();
+    await page.getByRole('combobox', { name: 'Sort By' }).click();
     await page.getByRole('button', { name: 'Popularity' }).click();
 
     // Check the text content for all the movies contains an array with the following

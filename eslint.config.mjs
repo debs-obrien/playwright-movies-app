@@ -12,7 +12,7 @@ export default tseslint.config(
       parserOptions: {
         // reuse the existing `tsconfig.json`
         project: true,
-        tsconfigRootDir: ".",
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     // enable linting rules beneficial for Playwright projects

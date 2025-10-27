@@ -41,7 +41,7 @@ const MovieInfo = ({
       <MovieAdSection
         websiteUrl={movie.homepage}
         imdbId={movie.imdb_id}
-        videos={movie.videos.results} />
+        videos={(movie.videos && movie.videos.results) || []} />
     </InfoWrapper>
     <style jsx>{`
       :global(.basic-section-bottom-margin) {

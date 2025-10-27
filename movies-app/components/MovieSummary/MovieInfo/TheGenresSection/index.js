@@ -23,6 +23,8 @@ const TheGenresSection = ({
         display: flex;
         flex-wrap: wrap;
         align-items: center;
+        gap: 1.2rem;
+        margin-top: 1rem;
       }
     `}</style>
   </>

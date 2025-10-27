@@ -28,7 +28,9 @@ test('Avengers: Infinity is the first top rated movie', async ({
     await firstMovie.click();
     await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - 'heading "Avengers: Infinity War" [level=1]'
-    - heading "An entire universe. Once and for all." [level=2]
+    - heading "Destiny arrives all the same." [level=2]
+    - text: /★/
+    - paragraph: /\\d+\\.\\d+/
     - heading "The Genres" [level=3]
     - heading "The Synopsis" [level=3]
     - heading "The Cast" [level=3]
@@ -81,6 +83,8 @@ test('dynamic content for first upcoming movie', async ({ page }, testInfo) => {
     await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - 'heading "${movieName ?? ''}" [level=1]'
     - heading [level=2]
+    - text: /★/
+    - paragraph: /\\d+\\.\\d+/
     - heading "The Genres" [level=3]
     - heading "The Synopsis" [level=3]
     - heading "The Cast" [level=3]

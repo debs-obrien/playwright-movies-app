@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
-import ModalVideo from 'react-modal-video';
+
+import VideoModal from 'components/UI/VideoModal';
 
 import Button from 'components/UI/Button';
 import PlayIcon from 'public/assets/svgs/icons/play.svg';
@@ -22,6 +23,10 @@ const Trailer = ({ videos }) => {
 
   const { key: videoId } = videos.find(video => video.type === 'Trailer' && video.site === 'YouTube') || {};
 
+  if (!videoId) {
+    return null;
+  }
+
   return (
     <>
       <Button
@@ -32,49 +37,30 @@ const Trailer = ({ videos }) => {
         }
         title='Trailer'
         onClick={openModalVideoHandler} />
-      <ModalVideo
-        isOpen={modalVideoOpened}
-        channel='youtube'
+      <VideoModal
+        open={modalVideoOpened}
         videoId={videoId}
         onClose={closeModalVideoHandler} />
       <style jsx>{`
-        @-webkit-keyframes :global(modal-video) {
-          0% {
+        @keyframes :global(modal-video-fade-in) {
+          from {
             opacity: 0;
+            backdrop-filter: blur(0px);
           }
-      
           to {
             opacity: 1;
-          }
-        }
-        
-        @keyframes :global(modal-video) {
-          0% {
-            opacity: 0;
-          }
-      
-          to {
-            opacity: 1;
-          }
-        }
-        
-        @-webkit-keyframes :global(modal-video-inner) {
-          0% {
-            transform: translateY(100px);
-          }
-      
-          to {
-            transform: translate(0);
+            backdrop-filter: blur(8px);
           }
         }
         
         @keyframes :global(modal-video-inner) {
-          0% {
-            transform: translateY(100px);
+          from {
+            opacity: 0;
+            transform: translateY(30px) scale(0.95);
           }
-      
           to {
-            transform: translate(0);
+            opacity: 1;
+            transform: translateY(0) scale(1);
           }
         }
         
@@ -84,40 +70,49 @@ const Trailer = ({ videos }) => {
           left: 0;
           width: 100%;
           height: 100%;
-          background-color: rgba(0,0,0,.5);
+          background-color: rgba(0, 0, 0, 0.8);
+          backdrop-filter: blur(8px);
           z-index: 1000000;
           cursor: pointer;
           opacity: 1;
-          -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-          -webkit-animation-duration: .3s;
-          animation-duration: .3s;
-          -webkit-animation-name: modal-video;
-          animation-name: modal-video;
-          transition: opacity .3s ease-out;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          animation: modal-video-fade-in 0.3s ease-out;
+          transition: opacity 0.3s ease-out, backdrop-filter 0.3s ease-out;
         }
         
         :global(.modal-video-effect-exit) {
           opacity: 0;
+          backdrop-filter: blur(0px);
         }
         
         :global(.modal-video-effect-exit .modal-video-movie-wrap) {
-          transform: translateY(100px);
+          transform: translateY(30px) scale(0.95);
+          opacity: 0;
         }
         
         :global(.modal-video-body) {
-          max-width: 940px;
-          width: 100%;
-          height: 100%;
+          max-width: 800px;
+          width: 90%;
+          height: auto;
           margin: 0 auto;
-          display: table;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 20px;
         }
         
         :global(.modal-video-inner) {
-          display: table-cell;
-          vertical-align: middle;
+          position: relative;
           width: 100%;
-          height: 100%;
+          height: auto;
+          background: #000;
+          border-radius: 12px;
+          overflow: hidden;
+          border: 2px solid rgba(255, 255, 255, 0.1);
+          box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 
+                      0 0 0 1px rgba(255, 255, 255, 0.05);
         }
         
         :global(.modal-video-movie-wrap) {
@@ -125,15 +120,12 @@ const Trailer = ({ videos }) => {
           height: 0;
           position: relative;
           padding-bottom: 56.25%;
-          background-color: #333;
-          -webkit-animation-timing-function: ease-out;
-          animation-timing-function: ease-out;
-          -webkit-animation-duration: .3s;
-          animation-duration: .3s;
-          -webkit-animation-name: modal-video-inner;
-          animation-name: modal-video-inner;
-          transform: translate(0);
-          transition: transform .3s ease-out;
+          background-color: #000;
+          border-radius: 10px;
+          overflow: hidden;
+          animation: modal-video-inner 0.4s ease-out;
+          transform: translateY(0) scale(1);
+          transition: transform 0.3s ease-out;
         }
         
         :global(.modal-video-movie-wrap iframe) {
@@ -146,35 +138,49 @@ const Trailer = ({ videos }) => {
         
         :global(.modal-video-close-btn) {
           position: absolute;
-          z-index: 2;
-          top: -35px;
-          right: -35px;
-          display: inline-block;
-          width: 35px;
-          height: 35px;
-          overflow: hidden;
+          z-index: 100;
+          top: 8px;
+          right: 8px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 32px;
+          height: 32px;
           border: none;
-          background: transparent;
+          background: rgba(0, 0, 0, 0.7);
+          border-radius: 4px;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          backdrop-filter: blur(4px);
         }
         
         :global(.modal-video-close-btn:before) {
-          transform: rotate(45deg);
+          transform: translate(-50%, -50%) rotate(45deg);
         }
         
         :global(.modal-video-close-btn:after) {
-          transform: rotate(-45deg);
+          transform: translate(-50%, -50%) rotate(-45deg);
+        }
+        
+        :global(.modal-video-close-btn:hover) {
+          background: rgba(255, 255, 255, 0.9);
+        }
+        
+        :global(.modal-video-close-btn:hover:after,
+        .modal-video-close-btn:hover:before) {
+          background: #000;
         }
         
         :global(.modal-video-close-btn:after,.modal-video-close-btn:before) {
           content: "";
           position: absolute;
           height: 2px;
-          width: 100%;
+          width: 16px;
           top: 50%;
-          left: 0;
+          left: 50%;
           background: #fff;
-          border-radius: 5px;
-          margin-top: -6px;
+          border-radius: 1px;
+          transform-origin: center;
         }
       `}</style>
     </>

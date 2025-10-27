@@ -17,6 +17,18 @@ const MenuItemLink = React.forwardRef(({
       as={as}
       ref={ref}
       className={selected ? 'menu-item-selected' : ''}
+      style={{
+        outline: 'none',
+        display: 'block',
+        marginBottom: '0.2rem',
+        fontSize: '14px',
+        fontWeight: '700',
+        lineHeight: '1.2',
+        color: selected ? 'var(--palette-text-primary)' : 'var(--palette-text-secondary)',
+        textDecoration: 'none',
+        position: 'relative',
+        overflow: 'hidden'
+      }}
       {...rest}>
 
       {children}
@@ -27,9 +39,9 @@ const MenuItemLink = React.forwardRef(({
         outline: none;
         display: block;
         margin-bottom: 0.2rem;
-        font-size: 1.25rem;
+        font-size: 18px !important;
         font-weight: ${theme.typography.fontWeightBold};
-        line-height: 1;
+        line-height: 1.2;
         color: ${selected ? 'var(--palette-text-primary)' : 'var(--palette-text-secondary)'};
         text-decoration: none;
         position: relative;
