@@ -82,7 +82,7 @@ const TheSelectSearch = React.forwardRef(({
           renderValue={valueProps => (
             <input
               id={id}
-              name="search-movies-query"
+              name={name}
               type="text"
               inputMode="search"
               role="combobox"
