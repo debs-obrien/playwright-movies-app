@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -12,22 +16,58 @@
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
     "incremental": true,
     "paths": {
-      "components/*": ["./components/*"],
-      "parts/*": ["./parts/*"],
-      "utils/*": ["./utils/*"],
-      "config/*": ["./config/*"],
-      "actions/*": ["./actions/*"],
-      "reducers/*": ["./reducers/*"],
-      "services/*": ["./services/*"],
-      "contexts/*": ["./contexts/*"],
-      "containers/*": ["./containers/*"],
-      "styles/*": ["./styles/*"],
-      "public/*": ["./public/*"]
+      "store": [
+        "./store.js"
+      ],
+      "components/*": [
+        "./components/*"
+      ],
+      "parts/*": [
+        "./parts/*"
+      ],
+      "utils/*": [
+        "./utils/*"
+      ],
+      "config/*": [
+        "./config/*"
+      ],
+      "actions/*": [
+        "./actions/*"
+      ],
+      "reducers/*": [
+        "./reducers/*"
+      ],
+      "services/*": [
+        "./services/*"
+      ],
+      "contexts/*": [
+        "./contexts/*"
+      ],
+      "containers/*": [
+        "./containers/*"
+      ],
+      "styles/*": [
+        "./styles/*"
+      ],
+      "public/*": [
+        "./public/*"
+      ]
     }
   },
-  "include": ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx", "**/*.mjs", "next-env.d.ts"],
-  "exclude": ["node_modules", ".next", "out"]
+  "include": [
+    "**/*.js",
+    "**/*.jsx",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.mjs",
+    "next-env.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    "out"
+  ]
 }

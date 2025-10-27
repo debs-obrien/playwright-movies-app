@@ -30,6 +30,7 @@
     "@svgr/webpack": "^8.1.0",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^24.9.1",
+    "@types/react": "19.2.2",
     "@typescript-eslint/eslint-plugin": "^8.46.2",
     "@typescript-eslint/parser": "^8.46.2",
     "cross-env": "^10.1.0",
