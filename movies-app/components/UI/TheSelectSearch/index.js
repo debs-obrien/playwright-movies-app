@@ -72,38 +72,36 @@ const TheSelectSearch = React.forwardRef(({
             {selectedItem ? selectedItem.name : placeholder}
           </button>
         </div>
-        {isOpen && !disabled && (
-          <div className={mergedClasses.select}>
-            <ul {...getMenuProps()} className={mergedClasses.options}>
-              {options.map((item, index) => {
-                const itemProps = getItemProps({ item, index });
-                return (
-                  <li
-                    key={item.value}
+        <div className={mergedClasses.select} style={{ display: isOpen && !disabled ? 'block' : 'none' }}>
+          <ul {...getMenuProps()} className={mergedClasses.options}>
+            {isOpen && !disabled && options.map((item, index) => {
+              const itemProps = getItemProps({ item, index });
+              return (
+                <li
+                  key={item.value}
+                  className={clsx(
+                    'select-search-row',
+                    {
+                      [clsx('is-highlighted', defaultClasses?.['is-highlighted'])]: highlightedIndex === index,
+                      [clsx('is-selected', defaultClasses?.['is-selected'])]: selectedItem?.value === item.value,
+                    }
+                  )}
+                >
+                  <button
+                    type="button"
+                    {...itemProps}
                     className={clsx(
-                      'select-search-row',
-                      {
-                        [clsx('is-highlighted', defaultClasses?.['is-highlighted'])]: highlightedIndex === index,
-                        [clsx('is-selected', defaultClasses?.['is-selected'])]: selectedItem?.value === item.value,
-                      }
+                      'select-search-option',
+                      mergedClasses.option,
                     )}
                   >
-                    <button
-                      type="button"
-                      {...itemProps}
-                      className={clsx(
-                        'select-search-option',
-                        mergedClasses.option,
-                      )}
-                    >
-                      {item.name}
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        )}
+                    {item.name}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
       </div>
     </FormControl>
   );
