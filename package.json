@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cd movies-app && npx cross-env DOTENV_CONFIG_QUIET=true next dev",
-    "build": "cd movies-app && next build",
-    "start": "cd movies-app && next start",
+    "dev": "cd movies-app && npm run dev",
+    "build": "cd movies-app && npm run build",
+    "start": "cd movies-app && npm run start",
     "lint": "tsc --noEmit && eslint tests/**/*.ts",
     "test": "playwright test",
     "format": "prettier --write tests/**/*"
