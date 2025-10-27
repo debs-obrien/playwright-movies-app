@@ -23,8 +23,9 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
     await expect(twistersMovie).toContainText('SELECT');
     await twistersMovie.click();
 
-    // Verify it's selected
-    await expect(page.getByText('SELECTED')).toBeVisible();
+    // Verify it's selected and wait for the state to settle
+    await expect(twistersMovie).toContainText('SELECTED');
+    await expect(twistersMovie).toBeDisabled();
 
     // 3. Hover over a different movie and click SELECT for it (Bad Boys: Ride or Die)
     const newMovie = page
