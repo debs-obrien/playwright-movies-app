@@ -21,7 +21,7 @@ test.describe('Creating New Lists', { tag: '@agent' }, () => {
     await page.getByRole('textbox', { name: 'Description' }).fill('Personal favorite movies');
 
     // 5. Click the "Public List?" field and change to "No"
-    await page.getByRole('textbox', { name: 'Public List?' }).click();
+    await page.getByRole('combobox', { name: 'Public List?' }).click();
     await page.getByRole('button', { name: 'No' }).click();
 
     // 6. Click the "Continue" button
@@ -32,6 +32,7 @@ test.describe('Creating New Lists', { tag: '@agent' }, () => {
     await page.getByRole('link', { name: 'My Lists' }).click();
 
     // Verify list appears in "My Lists" with "(PRIVATE)" label
-    await expect(page.getByRole('heading', { name: /movies \(PRIVATE\)/ })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /My Private Collection/ })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /\(PRIVATE\)/ })).toBeVisible();
   });
 });

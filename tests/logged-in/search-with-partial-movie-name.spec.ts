@@ -15,7 +15,7 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Twi');
 
     // 3. Verify "Twisters" appears in results
-    await expect(page.getByRole('menuitem', { name: 'Twisters Twisters' })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Twisters/ }).first()).toBeVisible();
 
     // Verify partial search works correctly - "Twisters" contains "Twi"
     await expect(page.getByRole('textbox', { name: 'Add Item' })).toHaveValue('Twi');
@@ -25,12 +25,12 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
 
     // 5. Verify results update
     // "Twisters" should still appear as it contains "Twist"
-    await expect(page.getByRole('menuitem', { name: 'Twisters Twisters' })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Twisters/ }).first()).toBeVisible();
 
     // Verify results update as user types
     await expect(page.getByRole('textbox', { name: 'Add Item' })).toHaveValue('Twist');
 
     // Verify relevant movies appear in results - Twisters matches the partial search
-    await expect(page.getByRole('menuitem', { name: /Twisters/ })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Twisters/ })).toBeVisible();
   });
 });

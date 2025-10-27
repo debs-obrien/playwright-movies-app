@@ -13,7 +13,7 @@ test.describe('Editing List Details', { tag: '@agent' }, () => {
     await page.getByRole('link', { name: 'Edit' }).click();
 
     // 2. Click the "Public List?" field
-    await page.getByRole('textbox', { name: 'Public List?' }).click();
+    await page.getByRole('combobox', { name: 'Public List?' }).click();
 
     // 3. Change from "Yes" to "No"
     await page.getByRole('button', { name: 'No' }).click();
