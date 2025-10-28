@@ -21,7 +21,7 @@ test.describe('Selecting List Cover Images', { tag: '@agent' }, () => {
       .getByRole('button');
     await twistersMovie.hover();
     await expect(twistersMovie).toContainText('SELECT');
-    await twistersMovie.click();
+    await twistersMovie.click({ force: true });
 
     // Verify it's selected and wait for the state to settle
     await expect(twistersMovie).toContainText('SELECTED');

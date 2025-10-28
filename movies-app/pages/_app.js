@@ -2,7 +2,6 @@
 
 import { Provider } from 'react-redux';
 import globalStyles from 'styles/global';
-import 'react-select-search/style.css';
 
 import { useStore } from 'store';
 import ThemeProvider from 'utils/hocs/ThemeProvider';

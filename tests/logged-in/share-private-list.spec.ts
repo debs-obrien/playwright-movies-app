@@ -14,7 +14,7 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
     await page.getByRole('textbox', { name: 'Name' }).fill('My Private List');
     await page.getByRole('textbox', { name: 'Description' }).fill('This is a private list for testing');
     await page.getByRole('combobox', { name: 'Public List?' }).click();
-    await page.getByRole('button', { name: 'No' }).click();
+    await page.getByRole('option', { name: 'No' }).click();
     await page.getByRole('button', { name: 'Continue' }).click();
 
     // 2. Add a movie to the list
