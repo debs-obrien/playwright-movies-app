@@ -1,6 +1,6 @@
 ---
 description: runs and fixes the tests
-mode: '🎭 healer'
+agent: '🎭 healer'
 ---
 
 run and fix any failing tests.
