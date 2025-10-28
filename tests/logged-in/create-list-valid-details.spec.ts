@@ -26,7 +26,7 @@ test.describe('Creating New Lists', { tag: '@agent' }, () => {
     await page.getByRole('textbox', { name: 'Description' }).fill('A collection of my favorite action films');
 
     // 6. Verify "Public List?" field is set to "Yes" by default
-    await expect(page.getByRole('combobox', { name: 'Public List?' })).toHaveValue('Yes');
+    await expect(page.getByRole('combobox', { name: 'Public List?' })).toHaveText('Yes');
 
     // 7. Click the "Continue" button
     await page.getByRole('button', { name: 'Continue' }).click();

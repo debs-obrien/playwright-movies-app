@@ -65,6 +65,7 @@ const TheSelectSearch = React.forwardRef(({
               disabled,
               id,
               name,
+              'aria-label': !label ? placeholder : undefined,
               'aria-labelledby': label ? undefined : id,
             })}
             className={mergedClasses.input}

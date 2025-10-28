@@ -22,7 +22,7 @@ test.describe('Creating New Lists', { tag: '@agent' }, () => {
 
     // 5. Click the "Public List?" field and change to "No"
     await page.getByRole('combobox', { name: 'Public List?' }).click();
-    await page.getByRole('button', { name: 'No' }).click();
+    await page.getByRole('option', { name: 'No' }).click();
 
     // 6. Click the "Continue" button
     await page.getByRole('button', { name: 'Continue' }).click();
