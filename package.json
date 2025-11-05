@@ -12,16 +12,16 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
-    "@playwright/test": "^1.56.1",
+    "@playwright/test": "^1.57.0-alpha-2025-11-05",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^24.9.1",
+    "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "eslint": "^9.38.0",
     "prettier": "^3.6.2",
     "tslint": "^6.1.3",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.2", 
-    "cross-env": "^10.1.0"
+    "typescript-eslint": "^8.46.2"
   },
   "workspaces": [
     "movies-app"
