@@ -27,12 +27,17 @@ test.describe('Creating New Lists', { tag: '@agent' }, () => {
     // 6. Click the "Continue" button
     await page.getByRole('button', { name: 'Continue' }).click();
 
-    // 7. Navigate to "My Lists" via User Profile menu
-    await page.getByRole('button', { name: 'User Profile' }).click();
-    await page.getByRole('link', { name: 'My Lists' }).click();
+    // 7. Navigate to "My Lists" page
+    await page.goto('/my-lists?page=1');
+
+    // Wait for the page to load
+    await expect(page.getByRole('heading', { name: 'My Lists' })).toBeVisible();
 
     // Verify list appears in "My Lists" with "(PRIVATE)" label
-    await expect(page.getByRole('heading', { name: /My Private Collection/ })).toBeVisible();
-    await expect(page.getByRole('heading', { name: /\(PRIVATE\)/ })).toBeVisible();
+    // Look for the specific list item that contains both the title and private indicator
+    const privateListItem = page.getByRole('listitem', { name: 'movie list' }).filter({ hasText: 'My Private Collection' });
+    await expect(privateListItem).toBeVisible();
+    await expect(privateListItem.getByRole('heading', { name: /My Private Collection/ })).toBeVisible();
+    await expect(privateListItem.getByRole('heading', { name: /movies \(PRIVATE\)/ })).toBeVisible();
   });
 });
