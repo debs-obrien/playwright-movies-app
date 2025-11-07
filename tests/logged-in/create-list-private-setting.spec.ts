@@ -3,6 +3,7 @@
 
 import { expect } from '@playwright/test';
 import { test } from '@playwright/test';
+import { openLists } from '../helpers/list-utilities';
 
 test.describe('Creating New Lists', { tag: '@agent' }, () => {
   test('Create Private List', async ({ page }) => {
@@ -27,10 +28,13 @@ test.describe('Creating New Lists', { tag: '@agent' }, () => {
     // 6. Click the "Continue" button
     await page.getByRole('button', { name: 'Continue' }).click();
 
-    // 7. Navigate to "My Lists" page
-    await page.goto('/my-lists?page=1');
+    // 7. Wait for successful list creation (should redirect to the edit/add movies page)
+    await expect(page.getByRole('heading', { name: 'My Private Collection' })).toBeVisible();
 
-    // Wait for the page to load
+    // 8. Navigate to "My Lists" using the helper utility
+    await openLists(page);
+
+    // Wait for the page to load and lists to appear
     await expect(page.getByRole('heading', { name: 'My Lists' })).toBeVisible();
 
     // Verify list appears in "My Lists" with "(PRIVATE)" label
