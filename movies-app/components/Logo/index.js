@@ -24,7 +24,7 @@ const Logo = () => (
           className='logo-img'
           width='150'
           height='150'
-          src=''
+          src={LOGO_IMAGE_PATH}
           alt='movie ticket' />
       </picture>
 
