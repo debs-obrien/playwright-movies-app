@@ -1,5 +1,7 @@
-# Deploy the TMDB mock API to Fly.io.
-# Requires repository secret FLY_API_TOKEN (fly tokens create deploy).
+# Deploy the TMDB mock API to Cloudflare Workers.
+# Requires repository secrets:
+#   CLOUDFLARE_API_TOKEN  — API token with Workers Edit
+#   CLOUDFLARE_ACCOUNT_ID — optional if only one account on the token
 name: Deploy mock API
 
 on:
@@ -15,9 +17,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: Deploy mock-api
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Deploy mock-api to Cloudflare Workers
         working-directory: mock-api
-        run: flyctl deploy --remote-only
+        run: npx wrangler deploy
         env:
-          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

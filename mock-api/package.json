@@ -7,6 +7,8 @@
     "build": "tsc",
     "start": "node dist/src/main.js",
     "dev": "tsc && node dist/src/main.js",
+    "dev:worker": "wrangler dev",
+    "deploy": "wrangler deploy",
     "test": "playwright test",
     "fetch-data": "tsc && node dist/src/fetch-data.js"
   },
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@playwright/test": "^1.46.1",
     "@types/node": "^20.x",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "wrangler": "^4.119.0"
   }
 }

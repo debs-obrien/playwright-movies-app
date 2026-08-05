@@ -15,7 +15,8 @@ import { CookieOptions } from 'hono/utils/cookie'
 // Cookie policy:
 // - Local HTTP (127.0.0.1 app + API, different ports = same-site): Lax, not Secure
 //   so Playwright's APIRequestContext can round-trip cookies.
-// - Production HTTPS (Fly + GitHub Pages, cross-site): Secure + SameSite=None
+// - Production HTTPS (Workers + GitHub Pages, cross-site): Secure + SameSite=None
+//   Set via wrangler.jsonc vars (COOKIE_SECURE / NODE_ENV) on Workers.
 const useSecureCrossSiteCookies =
   process.env.COOKIE_SECURE === 'true' ||
   process.env.NODE_ENV === 'production'
@@ -40,31 +41,42 @@ type List = {
 const listStore = new Map<string, List>()
 const accountListIds = new Map<string, Set<string>>()
 
-const searchIndex = await create({
-  schema: {
-    adult: "boolean",
-    id: "string",
-    original_language: "enum",
-    original_title: "string",
-    overview: "string",
-    popularity: "number",
-    release_date: "string",
-    title: "string",
-    video: "boolean",
-    vote_average: "number",
-    vote_count: "number",
-    budget: "number",
-    homepage: "string",
-    imdb_id: "string",
-    origin_country: "enum[]",
-    revenue: "number",
-    runtime: "number",
-    status: "enum",
-    tagline: "string",
-  }
-})
 const dedupedMovies = enrichedMovies.filter((movie, index) => enrichedMovies.findIndex(m => m.id === movie.id) === index)
-await insertMultiple(searchIndex, dedupedMovies.map(movie => ({ ...movie, id: movie.imdb_id })) as any)
+
+// Lazy-init Orama: insertMultiple uses setTimeout, which Workers disallow at global scope.
+let searchIndexPromise: ReturnType<typeof create> | null = null
+function getSearchIndex() {
+  if (!searchIndexPromise) {
+    searchIndexPromise = (async () => {
+      const index = await create({
+        schema: {
+          adult: "boolean",
+          id: "string",
+          original_language: "enum",
+          original_title: "string",
+          overview: "string",
+          popularity: "number",
+          release_date: "string",
+          title: "string",
+          video: "boolean",
+          vote_average: "number",
+          vote_count: "number",
+          budget: "number",
+          homepage: "string",
+          imdb_id: "string",
+          origin_country: "enum[]",
+          revenue: "number",
+          runtime: "number",
+          status: "enum",
+          tagline: "string",
+        }
+      })
+      await insertMultiple(index, dedupedMovies.map(movie => ({ ...movie, id: movie.imdb_id })) as any)
+      return index
+    })()
+  }
+  return searchIndexPromise
+}
 
 export const app = new Hono()
 app.use('*', cors({ origin: origin => origin, credentials: true }))
@@ -391,6 +403,7 @@ app.get("/3/person/:person", (c) => {
 app.get("/3/search/movie", async (c) => {
   const { query, page: pageStr = "1" } = c.req.query()
   const page = parseInt(pageStr)
+  const searchIndex = await getSearchIndex()
   const results = await search(searchIndex, {
     term: query,
     offset: (page - 1) * 20,

@@ -36,6 +36,17 @@ Make sure ports **3000** (Next.js) and **4000** (mock API) are available.
 
 The app talks to `NEXT_PUBLIC_TMDB_API_BASE_URL` (default `http://127.0.0.1:4000`).
 
+### Deploying the mock API (Cloudflare Workers)
+
+Production for the GitHub Pages demo uses Cloudflare Workers (free tier). From `mock-api/`:
+
+```bash
+npx wrangler login
+npm run deploy
+```
+
+See [`mock-api/README.md`](mock-api/README.md) for CI secrets and updating the Pages build URL.
+
 ## Running Tests
 
 ```bash
