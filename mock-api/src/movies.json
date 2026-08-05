@@ -1,6 +1,926 @@
 [
   {
     "adult": false,
+    "backdrop_path": "/fyZ6SDUS4o9jp2EHxfZa3qS9ean.jpg",
+    "genre_ids": [
+      18,
+      14,
+      10749
+    ],
+    "id": 402431,
+    "original_language": "en",
+    "original_title": "Wicked",
+    "overview": "In the land of Oz, ostracized and misunderstood green-skinned Elphaba is forced to share a room with the popular aristocrat Glinda at Shiz University, and the two's unlikely friendship is tested as they begin to fulfill their respective destinies as Glinda the Good and the Wicked Witch of the West.",
+    "popularity": 6200.5,
+    "poster_path": "/xDGbZ0JJ3mYaGKy4Nzd9Kph6M9L.jpg",
+    "release_date": "2024-11-22",
+    "title": "Wicked",
+    "video": false,
+    "vote_average": 7.6,
+    "vote_count": 4200
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/vYqt6kb4lcF8wwqsMMaULkP9OEn.jpg",
+    "genre_ids": [
+      16,
+      12,
+      35,
+      10751,
+      14
+    ],
+    "id": 1241982,
+    "original_language": "en",
+    "original_title": "Moana 2",
+    "overview": "After receiving an unexpected call from her wayfinding ancestors, Moana journeys alongside Maui and a new crew to the far seas of Oceania and into dangerous, long-lost waters for an adventure unlike anything she's ever faced.",
+    "popularity": 5900.2,
+    "poster_path": "/aLVkiINlIeCkcZIzb7XHzPYgO6L.jpg",
+    "release_date": "2024-11-27",
+    "title": "Moana 2",
+    "video": false,
+    "vote_average": 7.1,
+    "vote_count": 3100
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/tOqIwliWMovSIZ9DyvHcHI7p2im.jpg",
+    "genre_ids": [
+      28,
+      12,
+      18
+    ],
+    "id": 558449,
+    "original_language": "en",
+    "original_title": "Gladiator II",
+    "overview": "Years after witnessing the death of the revered hero Maximus at the hands of his uncle, Lucius is forced to enter the Colosseum after his home is conquered by the tyrannical Emperors who now lead Rome with an iron fist.",
+    "popularity": 5400.8,
+    "poster_path": "/2cxhvwyEwRlysAmRH4iodkvo0z5.jpg",
+    "release_date": "2024-11-22",
+    "title": "Gladiator II",
+    "video": false,
+    "vote_average": 6.8,
+    "vote_count": 2800
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/3V4kLQg0kSqPLctI5ziYWabAZYF.jpg",
+    "genre_ids": [
+      28,
+      878,
+      53
+    ],
+    "id": 912649,
+    "original_language": "en",
+    "original_title": "Venom: The Last Dance",
+    "overview": "Eddie and Venom are on the run. Hunted by both of their worlds and with the net closing in, the duo are forced into a devastating decision that will bring the curtains down on Venom and Eddie's last dance.",
+    "popularity": 4800.4,
+    "poster_path": "/vGXptEdgZIhPg3cGlc7e8sNPC2e.jpg",
+    "release_date": "2024-10-25",
+    "title": "Venom: The Last Dance",
+    "video": false,
+    "vote_average": 6.5,
+    "vote_count": 2200
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/1w8kutrRucTd3wlYyu5QlUDMiG1.jpg",
+    "genre_ids": [
+      16,
+      12,
+      10751,
+      18
+    ],
+    "id": 762509,
+    "original_language": "en",
+    "original_title": "Mufasa: The Lion King",
+    "overview": "Mufasa, a cub lost and alone, meets a sympathetic lion named Taka, the heir to a royal bloodline. The chance meeting sets in motion an expansive journey of a group of misfits searching for their destiny.",
+    "popularity": 5100.1,
+    "poster_path": "/jbOSUAWMGzGL1L4EaUF8K6zYFo7.jpg",
+    "release_date": "2024-12-20",
+    "title": "Mufasa: The Lion King",
+    "video": false,
+    "vote_average": 7.3,
+    "vote_count": 1900
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/8ODNt5olCeIqBYTP3GgXEQYTfeX.jpg",
+    "genre_ids": [
+      27,
+      878,
+      53
+    ],
+    "id": 933260,
+    "original_language": "en",
+    "original_title": "The Substance",
+    "overview": "A fading celebrity decides to use a black market drug, a cell-replicating substance that temporarily creates a younger, better version of herself.",
+    "popularity": 4300.6,
+    "poster_path": "/uYJvxMWMb9W4zIY3cbM50sj3dpC.jpg",
+    "release_date": "2024-09-20",
+    "title": "The Substance",
+    "video": false,
+    "vote_average": 7.2,
+    "vote_count": 3500
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/2gAStVyyv9C3BSEKhP0a1aM3Qy9.jpg",
+    "genre_ids": [
+      27,
+      14
+    ],
+    "id": 426063,
+    "original_language": "en",
+    "original_title": "Nosferatu",
+    "overview": "A gothic tale of obsession between a haunted young woman and the terrifying vampire infatuated with her, causing untold horror in its wake.",
+    "popularity": 4500.3,
+    "poster_path": "/5qGIxdEO841C0tdY8vOdLoRVrr0.jpg",
+    "release_date": "2024-12-25",
+    "title": "Nosferatu",
+    "video": false,
+    "vote_average": 7.1,
+    "vote_count": 2600
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/qvyOfwTC3qdbzkqdXWSSEMHtjBZ.jpg",
+    "genre_ids": [
+      35,
+      18,
+      10749
+    ],
+    "id": 1064213,
+    "original_language": "en",
+    "original_title": "Anora",
+    "overview": "A young sex worker from Brooklyn gets her chance at a Cinderella story when she meets and impulsively marries the son of an oligarch. Once the news reaches Russia, her fairytale is threatened as his parents set out for New York to get the marriage annulled.",
+    "popularity": 3900.7,
+    "poster_path": "/cgXk2tNYhJZLXdBDO5DidAVzQ82.jpg",
+    "release_date": "2024-10-18",
+    "title": "Anora",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 1800
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/eZzNdjNDvaSoyywy9ICg2UmFwul.jpg",
+    "genre_ids": [
+      18,
+      53
+    ],
+    "id": 974576,
+    "original_language": "en",
+    "original_title": "Conclave",
+    "overview": "After the unexpected death of the Pope, Cardinal Lawrence is tasked with managing the covert and ancient ritual of electing a new one. Sequestered in the Vatican with the Catholic Church's most powerful leaders, he finds himself at the center of a conspiracy that could shake the very foundation of the Church.",
+    "popularity": 3700.2,
+    "poster_path": "/m5x8D0bZ3eKqIVWZ5y7TnZ2oTVg.jpg",
+    "release_date": "2024-10-25",
+    "title": "Conclave",
+    "video": false,
+    "vote_average": 7.4,
+    "vote_count": 2100
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/tq8COKsI99Bivjd4CZIYVGoKcIx.jpg",
+    "genre_ids": [
+      18,
+      10749
+    ],
+    "id": 937287,
+    "original_language": "en",
+    "original_title": "Challengers",
+    "overview": "Tennis player turned coach Tashi has taken her husband, Art, and transformed him into a world-famous Major champion. To jolt him out of his recent losing streak, she signs him up for a \"Challenger\" event, only to discover his opponent is Patrick, Art's former best friend and Tashi's former boyfriend.",
+    "popularity": 3200.4,
+    "poster_path": "/H6vke7zGiuLsz4v4RPeReb9rsv.jpg",
+    "release_date": "2024-04-26",
+    "title": "Challengers",
+    "video": false,
+    "vote_average": 7.1,
+    "vote_count": 2400
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/mQZJoIhTEkNhCYAqcHrQqhENLdu.jpg",
+    "genre_ids": [
+      16,
+      878,
+      10751
+    ],
+    "id": 1184918,
+    "original_language": "en",
+    "original_title": "The Wild Robot",
+    "overview": "After a shipwreck, an intelligent robot called Roz is stranded on an uninhabited island. To survive the harsh environment, Roz bonds with the island's animals and cares for an orphaned goose chick.",
+    "popularity": 4600.9,
+    "poster_path": "/wTnV3PCVW5O92JMrFvvrRcV39RU.jpg",
+    "release_date": "2024-09-27",
+    "title": "The Wild Robot",
+    "video": false,
+    "vote_average": 8.3,
+    "vote_count": 4100
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/rOmUuQEZfPXglwFs5ELLLUDKodL.jpg",
+    "genre_ids": [
+      28,
+      35,
+      14
+    ],
+    "id": 845781,
+    "original_language": "en",
+    "original_title": "Red One",
+    "overview": "After Santa Claus (codename: Red One) is kidnapped, the North Pole's Head of Security must team up with the world's most infamous tracker in a globe-trotting, action-packed mission to save Christmas.",
+    "popularity": 4100.5,
+    "poster_path": "/cdqLnri3NEGcmfnqwk2TSIYtddg.jpg",
+    "release_date": "2024-11-15",
+    "title": "Red One",
+    "video": false,
+    "vote_average": 6.7,
+    "vote_count": 1700
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/bGGjyPqtNc8hhGkPo8W8D8t90bW.jpg",
+    "genre_ids": [
+      28,
+      12,
+      53
+    ],
+    "id": 539972,
+    "original_language": "en",
+    "original_title": "Kraven the Hunter",
+    "overview": "Kraven Kravinoff's complex relationship with his ruthless gangster father, Nikolai, starts him down a path of vengeance with brutal consequences, motivating him to become not only the greatest hunter in the world, but also one of its most feared.",
+    "popularity": 3500.1,
+    "poster_path": "/1GvBhRxY6MELDfxFrete6BNhBB5.jpg",
+    "release_date": "2024-12-13",
+    "title": "Kraven the Hunter",
+    "video": false,
+    "vote_average": 6.1,
+    "vote_count": 1400
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/u2eA9pqi1q3DvevT7RuDuJHxxBT.jpg",
+    "genre_ids": [
+      18,
+      80,
+      10402
+    ],
+    "id": 974950,
+    "original_language": "es",
+    "original_title": "Emilia P\u00e9rez",
+    "overview": "Rita, an underrated lawyer working for a large law firm more interested in getting criminals out of jail than bringing them to justice, is hired by the leader of a drug cartel to help him disappear and become the woman he's always dreamed of being.",
+    "popularity": 3400.8,
+    "poster_path": "/7seqaCaaXDNUHOx4DqwpoOH8pPa.jpg",
+    "release_date": "2024-11-13",
+    "title": "Emilia P\u00e9rez",
+    "video": false,
+    "vote_average": 7,
+    "vote_count": 1600
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/ag66gJCiZ06q1GSJuQlhGLi3Udx.jpg",
+    "genre_ids": [
+      27,
+      53
+    ],
+    "id": 1138194,
+    "original_language": "en",
+    "original_title": "Heretic",
+    "overview": "Two young missionaries are forced to prove their faith when they knock on the wrong door and are greeted by a diabolical Mr. Reed, becoming ensnared in his deadly game of cat-and-mouse.",
+    "popularity": 3600.3,
+    "poster_path": "/fr96XzlzsONrQrGfdLMiwtQjott.jpg",
+    "release_date": "2024-11-08",
+    "title": "Heretic",
+    "video": false,
+    "vote_average": 7,
+    "vote_count": 1500
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/ywe9S1cFFfhR5yWzK7511NuQ2YX.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 822119,
+    "original_language": "en",
+    "original_title": "Captain America: Brave New World",
+    "overview": "After meeting with newly elected U.S. President Thaddeus Ross, Sam finds himself in the middle of an international incident. He must discover the reason behind a nefarious global plot before the true power of the new Captain America is tested.",
+    "popularity": 5800.6,
+    "poster_path": "/pzIddUEMWhWzfvLI3TwxUG2wGoi.jpg",
+    "release_date": "2025-02-14",
+    "title": "Captain America: Brave New World",
+    "video": false,
+    "vote_average": 6.2,
+    "vote_count": 2100
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/2Nti3gYAX513wvhp8IiLL6ZDyOm.jpg",
+    "genre_ids": [
+      12,
+      35,
+      14,
+      10751
+    ],
+    "id": 950387,
+    "original_language": "en",
+    "original_title": "A Minecraft Movie",
+    "overview": "Four misfits find themselves struggling with ordinary problems when they are suddenly pulled through a mysterious portal into the Overworld: a bizarre, cubic wonderland that thrives on imagination. To get back home, they'll have to master this world while embarking on a magical quest with an unexpected, crafty expert.",
+    "popularity": 7000,
+    "poster_path": "/yFHHfHcUgGAxziP1C3lLt0q2T4s.jpg",
+    "release_date": "2025-04-04",
+    "title": "A Minecraft Movie",
+    "video": false,
+    "vote_average": 6.8,
+    "vote_count": 2500
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/rthMuZfFv4fqEU4JVbgSW9wQ8rs.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 986056,
+    "original_language": "en",
+    "original_title": "Thunderbolts*",
+    "overview": "After finding themselves ensnared in a death trap, seven disillusioned castoffs must embark on a dangerous mission that will force them to confront the darkest corners of their pasts.",
+    "popularity": 6500.4,
+    "poster_path": "/hqcexYHbiTBfDIdDWxrxPtVndBX.jpg",
+    "release_date": "2025-05-02",
+    "title": "Thunderbolts*",
+    "video": false,
+    "vote_average": 7.3,
+    "vote_count": 1800
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/538U9snNc2fpnOmYXAPUh3zn31H.jpg",
+    "genre_ids": [
+      28,
+      12,
+      53
+    ],
+    "id": 575265,
+    "original_language": "en",
+    "original_title": "Mission: Impossible - The Final Reckoning",
+    "overview": "Ethan Hunt and team continue their search for the terrifying AI known as the Entity \u2014 which has infiltrated intelligence networks all over the globe \u2014 with their lives and the future of the world hanging in the balance.",
+    "popularity": 6800.9,
+    "poster_path": "/iKPsC9EFUafRP9SrUznI61getVP.jpg",
+    "release_date": "2025-05-23",
+    "title": "Mission: Impossible - The Final Reckoning",
+    "video": false,
+    "vote_average": 7.4,
+    "vote_count": 2200
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/AeDzjt00Hfh9CuW7TIUdYBJmWYM.jpg",
+    "genre_ids": [
+      12,
+      14,
+      10751
+    ],
+    "id": 1087192,
+    "original_language": "en",
+    "original_title": "How to Train Your Dragon",
+    "overview": "On the rugged isle of Berk, where Vikings and dragons have been bitter enemies for generations, Hiccup stands apart, defying centuries of tradition when he befriends Toothless, a feared Night Fury. Their unlikely bond reveals the true nature of dragons and sparks a path to peace.",
+    "popularity": 6400.2,
+    "poster_path": "/53dsJ3oEnBhTBVMigWJ9tkA5bzJ.jpg",
+    "release_date": "2025-06-13",
+    "title": "How to Train Your Dragon",
+    "video": false,
+    "vote_average": 7.8,
+    "vote_count": 1600
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/lkDYN0whyE82mcM20rwtwjbniKF.jpg",
+    "genre_ids": [
+      28,
+      18
+    ],
+    "id": 911430,
+    "original_language": "en",
+    "original_title": "F1",
+    "overview": "Racing legend Sonny Hayes is coaxed out of retirement to lead a struggling Formula 1 team\u2014and mentor a young hotshot driver\u2014while chasing one more chance at glory.",
+    "popularity": 7200.7,
+    "poster_path": "/9PXZIUsSDh4alB80jheWX4fhZmy.jpg",
+    "release_date": "2025-06-27",
+    "title": "F1",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 1900
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/zNriRTr0kWwyaXPzdg1EIxf0BWk.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878,
+      53
+    ],
+    "id": 1234821,
+    "original_language": "en",
+    "original_title": "Jurassic World Rebirth",
+    "overview": "Five years after the events of Jurassic World Dominion, covert operations expert Zora Bennett is contracted to lead a skilled team on a top-secret mission to secure genetic material from the three most massive dinosaurs alive.",
+    "popularity": 6900.3,
+    "poster_path": "/1RICxzeoNCAO5NpcRMIgg1XT6fm.jpg",
+    "release_date": "2025-07-02",
+    "title": "Jurassic World Rebirth",
+    "video": false,
+    "vote_average": 6.6,
+    "vote_count": 1400
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/eGX66zonvc4bXg3rM08RUxdYSDx.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 1061474,
+    "original_language": "en",
+    "original_title": "Superman",
+    "overview": "Superman, a journalist in Metropolis, embarks on a journey to reconcile his Kryptonian heritage with his human upbringing as Clark Kent.",
+    "popularity": 7500.1,
+    "poster_path": "/ldyfo0BKmz5rWtJJKCvwaNS4cJT.jpg",
+    "release_date": "2025-07-11",
+    "title": "Superman",
+    "video": false,
+    "vote_average": 7.4,
+    "vote_count": 2100
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/s94NjfKkcSczZ1FembwmQZwsuwY.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 617126,
+    "original_language": "en",
+    "original_title": "The Fantastic 4: First Steps",
+    "overview": "Against the vibrant backdrop of a 1960s-inspired, retro-futuristic world, Marvel's First Family is forced to balance their roles as heroes with the strength of their family bond, as they defend Earth from a cosmic menace.",
+    "popularity": 7100.5,
+    "poster_path": "/nf5qaSEvyYSNeFH0YhSs5EsBLX9.jpg",
+    "release_date": "2025-07-25",
+    "title": "The Fantastic 4: First Steps",
+    "video": false,
+    "vote_average": 7.2,
+    "vote_count": 1200
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/9PRKAdrDvAdCfg3EcApLTfzGsEt.jpg",
+    "genre_ids": [
+      878,
+      12,
+      35
+    ],
+    "id": 696506,
+    "original_language": "en",
+    "original_title": "Mickey 17",
+    "overview": "Unlikely hero Mickey Barnes finds himself in the extraordinary circumstance of working for an employer who demands the ultimate commitment to the job\u2026 to die, for a living.",
+    "popularity": 5200.8,
+    "poster_path": "/edKpE9B5qN3e559OuMCLZdW1iBZ.jpg",
+    "release_date": "2025-03-07",
+    "title": "Mickey 17",
+    "video": false,
+    "vote_average": 7,
+    "vote_count": 1700
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/nAxGnGHOsfzufThz20zgmRwKur3.jpg",
+    "genre_ids": [
+      27,
+      18,
+      53
+    ],
+    "id": 1233413,
+    "original_language": "en",
+    "original_title": "Sinners",
+    "overview": "Trying to leave their troubled lives behind, twin brothers return to their hometown to start again, only to discover that an even greater evil is waiting to welcome them back.",
+    "popularity": 6100.6,
+    "poster_path": "/fWPgbnt2LSqkQ6cdQc0SZN9CpLm.jpg",
+    "release_date": "2025-04-18",
+    "title": "Sinners",
+    "video": false,
+    "vote_average": 7.6,
+    "vote_count": 2000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/7N7CtZftqEvgojR3QloukU0oWPg.jpg",
+    "genre_ids": [
+      12,
+      35,
+      10751
+    ],
+    "id": 516729,
+    "original_language": "en",
+    "original_title": "Paddington in Peru",
+    "overview": "Paddington travels to Peru to visit his beloved Aunt Lucy, who now resides at the Home for Retired Bears. With the Brown Family in tow, a thrilling adventure ensues when a mystery plunges them into an unexpected journey into the Amazon rainforest.",
+    "popularity": 4000.2,
+    "poster_path": "/1ffZAucqfvQu36x1C49XfOdjuOG.jpg",
+    "release_date": "2025-02-14",
+    "title": "Paddington in Peru",
+    "video": false,
+    "vote_average": 7,
+    "vote_count": 900
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/otugS74HEHdca4aTCtt8HtXvPYV.jpg",
+    "genre_ids": [
+      18,
+      10402
+    ],
+    "id": 661539,
+    "original_language": "en",
+    "original_title": "A Complete Unknown",
+    "overview": "New York, early 1960s. Against the backdrop of a vibrant music scene and tumultuous cultural upheaval, an enigmatic 19-year-old from Minnesota arrives in the Village with his guitar and revolutionary talent, destined to change the course of American music.",
+    "popularity": 3300.4,
+    "poster_path": "/llWl3GtNoXosbvYboelmoT459NM.jpg",
+    "release_date": "2024-12-25",
+    "title": "A Complete Unknown",
+    "video": false,
+    "vote_average": 7.3,
+    "vote_count": 1100
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/hmZnqijPaaACjenDkrbWcCmcADI.jpg",
+    "genre_ids": [
+      18
+    ],
+    "id": 549509,
+    "original_language": "en",
+    "original_title": "The Brutalist",
+    "overview": "When an innovative modern architect flees post-war Europe, he is given the opportunity to rebuild his legacy. Set during the dawn of the modern United States (in Pennsylvania), his life intertwines with a wealthy client, changing the course of both of their lives forever.",
+    "popularity": 3100.7,
+    "poster_path": "/vP7Yd6couiAaw9jgMd5cjMRj3hQ.jpg",
+    "release_date": "2024-12-20",
+    "title": "The Brutalist",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 1300
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/wwARk7hRIfHfh2n2ubN6N7lvTne.jpg",
+    "genre_ids": [
+      27,
+      53
+    ],
+    "id": 710295,
+    "original_language": "en",
+    "original_title": "Wolf Man",
+    "overview": "With his marriage fraying, Blake persuades his wife Charlotte to take a break from the city and visit his remote childhood home in rural Oregon. As they arrive at the farmhouse in the dead of night, something is lurking in the darkness.",
+    "popularity": 3800.9,
+    "poster_path": "/wpSDzTBfF0Eeo5lzu2w9FTujGqd.jpg",
+    "release_date": "2025-01-17",
+    "title": "Wolf Man",
+    "video": false,
+    "vote_average": 6,
+    "vote_count": 1000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/lqwwGkwJHtz9QgKtz4zeY19YgDg.jpg",
+    "genre_ids": [
+      18,
+      10749,
+      35
+    ],
+    "id": 1136867,
+    "original_language": "en",
+    "original_title": "Materialists",
+    "overview": "A young, ambitious New York City matchmaker finds herself torn between the perfect match and her imperfect ex.",
+    "popularity": 4200.1,
+    "poster_path": "/eDo0pNruy0Qgj6BdTyHIR4cxHY8.jpg",
+    "release_date": "2025-06-13",
+    "title": "Materialists",
+    "video": false,
+    "vote_average": 6.9,
+    "vote_count": 800
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/cGbPBHKSFO7hSIjxkb3KOaGdOep.jpg",
+    "genre_ids": [
+      18,
+      14,
+      10749
+    ],
+    "id": 967941,
+    "original_language": "en",
+    "original_title": "Wicked: For Good",
+    "overview": "As an angry mob rises against the Wicked Witch, Glinda and Elphaba will need to come together one final time. With their singular friendship now the fulcrum of the future of Oz, they must face the truth about themselves and the choices they've made.",
+    "popularity": 7800,
+    "poster_path": "/si9tolnefLSUKaqQEGz1bWArOaL.jpg",
+    "release_date": "2025-11-21",
+    "title": "Wicked: For Good",
+    "video": false,
+    "vote_average": 0,
+    "vote_count": 0
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/lgotja3xMoJZbynwHfcQcJAEMWH.jpg",
+    "genre_ids": [
+      16,
+      12,
+      35,
+      10751
+    ],
+    "id": 1084242,
+    "original_language": "en",
+    "original_title": "Zootopia 2",
+    "overview": "After cracking the biggest case in Zootopia's history, rookie cops Judy Hopps and Nick Wilde find themselves on the twisting trail of a great mystery when Gary De'Snake arrives and throws the animal metropolis into chaos.",
+    "popularity": 7600.4,
+    "poster_path": "/oJ7g2CifqpStmoYQyaLQgEU32qO.jpg",
+    "release_date": "2025-11-26",
+    "title": "Zootopia 2",
+    "video": false,
+    "vote_average": 0,
+    "vote_count": 0
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/sdZSjtGUTSN8B3al5o0f2WoQfQQ.jpg",
+    "genre_ids": [
+      878,
+      12,
+      28
+    ],
+    "id": 83533,
+    "original_language": "en",
+    "original_title": "Avatar: Fire and Ash",
+    "overview": "In the wake of the devastating war against the RDA and the loss of their eldest son, Jake Sully and Neytiri face a new threat on Pandora: the Ash People, a violent and relentless tribe of Na'vi that is led by the fiery Varang.",
+    "popularity": 8000,
+    "poster_path": "/bRBeSHfGHwkEpImlhxPmOcUsaeg.jpg",
+    "release_date": "2025-12-19",
+    "title": "Avatar: Fire and Ash",
+    "video": false,
+    "vote_average": 0,
+    "vote_count": 0
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/14QbnygCuTO0vl7CAFmPf1fgZfV.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 634649,
+    "original_language": "en",
+    "original_title": "Spider-Man: No Way Home",
+    "overview": "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
+    "popularity": 4200.0,
+    "poster_path": "/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg",
+    "release_date": "2021-12-17",
+    "title": "Spider-Man: No Way Home",
+    "video": false,
+    "vote_average": 7.9,
+    "vote_count": 21000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/kVd3a9YeLGkoeR50jGEXM6EqseS.jpg",
+    "genre_ids": [
+      16,
+      28,
+      12,
+      878
+    ],
+    "id": 569094,
+    "original_language": "en",
+    "original_title": "Spider-Man: Across the Spider-Verse",
+    "overview": "After reuniting with Gwen Stacy, Brooklyn's full-time, friendly neighborhood Spider-Man is catapulted across the Multiverse, where he encounters the Spider Society, a team of Spider-People charged with protecting the Multiverse's very existence. But when the heroes clash on how to handle a new threat, Miles finds himself pitted against the other Spiders, who may be hiding devastating secrets while he finds an unlikely ally in Spider-Woman.",
+    "popularity": 3900.0,
+    "poster_path": "/8Vt6mWEReuy4Of61Lnj5Xj704m8.jpg",
+    "release_date": "2023-06-02",
+    "title": "Spider-Man: Across the Spider-Verse",
+    "video": false,
+    "vote_average": 8.3,
+    "vote_count": 8500
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/8mnXR9rey5uQ08rZAvzojKWbDQS.jpg",
+    "genre_ids": [
+      16,
+      28,
+      12,
+      878
+    ],
+    "id": 324857,
+    "original_language": "en",
+    "original_title": "Spider-Man: Into the Spider-Verse",
+    "overview": "Struggling to find his place in the world while juggling school and family, Brooklyn teenager Miles Morales is unexpectedly bitten by a radioactive spider and develops unfathomable powers just like the one and only Spider-Man. While wrestling with the implications of his new abilities, Miles discovers a super collider created by the madman Wilson \"Kingpin\" Fisk, and is unwittingly caught up in his plan to open gateways to many other dimensions\u2014forcing him to join forces with Spider-Man to save the city and all of existence.",
+    "popularity": 3100.0,
+    "poster_path": "/iiZZdoQBEYBv6id8su7ImL0oCbD.jpg",
+    "release_date": "2018-12-14",
+    "title": "Spider-Man: Into the Spider-Verse",
+    "video": false,
+    "vote_average": 8.4,
+    "vote_count": 16000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/vamhMTvh9m9zFHDoR0v1nRtf6T4.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 429617,
+    "original_language": "en",
+    "original_title": "Spider-Man: Far From Home",
+    "overview": "Peter Parker and his friends go on a summer trip to Europe. However, they will hardly be able to rest \u2014 Peter will have to agree to help Nick Fury uncover the mystery of creatures that cause natural disasters and destruction throughout the continent.",
+    "popularity": 2800.0,
+    "poster_path": "/4q2NNj4S5dG2RLF9CpXsej7yXl.jpg",
+    "release_date": "2019-07-02",
+    "title": "Spider-Man: Far From Home",
+    "video": false,
+    "vote_average": 7.4,
+    "vote_count": 16000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/fn4n6uOYcB6Uh89nbNPoU2w80RV.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 315635,
+    "original_language": "en",
+    "original_title": "Spider-Man: Homecoming",
+    "overview": "Following the events of Captain America: Civil War, Peter Parker, with the help of his mentor Tony Stark, tries to balance his life as an ordinary high school student in Queens, New York City, with fighting crime as his superhero alter ego Spider-Man as a new threat, the Vulture, emerges.",
+    "popularity": 2600.0,
+    "poster_path": "/c24sv2weTHPsmDa7jEMN0m2P3RT.jpg",
+    "release_date": "2017-07-07",
+    "title": "Spider-Man: Homecoming",
+    "video": false,
+    "vote_average": 7.3,
+    "vote_count": 22000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/zQ8AxTPiCiS5nnwXpwTBPBHSaa5.jpg",
+    "genre_ids": [
+      28,
+      878
+    ],
+    "id": 557,
+    "original_language": "en",
+    "original_title": "Spider-Man",
+    "overview": "After being bitten by a genetically altered spider at Oscorp, nerdy but endearing high school student Peter Parker is endowed with amazing powers to become the superhero known as Spider-Man.",
+    "popularity": 2100.0,
+    "poster_path": "/nXdAh5vUwERL4WGVMaee8RoDEAS.jpg",
+    "release_date": "2002-05-01",
+    "title": "Spider-Man",
+    "video": false,
+    "vote_average": 7.3,
+    "vote_count": 19000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/IYUD7rAIXzBM91TT3Z5fILUS7n.jpg",
+    "genre_ids": [
+      80,
+      9648,
+      53
+    ],
+    "id": 414906,
+    "original_language": "en",
+    "original_title": "The Batman",
+    "overview": "In his second year of fighting crime, Batman uncovers corruption in Gotham City that connects to his own family while facing a serial killer known as the Riddler.",
+    "popularity": 4000.0,
+    "poster_path": "/74xTEgt7R36Fpooo50r9T25onhq.jpg",
+    "release_date": "2022-03-01",
+    "title": "The Batman",
+    "video": false,
+    "vote_average": 7.7,
+    "vote_count": 11000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/dqK9Hag1054tghRQSqLSfrkvQnA.jpg",
+    "genre_ids": [
+      28,
+      80,
+      53
+    ],
+    "id": 155,
+    "original_language": "en",
+    "original_title": "The Dark Knight",
+    "overview": "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.",
+    "popularity": 4500.0,
+    "poster_path": "/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+    "release_date": "2008-07-16",
+    "title": "The Dark Knight",
+    "video": false,
+    "vote_average": 8.5,
+    "vote_count": 34000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/y2DB71C4nyIdMrANijz8mzvQtk6.jpg",
+    "genre_ids": [
+      28,
+      80,
+      18,
+      53
+    ],
+    "id": 49026,
+    "original_language": "en",
+    "original_title": "The Dark Knight Rises",
+    "overview": "Following the death of District Attorney Harvey Dent, Batman assumes responsibility for Dent's crimes to protect the late attorney's reputation and is subsequently hunted by the Gotham City Police Department. Eight years later, Batman encounters the mysterious Selina Kyle and the villainous Bane, a new terrorist leader who overwhelms Gotham's finest.",
+    "popularity": 3400.0,
+    "poster_path": "/hr0L2aueqlP2BYUblTTjmtn0hw4.jpg",
+    "release_date": "2012-07-17",
+    "title": "The Dark Knight Rises",
+    "video": false,
+    "vote_average": 7.8,
+    "vote_count": 24000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/9IIBboV7MCT0bTxzXHmWK1Hq558.jpg",
+    "genre_ids": [
+      18,
+      80,
+      28
+    ],
+    "id": 272,
+    "original_language": "en",
+    "original_title": "Batman Begins",
+    "overview": "Driven by tragedy, billionaire Bruce Wayne dedicates his life to uncovering and defeating the corruption that plagues his home, Gotham City. Unable to work within the system, he instead creates a new identity, a symbol of fear for the criminal underworld \u2014 The Batman.",
+    "popularity": 3000.0,
+    "poster_path": "/sPX89Td70IDDjVr85jdSBb4rWGr.jpg",
+    "release_date": "2005-06-10",
+    "title": "Batman Begins",
+    "video": false,
+    "vote_average": 7.7,
+    "vote_count": 21000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/5fX1oSGuYdKgwWmUTAN5MNSQGzr.jpg",
+    "genre_ids": [
+      28,
+      12,
+      14
+    ],
+    "id": 209112,
+    "original_language": "en",
+    "original_title": "Batman v Superman: Dawn of Justice",
+    "overview": "Fearing the actions of a god-like Super Hero left unchecked, Gotham City's own formidable, forceful vigilante takes on Metropolis's most revered, modern-day savior, while the world wrestles with what sort of hero it really needs. And with Batman and Superman at war with one another, a new threat quickly arises, putting mankind in greater danger than ever before.",
+    "popularity": 2500.0,
+    "poster_path": "/5UsK3grJvtQrtzEgqNlDljJW96w.jpg",
+    "release_date": "2016-03-23",
+    "title": "Batman v Superman: Dawn of Justice",
+    "video": false,
+    "vote_average": 6.0,
+    "vote_count": 19000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/rWYtghaUJSDvQm4jmXiCPXBHUdQ.jpg",
+    "genre_ids": [
+      16,
+      28,
+      35,
+      10751
+    ],
+    "id": 324849,
+    "original_language": "en",
+    "original_title": "The Lego Batman Movie",
+    "overview": "A cooler-than-ever Bruce Wayne must deal with the usual suspects as they plan to rule Gotham City, while discovering that he has accidentally adopted a teenage orphan who wishes to become his sidekick.",
+    "popularity": 2200.0,
+    "poster_path": "/e1TliRWOdXQ73pRunbpFiGst6Kd.jpg",
+    "release_date": "2017-02-08",
+    "title": "The Lego Batman Movie",
+    "video": false,
+    "vote_average": 7.3,
+    "vote_count": 5200
+  },
+  {
+    "adult": false,
     "backdrop_path": "/yDHYTfA3R0jFYba16jBB1ef8oIt.jpg",
     "genre_ids": [
       28,
@@ -413,7 +1333,7 @@
     "original_language": "en",
     "original_title": "One Fast Move",
     "overview": "A dishonorably discharged soldier seeks out his estranged father to help him pursue his dream of becoming a professional motorcycle racer. While training, he meets a small-town, aspiring singer and a motorcycle shop owner who begin to break down the walls his father's absence had built up.",
-    "popularity": 764.0,
+    "popularity": 764,
     "poster_path": "/hdBUjfbdr1ymS0kycAT7qguOmWA.jpg",
     "release_date": "2024-08-07",
     "title": "One Fast Move",
@@ -652,7 +1572,7 @@
     "release_date": "2024-12-19",
     "title": "Sonic the Hedgehog 3",
     "video": false,
-    "vote_average": 0.0,
+    "vote_average": 0,
     "vote_count": 0
   },
   {
@@ -771,7 +1691,7 @@
     "release_date": "2024-06-27",
     "title": "Paradox Effect",
     "video": false,
-    "vote_average": 6.0,
+    "vote_average": 6,
     "vote_count": 32
   },
   {
@@ -1132,5 +2052,645 @@
     "video": false,
     "vote_average": 5.778,
     "vote_count": 9
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/7RyHsO4yDXtBv1zUU3mTpHeQ0d5.jpg",
+    "genre_ids": [
+      12,
+      878,
+      28
+    ],
+    "id": 299534,
+    "original_language": "en",
+    "original_title": "Avengers: Endgame",
+    "overview": "After the devastating events of Avengers: Infinity War, the universe is in ruins due to the efforts of the Mad Titan, Thanos. With the help of remaining allies, the Avengers must assemble once more in order to undo Thanos' actions and restore order to the universe once and for all, no matter what consequences may be in store.",
+    "popularity": 3500,
+    "poster_path": "/ulzhLuWrPK07P1YkdWQLZnQh1JL.jpg",
+    "release_date": "2019-04-25",
+    "title": "Avengers: Endgame",
+    "video": false,
+    "vote_average": 8.2,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/9BBTo63ANSmhC4e6r62OJFuK2GL.jpg",
+    "genre_ids": [
+      878,
+      28,
+      12
+    ],
+    "id": 24428,
+    "original_language": "en",
+    "original_title": "The Avengers",
+    "overview": "When an unexpected enemy emerges and threatens global safety and security, Nick Fury, director of the international peacekeeping agency known as S.H.I.E.L.D., finds himself in need of a team to pull the world back from the brink of disaster. Spanning the globe, a daring recruitment effort begins!",
+    "popularity": 3485,
+    "poster_path": "/RYMX2wcKCBAr24UyPD7xwmjaTn.jpg",
+    "release_date": "2012-04-27",
+    "title": "The Avengers",
+    "video": false,
+    "vote_average": 8.1,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/kIBK5SKwgqIIuRKhhWrJn3XkbPq.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 99861,
+    "original_language": "en",
+    "original_title": "Avengers: Age of Ultron",
+    "overview": "When Tony Stark tries to jumpstart a dormant peacekeeping program, things go awry and Earth\u2019s Mightiest Heroes are put to the ultimate test as the fate of the planet hangs in the balance. As the villainous Ultron emerges, it is up to The Avengers to stop him from enacting his terrible plans, and soon uneasy alliances and unexpected action pave the way for an epic and unique global adventure.",
+    "popularity": 3470,
+    "poster_path": "/4ssDuvEDkSArWEdyBl2X5EHvYKU.jpg",
+    "release_date": "2015-04-30",
+    "title": "Avengers: Age of Ultron",
+    "video": false,
+    "vote_average": 7.3,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/cKvDv2LpwVEqbdXWoQl4XgGN6le.jpg",
+    "genre_ids": [
+      28,
+      878,
+      12
+    ],
+    "id": 1726,
+    "original_language": "en",
+    "original_title": "Iron Man",
+    "overview": "After being held captive in an Afghan cave, billionaire engineer Tony Stark creates a unique weaponized suit of armor to fight evil.",
+    "popularity": 3455,
+    "poster_path": "/78lPtwv72eTNqFW9COBYI0dWDJa.jpg",
+    "release_date": "2008-04-30",
+    "title": "Iron Man",
+    "video": false,
+    "vote_average": 7.7,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/7lmBufEG7P7Y1HClYK3gCxYrkgS.jpg",
+    "genre_ids": [
+      12,
+      28,
+      878
+    ],
+    "id": 10138,
+    "original_language": "en",
+    "original_title": "Iron Man 2",
+    "overview": "With the world now aware of his dual life as the armored superhero Iron Man, billionaire inventor Tony Stark faces pressure from the government, the press and the public to share his technology with the military. Unwilling to let go of his invention, Stark, with Pepper Potts and James 'Rhodey' Rhodes at his side, must forge new alliances \u2013 and confront powerful enemies.",
+    "popularity": 3440,
+    "poster_path": "/6WBeq4fCfn7AN0o21W9qNcRF2l9.jpg",
+    "release_date": "2010-04-30",
+    "title": "Iron Man 2",
+    "video": false,
+    "vote_average": 6.9,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/iVped1djsF0tvGkvnHbzsE3ZPTF.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 68721,
+    "original_language": "en",
+    "original_title": "Iron Man 3",
+    "overview": "When Tony Stark's world is torn apart by a formidable terrorist called the Mandarin, he starts an odyssey of rebuilding and retribution.",
+    "popularity": 3425,
+    "poster_path": "/qhPtAc1TKbMPqNvcdXSOn9Bn7hZ.jpg",
+    "release_date": "2013-04-26",
+    "title": "Iron Man 3",
+    "video": false,
+    "vote_average": 6.9,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/b6ZJZHUdMEFECvGiDpJjlfUWela.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 284054,
+    "original_language": "en",
+    "original_title": "Black Panther",
+    "overview": "King T'Challa returns home to the reclusive, technologically advanced African nation of Wakanda to serve as his country's new leader. However, T'Challa soon finds that he is challenged for the throne by factions within his own country as well as without. Using powers reserved to Wakandan kings, T'Challa assumes the Black Panther mantle to join with ex-girlfriend Nakia, the queen-mother, his princess-kid sister, members of the Dora Milaje (the Wakandan 'special forces') and an American secret agent, to prevent Wakanda from being dragged into a world war.",
+    "popularity": 3410,
+    "poster_path": "/uxzzxijgPIY7slzFvMotPv8wjKA.jpg",
+    "release_date": "2018-02-16",
+    "title": "Black Panther",
+    "video": false,
+    "vote_average": 7.4,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/83H0C66AcvkwpG2738VCTHMY9uv.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 505642,
+    "original_language": "en",
+    "original_title": "Black Panther: Wakanda Forever",
+    "overview": "Queen Ramonda, Shuri, M\u2019Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T\u2019Challa\u2019s death.  As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda.",
+    "popularity": 3395,
+    "poster_path": "/sv1xJUazXeYqALzczSZ3O6nkH75.jpg",
+    "release_date": "2022-11-11",
+    "title": "Black Panther: Wakanda Forever",
+    "video": false,
+    "vote_average": 7.0,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/uLtVbjvS1O7gXL8lUOwsFOH4man.jpg",
+    "genre_ids": [
+      28,
+      878,
+      12
+    ],
+    "id": 118340,
+    "original_language": "en",
+    "original_title": "Guardians of the Galaxy",
+    "overview": "Light years from Earth, 26 years after being abducted, Peter Quill finds himself the prime target of a manhunt after discovering an orb wanted by Ronan the Accuser.",
+    "popularity": 3380,
+    "poster_path": "/r7vmZjiyZw9rpJMQJdXpjgiCOk9.jpg",
+    "release_date": "2014-08-14",
+    "title": "Guardians of the Galaxy",
+    "video": false,
+    "vote_average": 7.9,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/bW93ycPSSi3Hxx1NvlMX5qm2mQu.jpg",
+    "genre_ids": [
+      878,
+      12,
+      28
+    ],
+    "id": 283995,
+    "original_language": "en",
+    "original_title": "Guardians of the Galaxy Vol. 2",
+    "overview": "The Guardians must fight to keep their newfound family together as they unravel the mysteries of Peter Quill's true parentage.",
+    "popularity": 3365,
+    "poster_path": "/y4MBh0EjBlMuOzv9axM4qJlmhzz.jpg",
+    "release_date": "2017-04-28",
+    "title": "Guardians of the Galaxy Vol. 2",
+    "video": false,
+    "vote_average": 7.6,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/5YZbUmjbMa3ClvSW1Wj3D6XGolb.jpg",
+    "genre_ids": [
+      878,
+      12,
+      28
+    ],
+    "id": 447365,
+    "original_language": "en",
+    "original_title": "Guardians of the Galaxy Vol. 3",
+    "overview": "Peter Quill, still reeling from the loss of Gamora, must rally his team around him to defend the universe along with protecting one of their own. A mission that, if not completed successfully, could quite possibly lead to the end of the Guardians as we know them.",
+    "popularity": 3350,
+    "poster_path": "/r2J02Z2OpNTctfOSN1Ydgii51I3.jpg",
+    "release_date": "2023-05-04",
+    "title": "Guardians of the Galaxy Vol. 3",
+    "video": false,
+    "vote_average": 7.9,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/kkoiH8ZWxJ9WSAjOadGtuHUQxbm.jpg",
+    "genre_ids": [
+      14,
+      12,
+      28
+    ],
+    "id": 284052,
+    "original_language": "en",
+    "original_title": "Doctor Strange",
+    "overview": "After his career is destroyed, a brilliant but arrogant surgeon gets a new lease on life when a sorcerer takes him under her wing and trains him to defend the world against evil.",
+    "popularity": 3335,
+    "poster_path": "/uGBVj3bEbCoZbDjjl9wTxcygko1.jpg",
+    "release_date": "2016-10-28",
+    "title": "Doctor Strange",
+    "video": false,
+    "vote_average": 7.4,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/lv3TXqhpaIxkclIHbhN2MRMOemQ.jpg",
+    "genre_ids": [
+      14,
+      28,
+      12
+    ],
+    "id": 453395,
+    "original_language": "en",
+    "original_title": "Doctor Strange in the Multiverse of Madness",
+    "overview": "Doctor Strange, with the help of mystical allies both old and new, traverses the mind-bending and dangerous alternate realities of the Multiverse to confront a mysterious new adversary.",
+    "popularity": 3320,
+    "poster_path": "/ddJcSKbcp4rKZTmuyWaMhuwcfMz.jpg",
+    "release_date": "2022-05-06",
+    "title": "Doctor Strange in the Multiverse of Madness",
+    "video": false,
+    "vote_average": 7.2,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/6al048Lat3eLVQOuKtc9h6Tu94d.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 558,
+    "original_language": "en",
+    "original_title": "Spider-Man 2",
+    "overview": "Peter Parker is going through a major identity crisis. Burned out from being Spider-Man, he decides to shelve his superhero alter ego, which leaves the city suffering in the wake of carnage left by the evil Doc Ock. In the meantime, Parker still can't act on his feelings for Mary Jane Watson, a girl he's loved since childhood. A certain anger begins to brew in his best friend Harry Osborn as well...",
+    "popularity": 3305,
+    "poster_path": "/aGuvNAaaZuWXYQQ6N2v7DeuP6mB.jpg",
+    "release_date": "2004-07-14",
+    "title": "Spider-Man 2",
+    "video": false,
+    "vote_average": 7.3,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/w1oD1MzHjnBJc5snKupIQaSBLIh.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 559,
+    "original_language": "en",
+    "original_title": "Spider-Man 3",
+    "overview": "The seemingly invincible Spider-Man goes up against an all-new crop of villains\u2014including the shape-shifting Sandman. While Spider-Man\u2019s superpowers are altered by an alien organism, his alter ego, Peter Parker, deals with nemesis Eddie Brock and also gets caught up in a love triangle.",
+    "popularity": 3290,
+    "poster_path": "/qFmwhVUoUSXjkKRmca5yGDEXBIj.jpg",
+    "release_date": "2007-08-23",
+    "title": "Spider-Man 3",
+    "video": false,
+    "vote_average": 6.5,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/HVcza6tJtWFrLriuh3Ano4Vt46.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 1930,
+    "original_language": "en",
+    "original_title": "The Amazing Spider-Man",
+    "overview": "A teenage Peter Parker grapples with both high school and amazing super-human crises as his alter-ego Spider-Man.",
+    "popularity": 3275,
+    "poster_path": "/jexoNYnPd6vVrmygwF6QZmWPFdu.jpg",
+    "release_date": "2012-07-06",
+    "title": "The Amazing Spider-Man",
+    "video": false,
+    "vote_average": 6.7,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/k0hlAzTryCYX1O1LyC6P8tAa8s0.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 102382,
+    "original_language": "en",
+    "original_title": "The Amazing Spider-Man 2",
+    "overview": "For Peter Parker, life is busy. Between taking out the bad guys as Spider-Man and spending time with the person he loves, Gwen Stacy, high school graduation cannot come quickly enough. Peter has not forgotten about the promise he made to Gwen\u2019s father to protect her by staying away, but that is a promise he cannot keep. Things will change for Peter when a new villain, Electro, emerges, an old friend, Harry Osborn, returns, and Peter uncovers new clues about his past.",
+    "popularity": 3260,
+    "poster_path": "/dGjoPttcbKR5VWg1jQuNFB247KL.jpg",
+    "release_date": "2014-04-16",
+    "title": "The Amazing Spider-Man 2",
+    "video": false,
+    "vote_average": 6.6,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/wdwcOBMkt3zmPQuEMxB3FUtMio2.jpg",
+    "genre_ids": [
+      12,
+      28,
+      878
+    ],
+    "id": 271110,
+    "original_language": "en",
+    "original_title": "Captain America: Civil War",
+    "overview": "Following the events of Age of Ultron, the collective governments of the world pass an act designed to regulate all superhuman activity. This polarizes opinion amongst the Avengers, causing two factions to side with Iron Man or Captain America, which causes an epic battle between former allies.",
+    "popularity": 3245,
+    "poster_path": "/rAGiXaUfPzY7CDEyNKUofk3Kw2e.jpg",
+    "release_date": "2016-04-29",
+    "title": "Captain America: Civil War",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/en971MEXui9diirXlogOrPKmsEn.jpg",
+    "genre_ids": [
+      28,
+      12,
+      35
+    ],
+    "id": 293660,
+    "original_language": "en",
+    "original_title": "Deadpool",
+    "overview": "The origin story of former Special Forces operative turned mercenary Wade Wilson, who, after being subjected to a rogue experiment that leaves him with accelerated healing powers, adopts the alter ego Deadpool. Armed with his new abilities and a dark, twisted sense of humor, Deadpool hunts down the man who nearly destroyed his life.",
+    "popularity": 3230,
+    "poster_path": "/3E53WEZJqP6aM84D8CckXx4pIHw.jpg",
+    "release_date": "2016-02-19",
+    "title": "Deadpool",
+    "video": false,
+    "vote_average": 7.6,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/3P52oz9HPQWxcwHOwxtyrVV1LKi.jpg",
+    "genre_ids": [
+      28,
+      35,
+      12
+    ],
+    "id": 383498,
+    "original_language": "en",
+    "original_title": "Deadpool 2",
+    "overview": "Wisecracking mercenary Deadpool battles the evil and powerful Cable and other bad guys to save a boy's life.",
+    "popularity": 3215,
+    "poster_path": "/to0spRl1CMDvyUbOnbb4fTk3VAd.jpg",
+    "release_date": "2018-05-18",
+    "title": "Deadpool 2",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/vLmHH8jAy8Jq8uBsLucd3592WGh.jpg",
+    "genre_ids": [
+      28,
+      878,
+      35,
+      12
+    ],
+    "id": 284053,
+    "original_language": "en",
+    "original_title": "Thor: Ragnarok",
+    "overview": "Thor is imprisoned on the other side of the universe and finds himself in a race against time to get back to Asgard to stop Ragnarok, the destruction of his home-world and the end of Asgardian civilization, at the hands of a powerful new threat, the ruthless Hela.",
+    "popularity": 3200,
+    "poster_path": "/rzRwTcFvttcN1ZpX2xv4j3tSdJu.jpg",
+    "release_date": "2017-10-27",
+    "title": "Thor: Ragnarok",
+    "video": false,
+    "vote_average": 7.6,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/cDJ61O1STtbWNBwefuqVrRe3d7l.jpg",
+    "genre_ids": [
+      12,
+      14,
+      28
+    ],
+    "id": 10195,
+    "original_language": "en",
+    "original_title": "Thor",
+    "overview": "Against his father Odin's will, The Mighty Thor - a powerful but arrogant warrior god - recklessly reignites an ancient war. Thor is cast down to Earth and forced to live among humans as punishment. Once here, Thor learns what it takes to be a true hero when the most dangerous villain of his world sends the darkest forces of Asgard to invade Earth.",
+    "popularity": 3185,
+    "poster_path": "/prSfAi1xGrhLQNxVSUFh61xQ4Qy.jpg",
+    "release_date": "2011-04-29",
+    "title": "Thor",
+    "video": false,
+    "vote_average": 6.8,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/1RWLMyC9KcFfcaoViMiJGSSZzzr.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 100402,
+    "original_language": "en",
+    "original_title": "Captain America: The Winter Soldier",
+    "overview": "After the cataclysmic events in New York with The Avengers, Steve Rogers, aka Captain America is living quietly in Washington, D.C. and trying to adjust to the modern world. But when a S.H.I.E.L.D. colleague comes under attack, Steve becomes embroiled in a web of intrigue that threatens to put the world at risk. Joining forces with the Black Widow, Captain America struggles to expose the ever-widening conspiracy while fighting off professional assassins sent to silence him at every turn. When the full scope of the villainous plot is revealed, Captain America and the Black Widow enlist the help of a new ally, the Falcon. However, they soon find themselves up against an unexpected and formidable enemy\u2014the Winter Soldier.",
+    "popularity": 3170,
+    "poster_path": "/tVFRpFw3xTedgPGqxW0AOI8Qhh0.jpg",
+    "release_date": "2014-03-28",
+    "title": "Captain America: The Winter Soldier",
+    "video": false,
+    "vote_average": 7.7,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/yFuKvT4Vm3sKHdFY4eG6I4ldAnn.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 1771,
+    "original_language": "en",
+    "original_title": "Captain America: The First Avenger",
+    "overview": "During World War II, Steve Rogers is a sickly man from Brooklyn who's transformed into super-soldier Captain America to aid in the war effort. Rogers must stop the Red Skull \u2013 Adolf Hitler's ruthless head of weaponry, and the leader of an organization that intends to use a mysterious device of untold powers for world domination.",
+    "popularity": 3155,
+    "poster_path": "/vSNxAJTlD0r02V9sPYpOjqDZXUK.jpg",
+    "release_date": "2011-08-05",
+    "title": "Captain America: The First Avenger",
+    "video": false,
+    "vote_average": 7.0,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/1K3JmSNUN8OpjYsCjc0Hy0SYxAb.jpg",
+    "genre_ids": [
+      878,
+      12,
+      28
+    ],
+    "id": 102899,
+    "original_language": "en",
+    "original_title": "Ant-Man",
+    "overview": "Armed with the astonishing ability to shrink in scale but increase in strength, master thief Scott Lang must embrace his inner-hero and help his mentor, Doctor Hank Pym, protect the secret behind his spectacular Ant-Man suit from a new generation of towering threats. Against seemingly insurmountable obstacles, Pym and Lang must plan and pull off a heist that will save the world.",
+    "popularity": 3140,
+    "poster_path": "/rQRnQfUl3kfp78nCWq8Ks04vnq1.jpg",
+    "release_date": "2015-07-24",
+    "title": "Ant-Man",
+    "video": false,
+    "vote_average": 7.1,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/qAzYK4YPSWDc7aa4R43LcwRIAyb.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 299537,
+    "original_language": "en",
+    "original_title": "Captain Marvel",
+    "overview": "The story follows Carol Danvers as she becomes one of the universe\u2019s most powerful heroes when Earth is caught in the middle of a galactic war between two alien races. Set in the 1990s, Captain Marvel is an all-new adventure from a previously unseen period in the history of the Marvel Cinematic Universe.",
+    "popularity": 3125,
+    "poster_path": "/AtsgWhDnHTq68L0lLsUrCnM7TjG.jpg",
+    "release_date": "2019-03-08",
+    "title": "Captain Marvel",
+    "video": false,
+    "vote_average": 6.8,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/r7K6Xt0RX4Mw0cAbZVw5cyb1Tux.jpg",
+    "genre_ids": [
+      28,
+      12,
+      14
+    ],
+    "id": 566525,
+    "original_language": "en",
+    "original_title": "Shang-Chi and the Legend of the Ten Rings",
+    "overview": "Shang-Chi must confront the past he thought he left behind when he is drawn into the web of the mysterious Ten Rings organization.",
+    "popularity": 3110,
+    "poster_path": "/9f2Q0U3IOsLgrI2HkvldwSABZy5.jpg",
+    "release_date": "2021-09-03",
+    "title": "Shang-Chi and the Legend of the Ten Rings",
+    "video": false,
+    "vote_average": 7.5,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/keIxh0wPr2Ymj0Btjh4gW7JJ89e.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 497698,
+    "original_language": "en",
+    "original_title": "Black Widow",
+    "overview": "Natasha Romanoff, also known as Black Widow, confronts the darker parts of her ledger when a dangerous conspiracy with ties to her past arises. Pursued by a force that will stop at nothing to bring her down, Natasha must deal with her history as a spy and the broken relationships left in her wake long before she became an Avenger.",
+    "popularity": 3095,
+    "poster_path": "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
+    "release_date": "2021-07-09",
+    "title": "Black Widow",
+    "video": false,
+    "vote_average": 7.2,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/hNsYUryiwxcdeTMkaBcPF3iEg0p.jpg",
+    "genre_ids": [
+      878,
+      28
+    ],
+    "id": 335983,
+    "original_language": "en",
+    "original_title": "Venom",
+    "overview": "Investigative journalist Eddie Brock attempts a comeback following a scandal, but accidentally becomes the host of Venom, a violent, super powerful alien symbiote. Soon, he must rely on his newfound powers to protect the world from a shadowy organization looking for a symbiote of their own.",
+    "popularity": 3080,
+    "poster_path": "/2uNW4WbgBXL25BAbXGLnLqX71Sw.jpg",
+    "release_date": "2018-10-05",
+    "title": "Venom",
+    "video": false,
+    "vote_average": 6.8,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/5QEOy0QEpad9QsXeMxuGHPXMale.jpg",
+    "genre_ids": [
+      28,
+      12,
+      14
+    ],
+    "id": 76338,
+    "original_language": "en",
+    "original_title": "Thor: The Dark World",
+    "overview": "Thor fights to restore order across the cosmos\u2026 but an ancient race led by the vengeful Malekith returns to plunge the universe back into darkness. Faced with an enemy that even Odin and Asgard cannot withstand, Thor must embark on his most perilous and personal journey yet, one that will reunite him with Jane Foster and force him to sacrifice everything to save us all.",
+    "popularity": 3065,
+    "poster_path": "/wp6OxE4poJ4G7c0U2ZIXasTSMR7.jpg",
+    "release_date": "2013-10-31",
+    "title": "Thor: The Dark World",
+    "video": false,
+    "vote_average": 6.5,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/iYdgEUE2W2aJkgqfSjf1x3gFfuV.jpg",
+    "genre_ids": [
+      28,
+      12,
+      878
+    ],
+    "id": 363088,
+    "original_language": "en",
+    "original_title": "Ant-Man and the Wasp",
+    "overview": "Just when his time under house arrest is about to end, Scott Lang once again puts his freedom at risk to help Hope van Dyne and Dr. Hank Pym dive into the quantum realm and try to accomplish, against time and any chance of success, a very dangerous rescue mission.",
+    "popularity": 3050,
+    "poster_path": "/cFQEO687n1K6umXbInzocxcnAQz.jpg",
+    "release_date": "2018-07-04",
+    "title": "Ant-Man and the Wasp",
+    "video": false,
+    "vote_average": 6.9,
+    "vote_count": 10000
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/feSiISwgEpVzR1v3zv2n2AU4ANJ.jpg",
+    "genre_ids": [
+      878,
+      12,
+      28
+    ],
+    "id": 609681,
+    "original_language": "en",
+    "original_title": "The Marvels",
+    "overview": "When her duties send her to an anomalous wormhole linked to a Kree revolutionary, Carol's powers become entangled with that of Jersey City super-fan Kamala Khan, aka Ms. Marvel, and Carol's estranged niece, now S.A.B.E.R. astronaut Captain Monica Rambeau. Together, this unlikely trio must team up and learn to work in concert to save the universe.",
+    "popularity": 3035,
+    "poster_path": "/9GBhzXMFjgcZ3FdR9w3bUMMTps5.jpg",
+    "release_date": "2023-11-09",
+    "title": "The Marvels",
+    "video": false,
+    "vote_average": 5.9,
+    "vote_count": 10000
   }
 ]
