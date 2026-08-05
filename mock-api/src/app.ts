@@ -78,8 +78,24 @@ function getSearchIndex() {
   return searchIndexPromise
 }
 
+function isAllowedOrigin(origin: string): boolean {
+  if (origin === 'https://debs-obrien.github.io') return true
+  try {
+    const url = new URL(origin)
+    return (
+      url.protocol === 'http:' &&
+      (url.hostname === 'localhost' || url.hostname === '127.0.0.1')
+    )
+  } catch {
+    return false
+  }
+}
+
 export const app = new Hono()
-app.use('*', cors({ origin: origin => origin, credentials: true }))
+app.use('*', cors({
+  origin: (origin) => (origin && isAllowedOrigin(origin) ? origin : undefined),
+  credentials: true,
+}))
 
 app.post("/4/auth/request_token", async (c) => {
   const { redirect_to } = await c.req.json()
@@ -206,12 +222,19 @@ app.delete("/4/auth/access_token", async (c) => {
 
 type State = {}
 
+/** Cookie-safe name derived from account id (emails / %40 are invalid cookie names). */
+function accountStateCookieName(accountId: string): string {
+  return 'acct_' + Buffer.from(accountId).toString('base64url')
+}
+
 function editState(c: Context, accountId: string | undefined, fn: (state: State) => void) {
   if (!accountId) accountId = getCookie(c, "current_account")
-  const stateCookie = getCookie(c, accountId)
+  if (!accountId) return
+  const cookieName = accountStateCookieName(accountId)
+  const stateCookie = getCookie(c, cookieName)
   const state: State = stateCookie ? JSON.parse(Buffer.from(stateCookie, "base64").toString()) : {}
   fn(state)
-  setCookie(c, accountId, Buffer.from(JSON.stringify(state)).toString("base64"), cookieSettings)
+  setCookie(c, cookieName, Buffer.from(JSON.stringify(state)).toString("base64"), cookieSettings)
 }
 
 function accountIdFromAuthHeader(c: Context): string {

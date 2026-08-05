@@ -1,3 +1,6 @@
+# Optional local/Fly image. Production mock is deployed to Cloudflare Workers
+# (see .github/workflows/deploy-mock.yml). This package is an npm workspace
+# member without its own lockfile, so installs use package.json ranges.
 FROM node:20-alpine AS build
 WORKDIR /app
 COPY package.json ./

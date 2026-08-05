@@ -11,7 +11,7 @@ const fetchJSON = (path: string) => fetch(path, { headers }).then(resp => resp.j
 const writeJSON = async (path: string, content: any) =>
     await writeFile(path, JSON.stringify(content, null, 2));
 
-writeJSON("./configuration.json", await fetchJSON("https://api.themoviedb.org/3/configuration"));
+await writeJSON("./configuration.json", await fetchJSON("https://api.themoviedb.org/3/configuration"));
 
 const persons = new Set<string>()
 const enrichedMovies: any[] = [];

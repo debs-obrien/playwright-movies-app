@@ -7,5 +7,5 @@
     "strict": true,
     "skipLibCheck": true
   },
-  "exclude": ["movies-app"]
+  "exclude": ["movies-app", "mock-api", "mock-api/dist", ".tmp-tmdb-mock"]
 }

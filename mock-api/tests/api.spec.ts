@@ -14,5 +14,5 @@ test('sorting', async ({ request }) => {
   await expect(resp).toBeOK();
   const { results } = await resp.json();
   const votes = results.map((movie: any) => movie.vote_average);
-  expect(votes).toEqual(votes.slice().sort());
+  expect(votes).toEqual(votes.slice().sort((a: number, b: number) => a - b));
 });
