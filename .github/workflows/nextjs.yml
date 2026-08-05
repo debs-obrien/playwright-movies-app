@@ -34,6 +34,7 @@ jobs:
         env:
           BASEPATH: /playwright-movies-app
           NEXT_PUBLIC_BASEPATH: /playwright-movies-app
+          NEXT_PUBLIC_TMDB_API_BASE_URL: https://playwright-tmdb-mock.fly.dev
       - name: List build directory (debugging)
         run: ls -la movies-app/out
       - name: Upload artifact

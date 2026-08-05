@@ -2,11 +2,11 @@
 
 This repository provides a comprehensive guide to writing end-to-end tests with [Playwright](https://playwright.dev/), covering a wide range of scenarios to ensure your application is robust and reliable. Learn how to write tests for Authentication, Search, Sorting, API and API mocking, ARIA snapshots, and more.
 
-The source code is a demo Movies App built with Next.js and React, utilizing the [The Movie Database (TMDB)](https://www.themoviedb.org/) API for testing purposes. This project is a fork of [next-movies](https://github.com/tastejs/next-movies) and has been customized to meet our specific requirements.
+The source code is a demo Movies App built with Next.js and React. Movie data and login come from the local **TMDB mock API** in [`mock-api/`](mock-api/) (no Azure account required). Images are still served from [The Movie Database (TMDB)](https://www.themoviedb.org/). This project is a fork of [next-movies](https://github.com/tastejs/next-movies) and has been customized for Playwright learning.
 
 ![Playwright Movies App](movies-app-ui-mode.jpg)
 
-## Installation 
+## Installation
 
 Clone the repository and then install the dependencies:
 
@@ -16,29 +16,33 @@ cd playwright-movies-app
 npm install
 ```
 
+`npm install` also builds the mock API.
 
 ## Environment Setup for Login Tests
 
-To run the login tests, you need to set up environment variables in a `.env` file. You can do this by renaming the `.env.example` file to `.env`, which already contains the necessary variables. Note that this app uses a mock backend, so any username and password will work.
+Copy `.env.example` to `.env`. The mock accepts any username and password:
+
+```bash
+cp .env.example .env
+```
+
+## Running the app locally
+
+Make sure ports **3000** (Next.js) and **4000** (mock API) are available.
+
+* `npm run dev` — starts the mock API and the Movies app together
+* `npm run mock` — mock API only (after `npm run mock:build`)
+* `npm run build` / `npm run start` — production Movies app build
+
+The app talks to `NEXT_PUBLIC_TMDB_API_BASE_URL` (default `http://127.0.0.1:4000`).
 
 ## Running Tests
-
-Run the tests using UI mode to walk through a trace of each test:
 
 ```bash
 npx playwright test --ui
 ```
 
-Alternatively, you can run the tests directly in VS Code with the [Playwright VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright).
-
-
-## Running the APP locally
-
-Make sure port 3000 is available as the app needs to run on this port. Using a different port will result in errors because the movies loaded from the API use this port.
-
-* `npm run dev`: dev build
-* `npm run build`: production build
-* `npm run start`: start the project
+Playwright starts both the mock API and the app via `npm run dev`. You can also run tests with the [Playwright VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright).
 
 ## Wiki
 

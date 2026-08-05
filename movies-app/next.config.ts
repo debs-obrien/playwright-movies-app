@@ -5,6 +5,7 @@ const config: NextConfig = {
   basePath: process.env.BASEPATH,
   output: 'export',
   turbopack: {
+    // Monorepo root so Turbopack can resolve the hoisted `next` package.
     root: path.resolve(__dirname, '..'),
     rules: {
       '*.svg': {

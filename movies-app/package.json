@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env DOTENV_CONFIG_QUIET=true next dev",
+    "dev": "cross-env DOTENV_CONFIG_QUIET=true next dev -H 127.0.0.1 -p 3000",
     "build": "cross-env DOTENV_CONFIG_QUIET=true next build",
     "start": "cross-env DOTENV_CONFIG_QUIET=true next start",
     "lint": "next lint",

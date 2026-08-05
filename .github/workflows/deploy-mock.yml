@@ -1,0 +1,23 @@
+# Deploy the TMDB mock API to Fly.io.
+# Requires repository secret FLY_API_TOKEN (fly tokens create deploy).
+name: Deploy mock API
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'mock-api/**'
+      - '.github/workflows/deploy-mock.yml'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Deploy mock-api
+        working-directory: mock-api
+        run: flyctl deploy --remote-only
+        env:
+          FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
