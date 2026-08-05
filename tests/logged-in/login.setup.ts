@@ -1,4 +1,4 @@
-import { test as setup, expect } from '@playwright/test';
+import { test as setup, expect } from '../helpers/base-test';
 import { STORAGE_STATE } from '../../playwright.config';
 
 setup('log user in and verify profile access', async ({ page }) => {

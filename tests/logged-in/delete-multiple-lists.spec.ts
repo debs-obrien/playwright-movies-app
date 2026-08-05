@@ -1,8 +1,7 @@
 // spec: specs/movies-list-plan.md
 // seed: tests/logged-in/seed.spec.ts
 
-import { expect } from '@playwright/test';
-import { test } from '@playwright/test';
+import { test, expect } from '../helpers/base-test';
 
 test.describe('Deleting Movie Lists', { tag: '@agent' }, () => {
   test('Delete Multiple Lists', async ({ page }) => {

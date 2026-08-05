@@ -91,11 +91,30 @@ function isAllowedOrigin(origin: string): boolean {
   }
 }
 
+/** Test-only reset of in-memory list state. Disabled on Workers/production. */
+function isTestResetEnabled(): boolean {
+  if (process.env.ALLOW_TEST_RESET === 'true') return true
+  if (process.env.ALLOW_TEST_RESET === 'false') return false
+  return (
+    process.env.COOKIE_SECURE !== 'true' &&
+    process.env.NODE_ENV !== 'production'
+  )
+}
+
 export const app = new Hono()
 app.use('*', cors({
   origin: (origin) => (origin && isAllowedOrigin(origin) ? origin : undefined),
   credentials: true,
 }))
+
+app.post('/test/reset', (c) => {
+  if (!isTestResetEnabled()) {
+    return c.text('not found', { status: 404 })
+  }
+  listStore.clear()
+  accountListIds.clear()
+  return c.json({ success: true })
+})
 
 app.post("/4/auth/request_token", async (c) => {
   const { redirect_to } = await c.req.json()
