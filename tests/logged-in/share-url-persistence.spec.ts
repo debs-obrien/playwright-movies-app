@@ -15,7 +15,7 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
     const shareUrl = await urlTextbox.inputValue();
 
     // 2. Navigate away from the list (go to home page)
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
     await expect(page.getByRole('heading', { name: 'Popular' })).toBeVisible();
 
     // 3. Navigate to the copied URL
@@ -30,6 +30,6 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
     await expect(page.getByRole('heading', { name: 'Bad Boys: Ride or Die' })).toBeVisible();
 
     // Verify URL parameters are correctly maintained
-    expect(page.url()).toMatch(/^http:\/\/localhost:3000\/list\?id=.+&page=1$/);
+    expect(page.url()).toMatch(/^http:\/\/127\.0\.0\.1:3000\/list\?id=.+&page=1$/);
   });
 });

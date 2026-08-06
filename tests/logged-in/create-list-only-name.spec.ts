@@ -1,8 +1,7 @@
 // spec: specs/movies-list-plan.md
 // seed: tests/logged-in/seed.spec.ts
 
-import { expect } from '@playwright/test';
-import { test } from '@playwright/test';
+import { test, expect } from '../helpers/base-test';
 
 test.describe('Creating New Lists', { tag: '@agent' }, () => {
   test('Create List with Only Name - Minimum Valid Data', async ({ page }) => {

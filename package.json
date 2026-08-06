@@ -3,18 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cd movies-app && npm run dev",
-    "build": "cd movies-app && npm run build",
-    "start": "cd movies-app && npm run start",
+    "mock:build": "npm run build -w mock-api",
+    "mock": "npm run start -w mock-api",
+    "dev:app": "npm run dev -w movie-app",
+    "dev": "npm run mock:build && concurrently -k -n mock,app -c blue,green \"npm run mock\" \"npm run dev:app\"",
+    "build": "npm run build -w movie-app",
+    "start": "npm run start -w movie-app",
     "lint": "tsc --noEmit && eslint tests/**/*.ts",
     "test": "playwright test",
-    "format": "prettier --write tests/**/*"
+    "format": "prettier --write tests/**/*",
+    "postinstall": "npm run mock:build"
   },
   "devDependencies": {
     "@eslint/js": "^9.38.0",
     "@playwright/test": "^1.57.0-alpha-2025-11-05",
     "@types/eslint__js": "^8.42.3",
     "@types/node": "^24.9.1",
+    "concurrently": "^9.1.2",
     "cross-env": "^10.1.0",
     "dotenv": "^17.2.3",
     "eslint": "^9.38.0",
@@ -24,6 +29,7 @@
     "typescript-eslint": "^8.46.2"
   },
   "workspaces": [
-    "movies-app"
+    "movies-app",
+    "mock-api"
   ]
 }

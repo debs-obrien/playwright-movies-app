@@ -1,12 +1,12 @@
 // spec: specs/movies-list-plan.md#7.4
 // seed: tests/logged-in/seed.spec.ts
 
-import { expect } from '@playwright/test';
-import { test } from '@playwright/test';
+import { test, expect } from '../helpers/base-test';
 
 test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
   test('Share Private List (Edge Case)', async ({ page }) => {
-    await page.goto('http://localhost:3000');
+    // Use baseURL (127.0.0.1) so auth cookies from storageState apply.
+    await page.goto('/');
 
     // 1. Create a new list with privacy set to "No" (Private)
     await page.getByRole('button', { name: 'User Profile' }).click();
@@ -33,7 +33,7 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
     const urlTextbox = page.getByRole('textbox', { name: 'URL' });
     await expect(urlTextbox).toBeVisible();
     const shareUrl = await urlTextbox.inputValue();
-    expect(shareUrl).toMatch(/^http:\/\/localhost:3000\/list\?id=.+&page=1$/);
+    expect(shareUrl).toMatch(/^http:\/\/127\.0\.0\.1:3000\/list\?id=.+&page=1$/);
 
     // Note: The application provides a share URL for private lists.
     // Expected behavior would be that accessing this URL without authentication

@@ -19,7 +19,7 @@ test.describe('Persistence and Data Integrity', { tag: '@agent' }, () => {
     await expect(page.getByRole('heading', { name: 'Updated List Name for Persistence Test' })).toBeVisible();
 
     // 2. Navigate to another page (home)
-    await page.goto('http://localhost:3000');
+    await page.goto('/');
     await expect(page.getByText("Popular").first()).toBeVisible();
 
     // 3. Return to "My Lists"

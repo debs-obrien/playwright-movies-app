@@ -1,4 +1,5 @@
-import { test as baseTest, Page, expect } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
+import { test as baseTest } from './base-test';
 import { createList, addMovie } from './list-utilities';
 
 /**

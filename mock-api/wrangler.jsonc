@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "playwright-tmdb-mock",
+  "main": "src/worker.ts",
+  // Set to today's date for latest runtime features
+  "compatibility_date": "2026-08-05",
+  // Buffer and other Node APIs used by the Hono mock
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    // Secure + SameSite=None cookies for cross-site GitHub Pages → Workers
+    "COOKIE_SECURE": "true",
+    "NODE_ENV": "production"
+  }
+}

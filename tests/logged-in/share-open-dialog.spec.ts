@@ -18,6 +18,6 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
     const urlTextbox = page.getByRole('textbox', { name: 'URL' });
     await expect(urlTextbox).toBeVisible();
     const urlValue = await urlTextbox.inputValue();
-    expect(urlValue).toMatch(/^http:\/\/localhost:3000\/list\?id=.+&page=1$/);
+    expect(urlValue).toMatch(/^http:\/\/127\.0\.0\.1:3000\/list\?id=.+&page=1$/);
   });
 });

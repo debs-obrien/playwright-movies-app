@@ -4,7 +4,8 @@ const TMDB_API_VERSION: number = 3;
 const TMDB_API_NEW_VERSION: number = 4;
 const TMDB_API_READ_ACCESS_TOKEN: string = process.env.NEXT_PUBLIC_TMDB_API_READ_ACCESS_TOKEN || '';
 
-const TMDB_API_BASE_URL: string = 'https://movies-tmdb-mock.azurewebsites.net';
+const TMDB_API_BASE_URL: string =
+  process.env.NEXT_PUBLIC_TMDB_API_BASE_URL || 'http://127.0.0.1:4000';
 const TMDB_BASE_URL: string = 'https://www.themoviedb.org';
 
 // TODO: should fetch from TMDB configuration endpoint

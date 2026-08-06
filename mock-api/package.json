@@ -1,0 +1,28 @@
+{
+  "name": "mock-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/src/main.js",
+    "dev": "tsc && node dist/src/main.js",
+    "dev:worker": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "playwright test",
+    "fetch-data": "tsc && node dist/src/fetch-data.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.12.2",
+    "@orama/orama": "^2.0.23",
+    "fast-shuffle": "^6.1.0",
+    "hono": "^4.5.11",
+    "p-map": "^7.0.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.46.1",
+    "@types/node": "^20.x",
+    "typescript": "^5.5.4",
+    "wrangler": "^4.119.0"
+  }
+}

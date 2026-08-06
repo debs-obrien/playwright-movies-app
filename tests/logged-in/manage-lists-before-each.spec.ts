@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../helpers/base-test';
 import { addMovie, createList, openLists } from '../helpers/list-utilities';
 
 // Before each test, navigate to the base URL, create a list, and open the lists page

@@ -1,8 +1,7 @@
 // spec: specs/movies-list-plan.md
 // seed: tests/logged-in/seed.spec.ts
 
-import { expect } from '@playwright/test';
-import { test } from '@playwright/test';
+import { test, expect } from '../helpers/base-test';
 import { createList } from '../helpers/list-utilities';
 
 test.describe('Viewing Movie Lists', { tag: '@agent' }, () => {

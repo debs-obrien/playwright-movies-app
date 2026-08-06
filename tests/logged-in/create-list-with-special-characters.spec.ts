@@ -1,7 +1,7 @@
 // spec: specs/movies-list-plan.md
 // seed: tests/logged-in/seed.spec.ts
 
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../helpers/base-test';
 
 test.describe('Error Handling and Edge Cases', { tag: '@agent' }, () => {
   test('Create List with Special Characters', async ({ page }) => {

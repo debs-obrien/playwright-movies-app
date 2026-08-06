@@ -37,6 +37,6 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
     await expect(page.getByRole('textbox', { name: 'Add Item' })).toHaveValue('Avengers');
 
     // Verify no interference between searches - search results list should be visible and contain Avengers
-    await expect(page.getByRole('button', { name: /Avengers/ })).toBeVisible();
+    await expect(page.getByRole('button', { name: /Avengers/ }).first()).toBeVisible();
   });
 });
