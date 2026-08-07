@@ -10,9 +10,9 @@ const getYear = date => {
   return year;
 };
 
-const renderInfo = (spokenLanguages, runtime, releaseDate) => {
+const renderInfo = (spokenLanguages = [], runtime, releaseDate) => {
   const pieces = [];
-  const ariaLabel = []; ;
+  const ariaLabel = [];
   if (spokenLanguages.length !== 0) {
     pieces.push(spokenLanguages[0].name);
     ariaLabel.push('language');
