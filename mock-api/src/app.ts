@@ -44,7 +44,8 @@ const accountListIds = new Map<string, Set<string>>()
 const dedupedMovies = enrichedMovies.filter((movie, index) => enrichedMovies.findIndex(m => m.id === movie.id) === index)
 
 // Lazy-init Orama: insertMultiple uses setTimeout, which Workers disallow at global scope.
-let searchIndexPromise: ReturnType<typeof create> | null = null
+type SearchIndex = Awaited<ReturnType<typeof create>>
+let searchIndexPromise: Promise<SearchIndex> | null = null
 function getSearchIndex() {
   if (!searchIndexPromise) {
     searchIndexPromise = (async () => {
@@ -446,14 +447,14 @@ app.get("/3/search/movie", async (c) => {
   const { query, page: pageStr = "1" } = c.req.query()
   const page = parseInt(pageStr)
   const searchIndex = await getSearchIndex()
-  const results = await search(searchIndex, {
+  const results = await search(searchIndex as any, {
     term: query,
     offset: (page - 1) * 20,
     limit: 20,
   })
   return c.json({
     page,
-    results: results.hits.map(hit => hit.document),
+    results: results.hits.map((hit: any) => hit.document),
     total_results: results.count,
     total_pages: Math.ceil(results.count / 20),
   })
