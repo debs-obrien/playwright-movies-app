@@ -28,10 +28,14 @@ npm run dev:worker
 Fixtures in `src/*.json` are committed so the mock runs offline. To refresh from live TMDB:
 
 ```bash
-export TMDB_API_KEY=your_read_access_token
+# Either the classic API Key (v3) or the API Read Access Token (v4) works:
+export TMDB_API_KEY=your_v3_api_key
+# or: export TMDB_API_READ_ACCESS_TOKEN=your_v4_read_access_token
 npm run fetch-data
 npm run build
 ```
+
+Get keys at https://www.themoviedb.org/settings/api (free account required).
 
 ## Deploy (Cloudflare Workers)
 
