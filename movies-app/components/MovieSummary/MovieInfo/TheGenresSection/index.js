@@ -10,7 +10,7 @@ const TheGenresSection = ({
     <div className={className} >
       <SummarySectionHeading id="genres">The Genres</SummarySectionHeading>
       <ul className='the-genres' aria-label="genres">
-        {genres.map(genre => (
+        {(genres || []).map(genre => (
             <GenreLink
               key={genre.id}
               genre={genre}
