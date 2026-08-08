@@ -13,6 +13,9 @@ const InfoWrapper = ({
     <style jsx>{`
       .info-wrapper {
         padding: 4rem;
+        min-width: 0;
+        max-width: 100%;
+        overflow-wrap: anywhere;
       }
 
       @media ${theme.mediaQueries.largest} {
@@ -24,6 +27,13 @@ const InfoWrapper = ({
       @media ${theme.mediaQueries.large} {
         .info-wrapper {
           padding: 2rem;
+        }
+      }
+
+      @media ${theme.mediaQueries.medium} {
+        .info-wrapper {
+          width: 100%;
+          box-sizing: border-box;
         }
       }
 
