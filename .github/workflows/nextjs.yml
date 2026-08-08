@@ -34,8 +34,9 @@ jobs:
         env:
           BASEPATH: /playwright-movies-app
           NEXT_PUBLIC_BASEPATH: /playwright-movies-app
+          # Must match the Workers URL from "Deploy mock API" (current account: dobriendev).
           # Override via repo variable NEXT_PUBLIC_TMDB_API_BASE_URL if needed.
-          NEXT_PUBLIC_TMDB_API_BASE_URL: ${{ vars.NEXT_PUBLIC_TMDB_API_BASE_URL != '' && vars.NEXT_PUBLIC_TMDB_API_BASE_URL || 'https://playwright-tmdb-mock.zephyrwmf.workers.dev' }}
+          NEXT_PUBLIC_TMDB_API_BASE_URL: ${{ vars.NEXT_PUBLIC_TMDB_API_BASE_URL != '' && vars.NEXT_PUBLIC_TMDB_API_BASE_URL || 'https://playwright-tmdb-mock.dobriendev.workers.dev' }}
       - name: List build directory (debugging)
         run: ls -la movies-app/out
       - name: Upload artifact

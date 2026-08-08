@@ -39,7 +39,7 @@ Get keys at https://www.themoviedb.org/settings/api (free account required).
 
 ## Deploy (Cloudflare Workers)
 
-Current production URL: `https://playwright-tmdb-mock.zephyrwmf.workers.dev`
+Current production URL: `https://playwright-tmdb-mock.dobriendev.workers.dev`
 
 ```bash
 # once (interactive browser login)
