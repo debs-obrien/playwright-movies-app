@@ -152,6 +152,13 @@ const DarkModeToggle = ({
         :global(body.dark) .dark-mode-toggle > button:last-child {
           color: lightblue;
         }
+
+        /* Free horizontal space on phones: keep the labeled toggle only */
+        @media ${theme.mediaQueries.small} {
+          .dark-mode-toggle > button {
+            display: none;
+          }
+        }
       `}</style>
     </>
   );

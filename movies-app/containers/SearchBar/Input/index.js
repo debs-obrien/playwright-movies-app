@@ -16,11 +16,14 @@ const Input = React.forwardRef(({
         line-height: 1.2;
         font-weight: ${theme.typography.fontWeightLight};
         background-color: transparent;
-        width: 100%;
+        width: ${opened ? '100%' : '0'};
         margin-left: ${opened ? '0.75rem' : '0rem'};
         color: var(--palette-secondary-contrast-text);
         border: none;
-        transition: margin-left ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
+        opacity: ${opened ? 1 : 0};
+        pointer-events: ${opened ? 'auto' : 'none'};
+        transition: margin-left ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut},
+          opacity ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
       }
 
       @media ${theme.mediaQueries.large} {

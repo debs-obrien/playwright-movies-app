@@ -83,49 +83,6 @@ const Layout = ({
                 <TheUser />
               </div>
             </div>
-            <style jsx>{`
-              .desktop-header-container {
-                position: fixed;
-                top: 30px;
-                left: 0;
-                right: 0;
-                width: 100%;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                padding: 0.5rem 2rem;
-                z-index: ${theme.zIndex.appBar + 10};
-                background-color: var(--palette-background-paper);
-              }
-
-              :global(.logo-link) {
-                display: flex;
-                align-items: center;
-                margin-left: 15px;
-                border-radius: 8px;
-              }
-
-              :global(.logo-link:focus-visible) {
-                outline: 2px solid var(--palette-primary-main);
-                outline-offset: 2px;
-              }
-
-              .logo-img {
-                max-height: 56px;
-                width: auto;
-                margin-top: -10px;
-                margin-bottom: -10px;
-              }
-
-              .desktop-widgets-container {
-                display: flex;
-                align-items: center;
-              }
-
-              .desktop-widgets-container > :global(*:not(:first-child)) {
-                margin-left: 12px;
-              }
-            `}</style>
             <ContentWrapper theme={theme}>
               {children}
             </ContentWrapper>
@@ -153,6 +110,48 @@ const Layout = ({
           transform: translateY(0);
           outline: 2px solid var(--palette-primary-contrast-text);
           outline-offset: 2px;
+        }
+        
+        .desktop-header-container {
+          position: fixed;
+          top: 30px;
+          left: 0;
+          right: 0;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0.5rem 2rem;
+          z-index: ${theme.zIndex.appBar + 10};
+          background-color: var(--palette-background-paper);
+        }
+
+        :global(.logo-link) {
+          display: flex;
+          align-items: center;
+          margin-left: 15px;
+          border-radius: 8px;
+        }
+
+        :global(.logo-link:focus-visible) {
+          outline: 2px solid var(--palette-primary-main);
+          outline-offset: 2px;
+        }
+
+        .logo-img {
+          max-height: 56px;
+          width: auto;
+          margin-top: -10px;
+          margin-bottom: -10px;
+        }
+
+        .desktop-widgets-container {
+          display: flex;
+          align-items: center;
+        }
+
+        .desktop-widgets-container > :global(*:not(:first-child)) {
+          margin-left: 12px;
         }
       `}</style>
     </>

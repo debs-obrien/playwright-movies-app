@@ -20,6 +20,7 @@ const DemoBanner = () => (
         z-index: 1000;
         font-size: 1.3rem;
         line-height: 1.4;
+        overflow-wrap: anywhere;
       }
 
       .demo-banner :global(a) {

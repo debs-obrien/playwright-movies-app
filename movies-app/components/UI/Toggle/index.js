@@ -27,6 +27,7 @@ const Toggle = ({
         padding: 0 6px;
         display: flex;
         align-items: center;
+        min-height: 44px;
       }
 
       input[type='checkbox'].toggle-track {

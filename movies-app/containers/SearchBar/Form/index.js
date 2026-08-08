@@ -10,7 +10,7 @@ const Form = React.forwardRef(({
     <form
       role='search'
       ref={ref}
-      className='form'
+      className={`form${opened ? ' form--opened' : ''}`}
       {...rest}>
       {children}
     </form>
@@ -23,16 +23,24 @@ const Form = React.forwardRef(({
         box-shadow: ${theme.shadows[1]};
         background-color: var(--palette-secondary-dark);
         border: 1px solid var(--palette-secondary-main);
-        width: ${opened ? '30rem' : '4.4rem'};
+        width: 4.4rem;
         min-width: 4.4rem;
         min-height: 4.4rem;
-        cursor: ${opened ? 'auto' : 'pointer'};
-        padding: ${opened ? '0.8rem 1.2rem' : '0'};
+        cursor: pointer;
+        padding: 0;
         height: 4.4rem;
         outline: none;
         border-radius: 100px;
-        transition: width ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
+        transition: width ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut},
+          max-width ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
         -webkit-tap-highlight-color: transparent;
+      }
+
+      .form--opened {
+        width: 30rem;
+        max-width: 100%;
+        cursor: auto;
+        padding: 0.8rem 1.2rem;
       }
 
       .form:focus-within {
@@ -44,11 +52,16 @@ const Form = React.forwardRef(({
           border: 1px solid transparent;
           background-color: var(--palette-secondary-main);
         }
+
+        .form--opened {
+          width: min(30rem, 100%);
+        }
       }
 
-      @media ${theme.mediaQueries.smaller} {
-        .form {
-          max-width: min(16rem, calc(100vw - 12rem));
+      @media ${theme.mediaQueries.small} {
+        .form--opened {
+          width: 100%;
+          max-width: 100%;
         }
       }
 
