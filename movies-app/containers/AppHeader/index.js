@@ -1,6 +1,5 @@
 
-
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import BurgerHeader from './BurgerHeader';
 import BurgerMenu from './BurgerMenu';
@@ -8,17 +7,19 @@ import BurgerMenu from './BurgerMenu';
 const AppHeader = ({ className }) => {
   const [opened, setOpened] = useState(false);
 
-  const openMenuHandler = () => {
-    setOpened(true);
-  };
+  const toggleMenuHandler = useCallback(() => {
+    setOpened(current => !current);
+  }, []);
 
-  const closeMenuHandler = () => {
+  const closeMenuHandler = useCallback(() => {
     setOpened(false);
-  };
+  }, []);
 
   return (
     <div className={className}>
-      <BurgerHeader openMenu={openMenuHandler} />
+      <BurgerHeader
+        opened={opened}
+        openMenu={toggleMenuHandler} />
       <BurgerMenu
         opened={opened}
         closeMenu={closeMenuHandler} />

@@ -29,13 +29,13 @@ const InfoWrapper = ({
 
       @media ${theme.mediaQueries.smaller} {
         .info-wrapper {
-          padding: 1rem;
+          padding: 1.5rem 1rem;
         }
       }
 
       @media ${theme.mediaQueries.smallest} {
         .info-wrapper {
-          padding: 0rem;
+          padding: 1rem 0.75rem;
         }
       }
     `}</style>

@@ -11,6 +11,7 @@ const Form = React.forwardRef(({
       role='search'
       ref={ref}
       className='form'
+      data-search-open={opened ? 'true' : 'false'}
       {...rest}>
       {children}
     </form>
@@ -23,26 +24,51 @@ const Form = React.forwardRef(({
         box-shadow: ${theme.shadows[1]};
         background-color: var(--palette-secondary-dark);
         border: 1px solid var(--palette-secondary-main);
-        width: ${opened ? '30rem' : '2rem'};
-        cursor: ${opened ? 'auto' : 'pointer'};
-        padding: 1.6rem;
-        height: 1.7rem;
+        width: 4.4rem;
+        min-width: 4.4rem;
+        min-height: 4.4rem;
+        cursor: pointer;
+        padding: 0;
+        height: 4.4rem;
         outline: none;
         border-radius: 100px;
-        transition: width ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
+        transition: width ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut},
+          max-width ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
+        -webkit-tap-highlight-color: transparent;
       }
-    
+
+      .form[data-search-open='true'] {
+        width: 30rem;
+        max-width: 100%;
+        cursor: auto;
+        padding: 0.8rem 1.2rem;
+      }
+
+      .form:focus-within {
+        box-shadow: 0 0 0 2px var(--palette-primary-main);
+      }
+
       @media ${theme.mediaQueries.large} {
         .form {
-          padding: 1.3rem;
           border: 1px solid transparent;
           background-color: var(--palette-secondary-main);
         }
+
+        .form[data-search-open='true'] {
+          width: min(30rem, 100%);
+        }
       }
-    
-      @media ${theme.mediaQueries.smaller} {
+
+      @media ${theme.mediaQueries.small} {
+        .form[data-search-open='true'] {
+          width: 100%;
+          max-width: 100%;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
         .form {
-          max-width: 16rem;
+          transition: none;
         }
       }
     `}</style>

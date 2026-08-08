@@ -49,6 +49,8 @@ const IconButtonBase = ({
         position: relative;
         cursor: pointer;
         padding: 12px;
+        min-width: 44px;
+        min-height: 44px;
         box-sizing: border-box;
         border: none;
         outline: none;
@@ -57,6 +59,14 @@ const IconButtonBase = ({
         display: inline-flex;
         justify-content: center;
         align-items: center;
+        border-radius: 50%;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .${CLASS_NAME}:focus-visible,
+      .${CLASS_NAME_WITH_NO_HOVER_EFFECT}:focus-visible {
+        outline: 2px solid var(--palette-primary-main);
+        outline-offset: 2px;
       }
       
       .${CLASS_NAME}:hover:after {

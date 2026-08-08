@@ -18,7 +18,7 @@ const AppBar = ({
     <style jsx>{`
       .app-bar {
         position: fixed;
-        top: 30px;
+        top: calc(30px + env(safe-area-inset-top, 0px));
         left: 0;
         right: 0;
         width: 100%;

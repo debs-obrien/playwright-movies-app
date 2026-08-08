@@ -18,7 +18,6 @@ const MenuItemLink = React.forwardRef(({
       ref={ref}
       className={selected ? 'menu-item-selected' : ''}
       style={{
-        outline: 'none',
         display: 'block',
         marginBottom: '0.2rem',
         fontSize: '14px',
@@ -36,7 +35,6 @@ const MenuItemLink = React.forwardRef(({
     </Link>
     <style jsx>{`
       a {
-        outline: none;
         display: block;
         margin-bottom: 0.2rem;
         font-size: 18px !important;
@@ -46,11 +44,17 @@ const MenuItemLink = React.forwardRef(({
         text-decoration: none;
         position: relative;
         overflow: hidden;
+        border-radius: 0 24px 24px 0;
       }
 
       a:hover {
         color: var(--palette-text-primary);
         text-decoration: none;
+      }
+
+      a:focus-visible {
+        outline: 2px solid var(--palette-primary-main);
+        outline-offset: -2px;
       }
 
       a.menu-item-selected {
