@@ -24,13 +24,14 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
     await expect(page.locator('.select-search-container.is-loading')).toBeVisible({ timeout: 1000 });
 
     // 6. Wait for search results to load and verify dropdown appears
-    await expect(page.locator('.movie-option-wrapper button')).toBeVisible({ timeout: 10000 });
-    
+    const searchResults = page.locator('.movie-option-wrapper button');
+    await expect(searchResults.first()).toBeVisible({ timeout: 10000 });
+    await expect(searchResults).not.toHaveCount(0);
+
     // 7. Verify results display with movie titles and relevant info (images and text)
-    const searchResults = page.locator('.movie-option-wrapper button').first();
-    await expect(searchResults).toBeVisible();
-    await expect(searchResults.locator('img')).toBeVisible();
-    await expect(searchResults.locator('span')).toBeVisible();
+    const firstResult = searchResults.first();
+    await expect(firstResult.locator('img')).toBeVisible();
+    await expect(firstResult.locator('span')).toBeVisible();
   });
 
   test('Search for Non-existent Movie Shows No Results Message', async ({ listPage }) => {

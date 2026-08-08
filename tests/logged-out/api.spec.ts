@@ -92,31 +92,24 @@ test('movie search', async ({ request }) => {
 test('movie credits', async ({ request }) => {
   const response = await request.get(`/3/movie/tt12584954/credits`);
   await expect(response).toBeOK();
-  expect(await response.json()).toEqual(
+  // Fixtures are trimmed for Workers size limits: slim cast fields, no crew.
+  const credits = await response.json();
+  expect(credits).toEqual(
     expect.objectContaining({
+      id: 718821,
       cast: expect.arrayContaining([
         expect.objectContaining({
           name: 'Daisy Edgar-Jones',
-          original_name: 'Daisy Edgar-Jones',
-          known_for_department: 'Acting',
-          popularity: expect.any(Number),
-          profile_path: expect.any(String),
           character: 'Kate',
-        }),
-      ]),
-      crew: expect.arrayContaining([
-        expect.objectContaining({
-          name: 'Ashley Nicole Hudson',
-          original_name: 'Ashley Nicole Hudson',
-          known_for_department: 'Crew',
-          popularity: expect.any(Number),
           profile_path: expect.any(String),
-          department: 'Crew',
-          job: 'Stunts',
+          order: 0,
         }),
       ]),
+      crew: [],
     }),
   );
+  expect(credits.cast.length).toBeGreaterThan(0);
+  expect(credits.cast.length).toBeLessThanOrEqual(15);
 });
 
 test.describe('movie sorting', () => {
