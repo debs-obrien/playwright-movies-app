@@ -15,11 +15,11 @@ test.describe('Theme Mode Switching', () => {
     page,
   }) => {
     // Click the moon icon to switch to dark mode and assert it has the 'dark' class
-    await page.getByRole('banner').getByRole('button', { name: '☾' }).click();
+    await page.getByRole('banner').getByRole('button', { name: 'Enable dark mode' }).click();
     await expect(page.locator('body')).toHaveClass(/dark/);
 
     // Click the sun icon to switch back to light mode and assert it has the 'light' class
-    await page.getByRole('banner').getByRole('button', { name: '☀' }).click();
+    await page.getByRole('banner').getByRole('button', { name: 'Enable light mode' }).click();
     await expect(page.locator('body')).toHaveClass(/light/);
   });
 

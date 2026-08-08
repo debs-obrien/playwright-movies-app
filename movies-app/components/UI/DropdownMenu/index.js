@@ -58,7 +58,6 @@ const DropdownMenu = ({
         <ul
           className='dropdown-content'
           role='menu'
-          hidden={!opened}
           onClick={() => setOpened(false)}>
           {children}
         </ul>
@@ -90,10 +89,20 @@ const DropdownMenu = ({
           transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out, visibility 0.2s ease-in-out;
         }
 
+        /* Click-to-toggle for touch / keyboard */
         .dropdown.opened ul.dropdown-content {
           visibility: visible;
           opacity: 1;
           transform: translateY(0);
+        }
+
+        /* Keep desktop hover open so pointer-driven flows still work */
+        @media (hover: hover) {
+          .dropdown:hover ul.dropdown-content {
+            visibility: visible;
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
         ul.dropdown-content :global(li) {

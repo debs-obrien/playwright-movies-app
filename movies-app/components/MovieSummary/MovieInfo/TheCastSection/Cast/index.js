@@ -71,14 +71,15 @@ const Cast = ({
     <>
       <div className='cast'>
         <div className='viewport' ref={viewportRef}>
-          <button
-            type='button'
-            className='arrow arrow-left'
-            onClick={() => scrollBySlides(-1)}
-            disabled={!canScrollPrev}
-            aria-label='Scroll cast list left'>
-            <ChevronLeftIcon width='1em' height='1em' />
-          </button>
+          {canScrollPrev && (
+            <button
+              type='button'
+              className='arrow arrow-left'
+              onClick={() => scrollBySlides(-1)}
+              aria-label='Scroll cast list left'>
+              <ChevronLeftIcon width='1em' height='1em' />
+            </button>
+          )}
           <div
             className='track'
             ref={trackRef}
@@ -93,19 +94,20 @@ const Cast = ({
               </div>
             ))}
           </div>
-          <button
-            type='button'
-            className='arrow arrow-right'
-            onClick={() => scrollBySlides(1)}
-            disabled={!canScrollNext}
-            aria-label='Scroll cast list right'>
-            <ChevronRightIcon width='1em' height='1em' />
-          </button>
+          {canScrollNext && (
+            <button
+              type='button'
+              className='arrow arrow-right'
+              onClick={() => scrollBySlides(1)}
+              aria-label='Scroll cast list right'>
+              <ChevronRightIcon width='1em' height='1em' />
+            </button>
+          )}
         </div>
       </div>
       <style jsx>{`
         .cast {
-          margin: 0 12px;
+          margin: 0 20px;
         }
 
         .viewport {
@@ -122,7 +124,7 @@ const Cast = ({
           -webkit-overflow-scrolling: touch;
           overscroll-behavior-x: contain;
           scrollbar-width: thin;
-          padding: 4px 36px;
+          padding: 4px 0;
         }
 
         .track::-webkit-scrollbar {
@@ -163,14 +165,8 @@ const Cast = ({
           transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
         }
 
-        .arrow:disabled {
-          color: var(--palette-text-disabled);
-          opacity: 0.4;
-          cursor: default;
-        }
-
-        .arrow:not(:disabled):hover,
-        .arrow:not(:disabled):focus-visible {
+        .arrow:hover,
+        .arrow:focus-visible {
           color: var(--palette-text-primary);
         }
 
@@ -180,11 +176,18 @@ const Cast = ({
         }
 
         .arrow-left {
-          left: 0;
+          left: -20px;
         }
 
         .arrow-right {
-          right: 0;
+          right: -20px;
+        }
+
+        @media (max-width: 36em) {
+          .arrow {
+            /* Keep swipe scrolling on narrow phones; arrows can crowd the first/last person */
+            display: none;
+          }
         }
 
         @media (prefers-reduced-motion: reduce) {

@@ -34,16 +34,19 @@ test('sort movies by average votes and original title', async ({ page }) => {
   });
 
   await test.step('sort by original title and verify order', async () => {
-    const movieTitlesArray: string[] = [];
     const movieTitles = movies.getByRole('heading');
 
     // Sort movies by original title
     await page.getByRole('combobox', { name: 'Sort By' }).click();
     await page.getByRole('option', { name: 'Original Title' }).click();
 
-    // Get text content of the first four movies after sorting
+    // Wait for the sorted list to render before reading titles
+    await expect(movieTitles.first()).toHaveText(/^A/);
+
+    const movieTitlesArray: string[] = [];
     for (let i = 0; i < 4; i++) {
-      const textContent = await movieTitles.nth(i).textContent(); if (textContent) movieTitlesArray.push(textContent);
+      const textContent = await movieTitles.nth(i).textContent();
+      if (textContent) movieTitlesArray.push(textContent);
     }
 
     // Create an attachment to see the text content for movies sorted by original title
