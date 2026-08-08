@@ -57,18 +57,19 @@ const SearchBar = ({
       onClick={onFormClickHandler}
       onSubmit={onFormSubmitHandler}>
       <MagnifierButton
-        type='submit'
         theme={theme}
         opened={opened} />
       <Input
-        aria-label='Search Input'
+        aria-label='Search for a movie'
         id={`search-input-${id}`}
         opened={opened}
         theme={theme}
         ref={inputRef}
         value={searchTerm}
         onChange={onInputChangeHandler}
-        placeholder='Search for a movie...' />
+        placeholder='Search for a movie...'
+        enterKeyHint='search'
+        autoComplete='off' />
     </Form>
   );
 };

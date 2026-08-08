@@ -38,8 +38,8 @@ const Artwork = ({
 
       @media ${theme.mediaQueries.smaller} {
         .artwork {
-          padding: 0;
-          margin-top: -102px;
+          padding: 1rem 1rem 0;
+          margin-top: 0;
         }
       }
     `}</style>

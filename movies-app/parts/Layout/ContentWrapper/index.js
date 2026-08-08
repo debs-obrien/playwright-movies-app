@@ -33,6 +33,13 @@ const ContentWrapper = ({
           padding-bottom: 4rem;
         }
       }
+
+      @media ${theme.mediaQueries.small} {
+        .content-wrapper {
+          padding-top: 9.5rem;
+          padding-bottom: 3rem;
+        }
+      }
     `}</style>
   </>
 );

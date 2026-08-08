@@ -144,14 +144,21 @@ const Trailer = ({ videos }) => {
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 32px;
-          height: 32px;
+          width: 44px;
+          height: 44px;
+          min-width: 44px;
+          min-height: 44px;
           border: none;
           background: rgba(0, 0, 0, 0.7);
-          border-radius: 4px;
+          border-radius: 8px;
           cursor: pointer;
           transition: all 0.2s ease;
           backdrop-filter: blur(4px);
+        }
+
+        :global(.modal-video-close-btn:focus-visible) {
+          outline: 2px solid #fff;
+          outline-offset: 2px;
         }
         
         :global(.modal-video-close-btn:before) {

@@ -8,6 +8,8 @@ const PageWrapper = ({
 }) => (
   <>
     <main
+      id='main-content'
+      tabIndex={-1}
       className={clsx('page-wrapper', className)}
       {...rest}>
       {children}
