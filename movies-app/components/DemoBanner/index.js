@@ -21,6 +21,15 @@ const DemoBanner = () => (
         font-size: 1.3rem;
         line-height: 1.4;
         overflow-wrap: anywhere;
+        white-space: normal;
+      }
+
+      @media (max-width: 600px) {
+        .demo-banner {
+          font-size: 1.1rem;
+          padding-left: 0.75rem;
+          padding-right: 0.75rem;
+        }
       }
 
       .demo-banner :global(a) {

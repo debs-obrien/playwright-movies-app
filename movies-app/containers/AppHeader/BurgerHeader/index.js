@@ -116,7 +116,7 @@ const BurgerHeader = ({
 
       /* When search expands on phones, free space by hiding the logo */
       @media ${theme.mediaQueries.small} {
-        .toolbar-inner:has(:global(form.form--opened)) :global(.logo-link) {
+        .toolbar-inner:has(:global(form[data-search-open='true'])) :global(.logo-link) {
           display: none;
         }
       }

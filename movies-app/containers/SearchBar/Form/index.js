@@ -10,7 +10,8 @@ const Form = React.forwardRef(({
     <form
       role='search'
       ref={ref}
-      className={`form${opened ? ' form--opened' : ''}`}
+      className='form'
+      data-search-open={opened ? 'true' : 'false'}
       {...rest}>
       {children}
     </form>
@@ -36,7 +37,7 @@ const Form = React.forwardRef(({
         -webkit-tap-highlight-color: transparent;
       }
 
-      .form--opened {
+      .form[data-search-open='true'] {
         width: 30rem;
         max-width: 100%;
         cursor: auto;
@@ -53,13 +54,13 @@ const Form = React.forwardRef(({
           background-color: var(--palette-secondary-main);
         }
 
-        .form--opened {
+        .form[data-search-open='true'] {
           width: min(30rem, 100%);
         }
       }
 
       @media ${theme.mediaQueries.small} {
-        .form--opened {
+        .form[data-search-open='true'] {
           width: 100%;
           max-width: 100%;
         }
