@@ -10,18 +10,29 @@ const SummaryWrapper = ({
 }) => (
   <>
     {/* TODO: double check if we really need LazyLoad */}
-    <LazyLoad height={500}>
+    <LazyLoad
+      height={500}
+      className='summary-lazy-load'>
       <section data-testId="movie-summary" className='summary-wrapper'>
         {children}
       </section>
     </LazyLoad>
     <style jsx>{`
+      :global(.summary-lazy-load) {
+        display: block !important;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+        height: auto !important;
+      }
+
       .summary-wrapper {
         display: grid;
         grid-template-columns: 40% 60%;
         max-width: 120rem;
         margin: 0 auto;
         margin-bottom: 7rem;
+        min-width: 0;
       }
 
       @media ${theme.mediaQueries.largest} {
@@ -48,7 +59,16 @@ const SummaryWrapper = ({
         .summary-wrapper {
           display: block;
           grid-template-columns: unset;
+          width: 100%;
+          max-width: 100%;
+          min-width: 0;
           margin-bottom: 5rem;
+        }
+      }
+
+      @media ${theme.mediaQueries.small} {
+        .summary-wrapper {
+          margin-bottom: 3rem;
         }
       }
     `}</style>

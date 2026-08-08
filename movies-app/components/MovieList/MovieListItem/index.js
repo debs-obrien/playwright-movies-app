@@ -63,10 +63,11 @@ const MovieListItem = ({
         height: 100%;
       }
 
-      :global(.lazy-load-image-background) {
+      li :global(.lazy-load-image-background) {
         display: flex !important;
         flex-direction: column !important;
         height: 100% !important;
+        width: 100%;
       }
 
       :global(.${POSTER_LINK_CLASS_NAME}) {
