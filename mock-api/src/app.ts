@@ -41,6 +41,11 @@ type List = {
 const listStore = new Map<string, List>()
 const accountListIds = new Map<string, Set<string>>()
 
+// Approved request_tokens from /auth/access. Used so /4/auth/access_token does not
+// depend on third-party cookies (blocked by many browsers for GitHub Pages → Workers).
+type ApprovedAuth = { access_token: string; account_id: string }
+const approvedTokens = new Map<string, ApprovedAuth>()
+
 const dedupedMovies = enrichedMovies.filter((movie, index) => enrichedMovies.findIndex(m => m.id === movie.id) === index)
 
 // Lazy-init Orama: insertMultiple uses setTimeout, which Workers disallow at global scope.
@@ -113,6 +118,7 @@ app.post('/test/reset', (c) => {
   }
   listStore.clear()
   accountListIds.clear()
+  approvedTokens.clear()
   return c.json({ success: true })
 })
 
@@ -211,20 +217,39 @@ app.get("/auth/access", async (c) => {
 })
 app.post("/auth/access", async (c) => {
   const request_token = c.req.query("request_token")
+  if (!request_token) return c.text("missing request_token", { status: 400 })
   const form = await c.req.formData()
   const email = form.get("email") as string
   const { redirect_to } = JSON.parse(Buffer.from(request_token, "base64").toString())
   const account_id = encodeURIComponent(email);
   const access_token = Buffer.from(JSON.stringify({ account_id })).toString("base64")
+  // Keep cookies for same-site local/Playwright flows.
   setCookie(c, request_token.slice(0, 6), access_token, cookieSettings);
   setCookie(c, "current_account", account_id, cookieSettings);
-  return c.redirect(redirect_to)
+  approvedTokens.set(request_token, { access_token, account_id })
+
+  // Hand tokens back in the URL hash so cross-site login works when browsers
+  // block third-party cookies. Hash avoids Next.js query-string sync issues.
+  let redirectUrl: URL
+  try {
+    redirectUrl = new URL(redirect_to)
+  } catch {
+    return c.text("invalid redirect_to", { status: 400 })
+  }
+  const authHash = new URLSearchParams({ access_token, account_id })
+  redirectUrl.hash = authHash.toString()
+  return c.redirect(redirectUrl.toString())
 })
 app.post("/4/auth/access_token", async (c) => {
   const { request_token } = await c.req.json()
-  const access_token = getCookie(c, request_token.slice(0, 6));
+  const approved = approvedTokens.get(request_token)
+  const access_token = approved?.access_token || getCookie(c, request_token.slice(0, 6));
   if (!access_token) return c.text("unauthenticated", { status: 401 })
-  const { account_id } = JSON.parse(Buffer.from(access_token, "base64").toString())
+  const account_id = approved?.account_id
+    || JSON.parse(Buffer.from(access_token, "base64").toString()).account_id
+
+  // One-time use when present in memory (cookie path may still re-read).
+  approvedTokens.delete(request_token)
 
   return c.json({
     success: true,
