@@ -81,11 +81,16 @@ const ButtonBase = ({
         pointer-events: none;
       }
 
+      .button-base:focus-visible {
+        outline: 2px solid var(--palette-primary-main);
+        outline-offset: 2px;
+      }
+
       @media ${theme.mediaQueries.small} {
         .button-base {
-          padding: 8px 16px;
-          min-width: 80px;
-          min-height: 40px;
+          padding: 10px 18px;
+          min-width: 88px;
+          min-height: 44px;
           font-size: 1.4rem;
         }
       }

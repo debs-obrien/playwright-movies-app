@@ -28,7 +28,6 @@ const DarkModeToggle = ({
             {/* <link
               rel='icon'
               href='/dark-favicon.ico' /> */}
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link
               rel='apple-touch-icon'
               sizes='180x180'
@@ -65,7 +64,6 @@ const DarkModeToggle = ({
             {/* <link
               rel='icon'
               href='/light-favicon.ico' /> */}
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
             <link
               rel='apple-touch-icon'
               sizes='180x180'
@@ -101,6 +99,7 @@ const DarkModeToggle = ({
       <div className={clsx('dark-mode-toggle', className)}>
         <button
           type='button'
+          aria-label='Enable light mode'
           onClick={darkMode.disable}>
           ☀
         </button>
@@ -110,6 +109,7 @@ const DarkModeToggle = ({
           onChange={darkMode.toggle} />
         <button
           type='button'
+          aria-label='Enable dark mode'
           onClick={darkMode.enable}>
           ☾
         </button>
@@ -117,24 +117,32 @@ const DarkModeToggle = ({
       <style jsx>{`
         .dark-mode-toggle {
           display: flex;
+          align-items: center;
         }
 
         .dark-mode-toggle > button {
-          font-size: 2.125rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: 44px;
+          min-height: 44px;
+          font-size: 1.75rem;
           background: none;
           border: none;
           line-height: 0;
           color: #ffb74d;
           cursor: pointer;
+          border-radius: 8px;
           transition: color ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
         }
 
         .dark-mode-toggle > button:last-child {
           color: #666;
         }
-    
-        .dark-mode-toggle > button:focus {
-          outline: none;
+
+        .dark-mode-toggle > button:focus-visible {
+          outline: 2px solid var(--palette-primary-main);
+          outline-offset: 2px;
         }
 
         :global(body.dark) .dark-mode-toggle > button {
@@ -143,6 +151,13 @@ const DarkModeToggle = ({
         
         :global(body.dark) .dark-mode-toggle > button:last-child {
           color: lightblue;
+        }
+
+        /* Free horizontal space on phones: keep the labeled toggle only */
+        @media ${theme.mediaQueries.small} {
+          .dark-mode-toggle > button {
+            display: none;
+          }
         }
       `}</style>
     </>

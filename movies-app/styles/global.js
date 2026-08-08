@@ -138,8 +138,16 @@ export default css.global`
   }
 
   button {
-    outline: none;
     cursor: pointer;
+  }
+
+  *:focus {
+    outline: none;
+  }
+
+  *:focus-visible {
+    outline: 2px solid var(--palette-primary-main);
+    outline-offset: 2px;
   }
 
   *,
@@ -154,6 +162,8 @@ export default css.global`
     font-size: 62.5%; // 1rem = 10px
     box-sizing: border-box;
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
   }
   @media screen and (prefers-reduced-motion: reduce) {
     html {
@@ -170,12 +180,20 @@ export default css.global`
       font-size: 55%;
     }
   }
+  /* Restore readable rem scale on phones so touch targets and text stay usable */
+  @media ${theme.mediaQueries.small} {
+    html {
+      font-size: 62.5%;
+    }
+  }
 
   body {
     font-family: 'Inter', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: ${theme.typography.fontWeightRegular};
     line-height: 1.65;
     letter-spacing: -0.011em;
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
   }
 
   h1, h2, h3, h4, h5, h6 {

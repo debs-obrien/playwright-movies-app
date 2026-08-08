@@ -20,35 +20,52 @@ const GenreLink = ({
           [QUERY_PARAMS.PAGE]: 1
         }
       }}
-      style={{
-        display: 'inline-flex',
-        alignItems: 'center',
-        padding: '5px 8px',
-        background: 'linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%)',
-        border: '1px solid rgba(236, 72, 153, 0.3)',
-        borderRadius: '16px',
-        color: 'var(--palette-secondary-main)',
-        textDecoration: 'none',
-        lineHeight: '1',
-        fontSize: '12px',
-        fontWeight: '700',
-        textTransform: 'uppercase',
-        letterSpacing: '0.5px',
-        transition: 'all 0.3s ease',
-        whiteSpace: 'nowrap'
-      }}>
+      className='genre-link'>
 
       <DotCircleIcon
         fill='currentColor'
         width='12px'
         height='12px'
-        style={{marginRight: '5px', flexShrink: 0}} />
+        style={{marginRight: '6px', flexShrink: 0}}
+        aria-hidden='true' />
       {genre.name}
 
     </Link>
     <style jsx>{`
       li {
         list-style-type: none;
+      }
+
+      :global(.genre-link) {
+        display: inline-flex;
+        align-items: center;
+        min-height: 36px;
+        padding: 8px 12px;
+        background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(236, 72, 153, 0.1) 100%);
+        border: 1px solid rgba(236, 72, 153, 0.3);
+        border-radius: 16px;
+        color: var(--palette-secondary-main);
+        text-decoration: none;
+        line-height: 1.2;
+        font-size: 1.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+        white-space: nowrap;
+      }
+
+      :global(.genre-link:focus-visible) {
+        outline: 2px solid var(--palette-primary-main);
+        outline-offset: 2px;
+      }
+
+      @media ${theme.mediaQueries.small} {
+        :global(.genre-link) {
+          min-height: 40px;
+          padding: 10px 14px;
+          font-size: 1.3rem;
+        }
       }
     `}</style>
   </li>

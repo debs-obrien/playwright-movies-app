@@ -27,15 +27,16 @@ const Toggle = ({
         padding: 0 6px;
         display: flex;
         align-items: center;
+        min-height: 44px;
       }
 
       input[type='checkbox'].toggle-track {
-        width: 34px;
-        height: 14px;
+        width: 44px;
+        height: 24px;
         opacity: 0.5;
         background-color: var(--palette-secondary-main);
         position: relative;
-        border-radius: 7px;
+        border-radius: 12px;
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
@@ -45,11 +46,12 @@ const Toggle = ({
       }
 
       input[type='checkbox'].toggle-track:checked + label {
-        left: 20px;
+        left: 24px;
       }
     
       input[type='checkbox'].toggle-track:focus-visible {
-        outline: solid 2px white;
+        outline: 2px solid var(--palette-primary-main);
+        outline-offset: 2px;
       }
     
       input[type='checkbox'].toggle-track + label {
@@ -60,7 +62,7 @@ const Toggle = ({
         transition: all ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
         cursor: pointer;
         position: absolute;
-        left: 2px;
+        left: 4px;
         background-color: var(--palette-secondary-main);
       }
     `}</style>

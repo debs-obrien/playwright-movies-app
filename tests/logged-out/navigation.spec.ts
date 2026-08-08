@@ -34,10 +34,10 @@ test.describe('navigates to menu items', async () => {
   test('navigates to menu items under Discover label', async ({ page }) => {
     for (const item of discover) {
       await test.step(`navigates to ${item}`, async () => {
-        // Click on the menu and navigate to the discover item
-        await page.getByRole('menu').click();
+        // Open the mobile navigation drawer and navigate to the discover item
+        await page.getByRole('button', { name: 'Open navigation menu' }).click();
         await page
-          .getByRole('navigation')
+          .getByRole('dialog', { name: 'Navigation menu' })
           .getByRole('link', { name: item })
           .click();
         // Verify the heading
@@ -50,10 +50,10 @@ test.describe('navigates to menu items', async () => {
   test('navigates to Genres', async ({ page }) => {
     for (const genre of genres) {
       await test.step(`navigates to ${genre}`, async () => {
-        // Click on the menu and navigate to the genre
-        await page.getByRole('menu').click();
+        // Open the mobile navigation drawer and navigate to the genre
+        await page.getByRole('button', { name: 'Open navigation menu' }).click();
         await page
-          .getByRole('navigation')
+          .getByRole('dialog', { name: 'Navigation menu' })
           .getByRole('link', { name: genre })
           .click();
         // Verify the heading

@@ -105,7 +105,7 @@ const Cast = ({
       </div>
       <style jsx>{`
         .cast {
-          margin: 0 20px;
+          margin: 0 12px;
         }
 
         .viewport {
@@ -118,8 +118,11 @@ const Cast = ({
           gap: 12px;
           overflow-x: auto;
           scroll-behavior: smooth;
+          scroll-snap-type: x proximity;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior-x: contain;
           scrollbar-width: thin;
-          padding: 4px 0;
+          padding: 4px 36px;
         }
 
         .track::-webkit-scrollbar {
@@ -136,53 +139,57 @@ const Cast = ({
           width: ${ITEM_WIDTH}px;
           display: flex;
           justify-content: center;
+          scroll-snap-align: start;
         }
 
         .arrow {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          background: none;
-          border: none;
-          padding: 0.25rem;
+          z-index: 1;
+          background: rgba(var(--palette-background-paper-rgb), 0.9);
+          border: 1px solid var(--palette-divider);
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          min-width: 40px;
+          min-height: 40px;
+          padding: 0;
           cursor: pointer;
-          color: #666;
+          color: var(--palette-text-secondary);
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: color 0.2s ease-in-out;
+          transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
         }
 
         .arrow:disabled {
-          color: #999;
+          color: var(--palette-text-disabled);
           opacity: 0.4;
           cursor: default;
         }
 
         .arrow:not(:disabled):hover,
-        .arrow:not(:disabled):focus {
-          color: #ccc;
+        .arrow:not(:disabled):focus-visible {
+          color: var(--palette-text-primary);
+        }
+
+        .arrow:focus-visible {
+          outline: 2px solid var(--palette-primary-main);
+          outline-offset: 2px;
         }
 
         .arrow-left {
-          left: -20px;
+          left: 0;
         }
 
         .arrow-right {
-          right: -20px;
+          right: 0;
         }
 
-        @media (max-width: 36em) {
-          .arrow {
-            display: none;
-          }
-
+        @media (prefers-reduced-motion: reduce) {
           .track {
-            scrollbar-width: auto;
-          }
-
-          .track::-webkit-scrollbar {
-            height: 3px;
+            scroll-behavior: auto;
           }
         }
       `}</style>
