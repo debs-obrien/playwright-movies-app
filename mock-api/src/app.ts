@@ -228,16 +228,16 @@ app.post("/auth/access", async (c) => {
   setCookie(c, "current_account", account_id, cookieSettings);
   approvedTokens.set(request_token, { access_token, account_id })
 
-  // Also hand tokens back on the redirect URL so cross-site login works when
-  // browsers block third-party cookies on the later access_token exchange.
+  // Hand tokens back in the URL hash so cross-site login works when browsers
+  // block third-party cookies. Hash avoids Next.js query-string sync issues.
   let redirectUrl: URL
   try {
     redirectUrl = new URL(redirect_to)
   } catch {
     return c.text("invalid redirect_to", { status: 400 })
   }
-  redirectUrl.searchParams.set("access_token", access_token)
-  redirectUrl.searchParams.set("account_id", account_id)
+  const authHash = new URLSearchParams({ access_token, account_id })
+  redirectUrl.hash = authHash.toString()
   return c.redirect(redirectUrl.toString())
 })
 app.post("/4/auth/access_token", async (c) => {

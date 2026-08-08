@@ -23,9 +23,12 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       try {
-        // Prefer tokens returned on the login redirect (works cross-site without
-        // third-party cookies). Strip them from the URL so they are not bookmarked.
-        const redirectParams = new URLSearchParams(window.location.search);
+        // Prefer tokens returned on the login redirect hash (works cross-site
+        // without third-party cookies). Strip them so they are not bookmarked.
+        const hash = window.location.hash.startsWith('#')
+          ? window.location.hash.slice(1)
+          : window.location.hash;
+        const redirectParams = new URLSearchParams(hash);
         const redirectAccessToken = redirectParams.get('access_token') || '';
         const redirectAccountId = redirectParams.get('account_id') || '';
         if (redirectAccessToken && redirectAccountId) {
@@ -34,13 +37,7 @@ const AuthProvider = ({ children }) => {
             access_token: redirectAccessToken,
             account_id: redirectAccountId
           });
-          redirectParams.delete('access_token');
-          redirectParams.delete('account_id');
-          const cleanSearch = redirectParams.toString();
-          const cleanUrl =
-            window.location.pathname +
-            (cleanSearch ? `?${cleanSearch}` : '') +
-            window.location.hash;
+          const cleanUrl = window.location.pathname + window.location.search;
           window.history.replaceState({}, document.title, cleanUrl);
 
           setState({

@@ -56,7 +56,7 @@ Then:
 
 Production sets `COOKIE_SECURE=true` / `NODE_ENV=production` in `wrangler.jsonc`, which enables `Secure; SameSite=None` cookies for local/same-site use.
 
-Cross-site login from GitHub Pages does **not** rely on third-party cookies (many browsers block them). After `/auth/access`, the mock redirects back with `access_token` and `account_id` query params; the Movies app reads those and stores them in `localStorage`. An in-memory approval map also backs `/4/auth/access_token` for clients that still use the exchange endpoint.
+Cross-site login from GitHub Pages does **not** rely on third-party cookies (many browsers block them). After `/auth/access`, the mock redirects back with `access_token` and `account_id` in the URL hash; the Movies app reads those and stores them in `localStorage`. An in-memory approval map also backs `/4/auth/access_token` for clients that still use the exchange endpoint.
 
 ### Notes
 

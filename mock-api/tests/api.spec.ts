@@ -25,8 +25,9 @@ test('login redirects with tokens and access_token works without cookies', async
   const location = loginRes.headers()['location'];
   expect(location).toBeTruthy();
   const redirected = new URL(location!);
-  const accessToken = redirected.searchParams.get('access_token');
-  const accountId = redirected.searchParams.get('account_id');
+  const hashParams = new URLSearchParams(redirected.hash.replace(/^#/, ''));
+  const accessToken = hashParams.get('access_token');
+  const accountId = hashParams.get('account_id');
   expect(accessToken).toBeTruthy();
   expect(accountId).toBe(encodeURIComponent('cors-fix@example.com'));
 
