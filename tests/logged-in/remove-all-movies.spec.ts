@@ -7,33 +7,19 @@ import { listTest as test } from '../helpers/list-test';
 test.describe('Removing Movies from Lists', { tag: '@agent' }, () => {
   test('Remove All Movies from List', async ({ listPage }) => {
     const page = listPage;
+    const movies = page.getByRole('listitem', { name: 'movie' });
 
-    // 1. Navigate to Add/Remove Movies page
     await page.getByRole('link', { name: 'Add/Remove Movies' }).click();
+    await expect(movies).toHaveCount(3);
 
-    // 2. Note the total number of movies in the list
-    await expect(page.getByRole('listitem', { name: 'movie' })).not.toHaveCount(0, { timeout: 10000 });
-    let movieCount = await page.getByRole('listitem', { name: 'movie' }).count();
-    expect(movieCount).toBeGreaterThan(0);
-
-    // 3. Click "Remove" button for each movie sequentially until list is empty
-    while (movieCount > 0) {
-      const firstMovie = page.getByRole('listitem', { name: 'movie' }).first();
-      await firstMovie.getByRole('button', { name: 'Remove' }).click();
-      
-      // Wait for the movie count to decrease
-      await expect(page.getByRole('listitem', { name: 'movie' })).not.toHaveCount(movieCount, { timeout: 10000 });
-      
-      movieCount = await page.getByRole('listitem', { name: 'movie' }).count();
+    // Fixture seeds exactly three movies; remove them in a known order.
+    for (const title of ['Twisters', 'The Garfield Movie', 'Bad Boys: Ride or Die']) {
+      await movies.filter({ hasText: title }).getByRole('button', { name: 'Remove' }).click();
+      await expect(movies.filter({ hasText: title })).toHaveCount(0);
     }
 
-    // 4. Verify the list is empty
-    await expect(page.getByRole('listitem', { name: 'movie' })).toHaveCount(0);
-
-    // Verify Add Item search field is still available
+    await expect(movies).toHaveCount(0);
     await expect(page.getByRole('textbox', { name: 'Add Item' })).toBeVisible();
-
-    // Verify no errors occur when removing the last movie
     await expect(page.getByRole('textbox', { name: 'Add Item' })).toBeEnabled();
   });
 });
