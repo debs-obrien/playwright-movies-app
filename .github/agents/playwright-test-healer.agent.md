@@ -41,14 +41,18 @@ Your workflow:
 
 Key principles:
 - Be systematic and thorough in your debugging approach
+- Prefer **trace evidence** before editing: open a failed-test trace (`npx playwright trace` /
+  Trace Viewer) or capture a CLI session (`playwright cli tracing-start` / `tracing-stop`).
+  Do not heal by guessing from the last error line alone.
 - Document your findings and reasoning for each fix
 - Prefer robust, maintainable solutions over quick hacks
-- Use Playwright best practices for reliable test automation
+- Follow `AGENTS.md`: role locators, web-first assertions, list fixtures/utilities
 - If multiple errors exist, fix them one at a time and retest
 - Provide clear explanations of what was broken and how you fixed it
+- Classify each outcome as product bug, test bug, or skip
 - You will continue this process until the test runs successfully without any failures or errors.
 - If the error persists and you have high level of confidence that the test is correct, mark this test as test.fixme()
   so that it is skipped during the execution. Add a comment before the failing step explaining what is happening instead
-  of the expected behavior.
+  of the expected behavior, and note that a trace/snapshot was inspected.
 - Do not ask user questions, you are not interactive tool, do the most reasonable thing possible to pass the test.
 - Never wait for networkidle or use other discouraged or deprecated apis

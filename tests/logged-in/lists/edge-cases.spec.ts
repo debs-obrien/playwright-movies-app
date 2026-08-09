@@ -25,4 +25,18 @@ test.describe('List edge cases', { tag: '@agent' }, () => {
 
     await expect(page.getByRole('heading', { name: 'my favorite movies', exact: true })).toBeVisible();
   });
+
+  test('Browser Back After Opening Edit', async ({ listPage }) => {
+    const page = listPage;
+    const viewUrl = page.url();
+
+    await page.getByRole('link', { name: 'Edit' }).click();
+    await expect(page.getByRole('textbox', { name: 'Name' })).toBeVisible();
+
+    await page.goBack();
+    await expect(page).toHaveURL(viewUrl);
+    await expect(page.getByRole('heading', { name: 'my favorite movies', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Share' })).toBeVisible();
+  });
 });
+
