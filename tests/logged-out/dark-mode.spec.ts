@@ -23,13 +23,16 @@ test.describe('Theme Mode Switching', () => {
   test('should toggle between dark mode and light mode using toggle switch', async ({
     page,
   }) => {
+    // The visible control is the label; the checkbox itself is partially covered
+    // by the sliding knob, so click the label rather than check()/uncheck().
     const themeToggle = page.getByRole('banner').getByRole('checkbox', { name: 'Toggle Switch' });
+    const themeToggleLabel = page.getByRole('banner').getByText('Toggle Switch');
 
-    await themeToggle.check();
+    await themeToggleLabel.click();
     await expect(page.locator('body')).toHaveClass(/dark/);
     await expect(themeToggle).toBeChecked();
 
-    await themeToggle.uncheck();
+    await themeToggleLabel.click();
     await expect(page.locator('body')).toHaveClass(/light/);
     await expect(themeToggle).not.toBeChecked();
   });
