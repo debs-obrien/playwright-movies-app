@@ -2,6 +2,7 @@
 // seed: tests/logged-in/seed.spec.ts
 
 import { test, expect } from '../helpers/base-test';
+import { addMovie } from '../helpers/list-utilities';
 
 test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
   test('Share Private List (Edge Case)', async ({ page, browser }) => {
@@ -15,11 +16,12 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
     await page.getByRole('combobox', { name: 'Public List?' }).click();
     await page.getByRole('option', { name: 'No' }).click();
     await page.getByRole('button', { name: 'Continue' }).click();
+    await page.waitForURL(url => url.searchParams.has('listId'));
 
-    await page.getByRole('textbox', { name: 'Add Item' }).fill('Inside Out 2');
-    await page.getByRole('button', { name: 'Inside Out 2 Inside Out' }).click();
+    await addMovie(page, 'Inside Out 2');
 
     await page.getByRole('link', { name: 'View List' }).click();
+    await expect(page).toHaveURL(/\/list\?.*\bid=/);
 
     await page.getByRole('button', { name: 'Share' }).click();
     await expect(page.getByRole('heading', { name: 'Share My Private List' })).toBeVisible();
@@ -31,8 +33,11 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
     // Open the share URL in a logged-out browser context.
     // The mock currently serves list details without enforcing private visibility;
     // managing the list still requires authentication.
-    const guestContext = await browser.newContext();
+    const guestContext = await browser.newContext({
+      storageState: { cookies: [], origins: [] },
+    });
     const guest = await guestContext.newPage();
+
     await guest.goto(shareUrl);
     await expect(guest.getByRole('heading', { name: 'My Private List', exact: true })).toBeVisible();
 

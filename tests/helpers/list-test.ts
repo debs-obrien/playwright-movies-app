@@ -30,7 +30,10 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
     });
 
     await page.getByRole('link', { name: 'View List' }).click();
+    // Choose Image also shows the list name heading; wait for the list view URL.
+    await expect(page).toHaveURL(/\/list\?id=/);
     await expect(page.getByRole('heading', { name: 'my favorite movies', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Share' })).toBeVisible();
 
     await use(page);
   },

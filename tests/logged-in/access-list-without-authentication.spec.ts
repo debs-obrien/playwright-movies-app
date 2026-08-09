@@ -7,14 +7,19 @@ import { listTest as test } from '../helpers/list-test';
 test.describe('Error Handling and Edge Cases', { tag: '@agent' }, () => {
   test('Manage List Pages Require Authentication', async ({ listPage, browser }) => {
     const page = listPage;
-    const listId = new URL(page.url()).searchParams.get('id');
-    expect(listId).toBeTruthy();
+    const url = new URL(page.url());
+    const listId = url.searchParams.get('id') ?? url.searchParams.get('listId');
+    expect(listId, `expected list id in URL: ${page.url()}`).toBeTruthy();
 
     // Public list view is available without auth; management routes are gated.
-    const guestContext = await browser.newContext();
+    // Auth tokens live in localStorage (via storageState), so create an explicitly empty context.
+    const guestContext = await browser.newContext({
+      storageState: { cookies: [], origins: [] },
+    });
     const guest = await guestContext.newPage();
 
     await guest.goto(`/list/add-or-remove-items?listId=${listId}&page=1`);
+    await expect(guest.getByRole('banner').getByLabel('Log In')).toBeVisible();
     await expect(
       guest.getByRole('heading', { name: "You don't have permission to access this page!" }),
     ).toBeVisible();
