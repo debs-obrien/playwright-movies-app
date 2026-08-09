@@ -31,7 +31,9 @@ test.describe('Lesson: AI raw vs idiomatic', () => {
 
     await addMovie(page, 'Twisters');
     await expect(page.getByRole('list', { name: 'movies' })).toMatchAriaSnapshot(`
-      - listitem: /Twisters/i
+      - listitem "movie":
+        - text: Twisters
+        - button "Remove"
     `);
 
     await openLists(page);

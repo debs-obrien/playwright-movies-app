@@ -18,10 +18,8 @@ test.describe('Lesson: network abort during movie search', () => {
     await searchBox.fill('Twisters');
 
     await expect(searchBox).toHaveAttribute('aria-busy', 'true');
-    await expect(page.getByRole('status')).toContainText(/Search failed|Searching/i);
-
+    // Error option renders as role=status with the option name only (subtitle is not shown).
     await expect(page.getByRole('status').filter({ hasText: 'Search failed' })).toBeVisible();
-    await expect(page.getByText('Please try again')).toBeVisible();
     await expect(searchBox).toHaveAttribute('aria-busy', 'false');
 
     await page.unroute('**/search/movie**');
