@@ -55,6 +55,8 @@ npx playwright test --ui
 
 Playwright starts both the mock API and the app via `npm run dev`. You can also run tests with the [Playwright VS Code extension](https://marketplace.visualstudio.com/items?itemName=ms-playwright.playwright).
 
+For fixture tiers, web-first patterns, and where to start reading the suite, see [`docs/TESTING.md`](docs/TESTING.md).
+
 ## Wiki
 
 Check out the [wiki](https://github.com/debs-obrien/playwright-movies-app/wiki) for more info on the contents of each folder.
