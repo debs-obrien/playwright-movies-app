@@ -1,5 +1,4 @@
-// spec: specs/movies-list-plan.md
-// seed: tests/logged-in/seed.spec.ts
+// Consolidated @agent coverage. Prefer manage-lists-* for teaching style.
 
 import { test, expect } from '../../helpers/base-test';
 import { openLists } from '../../helpers/list-utilities';
@@ -96,5 +95,28 @@ test.describe('Creating New Lists', { tag: '@agent' }, () => {
 
     await expect(page.getByRole('heading', { name: longName })).toBeVisible();
     await expect(page.getByRole('textbox', { name: 'Add Item' })).toBeVisible();
+  });
+
+  test('Create List with Special Characters', async ({ page }) => {
+    await page.goto('');
+
+    await page.getByRole('button', { name: 'User Profile' }).click();
+    await page.getByRole('banner').getByRole('link', { name: 'Create New List' }).click();
+
+    await page.getByRole('textbox', { name: 'Name' }).fill('My List! @#$%^&*()');
+    await page
+      .getByRole('textbox', { name: 'Description' })
+      .fill('Description with "quotes" & <brackets>');
+    await page.getByRole('button', { name: 'Continue' }).click();
+
+    await expect(page.getByText('My List! @#$%^&*()')).toBeVisible();
+
+    await page.getByRole('link', { name: 'Edit List' }).click();
+    await expect(page.getByRole('textbox', { name: 'Description' })).toHaveValue(
+      'Description with "quotes" & <brackets>',
+    );
+
+    await page.getByRole('link', { name: 'View List' }).click();
+    await expect(page.getByText('Description with "quotes" & <brackets>')).toBeVisible();
   });
 });

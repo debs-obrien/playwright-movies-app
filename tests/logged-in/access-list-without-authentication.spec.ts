@@ -1,8 +1,7 @@
 // spec: specs/movies-list-plan.md
 // seed: tests/logged-in/seed.spec.ts
 
-import { expect } from '@playwright/test';
-import { listTest as test } from '../helpers/list-test';
+import { expect, test } from '../helpers/list-fixtures';
 
 test.describe('Error Handling and Edge Cases', { tag: '@agent' }, () => {
   test('Manage List Pages Require Authentication', async ({ listPage, browser }) => {

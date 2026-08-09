@@ -1,5 +1,5 @@
 /**
- * @deprecated Import from `./list-fixtures` instead.
+ * @deprecated Import `test` from `./list-fixtures` instead.
  * Re-exported for backward compatibility with existing specs.
  */
-export { listTest, emptyListTest, listWithMoviesTest } from './list-fixtures';
+export { test, listTest, emptyListTest, listWithMoviesTest, expect } from './list-fixtures';

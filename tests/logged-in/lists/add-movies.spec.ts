@@ -1,9 +1,7 @@
-// spec: specs/movies-list-plan.md
-// seed: tests/helpers/list-fixtures.ts
+// Consolidated @agent coverage. Prefer manage-lists-* for teaching style.
 
-import { expect } from '@playwright/test';
+import { expect, test } from '../../helpers/list-fixtures';
 import { addMovie } from '../../helpers/list-utilities';
-import { listWithMoviesTest as test } from '../../helpers/list-fixtures';
 
 test.describe('Adding Movies to Lists', { tag: '@agent' }, () => {
   test('Add Single Movie by Search', async ({ listWithMoviesPage }) => {
@@ -84,5 +82,19 @@ test.describe('Adding Movies to Lists', { tag: '@agent' }, () => {
     await expect(movieLink).toBeVisible();
     const href = await movieLink.getAttribute('href');
     expect(href).toContain('/movie?id=');
+  });
+
+  test('Add Movie with Very Long Title', async ({ listWithMoviesPage }) => {
+    const page = listWithMoviesPage;
+    const longTitle = 'The Ministry of Ungentlemanly Warfare';
+
+    await page.getByRole('textbox', { name: 'Add Item' }).fill(longTitle);
+    await page.getByRole('button', { name: new RegExp(longTitle) }).first().click();
+    await expect(
+      page.getByRole('listitem', { name: 'movie' }).filter({ hasText: longTitle }),
+    ).toBeVisible();
+
+    await page.getByRole('link', { name: 'View List' }).click();
+    await expect(page.getByRole('heading', { name: longTitle })).toBeVisible();
   });
 });

@@ -1,9 +1,7 @@
-// spec: specs/movies-list-plan.md
-// seed: tests/logged-in/seed.spec.ts
+// Consolidated @agent coverage. Prefer manage-lists-* for teaching style.
 
-import { expect } from '@playwright/test';
+import { expect, test } from '../../helpers/list-fixtures';
 import { addMovie } from '../../helpers/list-utilities';
-import { listWithMoviesTest as test } from '../../helpers/list-fixtures';
 
 test.describe('Removing Movies from Lists', { tag: '@agent' }, () => {
   test('Remove Single Movie', async ({ listWithMoviesPage }) => {

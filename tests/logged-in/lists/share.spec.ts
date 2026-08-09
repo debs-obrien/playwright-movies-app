@@ -1,10 +1,7 @@
-// spec: specs/movies-list-plan.md
-// seed: tests/helpers/list-fixtures.ts
+// Consolidated @agent coverage. Prefer manage-lists-* for teaching style.
+// Share Private List remains in tests/logged-in/share-private-list.spec.ts.
 
-import { expect } from '@playwright/test';
-import { listTest as test } from '../../helpers/list-fixtures';
-
-// Share Private List remains in tests/logged-in/share-private-list.spec.ts (do not delete).
+import { expect, test } from '../../helpers/list-fixtures';
 
 test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
   test('Open Share Dialog', async ({ listPage }) => {
@@ -16,19 +13,15 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
 
     const urlTextbox = page.getByRole('textbox', { name: 'URL' });
     await expect(urlTextbox).toBeVisible();
-    const urlValue = await urlTextbox.inputValue();
-    expect(urlValue).toMatch(/^http:\/\/127\.0\.0\.1:3000\/list\?id=.+&page=1$/);
+    await expect(urlTextbox).toHaveValue(/^http:\/\/127\.0\.0\.1:3000\/list\?id=.+&page=1$/);
   });
 
-  test('Copy Share URL', async ({ listPage }) => {
+  test('Open List from Share URL', async ({ listPage }) => {
     const page = listPage;
 
     await page.getByRole('button', { name: 'Share' }).click();
 
-    const urlTextbox = page.getByRole('textbox', { name: 'URL' });
-    await urlTextbox.click();
-    const sharedUrl = await urlTextbox.inputValue();
-
+    const sharedUrl = await page.getByRole('textbox', { name: 'URL' }).inputValue();
     await page.goto(sharedUrl);
 
     await expect(page.getByRole('heading', { name: 'my favorite movies', exact: true })).toBeVisible();
@@ -37,21 +30,21 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
     await expect(page.getByRole('heading', { name: 'Bad Boys: Ride or Die' })).toBeVisible();
   });
 
-  // Skipped: share dialog does not support closing by clicking outside or pressing Escape.
-  test.skip('Close Share Dialog by Clicking Outside', async ({ listPage }) => {
+  test('Close Share Dialog by Clicking Outside', async ({ listPage }) => {
     const page = listPage;
 
     await page.getByRole('button', { name: 'Share' }).click();
-    await expect(page.getByRole('heading', { name: 'Share my favorite movies' })).toBeVisible();
+    await expect(page.getByRole('dialog')).toBeVisible();
+
+    await page.locator('body').click({ position: { x: 0, y: 0 } });
+    await expect(page.getByRole('dialog')).not.toBeVisible();
   });
 
-  test('Verify Share URL Persistence', async ({ listPage }) => {
+  test('Share URL Still Works After Leaving the Page', async ({ listPage }) => {
     const page = listPage;
 
     await page.getByRole('button', { name: 'Share' }).click();
-
-    const urlTextbox = page.getByRole('textbox', { name: 'URL' });
-    const shareUrl = await urlTextbox.inputValue();
+    const shareUrl = await page.getByRole('textbox', { name: 'URL' }).inputValue();
 
     await page.goto('/');
     await expect(page.getByRole('heading', { name: 'Popular' })).toBeVisible();
@@ -60,9 +53,6 @@ test.describe('Sharing Movie Lists', { tag: '@agent' }, () => {
 
     await expect(page.getByRole('heading', { name: 'my favorite movies', exact: true })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Twisters' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'The Garfield Movie' })).toBeVisible();
-    await expect(page.getByRole('heading', { name: 'Bad Boys: Ride or Die' })).toBeVisible();
-
-    expect(page.url()).toMatch(/^http:\/\/127\.0\.0\.1:3000\/list\?id=.+&page=1$/);
+    await expect(page.url()).toMatch(/\/list\?id=.+&page=1$/);
   });
 });

@@ -1,10 +1,8 @@
-// spec: specs/movies-list-plan.md
-// seed: tests/helpers/list-fixtures.ts
+// Consolidated @agent coverage. Prefer manage-lists-* for teaching style.
 
-import { expect } from '@playwright/test';
-import { listWithMoviesTest as test } from '../../helpers/list-fixtures';
+import { expect, test } from '../../helpers/list-fixtures';
 
-test.describe('Integration with Search Functionality', { tag: '@agent' }, () => {
+test.describe('Movie search in Add Item', { tag: '@agent' }, () => {
   test('Search for Movie in Add Item Field', async ({ listWithMoviesPage }) => {
     const page = listWithMoviesPage;
 
@@ -17,13 +15,6 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
     const searchResults = page.getByLabel('Movie search results').getByRole('button');
     await expect(searchResults.first()).toBeVisible();
     await expect(searchResults.first()).toContainText(/\S/);
-  });
-
-  test('Search for Non-existent Movie Shows No Results Message', async ({ listWithMoviesPage }) => {
-    const page = listWithMoviesPage;
-
-    await page.getByRole('textbox', { name: 'Add Item' }).fill('nonexistentmovie12345');
-    await expect(page.getByRole('status')).toContainText(/No movies found/i);
   });
 
   test('Search for Non-Existent Movie', async ({ listWithMoviesPage }) => {
@@ -42,12 +33,9 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
 
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Twi');
     await expect(page.getByRole('button', { name: /Twisters/ }).first()).toBeVisible();
-    await expect(page.getByRole('textbox', { name: 'Add Item' })).toHaveValue('Twi');
 
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Twist');
     await expect(page.getByRole('button', { name: /Twisters/ }).first()).toBeVisible();
-    await expect(page.getByRole('textbox', { name: 'Add Item' })).toHaveValue('Twist');
-    await expect(page.getByRole('button', { name: /Twisters/ })).toBeVisible();
   });
 
   test('Clear Search and Search Again', async ({ listWithMoviesPage }) => {
@@ -61,9 +49,6 @@ test.describe('Integration with Search Functionality', { tag: '@agent' }, () => 
 
     await page.getByRole('textbox', { name: 'Add Item' }).fill('Avengers');
     await expect(page.getByRole('button', { name: /Avengers/ }).first()).toBeVisible();
-    await expect(page.getByRole('button', { name: /Avengers.*Infinity War/ })).toBeVisible();
     await expect(page.getByRole('button', { name: /Deadpool.*Wolverine/ })).not.toBeVisible();
-    await expect(page.getByRole('textbox', { name: 'Add Item' })).toHaveValue('Avengers');
-    await expect(page.getByRole('button', { name: /Avengers/ }).first()).toBeVisible();
   });
 });

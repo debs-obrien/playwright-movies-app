@@ -13,43 +13,41 @@ async function seedMovies(page: Page) {
 }
 
 /**
- * Empty list on Add/Remove Movies. Use when the test only needs a list shell
- * (empty state, create-then-view, choose-image-without-movies).
+ * One `test` with three optional list fixtures. Request only the lightest
+ * fixture the case needs — unused fixtures are not set up.
+ *
+ * | Fixture | Page state | Use when |
+ * |---------|------------|----------|
+ * | `emptyListPage` | New list, no movies, on Add/Remove | Empty-state UI |
+ * | `listWithMoviesPage` | List + 3 movies, no cover, on Add/Remove | Add/remove/search/cover |
+ * | `listPage` | Full seed on View List | Edit, share, my-lists, navigation |
  */
-export const emptyListTest = baseTest.extend<{ emptyListPage: Page }>({
+export const test = baseTest.extend<{
+  emptyListPage: Page;
+  listWithMoviesPage: Page;
+  listPage: Page;
+}>({
   emptyListPage: async ({ page }, use) => {
     await page.goto('');
     await createList(page, LIST_NAME, LIST_DESCRIPTION);
     await expect(page.getByRole('textbox', { name: 'Add Item' })).toBeVisible();
     await use(page);
   },
-});
 
-/**
- * List with three movies, no cover image, still on Add/Remove Movies.
- * Cheaper than listPage when the test only mutates or searches the movie list.
- */
-export const listWithMoviesTest = baseTest.extend<{ listWithMoviesPage: Page }>({
   listWithMoviesPage: async ({ page }, use) => {
     await page.goto('');
     await createList(page, LIST_NAME, LIST_DESCRIPTION);
-    await listWithMoviesTest.step('add movies to list', async () => seedMovies(page));
+    await test.step('add movies to list', async () => seedMovies(page));
     await use(page);
   },
-});
 
-/**
- * Full seed: three movies, cover image, landed on View List with Share visible.
- * Use for edit, share, my-lists, navigation, and view flows that start on View List.
- */
-export const listTest = baseTest.extend<{ listPage: Page }>({
   listPage: async ({ page }, use) => {
     await page.goto('');
     await createList(page, LIST_NAME, LIST_DESCRIPTION);
 
-    await listTest.step('add movies to list', async () => seedMovies(page));
+    await test.step('add movies to list', async () => seedMovies(page));
 
-    await listTest.step('add image to list', async () => {
+    await test.step('add image to list', async () => {
       await page.getByRole('link', { name: 'Choose Image' }).click();
       await expect(page.getByRole('listitem', { name: 'movie' }).first()).toBeVisible();
       await selectCoverImage(page, 'Twisters');
@@ -63,3 +61,12 @@ export const listTest = baseTest.extend<{ listPage: Page }>({
     await use(page);
   },
 });
+
+export { expect } from '@playwright/test';
+
+/** @deprecated Use `test` from this module. */
+export const listTest = test;
+/** @deprecated Use `test` from this module. */
+export const emptyListTest = test;
+/** @deprecated Use `test` from this module. */
+export const listWithMoviesTest = test;
