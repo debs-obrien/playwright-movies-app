@@ -1,5 +1,5 @@
 import { test, expect } from '../helpers/base-test';
-import { addMovie, createList, openLists } from '../helpers/list-utilities';
+import { addMovie, createList, openLists, selectCoverImage } from '../helpers/list-utilities';
 
 // Before each test, navigate to the base URL, create a list, and open the lists page
 test.beforeEach(async ({ page }) => {
@@ -105,14 +105,7 @@ test('should add an image to a list', async ({ page }) => {
   await test.step('choose and verify image for the list', async () => {
     // Verify that the movie list heading contains the text "Twisters"
     await expect(movie.getByRole('heading')).toHaveText('Twisters');
-
-    // Hover over the movie list item and select image
-    await movie.hover();
-    await expect(movie).toContainText('SELECT');
-    await movie.click();
-
-    // Verify that the button text has changed to "SELECTED"
-    await expect(movie.getByRole('button')).toHaveText('SELECTED');
+    await selectCoverImage(page, 'Twisters');
   });
 
   // Navigate back to the the "My Lists" section of the user profile

@@ -99,10 +99,7 @@ test('dropdown options should be hidden until clicked', async ({ page }) => {
     // Select one option
     await page.getByRole('option', { name: 'Votes Average' }).click();
 
-    // Wait a bit for the dropdown to close
-    await page.waitForTimeout(100);
-
-    // All options should be hidden again after selection
+    // All options should be hidden again after selection (auto-wait via toBeHidden)
     const votesAverageButton = page.getByRole('option', { name: 'Votes Average' });
     const popularityButton = page.getByRole('option', { name: 'Popularity' });
     const originalTitleButton = page.getByRole('option', { name: 'Original Title' });
