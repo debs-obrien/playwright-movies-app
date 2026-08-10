@@ -16,7 +16,7 @@ Policy for this repository. Depth: `docs/TESTING.md`, `docs/AI-TESTING.md`, `AGE
 - Assertions: web-first (`toBeVisible`, `toHaveText`, `toHaveURL`, `toHaveCount`, `toMatchAriaSnapshot`).
 - Forbidden: `waitForTimeout`, `force: true`, `waitForLoadState('networkidle')`, sync `.count()` for waits.
 - List flows: `tests/helpers/list-utilities.ts` (`createList`, `addMovie`, `openLists`, …).
-- Seeded list: `listPage` via `listTest` from `tests/helpers/list-test.ts`.
+- List fixtures: import `test` / `expect` from `tests/helpers/list-fixtures.ts`; request the lightest fixture (`emptyListPage` → `listWithMoviesPage` → `listPage`).
 - Prefer `test.step` for multi-step flows.
 - Generated coverage: tag `@agent`. **Learn style from** `manage-lists-before-each.spec.ts` / `manage-lists-fixtures.spec.ts`, not from dense `@agent` files.
 - Do **not** use Playwright Codegen / test recorder. Explore with the `playwright-cli` skill, then write idiomatic tests.

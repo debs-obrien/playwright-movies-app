@@ -71,14 +71,15 @@ const Cast = ({
     <>
       <div className='cast'>
         <div className='viewport' ref={viewportRef}>
-          <button
-            type='button'
-            className='arrow arrow-left'
-            onClick={() => scrollBySlides(-1)}
-            disabled={!canScrollPrev}
-            aria-label='Scroll cast list left'>
-            <ChevronLeftIcon width='1em' height='1em' />
-          </button>
+          {canScrollPrev && (
+            <button
+              type='button'
+              className='arrow arrow-left'
+              onClick={() => scrollBySlides(-1)}
+              aria-label='Scroll cast list left'>
+              <ChevronLeftIcon width='1em' height='1em' />
+            </button>
+          )}
           <div
             className='track'
             ref={trackRef}
@@ -93,14 +94,15 @@ const Cast = ({
               </div>
             ))}
           </div>
-          <button
-            type='button'
-            className='arrow arrow-right'
-            onClick={() => scrollBySlides(1)}
-            disabled={!canScrollNext}
-            aria-label='Scroll cast list right'>
-            <ChevronRightIcon width='1em' height='1em' />
-          </button>
+          {canScrollNext && (
+            <button
+              type='button'
+              className='arrow arrow-right'
+              onClick={() => scrollBySlides(1)}
+              aria-label='Scroll cast list right'>
+              <ChevronRightIcon width='1em' height='1em' />
+            </button>
+          )}
         </div>
       </div>
       <style jsx>{`
@@ -118,6 +120,9 @@ const Cast = ({
           gap: 12px;
           overflow-x: auto;
           scroll-behavior: smooth;
+          scroll-snap-type: x proximity;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior-x: contain;
           scrollbar-width: thin;
           padding: 4px 0;
         }
@@ -136,32 +141,38 @@ const Cast = ({
           width: ${ITEM_WIDTH}px;
           display: flex;
           justify-content: center;
+          scroll-snap-align: start;
         }
 
         .arrow {
           position: absolute;
           top: 50%;
           transform: translateY(-50%);
-          background: none;
-          border: none;
-          padding: 0.25rem;
+          z-index: 1;
+          background: rgba(var(--palette-background-paper-rgb), 0.9);
+          border: 1px solid var(--palette-divider);
+          border-radius: 50%;
+          width: 40px;
+          height: 40px;
+          min-width: 40px;
+          min-height: 40px;
+          padding: 0;
           cursor: pointer;
-          color: #666;
+          color: var(--palette-text-secondary);
           display: flex;
           align-items: center;
           justify-content: center;
-          transition: color 0.2s ease-in-out;
+          transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
         }
 
-        .arrow:disabled {
-          color: #999;
-          opacity: 0.4;
-          cursor: default;
+        .arrow:hover,
+        .arrow:focus-visible {
+          color: var(--palette-text-primary);
         }
 
-        .arrow:not(:disabled):hover,
-        .arrow:not(:disabled):focus {
-          color: #ccc;
+        .arrow:focus-visible {
+          outline: 2px solid var(--palette-primary-main);
+          outline-offset: 2px;
         }
 
         .arrow-left {
@@ -174,15 +185,14 @@ const Cast = ({
 
         @media (max-width: 36em) {
           .arrow {
+            /* Keep swipe scrolling on narrow phones; arrows can crowd the first/last person */
             display: none;
           }
+        }
 
+        @media (prefers-reduced-motion: reduce) {
           .track {
-            scrollbar-width: auto;
-          }
-
-          .track::-webkit-scrollbar {
-            height: 3px;
+            scroll-behavior: auto;
           }
         }
       `}</style>

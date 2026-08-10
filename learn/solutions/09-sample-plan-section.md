@@ -5,7 +5,7 @@
 ## Seed
 
 - Logged-in storage state from `login.setup.ts`
-- Prefer `listPage` from `tests/helpers/list-test.ts` when the scenario needs a seeded list on View List
+- Prefer `listPage` from `tests/helpers/list-fixtures.ts` when the scenario needs a seeded list on View List
 - Reuse `list-utilities` where a flow already exists
 
 ## Scenarios

@@ -26,10 +26,11 @@ Project teaching skills (keep across regenerations): `movies-playwright`, `learn
 - Locators: `getByRole`, `getByLabel`, `getByText` with accessible names. Avoid CSS/XPath as the primary strategy.
 - Assertions: web-first (`toBeVisible`, `toHaveText`, `toHaveURL`, `toHaveCount`, `toMatchAriaSnapshot`).
 - Forbidden: `waitForTimeout`, `force: true`, `waitForLoadState('networkidle')`, sync `.count()` for waits.
-- List tests: import `listTest` from `tests/helpers/list-test.ts` when you need the seeded `listPage` fixture; otherwise use `base-test` + helpers.
-- Reuse `tests/helpers/list-utilities.ts` (`createList`, `addMovie`, `openLists`, …).
+- List tests: import `test` / `expect` from `tests/helpers/list-fixtures.ts` and request the **lightest** fixture (`emptyListPage` → `listWithMoviesPage` → `listPage`).
+- Reuse `tests/helpers/list-utilities.ts` (`createList`, `addMovie`, `openLists`, `selectCoverImage`, …).
 - Prefer `test.step` for multi-step flows so traces stay readable.
 - Generated suites: tag with `@agent`. Learn style from `manage-lists-*`, not from dense `@agent` coverage.
+- Seeds and plans must reference `tests/logged-in/seed.spec.ts` and `list-fixtures` — not deprecated `list-test.ts`.
 - Do not use Codegen / the test recorder as the authoring path.
 
 ## Healing

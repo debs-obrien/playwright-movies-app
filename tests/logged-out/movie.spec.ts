@@ -25,14 +25,15 @@ test.describe('Movie Details Page - Content', () => {
 
       await expect(movie.getByLabel('Rating Value')).toHaveText('7.02');
 
+      // spoken_languages / trailer videos are omitted from trimmed mock fixtures
       await expect(movie).toMatchAriaSnapshot(`
         - heading "Twisters" [level=1]
         - heading "Chase. Ride. Survive." [level=2]
         - text: /★/
         - paragraph: "7.02"
-        - text: English / 123 min. / 2024
+        - text: 123 min. / 2024
         - heading "The Genres" [level=3]
-        - list:
+        - list "genres":
           - listitem:
             - link "Action"
           - listitem:
@@ -62,9 +63,10 @@ test.describe('Movie Details Page - Links', () => {
   });
 
   test('links to cast page and back button', async ({ page }) => {
-    await page.getByRole('link', { name: 'Samantha Ireland' }).click();
+    // Cast fixtures were trimmed; use a lead actor that remains in the mock.
+    await page.getByRole('link', { name: 'Daisy Edgar-Jones' }).click();
     await expect(page.getByRole('main').getByRole('heading', { level: 1 }).first())
-      .toHaveText('Samantha Ireland');
+      .toHaveText('Daisy Edgar-Jones');
     await page.getByRole('button', { name: 'Back' }).click();
     await expect(
       page.getByRole('main').getByRole('heading', { level: 1 }).first(),
@@ -77,6 +79,33 @@ test.describe('Movie Details Page - Links', () => {
       tag: '@iframe',
     },
     async ({ page }) => {
+      // Fixtures omit videos; inject a trailer and stub the YouTube embed.
+      await page.route(
+        '*/**/**718821?append_to_response=videos',
+        async (route) => {
+          const response = await route.fetch();
+          const json = await response.json();
+          json.videos = {
+            results: [
+              {
+                key: 'wdov1R5HjXY',
+                name: 'Twisters',
+                site: 'YouTube',
+                type: 'Trailer',
+              },
+            ],
+          };
+          await route.fulfill({ response, json });
+        },
+      );
+      await page.route('https://www.youtube.com/**', async (route) => {
+        await route.fulfill({
+          contentType: 'text/html',
+          body: '<html><body><a href="/watch">Twisters</a></body></html>',
+        });
+      });
+
+      await page.goto('movie?id=718821&page=1');
       await page.getByRole('button', { name: 'Trailer' }).click();
       await expect(page.frameLocator('iframe').getByRole('link', { name: 'Twisters' }))
         .toBeVisible();

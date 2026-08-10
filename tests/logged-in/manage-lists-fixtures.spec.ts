@@ -1,5 +1,4 @@
-import { expect } from '@playwright/test';
-import { listTest as test } from '../helpers/list-test';
+import { expect, test } from '../helpers/list-fixtures';
 import { addMovie } from '../helpers/list-utilities';
 
 test('editing an existing list', async ({ listPage }) => {

@@ -28,6 +28,20 @@ const PaddingWrapper = ({
           padding-left: 2rem;
         }
       }
+
+      @media ${theme.mediaQueries.small} {
+        .padding-wrapper {
+          padding-right: 1.25rem;
+          padding-left: 1.25rem;
+        }
+      }
+
+      @media ${theme.mediaQueries.smaller} {
+        .padding-wrapper {
+          padding-right: 1rem;
+          padding-left: 1rem;
+        }
+      }
     `}</style>
   </>
 );

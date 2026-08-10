@@ -4,8 +4,6 @@ Hands-on guide to end-to-end testing with [Playwright](https://playwright.dev/) 
 
 Movie data and login come from the local **TMDB mock API** in [`mock-api/`](mock-api/) (no cloud account required for login). Images may still load from [TMDB](https://www.themoviedb.org/). Fork of [next-movies](https://github.com/tastejs/next-movies), customized for learning.
 
-![Playwright Movies App](movies-app-ui-mode.jpg)
-
 ## Start here — Learn
 
 1. Clone, `npm install`, `npx playwright install chromium`, copy `.env.example` → `.env`.
@@ -19,9 +17,12 @@ Movie data and login come from the local **TMDB mock API** in [`mock-api/`](mock
 | **Published docs** | `/learn` on [GitHub Pages](https://debs-obrien.github.io/playwright-movies-app/learn/) (after deploy) |
 | **Skills** | `.agents/skills/movies-playwright`, `learn-lab-coach` (+ official `playwright-cli`, `playwright-trace`) |
 | **Reference** | [`docs/TESTING.md`](docs/TESTING.md), [`docs/AI-TESTING.md`](docs/AI-TESTING.md) |
+| **Exercises** | [`docs/exercises/`](docs/exercises/README.md) |
 | **House style** | [`AGENTS.md`](AGENTS.md) |
 
 Workshop structure inspired by [Build 2025 Lab 304](https://github.com/microsoft/Build25-LAB304). This fork is agent-first. Wiki deprecated: [`docs/WIKI.md`](docs/WIKI.md).
+
+![Playwright Movies App](movies-app-ui-mode.jpg)
 
 ## Installation
 
@@ -70,6 +71,8 @@ npx playwright test --ui
 ```
 
 Playwright starts both the mock API and the app via `webServer`. Prefer CLI / UI Mode from your agent; you do not need an IDE Testing extension for this course.
+
+For fixture tiers, web-first patterns, the suite map, and AI workflows, see [`docs/TESTING.md`](docs/TESTING.md) and [`docs/AI-TESTING.md`](docs/AI-TESTING.md).
 
 ## License
 

@@ -1,5 +1,4 @@
-import { expect } from '@playwright/test';
-import { listTest as test } from '../../tests/helpers/list-test';
+import { expect, test } from '../../tests/helpers/list-fixtures';
 
 test('scratch: edit list name via listPage fixture', async ({ listPage }) => {
   const page = listPage;

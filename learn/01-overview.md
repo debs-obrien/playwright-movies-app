@@ -17,7 +17,7 @@ Orient to the repo, start the Movies app, and run an existing Playwright test fr
 - **`mock-api/`** — local TMDB-compatible API (port 4000)
 - **`tests/logged-out/`** — guest tests (no saved auth)
 - **`tests/logged-in/`** — tests that depend on the `setup` project + `storageState`
-- **`tests/helpers/`** — shared helpers and fixtures (`list-utilities`, `list-test`, `base-test`)
+- **`tests/helpers/`** — shared helpers and fixtures (`list-utilities`, `list-fixtures`, `base-test`)
 - **`playwright.config.ts`** — projects, `webServer`, `baseURL`, traces
 
 ## Start the app

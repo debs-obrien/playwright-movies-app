@@ -8,12 +8,16 @@ test('search for "Twisters" movie', async ({ page }) => {
   // Verify that the URL contains the search term 'twisters'
   await expect(page).toHaveURL(/searchTerm=twisters/);
 
-  // Verify that the search results contain an image with the alt text matching 'Twisters'
-  await expect(page.getByRole('list').getByLabel('movie').getByRole('img'))
-    .toHaveAttribute('alt', /Twisters/);
+  // Scope to the matching result; a bare list/img locator can race with the home grid.
+  const twistersResult = page
+    .getByRole('main')
+    .getByRole('listitem', { name: 'movie' })
+    .filter({ hasText: /Twisters/i });
+  await expect(twistersResult.getByRole('img')).toHaveAttribute('alt', /Twisters/i);
 
   // Click on the link for the movie 'Twisters'
-  await page.getByRole('link', { name: /twisters/i }).click();
+  await twistersResult.getByRole('link', { name: /twisters/i }).click();
+
 
   // Verify that the main heading on the movie page is 'Twisters'
   await expect(page.getByRole('main')).toMatchAriaSnapshot(`

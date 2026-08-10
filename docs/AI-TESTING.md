@@ -47,6 +47,15 @@ npx playwright cli --help
 npx playwright init-skills --loop=agents   # official skills → .agents/skills
 ```
 
+Typical flow against this app (dev servers via `npm run dev` or Playwright `webServer`):
+
+```bash
+npx playwright cli open http://127.0.0.1:3000/ --headed
+npx playwright cli snapshot
+npx playwright cli click "role=button[name=User Profile]"
+# …explore, then draft a test that matches manage-lists-* style
+```
+
 ## 2. Traces (required habit)
 
 Do not heal by blind retry. Use **playwright-trace** or UI Mode, then edit per **movies-playwright**.
@@ -56,13 +65,20 @@ npx playwright test path/to/spec.ts --trace on
 npx playwright show-trace test-results/.../trace.zip
 npx playwright trace open path/to/trace.zip
 npx playwright trace actions
+npx playwright trace action <id>
 ```
+
+Config already enables `trace: 'on-first-retry'`, screenshots and video on failure. Prefer trace evidence in healer runs before changing locators—and before `test.fixme()`.
 
 ## 3. Playwright MCP
 
 ```bash
 npx playwright mcp --help
 ```
+
+Wire MCP into your client if it does not already use Playwright’s bundled server. MCP fits long explore loops and the official test-agent tool sets (`planner_*`, `generator_*`, `test_run` / `test_debug`).
+
+Tradeoff: richer iterative page structure in context, higher token cost than CLI skills. For “write one test while editing this repo,” prefer CLI.
 
 ## 4. Test agents: planner → generator → healer
 
@@ -84,14 +100,39 @@ npx playwright init-skills --loop=claude             # → .claude/skills
 | [`playwright-test-coverage.prompt.md`](../.github/prompts/playwright-test-coverage.prompt.md) | Full plan → generate → heal |
 | [`lab-coach.prompt.md`](../.github/prompts/lab-coach.prompt.md) | “I’m on Lab N” → **learn-lab-coach** skill |
 
+Seed for list flows: [`tests/logged-in/seed.spec.ts`](../tests/logged-in/seed.spec.ts) (uses `list-fixtures`). Example plan: [`specs/movies-list-plan.md`](../specs/movies-list-plan.md).
+
+### Consolidation note
+
+Generator prompts often ask for **one file per scenario**. This repo then consolidates `@agent` tests under `tests/logged-in/lists/` by feature. After generation, merge duplicates, prefer fixtures from `list-fixtures.ts`, and keep standalone files only when they teach a distinct pattern (guest context, multi-list delete, …).
+
+### Healer rules
+
+1. Open a trace or live debug snapshot before editing.
+2. Fix the test (or product) with web-first locators and fixtures.
+3. Use `test.fixme()` only when you are confident the product is wrong; comment the observed vs expected behavior.
+4. State whether the issue is **product bug**, **test bug**, or **skip**.
+
 ## Review rubric (every AI-written test)
 
 - [ ] Role/label locators (`getByRole`, `getByLabel`, `getByText`) — not CSS/XPath as primary
 - [ ] Web-first assertions (`toBeVisible`, `toHaveText`, `toHaveURL`, `toHaveCount`, `toMatchAriaSnapshot`)
 - [ ] No `waitForTimeout`, `force: true`, or `waitForLoadState('networkidle')`
-- [ ] Logged-in list flows use `list-utilities` / `listPage` from `list-test` when appropriate
+- [ ] Lightest fixture from `list-fixtures` (or clear reason for raw `page`)
+- [ ] Reuses `list-utilities` instead of re-walking create/add flows
+- [ ] Meaningful assertions (visibility, values, ARIA snapshot, counts)—not click-only
+- [ ] Independent of other tests; works with mock-api reset
 - [ ] `test.step` for multi-step flows
 - [ ] Seed/setup language matches this repo (`login.setup`, helpers)
 - [ ] Healer used a **trace** or live snapshot before changing locators
 - [ ] `test.fixme()` only with a comment of observed vs expected when the product is wrong
+- [ ] Tagged `@agent` if generated; style still matches `manage-lists-*` after rewrite
 - [ ] No Codegen / recorder output as the primary authoring path
+
+Side-by-side example: [`tests/logged-in/lessons/ai-raw-vs-idiomatic.spec.ts`](../tests/logged-in/lessons/ai-raw-vs-idiomatic.spec.ts).
+
+## When to hand-write instead
+
+- Teaching a new pattern (fixtures, guest context, soft asserts)
+- Small change next to an existing idiomatic test
+- AI output fails the rubric twice—stop regenerating and write it yourself

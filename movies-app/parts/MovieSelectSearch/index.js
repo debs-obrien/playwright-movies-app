@@ -116,12 +116,19 @@ const MovieSelectSearch = props => {
         role="textbox"
         name={props.label || "Add Item"}
         aria-label={props.label || "Add Item"}
+        aria-busy={loading}
+        aria-controls="movie-search-results"
+        aria-expanded={showDropdown}
       />
       
       {showDropdown && (
-        <div className={clsx(classes.select, 'select-search-options')}>
+        <div
+          id="movie-search-results"
+          className={clsx(classes.select, 'select-search-options')}
+          aria-label="Movie search results"
+        >
           {loading ? (
-            <div className={classes.loading}>
+            <div className={classes.loading} role="status" aria-live="polite">
               <div className={classes.loadingSpinner} />
               <div className={classes.loadingText}>
                 Searching for movies...
@@ -140,7 +147,7 @@ const MovieSelectSearch = props => {
                 >
                   {option.disabled ? (
                     // No results or error state - show as text, not clickable button
-                    <div className={classes['not-found']}>
+                    <div className={classes['not-found']} role="status">
                       {option.name}
                     </div>
                   ) : (
@@ -151,7 +158,7 @@ const MovieSelectSearch = props => {
                     >
                       <img
                         src={option.image || NOTHING_PLACEHOLDER_IMAGE_PATH}
-                        alt={option.name}
+                        alt=""
                       />
                       <span>
                         {option.name}

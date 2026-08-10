@@ -46,6 +46,9 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    /* Screenshot/video only on failure keeps CI artifacts useful without slowing green runs. */
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
   captureGitInfo: { commit: true, diff: true },
 
