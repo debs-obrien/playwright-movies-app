@@ -1,7 +1,4 @@
-# Sample workflow for building and deploying a Next.js site to GitHub Pages
-#
-# To get started with Next.js see: https://nextjs.org/docs/getting-started
-#
+# Deploy Movies app + VitePress learn site to GitHub Pages
 name: Deploy Next.js site to Pages
 
 on:
@@ -36,13 +33,22 @@ jobs:
           NEXT_PUBLIC_BASEPATH: /playwright-movies-app
           # Override via repo variable NEXT_PUBLIC_TMDB_API_BASE_URL if needed.
           NEXT_PUBLIC_TMDB_API_BASE_URL: ${{ vars.NEXT_PUBLIC_TMDB_API_BASE_URL != '' && vars.NEXT_PUBLIC_TMDB_API_BASE_URL || 'https://playwright-tmdb-mock.zephyrwmf.workers.dev' }}
-      - name: List build directory (debugging)
-        run: ls -la movies-app/out
+      - name: Build learn docs
+        run: npm run docs:build
+        env:
+          DOCS_BASE: /playwright-movies-app/learn/
+      - name: Merge app and learn site
+        run: |
+          mkdir -p site
+          cp -R movies-app/out/. site/
+          mkdir -p site/learn
+          cp -R .vitepress/dist/. site/learn/
+          ls -la site
+          ls -la site/learn | head
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./movies-app/out
-
+          path: ./site
 
   deploy:
     environment:

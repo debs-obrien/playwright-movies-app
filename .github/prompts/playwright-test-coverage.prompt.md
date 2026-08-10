@@ -1,0 +1,33 @@
+---
+agent: agent
+description: Produce test coverage
+---
+
+Parameters:
+- Task: the task to perform
+- Seed file (optional): defaults to `tests/logged-in/seed.spec.ts`
+- Test plan file (optional): defaults to `specs/movies-list-plan.md`
+
+Follow the **movies-playwright** skill for house style.
+
+1. Call #playwright-test-planner subagent with prompt:
+
+<plan>
+  <task-text><!-- the task --></task-text>
+  <seed-file><!-- path to seed file --></seed-file>
+  <plan-file><!-- path to test plan file to generate --></plan-file>
+</plan>
+
+2. For each test case from the test plan file (1.1, 1.2, ...), one after another, not in parallel, call #playwright-test-generator subagent with prompt:
+
+<generate>
+  <test-suite><!-- Verbatim name of the test spec group w/o ordinal --></test-suite>
+  <test-name><!-- Name of the test case without the ordinal --></test-name>
+  <test-file><!-- e.g. tests/logged-in/my-scenario.spec.ts --></test-file>
+  <seed-file><!-- Seed file path from test plan --></seed-file>
+  <body><!-- Test case content including steps and expectations --></body>
+</generate>
+
+3. Call #playwright-test-healer subagent with prompt:
+
+<heal>Run all tests and fix the failing ones one after another.</heal>
