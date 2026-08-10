@@ -15,11 +15,14 @@ Modules 01 to 08 already assume you may use a coding agent. This module deepens 
 
 ```bash
 npm run dev
+# keep that process running, then in another terminal:
 npx playwright cli open http://127.0.0.1:3000/ --headed
 npx playwright cli snapshot
 ```
 
-Draft a short test that matches `manage-lists-*` style. Run it. If it fails, open a trace before editing.
+If the CLI reports `ERR_CONNECTION_REFUSED`, start (or restart) `npm run dev` so ports **3000** / **4000** are up before exploring.
+
+Draft a short test that matches `manage-lists-*` style. Run it with `--project="logged-in chrome"` when it uses list fixtures. If it fails, open a trace before editing.
 
 ## Path B: Planner, generator, heal
 
@@ -39,7 +42,23 @@ Keep scope to one feature slice. Example plan section:
 - Share UI is visible with a role-based locator
 ```
 
-Use the planner and generator prompts from `.github/prompts/` on a clone, rewrite toward house style, then heal with trace evidence. Pass the [review rubric](/docs/AI-TESTING#review-rubric-every-ai-written-test).
+On a clone, use these thin prompts (names matter):
+
+| Step | Prompt |
+|------|--------|
+| Plan | `.github/prompts/playwright-test-plan.prompt.md` |
+| Generate one scenario | `.github/prompts/playwright-test-generate.prompt.md` |
+| Heal | `.github/prompts/playwright-test-heal.prompt.md` |
+
+Rewrite toward house style with the **movies-playwright** skill, then heal with trace evidence. Pass the [review rubric](/docs/AI-TESTING#review-rubric-every-ai-written-test).
+
+## Done when
+
+- Path A or Path B produced one small idiomatic test (or a scoped plan section).
+- Role locators + fixtures/helpers; no Codegen / brittle waits.
+- The review rubric passes for what you landed.
+
+Extra practice: [Exercise 03 — plan a section with AI](/docs/exercises/03-ai-plan-section).
 
 ## Key takeaways
 

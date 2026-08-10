@@ -41,7 +41,13 @@ Set `MOVIES_USERNAME` and `MOVIES_PASSWORD` in `.env`. Write a scratch spec unde
 npx playwright test tests/logged-out/my-auth.spec.ts --project=chromium
 ```
 
-Explore the flow first with `npm run dev` and `npx playwright cli`, or use UI Mode if you prefer a visual pass.
+Explore the flow first with `npm run dev` (keep that terminal running) and `npx playwright cli`, or use UI Mode if you prefer a visual pass. Playwright’s `webServer` can start the app for `npx playwright test` even when `npm run dev` is not running.
+
+## Done when
+
+- `.env` has `MOVIES_USERNAME` and `MOVIES_PASSWORD`.
+- Your scratch `tests/logged-out/my-auth.spec.ts` (or equivalent) passes on chromium.
+- Locators use roles/labels; credentials come from `process.env`.
 
 ## Key takeaways
 

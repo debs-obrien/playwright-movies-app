@@ -8,6 +8,7 @@ export default defineConfig({
     'Hands-on Playwright workshop using the Movies app. Concepts live on playwright.dev; practice lives here.',
   base,
   srcDir: '.',
+  head: [['link', { rel: 'icon', href: `${base}favicon.svg`, type: 'image/svg+xml' }]],
   rewrites: {
     'learn/index.md': 'course.md',
     'learn/:page.md': ':page.md',
@@ -83,6 +84,7 @@ export default defineConfig({
           { text: 'Testing guide', link: '/docs/TESTING' },
           { text: 'AI testing', link: '/docs/AI-TESTING' },
           { text: 'Agent house style', link: '/AGENTS' },
+          { text: 'Exercises', link: '/docs/exercises/' },
         ],
       },
     ],

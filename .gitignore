@@ -38,6 +38,7 @@ blob-report/
 playwright/.cache
 playwright/.auth
 .playwright-mcp
+.playwright-cli/
 .tmp-tmdb-mock/
 
 # VitePress

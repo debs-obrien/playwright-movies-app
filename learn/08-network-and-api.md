@@ -51,6 +51,15 @@ test('first popular movie', async ({ request }) => {
 npx playwright test tests/logged-out/api.spec.ts --project=chromium
 ```
 
+## Done when
+
+```bash
+npx playwright test tests/logged-out/sort-by.spec.ts --project=chromium
+npx playwright test tests/logged-out/api.spec.ts --project=chromium
+```
+
+both pass on a clone.
+
 ## Key takeaways
 
 - You can fulfill a route from a fixture file.

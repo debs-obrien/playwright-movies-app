@@ -16,7 +16,7 @@ Movie data and login come from the local **TMDB mock API** in [`mock-api/`](mock
 | **Live demo app** | [Movies app](https://debs-obrien.github.io/playwright-movies-app/) |
 | **Skills** | `.agents/skills/movies-playwright`, `learn-lab-coach` (+ official `playwright-cli`, `playwright-trace`) |
 | **Reference** | [`docs/TESTING.md`](docs/TESTING.md), [`docs/AI-TESTING.md`](docs/AI-TESTING.md) |
-| **Exercises** | [`docs/exercises/`](docs/exercises/README.md) |
+| **Exercises** | [`docs/exercises/`](docs/exercises/index.md) |
 | **House style** | [`AGENTS.md`](AGENTS.md) |
 
 ![Playwright Movies App](movies-app-ui-mode.jpg)

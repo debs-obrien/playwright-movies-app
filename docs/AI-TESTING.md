@@ -39,6 +39,7 @@ flowchart TB
 |-------|------|
 | [`movies-playwright` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/movies-playwright/SKILL.md) | House style, fixtures, explore, draft, rewrite, heal policy |
 | [`learn-lab-coach` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/learn-lab-coach/SKILL.md) | Walk labs one step at a time in a local clone |
+| [`learn-dogfood` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/learn-dogfood/SKILL.md) | Maintainer QA: simulate a new learner after `learn/` changes |
 | [`playwright-cli` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/playwright-cli/SKILL.md) | Official CLI explore and attach (from `init-skills`) |
 | [`playwright-trace` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/playwright-trace/SKILL.md) | Official trace CLI (from `init-skills`) |
 
@@ -99,6 +100,7 @@ npx playwright init-skills --loop=claude             # → .claude/skills
 | [`playwright-test-heal.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/playwright-test-heal.prompt.md) | Run and fix failures |
 | [`playwright-test-coverage.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/playwright-test-coverage.prompt.md) | Full plan, generate, heal |
 | [`lab-coach.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/lab-coach.prompt.md) | “I'm on 01” invokes **learn-lab-coach** |
+| [`learn-dogfood.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/learn-dogfood.prompt.md) | Maintainer QA: dogfood the course with **learn-dogfood** |
 
 Seed for list flows: [`seed.spec.ts` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-in/seed.spec.ts) (uses `list-fixtures`). Example plan: [`movies-list-plan.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/specs/movies-list-plan.md).
 

@@ -1,0 +1,75 @@
+# Smoke the VitePress learn site build and key routes (static output).
+name: Docs smoke
+
+on:
+  pull_request:
+    paths:
+      - 'learn/**'
+      - 'docs/**'
+      - 'AGENTS.md'
+      - 'index.md'
+      - '.vitepress/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/docs-smoke.yml'
+  push:
+    branches: ['main']
+    paths:
+      - 'learn/**'
+      - 'docs/**'
+      - 'AGENTS.md'
+      - 'index.md'
+      - '.vitepress/**'
+      - 'public/**'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/docs-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  docs-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+      - run: npm ci
+      - name: Build learn docs (local base)
+        run: npm run docs:build
+      - name: Check required pages and favicon
+        run: |
+          set -euo pipefail
+          dist=".vitepress/dist"
+          for rel in \
+            course.html \
+            00-start-here.html \
+            01-overview.html \
+            02-first-test.html \
+            03-aria-snapshots.html \
+            04-debugging.html \
+            05-tags-annotations.html \
+            06-auth-setup.html \
+            07-fixtures-helpers.html \
+            08-network-and-api.html \
+            09-ai-writing-path.html \
+            10-bonus-sharding.html \
+            docs/TESTING.html \
+            docs/AI-TESTING.html \
+            AGENTS.html \
+            favicon.svg
+          do
+            path="$dist/$rel"
+            if [ ! -f "$path" ]; then
+              echo "Missing: $path"
+              exit 1
+            fi
+            echo "OK $rel"
+          done
+          if [ ! -f "$dist/docs/exercises/index.html" ]; then
+            echo "Missing: $dist/docs/exercises/index.html"
+            exit 1
+          fi
+          echo "OK docs/exercises/index.html"

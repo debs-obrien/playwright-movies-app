@@ -34,6 +34,15 @@ steps:
 
 Upload each shard's report or blob as an artifact. Merge blob reports if you use the blob reporter (enabled on CI in this repo).
 
+## Done when
+
+```bash
+npx playwright test --shard=1/4 --project=chromium
+npx playwright test --shard=2/4 --project=chromium
+```
+
+both complete on a clone, and you can explain why this repo keeps `workers: 1`.
+
 ## Key takeaways
 
 - You can run `--shard=N/M` locally.

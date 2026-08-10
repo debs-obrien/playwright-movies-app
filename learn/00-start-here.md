@@ -48,7 +48,12 @@ When writing or fixing tests in an agent, use the **movies-playwright** skill pl
 | Explore the app | `npx playwright cli` |
 | Live demo (no install) | [Movies app on GitHub Pages](https://debs-obrien.github.io/playwright-movies-app/) |
 
-Ports **3000** (app) and **4000** (mock API) must be free locally, or let Playwright `webServer` start them during test runs.
+Ports **3000** (app) and **4000** (mock API) must be free locally, or let Playwright `webServer` start them during test runs. Keep `npm run dev` running while you explore with `npx playwright cli`; test runs do not require a separate `npm run dev` when `webServer` is configured.
+
+## Done when
+
+- You have a local clone with `npm install`, Chromium installed, and `.env` from `.env.example`.
+- You opened the [course home](/course) and picked a path.
 
 ## Key takeaways
 

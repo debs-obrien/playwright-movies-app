@@ -44,6 +44,14 @@ Confirm setup ran first in the list reporter or UI Mode.
 
 Some list URLs work without the saved session. Logged-in project tests assume the setup user. Module 02 taught a one-off login test; day-to-day logged-in work uses `storageState`.
 
+## Done when
+
+```bash
+npx playwright test tests/logged-in/manage-lists-before-each.spec.ts --project="logged-in chrome"
+```
+
+passes, and the reporter shows the `setup` project running before `logged-in chrome`.
+
 ## Key takeaways
 
 - You can explain why setup is a separate project.

@@ -18,7 +18,7 @@ Clone the [repository on GitHub](https://github.com/debs-obrien/playwright-movie
 | 7 | Network mocking and API `request` | [08 Network and API](/08-network-and-api) |
 | 8 | Isolation (`workers: 1`, mock reset) | Config and `base-test.ts` on GitHub |
 | 9 | AI writing path | [09 AI path](/09-ai-writing-path), [AI testing](/docs/AI-TESTING) |
-| 10 | Exercises | [exercises on GitHub](https://github.com/debs-obrien/playwright-movies-app/tree/main/docs/exercises) |
+| 10 | Exercises | [Exercises](/docs/exercises/) ([GitHub](https://github.com/debs-obrien/playwright-movies-app/tree/main/docs/exercises)) |
 
 Learn **style** from `manage-lists-*`. Treat `lists/*` as broader product coverage, not the primary style guide.
 
