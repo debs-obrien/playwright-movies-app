@@ -2,9 +2,9 @@
 
 Canonical AI path for this repo. Latest Playwright ships **MCP** and **CLI** on the main binary (`npx playwright mcp`, `npx playwright cli`) plus `init-agents` / `init-skills`. Do not install a separate `@playwright/mcp` package just to follow these lessons.
 
-**Learning in an agent:** take [`learn/`](../learn/index.md) from Cursor, Claude Code, Codex, or similar. Use the **learn-lab-coach** and **movies-playwright** skills. Do not use Codegen or an IDE Testing UI as the course path.
+**Learning in an agent (local clone):** take the [course home](/course) from Cursor, Claude Code, Codex, or similar. Use the **learn-lab-coach** and **movies-playwright** skills. Do not use Codegen or an IDE Testing UI as the course path.
 
-Learn house style ([TESTING.md](./TESTING.md), `manage-lists-*`, [Lab 07](../learn/07-fixtures-helpers.md)), then deepen with [Lab 09](../learn/09-ai-writing-path.md). Generated coverage is not the style guide.
+Learn house style ([TESTING.md](/docs/TESTING), `manage-lists-*`, [07 Fixtures](/07-fixtures-helpers)), then deepen with [09 AI path](/09-ai-writing-path). Generated coverage is not the style guide.
 
 ## Choose the right surface
 
@@ -13,7 +13,7 @@ Learn house style ([TESTING.md](./TESTING.md), `manage-lists-*`, [Lab 07](../lea
 | **playwright-cli + movies-playwright skill** | Day-to-day explore, draft, or fix with small context | You need a long autonomous MCP loop |
 | **playwright-trace skill** | Debugging any failure with evidence | Guessing from the last error line alone |
 | **Playwright MCP** | Persistent snapshot-heavy explore; official planner/generator tools | Token budget is tight and CLI skills would do |
-| **Test agents** (planner → generator → healer) | Structured coverage: markdown plan → tests → heal | You only need one small test — CLI draft instead |
+| **Test agents** (planner, generator, healer) | Structured coverage: markdown plan, tests, heal | You only need one small test: use CLI draft instead |
 
 **Default:** CLI + project skills, with traces when something fails.
 
@@ -37,10 +37,10 @@ flowchart TB
 
 | Skill | Role |
 |-------|------|
-| [`.agents/skills/movies-playwright`](../.agents/skills/movies-playwright/SKILL.md) | House style, fixtures, explore→draft, rewrite, heal policy |
-| [`.agents/skills/learn-lab-coach`](../.agents/skills/learn-lab-coach/SKILL.md) | Walk `learn/` labs one checklist step at a time |
-| [`.agents/skills/playwright-cli`](../.agents/skills/playwright-cli/SKILL.md) | Official CLI explore / attach (from `init-skills`) |
-| [`.agents/skills/playwright-trace`](../.agents/skills/playwright-trace/SKILL.md) | Official trace CLI (from `init-skills`) |
+| [`movies-playwright` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/movies-playwright/SKILL.md) | House style, fixtures, explore, draft, rewrite, heal policy |
+| [`learn-lab-coach` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/learn-lab-coach/SKILL.md) | Walk labs one step at a time in a local clone |
+| [`playwright-cli` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/playwright-cli/SKILL.md) | Official CLI explore and attach (from `init-skills`) |
+| [`playwright-trace` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/playwright-trace/SKILL.md) | Official trace CLI (from `init-skills`) |
 
 ```bash
 npx playwright cli --help
@@ -68,7 +68,7 @@ npx playwright trace actions
 npx playwright trace action <id>
 ```
 
-Config already enables `trace: 'on-first-retry'`, screenshots and video on failure. Prefer trace evidence in healer runs before changing locators—and before `test.fixme()`.
+Config already enables `trace: 'on-first-retry'`, screenshots and video on failure. Prefer trace evidence in healer runs before changing locators, and before `test.fixme()`.
 
 ## 3. Playwright MCP
 
@@ -94,13 +94,13 @@ npx playwright init-skills --loop=claude             # → .claude/skills
 
 | Prompt | Role |
 |--------|------|
-| [`playwright-test-plan.prompt.md`](../.github/prompts/playwright-test-plan.prompt.md) | Plan → `specs/` |
-| [`playwright-test-generate.prompt.md`](../.github/prompts/playwright-test-generate.prompt.md) | One scenario from a plan |
-| [`playwright-test-heal.prompt.md`](../.github/prompts/playwright-test-heal.prompt.md) | Run and fix failures |
-| [`playwright-test-coverage.prompt.md`](../.github/prompts/playwright-test-coverage.prompt.md) | Full plan → generate → heal |
-| [`lab-coach.prompt.md`](../.github/prompts/lab-coach.prompt.md) | “I’m on Lab N” → **learn-lab-coach** skill |
+| [`playwright-test-plan.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/playwright-test-plan.prompt.md) | Plan to `specs/` |
+| [`playwright-test-generate.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/playwright-test-generate.prompt.md) | One scenario from a plan |
+| [`playwright-test-heal.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/playwright-test-heal.prompt.md) | Run and fix failures |
+| [`playwright-test-coverage.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/playwright-test-coverage.prompt.md) | Full plan, generate, heal |
+| [`lab-coach.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/lab-coach.prompt.md) | “I'm on 01” invokes **learn-lab-coach** |
 
-Seed for list flows: [`tests/logged-in/seed.spec.ts`](../tests/logged-in/seed.spec.ts) (uses `list-fixtures`). Example plan: [`specs/movies-list-plan.md`](../specs/movies-list-plan.md).
+Seed for list flows: [`seed.spec.ts` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-in/seed.spec.ts) (uses `list-fixtures`). Example plan: [`movies-list-plan.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/specs/movies-list-plan.md).
 
 ### Consolidation note
 
@@ -115,24 +115,24 @@ Generator prompts often ask for **one file per scenario**. This repo then consol
 
 ## Review rubric (every AI-written test)
 
-- [ ] Role/label locators (`getByRole`, `getByLabel`, `getByText`) — not CSS/XPath as primary
-- [ ] Web-first assertions (`toBeVisible`, `toHaveText`, `toHaveURL`, `toHaveCount`, `toMatchAriaSnapshot`)
-- [ ] No `waitForTimeout`, `force: true`, or `waitForLoadState('networkidle')`
-- [ ] Lightest fixture from `list-fixtures` (or clear reason for raw `page`)
-- [ ] Reuses `list-utilities` instead of re-walking create/add flows
-- [ ] Meaningful assertions (visibility, values, ARIA snapshot, counts)—not click-only
-- [ ] Independent of other tests; works with mock-api reset
-- [ ] `test.step` for multi-step flows
-- [ ] Seed/setup language matches this repo (`login.setup`, helpers)
-- [ ] Healer used a **trace** or live snapshot before changing locators
-- [ ] `test.fixme()` only with a comment of observed vs expected when the product is wrong
-- [ ] Tagged `@agent` if generated; style still matches `manage-lists-*` after rewrite
-- [ ] No Codegen / recorder output as the primary authoring path
+- Role/label locators (`getByRole`, `getByLabel`, `getByText`), not CSS/XPath as primary
+- Web-first assertions (`toBeVisible`, `toHaveText`, `toHaveURL`, `toHaveCount`, `toMatchAriaSnapshot`)
+- No `waitForTimeout`, `force: true`, or `waitForLoadState('networkidle')`
+- Lightest fixture from `list-fixtures` (or clear reason for raw `page`)
+- Reuses `list-utilities` instead of re-walking create/add flows
+- Meaningful assertions (visibility, values, ARIA snapshot, counts), not click-only
+- Independent of other tests; works with mock-api reset
+- `test.step` for multi-step flows
+- Seed/setup language matches this repo (`login.setup`, helpers)
+- Healer used a **trace** or live snapshot before changing locators
+- `test.fixme()` only with a comment of observed vs expected when the product is wrong
+- Tagged `@agent` if generated; style still matches `manage-lists-*` after rewrite
+- No Codegen or recorder output as the primary authoring path
 
-Side-by-side example: [`tests/logged-in/lessons/ai-raw-vs-idiomatic.spec.ts`](../tests/logged-in/lessons/ai-raw-vs-idiomatic.spec.ts).
+Side-by-side example: [`ai-raw-vs-idiomatic.spec.ts` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-in/lessons/ai-raw-vs-idiomatic.spec.ts).
 
 ## When to hand-write instead
 
 - Teaching a new pattern (fixtures, guest context, soft asserts)
 - Small change next to an existing idiomatic test
-- AI output fails the rubric twice—stop regenerating and write it yourself
+- AI output fails the rubric twice: stop regenerating and write it yourself

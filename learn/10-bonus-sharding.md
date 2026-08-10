@@ -1,8 +1,8 @@
-# 10 — Bonus: sharding
+# 10 Bonus: sharding
 
 ## Goal
 
-Understand how to split a suite across shards locally and in CI. This lab is instructional; wiring sharding into every workflow is optional.
+Understand how to split a suite across shards locally and in CI. Wiring sharding into every workflow is optional.
 
 ## Read first
 
@@ -18,7 +18,7 @@ npx playwright test --shard=2/4 --project=chromium
 
 Run different shards in different terminals for wall-clock speedup.
 
-**Note:** This repo sets `workers: 1` because the mock API list store is process-global and tests reset it between cases. Sharding across **machines/jobs** still helps CI; raising in-process workers needs fixture-owned data first (see [Testing guide](../docs/TESTING.md)).
+This repo sets `workers: 1` because the mock API list store is process-global. Sharding across **machines or jobs** still helps CI. Raising in-process workers needs fixture-owned data first (see [Testing guide](/docs/TESTING)).
 
 ## CI sketch (GitHub Actions)
 
@@ -32,12 +32,12 @@ steps:
   - run: npx playwright test --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
 ```
 
-Upload each shard’s report/blob as an artifact; merge blob reports if you use the blob reporter (this config already enables `blob` on CI).
+Upload each shard's report or blob as an artifact. Merge blob reports if you use the blob reporter (enabled on CI in this repo).
 
-## Check-in
+## Key takeaways
 
-- [] You can run `--shard=N/M` locally
-- [] You know sharding ≠ raising `workers` without isolation
-- [] You can sketch a matrix job for CI
+- You can run `--shard=N/M` locally.
+- Sharding is not the same as raising `workers` without isolation.
+- You can sketch a matrix job for CI.
 
-Back to the [learn home](./index.md) competency checklist.
+Back to the [course home](/course).

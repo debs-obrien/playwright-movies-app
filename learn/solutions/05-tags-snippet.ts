@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-// Minimal pattern for Lab 05 — prefer editing movie-list.spec.ts in a branch.
+// Minimal pattern for module 05. Prefer editing movie-list.spec.ts in a branch.
 
 test('example tagged test', {
   tag: '@movies',

@@ -1,4 +1,4 @@
-# 08 — Network mocking and API testing
+# 08 Network mocking and API testing
 
 ## Goal
 
@@ -8,14 +8,12 @@ Stub HTTP with `page.route` for deterministic UI tests, and call the mock API di
 
 - [Network mocking](https://playwright.dev/docs/network)
 - [API testing](https://playwright.dev/docs/api-testing)
-- Ask your agent to walk through [`sort-by.spec.ts`](../tests/logged-out/sort-by.spec.ts) and [`api.spec.ts`](../tests/logged-out/api.spec.ts)
 
 ## Network mocking (`page.route`)
 
-1. [] Find where routes fulfill JSON from `tests/mocks/`.
-2. [] Pattern to remember:
+Fulfill JSON from files under `tests/mocks/`:
 
-```ts
+```typescript
 await page.route('*/**/**sort_by=vote_average.desc', async (route) => {
   await route.fulfill({
     path: path.join(__dirname, '../mocks/sort-by-vote-average.json'),
@@ -23,29 +21,40 @@ await page.route('*/**/**sort_by=vote_average.desc', async (route) => {
 });
 ```
 
-3. [] Run:
+Run the sort UI spec:
 
 ```bash
 npx playwright test tests/logged-out/sort-by.spec.ts --project=chromium
 ```
 
-4. [] Bonus: have the agent temporarily point a route at a tiny inline body, observe the UI, then revert.
+Mocking keeps sort order stable instead of depending on live third-party data.
 
 ## API testing (`request`)
 
-1. [] Note `test.use({ baseURL: TMDB_API_BASE_URL })` targeting the mock in `api.spec.ts`.
-2. [] Run:
+Target the mock API with `request` and assert JSON ordering:
+
+```typescript
+test.use({ baseURL: TMDB_API_BASE_URL });
+
+test('first popular movie', async ({ request }) => {
+  const response = await request.get('/3/movie/popular', { params: { page: 1 } });
+  await expect(response).toBeOK();
+  const movies = (await response.json()).results;
+
+  for (let i = 0; i < movies.length - 1; i++) {
+    expect(movies[i].popularity).toBeGreaterThanOrEqual(movies[i + 1].popularity);
+  }
+});
+```
 
 ```bash
 npx playwright test tests/logged-out/api.spec.ts --project=chromium
 ```
 
-3. [] Confirm one test uses `request.get`, `expect(response).toBeOK()`, and JSON ordering asserts.
+## Key takeaways
 
-## Check-in
+- You can fulfill a route from a fixture file.
+- You can run a pure API spec against the mock.
+- You know why mocking beats live data for deterministic UI tests.
 
-- [] You can fulfill a route from a fixture file
-- [] You can run a pure API spec against the mock
-- [] You know why mocking beats depending on live third-party data for sort order
-
-Next: [Lab 09 — AI writing path](./09-ai-writing-path.md).
+Next: [09 AI writing path](/09-ai-writing-path).
