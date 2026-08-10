@@ -1,46 +1,51 @@
 # Writing Playwright tests with AI
 
-Canonical path for this repo. Latest Playwright ships **MCP** and **CLI** on the main binary (`npx playwright mcp`, `npx playwright cli`) plus `init-agents` / `init-skills`. Do not install a separate `@playwright/mcp` package just to follow these lessons.
+Canonical AI path for this repo. Latest Playwright ships **MCP** and **CLI** on the main binary (`npx playwright mcp`, `npx playwright cli`) plus `init-agents` / `init-skills`. Do not install a separate `@playwright/mcp` package just to follow these lessons.
 
-Learn hand-written style first ([TESTING.md](./TESTING.md), `manage-lists-*`), then use AI. Generated coverage is not the style guide.
+**Learning in an agent:** take [`learn/`](../learn/index.md) from Cursor, Claude Code, Codex, or similar. Use the **learn-lab-coach** and **movies-playwright** skills. Do not use Codegen or an IDE Testing UI as the course path.
+
+Learn house style ([TESTING.md](./TESTING.md), `manage-lists-*`, [Lab 07](../learn/07-fixtures-helpers.md)), then deepen with [Lab 09](../learn/09-ai-writing-path.md). Generated coverage is not the style guide.
 
 ## Choose the right surface
 
 | Surface | Use when | Avoid when |
 |---------|----------|------------|
-| **playwright-cli + skills** | Day-to-day coding agents exploring the app, drafting tests, or fixing failures with small context | You need a long autonomous loop that must keep rich page snapshots in-tool |
-| **CLI / agent traces** | Debugging any AI or human failure with evidence (`tracing-start`/`stop`, `npx playwright trace`, Trace Viewer) | You are guessing from the last error line alone |
-| **Playwright MCP** | Persistent, snapshot-heavy explore loops; specialized agentic tools (planner/generator MCP tools) | Token budget is tight and a coding agent + CLI would do |
-| **Test agents** (planner → generator → healer) | Structured coverage: markdown plan → tests → heal | You only need one small test—hand-write or CLI draft instead |
+| **playwright-cli + movies-playwright skill** | Day-to-day explore, draft, or fix with small context | You need a long autonomous MCP loop |
+| **playwright-trace skill** | Debugging any failure with evidence | Guessing from the last error line alone |
+| **Playwright MCP** | Persistent snapshot-heavy explore; official planner/generator tools | Token budget is tight and CLI skills would do |
+| **Test agents** (planner → generator → healer) | Structured coverage: markdown plan → tests → heal | You only need one small test — CLI draft instead |
 
-**Default for coding agents in this repo:** CLI + skills, with traces when something fails. Use MCP when the agent loop is built around Playwright’s planner/generator/healer tools. Always review output against [AGENTS.md](../AGENTS.md).
+**Default:** CLI + project skills, with traces when something fails.
 
 ```mermaid
 flowchart TB
   start[Need a test] --> style{Know house style?}
-  style -->|No| readDocs[Read TESTING.md + manage-lists-*]
+  style -->|No| readDocs[movies-playwright skill + manage-lists]
   style -->|Yes| tool{Task type}
   readDocs --> tool
-  tool -->|Explore or fix in coding agent| cli[playwright-cli + skills]
+  tool -->|Explore or fix| cli[playwright-cli + movies-playwright]
   tool -->|Long autonomous explore| mcp[Playwright MCP]
   tool -->|Feature coverage pipeline| agents[planner then generator then healer]
-  cli --> traces[Record or open traces]
+  cli --> traces[playwright-trace]
   mcp --> agents
-  agents --> review[Review against fixtures and ARIA]
+  agents --> review[Review rubric]
   traces --> review
   review --> done[Land idiomatic test]
 ```
 
-## 1. playwright-cli + skills
+## 1. Skills (durable how-to)
 
-Bundled with Playwright. From the repo (after `npm install`):
+| Skill | Role |
+|-------|------|
+| [`.agents/skills/movies-playwright`](../.agents/skills/movies-playwright/SKILL.md) | House style, fixtures, explore→draft, rewrite, heal policy |
+| [`.agents/skills/learn-lab-coach`](../.agents/skills/learn-lab-coach/SKILL.md) | Walk `learn/` labs one checklist step at a time |
+| [`.agents/skills/playwright-cli`](../.agents/skills/playwright-cli/SKILL.md) | Official CLI explore / attach (from `init-skills`) |
+| [`.agents/skills/playwright-trace`](../.agents/skills/playwright-trace/SKILL.md) | Official trace CLI (from `init-skills`) |
 
 ```bash
 npx playwright cli --help
-npx playwright init-skills          # or: npx playwright cli install --skills
+npx playwright init-skills --loop=agents   # official skills → .agents/skills
 ```
-
-Coding agents (Copilot, Claude Code, Cursor, …) use skills for concise browser commands instead of loading full MCP tool schemas.
 
 Typical flow against this app (dev servers via `npm run dev` or Playwright `webServer`):
 
@@ -51,33 +56,19 @@ npx playwright cli click "role=button[name=User Profile]"
 # …explore, then draft a test that matches manage-lists-* style
 ```
 
-Learner prompt: [`.github/prompts/cli-explore.prompt.md`](../.github/prompts/cli-explore.prompt.md).
+## 2. Traces (required habit)
 
-## 2. Traces for agents (required habit)
-
-Do not heal by blind retry. Capture or open a trace, then edit.
-
-**Record a CLI session:**
-
-```bash
-npx playwright cli tracing-start
-# reproduce the flow with cli commands
-npx playwright cli tracing-stop
-npx playwright show-trace .playwright-cli/trace.zip
-```
-
-**Analyze a failed test trace (agent-friendly CLI):**
+Do not heal by blind retry. Use **playwright-trace** or UI Mode, then edit per **movies-playwright**.
 
 ```bash
 npx playwright test path/to/spec.ts --trace on
-npx playwright trace open test-results/.../trace.zip
+npx playwright show-trace test-results/.../trace.zip
+npx playwright trace open path/to/trace.zip
 npx playwright trace actions
 npx playwright trace action <id>
 ```
 
 Config already enables `trace: 'on-first-retry'`, screenshots and video on failure. Prefer trace evidence in healer runs before changing locators—and before `test.fixme()`.
-
-Learner prompt: [`.github/prompts/heal-from-trace.prompt.md`](../.github/prompts/heal-from-trace.prompt.md).
 
 ## 3. Playwright MCP
 
@@ -91,19 +82,23 @@ Tradeoff: richer iterative page structure in context, higher token cost than CLI
 
 ## 4. Test agents: planner → generator → healer
 
-Definitions live in [`.github/agents/`](../.github/agents/). Regenerate when you upgrade Playwright:
+Definitions live in `.github/agents/`. They work with Cursor, Copilot Chat, and similar UIs that load `.github/agents`. `--loop=vscode` is the **agent definition format**, not a requirement to use VS Code.
 
 ```bash
-npx playwright init-agents --loop=vscode   # or claude, codex, …
+npx playwright init-agents --loop=vscode --prompts   # also: claude, copilot, codex, opencode
+npx playwright init-skills --loop=agents
+npx playwright init-skills --loop=claude             # → .claude/skills
 ```
 
-Also refresh skills after upgrades (`init-skills`).
+**Prompts** under `.github/prompts/` are thin launchers (not teaching essays):
 
-| Agent | Role | Prompt |
-|-------|------|--------|
-| 🎭 planner | Explore app → markdown plan in `specs/` | [`plan.prompt.md`](../.github/prompts/plan.prompt.md) |
-| 🎭 generator | Execute plan steps live → write tests | [`generate.prompt.md`](../.github/prompts/generate.prompt.md) |
-| 🎭 healer | Run failures, fix with evidence, or skip with cause | [`fix.prompt.md`](../.github/prompts/fix.prompt.md) |
+| Prompt | Role |
+|--------|------|
+| [`playwright-test-plan.prompt.md`](../.github/prompts/playwright-test-plan.prompt.md) | Plan → `specs/` |
+| [`playwright-test-generate.prompt.md`](../.github/prompts/playwright-test-generate.prompt.md) | One scenario from a plan |
+| [`playwright-test-heal.prompt.md`](../.github/prompts/playwright-test-heal.prompt.md) | Run and fix failures |
+| [`playwright-test-coverage.prompt.md`](../.github/prompts/playwright-test-coverage.prompt.md) | Full plan → generate → heal |
+| [`lab-coach.prompt.md`](../.github/prompts/lab-coach.prompt.md) | “I’m on Lab N” → **learn-lab-coach** skill |
 
 Seed for list flows: [`tests/logged-in/seed.spec.ts`](../tests/logged-in/seed.spec.ts) (uses `list-fixtures`). Example plan: [`specs/movies-list-plan.md`](../specs/movies-list-plan.md).
 
@@ -120,18 +115,21 @@ Generator prompts often ask for **one file per scenario**. This repo then consol
 
 ## Review rubric (every AI-written test)
 
-- [ ] Role/label locators (`getByRole` / `getByLabel`); no CSS-only primary locators
-- [ ] Web-first assertions; no `waitForTimeout`, `force: true`, `networkidle`
+- [ ] Role/label locators (`getByRole`, `getByLabel`, `getByText`) — not CSS/XPath as primary
+- [ ] Web-first assertions (`toBeVisible`, `toHaveText`, `toHaveURL`, `toHaveCount`, `toMatchAriaSnapshot`)
+- [ ] No `waitForTimeout`, `force: true`, or `waitForLoadState('networkidle')`
 - [ ] Lightest fixture from `list-fixtures` (or clear reason for raw `page`)
 - [ ] Reuses `list-utilities` instead of re-walking create/add flows
 - [ ] Meaningful assertions (visibility, values, ARIA snapshot, counts)—not click-only
 - [ ] Independent of other tests; works with mock-api reset
+- [ ] `test.step` for multi-step flows
+- [ ] Seed/setup language matches this repo (`login.setup`, helpers)
+- [ ] Healer used a **trace** or live snapshot before changing locators
+- [ ] `test.fixme()` only with a comment of observed vs expected when the product is wrong
 - [ ] Tagged `@agent` if generated; style still matches `manage-lists-*` after rewrite
-- [ ] Failures investigated with a trace before heal/skip
+- [ ] No Codegen / recorder output as the primary authoring path
 
 Side-by-side example: [`tests/logged-in/lessons/ai-raw-vs-idiomatic.spec.ts`](../tests/logged-in/lessons/ai-raw-vs-idiomatic.spec.ts).
-
-Learner prompt: [`.github/prompts/rewrite-agent-test.prompt.md`](../.github/prompts/rewrite-agent-test.prompt.md).
 
 ## When to hand-write instead
 

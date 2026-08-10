@@ -1,28 +1,22 @@
 # Testing guide
 
-This repo is a teaching project for Playwright. Read the learning path below, study the canonical examples, then explore feature coverage under `tests/logged-in/lists/`.
+This repo is a teaching project for Playwright. Work through [learn/](../learn/index.md) for the hands-on path. House style for humans and agents: [`AGENTS.md`](../AGENTS.md). AI tools: [AI-TESTING.md](./AI-TESTING.md).
 
-For writing and fixing tests with AI (CLI, traces, MCP, planner/generator/healer), see [AI-TESTING.md](./AI-TESTING.md). House style for humans and agents is in [`AGENTS.md`](../AGENTS.md).
+## Learning path (mapped to labs)
 
-## Learning path
-
-Work through these in order. Each step points at real files in this suite.
-
-| Step | Concept | Where to look |
-|------|---------|---------------|
-| 1 | Config, projects, `webServer`, workers | [`playwright.config.ts`](../playwright.config.ts) |
-| 2 | Locators + web-first assertions | Logged-out specs below; “Web-first assertions” |
-| 3 | UI Mode, traces, screenshots/video | Config `use.trace` / `screenshot` / `video`; run with `--ui` |
-| 4 | Auth setup + `storageState` | [`tests/logged-in/login.setup.ts`](../tests/logged-in/login.setup.ts) |
-| 5 | Guest contexts (localStorage-aware) | [`access-list-without-authentication.spec.ts`](../tests/logged-in/access-list-without-authentication.spec.ts) |
-| 6 | `beforeEach` shared setup | [`manage-lists-before-each.spec.ts`](../tests/logged-in/manage-lists-before-each.spec.ts) |
-| 7 | Custom fixtures, `test.step`, ARIA snapshots | [`manage-lists-fixtures.spec.ts`](../tests/logged-in/manage-lists-fixtures.spec.ts) |
-| 8 | Helpers vs Page Objects | [`list-utilities.ts`](../tests/helpers/list-utilities.ts) — this repo prefers helpers |
-| 9 | Network mocking (`page.route`) | [`tests/logged-out/sort-by.spec.ts`](../tests/logged-out/sort-by.spec.ts), [`movie.spec.ts`](../tests/logged-out/movie.spec.ts) |
-| 10 | API testing (`request`) | [`tests/logged-out/api.spec.ts`](../tests/logged-out/api.spec.ts), [`tests/logged-in/api.spec.ts`](../tests/logged-in/api.spec.ts) |
-| 11 | Isolation (`workers: 1`, mock reset) | Config comment + [`base-test.ts`](../tests/helpers/base-test.ts) |
-| 12 | AI writing path | [AI-TESTING.md](./AI-TESTING.md) |
-| 13 | Exercises | [exercises/](./exercises/README.md) |
+| Step | Concept | Lab / where to look |
+|------|---------|---------------------|
+| 0 | Agent-first course loop | [Lab 00](../learn/00-start-here.md), **learn-lab-coach** skill |
+| 1 | Config, projects, `webServer`, workers | [Lab 01](../learn/01-overview.md), [`playwright.config.ts`](../playwright.config.ts) |
+| 2 | First agent-written test + `.env` | [Lab 02](../learn/02-first-test.md) |
+| 3 | Locators + web-first + ARIA | [Lab 03](../learn/03-aria-snapshots.md); “Web-first assertions” below |
+| 4 | UI Mode, traces | [Lab 04](../learn/04-debugging.md) |
+| 5 | Auth setup + `storageState` | [Lab 06](../learn/06-auth-setup.md), `login.setup.ts` |
+| 6 | `beforeEach` / fixtures / helpers | [Lab 07](../learn/07-fixtures-helpers.md), `manage-lists-*` |
+| 7 | Network mocking + API `request` | [Lab 08](../learn/08-network-and-api.md) |
+| 8 | Isolation (`workers: 1`, mock reset) | Config + `base-test.ts` |
+| 9 | AI writing path (plan → heal) | [Lab 09](../learn/09-ai-writing-path.md), [AI-TESTING.md](./AI-TESTING.md) |
+| 10 | Exercises | [exercises/](./exercises/README.md) |
 
 Learn **style** from `manage-lists-*`. Treat `lists/*` as broader product coverage, not the primary style guide.
 
@@ -37,6 +31,7 @@ Learn **style** from `manage-lists-*`. Treat `lists/*` as broader product covera
 | `tests/helpers/list-fixtures.ts` | Optional list fixtures on one `test` export (pick the lightest seed) |
 | `tests/helpers/list-utilities.ts` | Reusable flow helpers (`createList`, `addMovie`, …) |
 | `tests/logged-in/lessons/*.spec.ts` | Focused lessons (network abort, multi-tab, viewport, AI rewrite) |
+| `tests/helpers/base-test.ts` | Auto mock-API reset for logged-in tests |
 
 ### Logged-out examples (`tests/logged-out/`)
 
@@ -57,6 +52,7 @@ Learn **style** from `manage-lists-*`. Treat `lists/*` as broader product covera
 | Path | Role |
 |------|------|
 | `tests/logged-in/login.setup.ts` | Auth project dependency → `storageState` |
+| `manage-lists-*.spec.ts` | **Style guide** for list tests |
 | `tests/logged-in/lists/*.spec.ts` | `@agent` feature coverage (create, edit, delete, …) |
 | Standalone `@agent` files | Distinct patterns: multi-list delete, private share + guest, auth gate |
 | `tests/logged-in/seed.spec.ts` | Agent seed (skipped in normal runs) |
