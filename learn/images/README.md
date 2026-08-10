@@ -1,5 +1,5 @@
-# Lab images
+# Screenshots for the course (optional)
 
-Screenshots are optional. Lab steps stand alone without images.
+Add UI Mode or Trace Viewer captures here when they help a module. Prefer product and Playwright windows, not IDE Testing sidebars or Codegen.
 
-If you add captures later, prefer **UI Mode** and **Trace Viewer** windows only — not IDE Testing sidebars or Codegen. Keep shots few; update text steps when Playwright UI changes.
+The debugging module uses `/ui-mode.jpg` from `.vitepress/public/`.

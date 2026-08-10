@@ -1,62 +1,59 @@
-# 00 — Start here
+# 00 Start here
 
 ## Goal
 
-Know how this course works, what we will not re-teach, and how to take labs from a coding agent.
+Understand how this course works, what we skip, and how to practice with the Movies app and Playwright.
+
+## Before you run tests
+
+Browse the [live demo app](https://debs-obrien.github.io/playwright-movies-app/) anytime. To run Playwright yourself, [clone the repository](https://github.com/debs-obrien/playwright-movies-app) and run:
+
+```bash
+git clone https://github.com/debs-obrien/playwright-movies-app.git
+cd playwright-movies-app
+npm install
+npx playwright install chromium
+cp .env.example .env
+```
+
+The mock API accepts any username and password in `.env`.
 
 ## Read first
 
-- [Playwright intro](https://playwright.dev/docs/intro) — install and first ideas
-- This repo’s [README](../README.md) — install, `.env`, `npm run dev`
+- [Playwright intro](https://playwright.dev/docs/intro)
+- [Course home](/course) for the full agenda
 
 ## How we teach
 
-1. **Official docs** own the concepts (locators, assertions, config theory).
-2. **Labs here** are applied tasks on the Movies app + mock API.
-3. Each lab: **Goal** → checklist steps → **Check-in** (something you can verify).
-4. You work primarily in a **coding agent** (Cursor, Claude Code, Codex, Copilot agent, …). Open files only if you want to read code yourself.
+1. **Official docs** own concepts (locators, assertions, config theory).
+2. **Modules here** apply those ideas to the Movies app and mock API.
+3. Each module has a goal, short examples on the page, and key takeaways.
+4. Concepts stay on [playwright.dev](https://playwright.dev). This site is the practice guide.
 
-We do **not** rewrite playwright.dev. We do **not** teach Codegen or an IDE Testing sidebar as the course path.
+We do not rewrite playwright.dev. We do not teach Codegen or an IDE Testing sidebar as the course path.
 
-## How you take this course
+## Working with a coding agent (optional)
 
-1. [] Clone the repo, run `npm install`, then install browsers:
+If you use Cursor, Claude Code, or similar on a local clone, invoke the **learn-lab-coach** skill and name the module (for example, "I'm on 01"). The agent can run commands and open source files for you. That workflow is optional; you can follow these pages on your own too.
 
-```bash
-npx playwright install chromium
-```
+When writing or fixing tests in an agent, use the **movies-playwright** skill plus official **playwright-cli** and **playwright-trace** skills from the repo.
 
-2. [] Copy `.env.example` → `.env`.
-3. [] Open this repo in your coding agent of choice (Cursor, Claude Code, Codex, Copilot agent, …).
-4. [] Start the coach — **explicitly invoke the skill**, don’t assume auto-load:
-   - Say: **“Use the learn-lab-coach skill — I’m on Lab 00.”**
-   - Or in Cursor: `@learn-lab-coach` (if your client lists project skills)
-   - Or use [`.github/prompts/lab-coach.prompt.md`](../.github/prompts/lab-coach.prompt.md) and set the lab number
-5. [] Follow one checklist step at a time. Let the agent run Playwright commands.
+## Tooling reference
 
-When writing or fixing tests, tell the agent to use the **movies-playwright** skill plus official **playwright-cli** / **playwright-trace** skills.
-
-## Tooling cheat sheet
-
-| Task | Command / surface |
-|------|-------------------|
-| App + mock | `npm run dev` (or let Playwright `webServer` start them) |
+| Task | Command |
+|------|---------|
+| App + mock (local) | `npm run dev` |
 | Run tests | `npx playwright test` |
 | Interactive debug | `npx playwright test --ui` |
-| Explore the app | `npx playwright cli` (via **playwright-cli** skill) |
-| Browse labs in a browser | `npm run docs:dev` |
-| Stuck on a lab | “Use learn-lab-coach — I’m on Lab N” / lab-coach prompt |
+| Explore the app | `npx playwright cli` |
+| Live demo (no install) | [Movies app on GitHub Pages](https://debs-obrien.github.io/playwright-movies-app/) |
 
-Ports **3000** (app) and **4000** (mock API) must be free, or let `webServer` own them. The mock accepts **any** username/password from `.env`.
+Ports **3000** (app) and **4000** (mock API) must be free locally, or let Playwright `webServer` start them during test runs.
 
-## Attribution
+## Key takeaways
 
-Lab flow and checklist UX are adapted from Microsoft’s [Build25-LAB304](https://github.com/microsoft/Build25-LAB304). This fork is **agent-first** (skills + CLI / UI Mode / traces) — not a workshop IDE or Codegen track.
+- Pick a path on the [course home](/course) (beginner, intermediate, or AI-first).
+- Clone the repo when you want to run tests or edit specs.
+- Full source for tests and the app is on [GitHub](https://github.com/debs-obrien/playwright-movies-app).
 
-## Check-in
-
-- [] You know which path you are on (beginner / intermediate / AI-first) from the [learn home](./index.md).
-- [] `.env` exists and `npm install` succeeded.
-- [] You will work labs from your agent chat, not an IDE Testing UI.
-
-Next: [Lab 01 — Overview](./01-overview.md) (or tell the coach “I’m on Lab 01”).
+Next: [01 Overview](/01-overview).

@@ -1,56 +1,50 @@
-# 04 — Debugging with UI Mode, AI, and traces
+# 04 Debugging with UI Mode and traces
 
 ## Goal
 
-Debug interactively in UI Mode, use Copy Prompt with your coding agent, and open a trace for post-mortem analysis.
+Debug interactively in UI Mode, use Copy Prompt with a coding agent, and open a trace for post-mortem analysis.
 
 ## Read first
 
 - [UI Mode](https://playwright.dev/docs/test-ui-mode)
 - [Trace Viewer](https://playwright.dev/docs/trace-viewer)
-- Heal policy: **movies-playwright** skill + official **playwright-trace** skill
+- [AI testing guide](/docs/AI-TESTING) (heal policy and traces)
 
 ## UI Mode
 
-1. [] Run `npx playwright test --ui`.
-2. [] In the sidebar filter, ensure the projects you care about are selected (`chromium`, `logged-in chrome`, etc.).
-3. [] Run a single logged-out test. Click actions in the timeline; use time-travel on the page snapshot.
+![Playwright UI Mode with the Movies app timeline and page snapshot](images/ui-mode.jpg)
 
-## Break something on purpose
+```bash
+npx playwright test --ui
+```
 
-1. [] Ask your agent to temporarily break an assertion in a scratch copy of a test (or do it yourself).
-2. [] Re-run in UI Mode → open the **Errors** tab.
-3. [] Use **Copy Prompt** and paste into the **same coding agent**. Apply a fix; re-run.
-4. [] Revert intentional breakage when done.
+Filter projects in the sidebar (`chromium`, `logged-in chrome`, etc.). Run one test, click actions in the timeline, and time-travel through page snapshots.
 
-Prefer fixing from error + snapshot evidence over guessing.
+Break an assertion on purpose, open the **Errors** tab, and use **Copy Prompt** with your coding agent. Fix from evidence, then revert the intentional breakage.
 
 ## Traces
 
-Config already sets `trace: 'on-first-retry'` (retries are enabled on CI). Locally:
-
-1. [] Force a trace:
+Config sets `trace: 'on-first-retry'`. Force a trace locally:
 
 ```bash
 npx playwright test tests/logged-out/search.spec.ts --project=chromium --trace on
 ```
 
-2. [] Open with Trace Viewer or the **playwright-trace** skill:
+Open the result:
 
 ```bash
-npx playwright show-report
-# or
 npx playwright show-trace test-results/.../trace.zip
+# or
 npx playwright trace open path/to/trace.zip
 npx playwright trace actions
 ```
 
-3. [] Have the agent heal using evidence (**movies-playwright** heal section), not blind locator retries.
+Heal using trace or snapshot evidence, not blind locator retries.
 
-## Check-in
+## Key takeaways
 
-- [] You can step through a test in UI Mode
-- [] You have used Copy Prompt or a trace at least once with your agent
-- [] You will not change locators without looking at a snapshot/trace first
+- You can step through a test in UI Mode.
+- You have used Copy Prompt or a trace at least once.
+- You will not change locators without looking at a snapshot or trace first.
 
-Next: [Lab 05 — Tags](./05-tags-annotations.md) (suite craft) or jump per your [path](./index.md).
+Next: [05 Tags](/05-tags-annotations) or jump using the [course home](/course).

@@ -1,36 +1,53 @@
-# 02 — First test with your agent + credentials
+# 02 First test and credentials
 
 ## Goal
 
-Have your coding agent explore login/logout, write a small logged-out auth test using `.env` credentials, and run it successfully — without Codegen.
+Explore login and logout, then write a small logged-out auth test using `.env` credentials without Codegen.
 
 ## Read first
 
-- [Authentication](https://playwright.dev/docs/auth) (overview; Lab 06 covers `storageState`)
-- House style: **movies-playwright** skill / [`AGENTS.md`](../AGENTS.md)
+- [Authentication](https://playwright.dev/docs/auth) (module 06 covers saved sessions with `storageState`)
+- [Agent house style](/AGENTS)
 
-## Explore, then write
+## Example: login and logout
 
-1. [] Ensure `.env` has `MOVIES_USERNAME` and `MOVIES_PASSWORD` (from `.env.example`). Any values work against the mock.
-2. [] In your agent, ask it to use the **playwright-cli** and **movies-playwright** skills to explore login → User Profile → Logout on `http://127.0.0.1:3000` (start the app with `npm run dev` if needed).
-3. [] Have the agent write a scratch test, e.g. `tests/logged-out/my-auth.spec.ts`, that:
-   - Uses `page.goto('')` (config `baseURL`)
-   - Fills credentials from `process.env.MOVIES_USERNAME` / `MOVIES_PASSWORD` (no literals)
-   - Uses `getByRole` / label locators
-   - Asserts logout (e.g. Log In control visible again)
-4. [] Run:
+The canonical `auth.spec.ts` uses role locators and env credentials:
+
+```typescript
+test('user can log out', async ({ page }) => {
+  await page.goto('');
+  await page.getByRole('banner').getByLabel('Log In').click();
+
+  await page.getByRole('textbox', { name: 'Email address' })
+    .fill(process.env.MOVIES_USERNAME!);
+  await page.getByRole('textbox', { name: 'Password' })
+    .fill(process.env.MOVIES_PASSWORD!);
+  await page.getByRole('button', { name: 'login' }).click();
+
+  await expect(page.getByRole('button', { name: 'User Profile' })).toBeVisible();
+
+  await page.getByRole('button', { name: 'User Profile' }).click();
+  await page.getByRole('button', { name: 'Logout' }).click();
+
+  await expect(page.getByRole('banner').getByLabel('Log In')).toBeVisible();
+});
+```
+
+## Practice on a clone
+
+Set `MOVIES_USERNAME` and `MOVIES_PASSWORD` in `.env`. Write a scratch spec under `tests/logged-out/` that follows the same pattern, then run:
 
 ```bash
 npx playwright test tests/logged-out/my-auth.spec.ts --project=chromium
 ```
 
-5. [] Compare with [`tests/logged-out/auth.spec.ts`](../tests/logged-out/auth.spec.ts) or [`learn/solutions/02-auth.spec.ts`](./solutions/02-auth.spec.ts). Keep or delete the scratch file.
+Explore the flow first with `npm run dev` and `npx playwright cli`, or use UI Mode if you prefer a visual pass.
 
-## Check-in
+## Key takeaways
 
-- [] Test logs in and out successfully
-- [] Credentials come from `process.env`, not literals
-- [] Locators are role/label based
-- [] You did **not** use Codegen / a test recorder
+- The test logs in and out successfully.
+- Credentials come from `process.env`, not string literals.
+- Locators are role or label based.
+- You did not use Codegen or a test recorder.
 
-Next: [Lab 03 — ARIA snapshots](./03-aria-snapshots.md).
+Next: [03 ARIA snapshots](/03-aria-snapshots).

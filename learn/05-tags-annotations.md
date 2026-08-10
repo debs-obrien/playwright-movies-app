@@ -1,4 +1,4 @@
-# 05 — Tags and annotations
+# 05 Tags and annotations
 
 ## Goal
 
@@ -7,36 +7,33 @@ Tag tests for selective runs and add annotations (skip, issue links) visible in 
 ## Read first
 
 - [Annotations](https://playwright.dev/docs/test-annotations)
-- [Command line — grep](https://playwright.dev/docs/test-cli)
+- [Command line grep](https://playwright.dev/docs/test-cli)
 
-## Add a tag
+## Tags
 
-1. [] Ask your agent to open [`tests/logged-out/movie-list.spec.ts`](../tests/logged-out/movie-list.spec.ts) and temporarily add a tag on one or both tests:
+Add a tag on a test in `movie-list.spec.ts` or a scratch file:
 
-```ts
+```typescript
 test('Avengers: Infinity is the first top rated movie', {
   tag: '@movies',
 }, async ({ page }) => {
+  await page.goto('/?category=Top+Rated&page=1');
   // ...
 });
 ```
 
-2. [] Run only tagged tests:
+Run only tagged tests:
 
 ```bash
 npx playwright test --grep "@movies" --project=chromium
+npx playwright test --grep-invert "@movies" --project=chromium
 ```
 
-3. [] Try `--grep-invert "@movies"`.
-
-In this suite, dense generated coverage often uses `@agent` on describe blocks. Teaching style still lives in `manage-lists-*` — tags organize **runs**, they do not replace good structure.
+Generated coverage in this repo often uses `@agent` on describe blocks. Teaching style still lives in `manage-lists-*`. Tags organize **runs**; they do not replace good structure.
 
 ## Skip and issue annotation
 
-1. [] Practice `test.skip(...)` on a throwaway test or temporarily on one case; confirm it shows as skipped in the report.
-2. [] Add an issue annotation:
-
-```ts
+```typescript
 test('dynamic content for first upcoming movie', {
   tag: '@movies',
   annotation: {
@@ -48,15 +45,12 @@ test('dynamic content for first upcoming movie', {
 });
 ```
 
-3. [] Run and open `npx playwright show-report` — find the annotation on the test details.
-4. [] Revert temporary edits unless you intend to keep the `@movies` tags.
+Run tests and open `npx playwright show-report` to see the annotation on the test details.
 
-See [`learn/solutions/05-tags-snippet.ts`](./solutions/05-tags-snippet.ts) for a minimal example.
+## Key takeaways
 
-## Check-in
+- You can grep by tag and invert the filter.
+- You know `test.skip` vs deleting a test.
+- Annotations show up in the HTML report.
 
-- [] You can grep by tag and invert
-- [] You know `test.skip` vs deleting a test
-- [] Annotations show up in the HTML report
-
-Next: [Lab 06 — Auth setup](./06-auth-setup.md).
+Next: [06 Auth setup](/06-auth-setup).

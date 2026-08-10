@@ -1,11 +1,11 @@
-# Sample plan section — Sharing a movie list
+# Sample plan section: Sharing a movie list
 
-> Example for Lab 09. Keep plans this small when practicing.
+> Example for module 09. Keep plans this small when practicing.
 
 ## Seed
 
 - Logged-in storage state from `login.setup.ts`
-- Prefer `listPage` from `tests/helpers/list-fixtures.ts` when the scenario needs a seeded list on View List
+- Prefer `listPage` from `list-fixtures.ts` when the scenario needs a seeded list on View List
 - Reuse `list-utilities` where a flow already exists
 
 ## Scenarios
@@ -21,13 +21,13 @@
 **Expected**
 
 - Share UI is visible
-- URL or copy affordance is present (role/label based locator)
+- URL or copy affordance is present (role or label based locator)
 
 ### 2. Close share dialog
 
 **Steps**
 
-1. From an open share dialog, dismiss it (Close button or Escape — use whatever the app exposes accessibly).
+1. From an open share dialog, dismiss it (Close button or Escape; use whatever the app exposes accessibly).
 2. Expect the dialog to be hidden.
 
 **Expected**

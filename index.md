@@ -3,22 +3,31 @@ layout: home
 hero:
   name: Learn Playwright
   text: Movies app workshop
-  tagline: Agent-first labs on a real Next.js app. Concepts stay on playwright.dev — practice with skills, CLI, UI Mode, and traces.
+  tagline: Practice on a real Next.js app. Concepts on playwright.dev; course, reference, and a live demo here.
+  image:
+    src: /movies-home.jpg
+    alt: Movies app home page showing popular movie posters
   actions:
     - theme: brand
       text: Start learning
       link: /course
     - theme: alt
-      text: Testing reference
-      link: /docs/TESTING
+      text: Try the demo app
+      link: https://debs-obrien.github.io/playwright-movies-app/
     - theme: alt
-      text: AI testing
-      link: /docs/AI-TESTING
+      text: Clone on GitHub
+      link: https://github.com/debs-obrien/playwright-movies-app
 features:
   - title: Foundations
-    details: Overview, first agent-written test, ARIA snapshots, UI Mode and traces — Labs 01–04.
+    details: Overview, first test, ARIA snapshots, UI Mode and traces. Modules 01 to 04.
   - title: Suite craft
-    details: Tags, auth storageState, fixtures/helpers, network mock and API — Labs 05–08.
+    details: Tags, auth storageState, fixtures and helpers, network mock and API. Modules 05 to 08.
   - title: AI-assisted
-    details: movies-playwright + playwright-cli skills, planner → generator → healer — Lab 09.
+    details: Skills, planner, generator, and healer. Module 09.
 ---
+
+## Credits
+
+Course, demo app, and learn site by **[Debbie O'Brien](https://debbie.codes/)**.
+
+Fork of [next-movies](https://github.com/tastejs/next-movies), customized for learning Playwright.

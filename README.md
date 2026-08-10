@@ -4,23 +4,20 @@ Hands-on guide to end-to-end testing with [Playwright](https://playwright.dev/) 
 
 Movie data and login come from the local **TMDB mock API** in [`mock-api/`](mock-api/) (no cloud account required for login). Images may still load from [TMDB](https://www.themoviedb.org/). Fork of [next-movies](https://github.com/tastejs/next-movies), customized for learning.
 
-## Start here — Learn
+## Start here
 
 1. Clone, `npm install`, `npx playwright install chromium`, copy `.env.example` → `.env`.
-2. Open this repo in **Cursor, Claude Code, Codex, or similar**.
-3. Say **“Use the learn-lab-coach skill — I’m on Lab 00.”** (or `@learn-lab-coach` in Cursor) or open [`learn/00-start-here.md`](learn/00-start-here.md).
+2. Open this repo in **Cursor, Claude Code, Codex, or similar** (optional).
+3. Read the [learn site](https://debs-obrien.github.io/playwright-movies-app/learn/) or open [`learn/00-start-here.md`](learn/00-start-here.md) in the repo.
 
 | Resource | Path |
 |----------|------|
-| **Labs** | [`learn/`](learn/index.md) |
-| **Browse locally** | `npm run docs:dev` |
-| **Published docs** | `/learn` on [GitHub Pages](https://debs-obrien.github.io/playwright-movies-app/learn/) (after deploy) |
+| **Course** | [`learn/`](learn/index.md) · [published site](https://debs-obrien.github.io/playwright-movies-app/learn/) |
+| **Live demo app** | [Movies app](https://debs-obrien.github.io/playwright-movies-app/) |
 | **Skills** | `.agents/skills/movies-playwright`, `learn-lab-coach` (+ official `playwright-cli`, `playwright-trace`) |
 | **Reference** | [`docs/TESTING.md`](docs/TESTING.md), [`docs/AI-TESTING.md`](docs/AI-TESTING.md) |
 | **Exercises** | [`docs/exercises/`](docs/exercises/README.md) |
 | **House style** | [`AGENTS.md`](AGENTS.md) |
-
-Workshop structure inspired by [Build 2025 Lab 304](https://github.com/microsoft/Build25-LAB304). This fork is agent-first. Wiki deprecated: [`docs/WIKI.md`](docs/WIKI.md).
 
 ![Playwright Movies App](movies-app-ui-mode.jpg)
 

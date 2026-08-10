@@ -1,4 +1,4 @@
-# 07 — beforeEach, fixtures, and helpers
+# 07 beforeEach, fixtures, and helpers
 
 ## Goal
 
@@ -7,36 +7,55 @@ Compare shared `beforeEach` setup with list fixtures, and reuse helpers instead 
 ## Read first
 
 - [Fixtures](https://playwright.dev/docs/test-fixtures)
-- **movies-playwright** skill
-- Canonical files (ask your agent to compare them):
-  - [`manage-lists-before-each.spec.ts`](../tests/logged-in/manage-lists-before-each.spec.ts)
-  - [`manage-lists-fixtures.spec.ts`](../tests/logged-in/manage-lists-fixtures.spec.ts)
-  - [`list-fixtures.ts`](../tests/helpers/list-fixtures.ts)
-  - [`list-utilities.ts`](../tests/helpers/list-utilities.ts)
+- [Agent house style](/AGENTS)
 
-## Study both styles
+## Fixtures vs beforeEach
 
-1. [] beforeEach file: setup creates a list and opens My Lists for every test.
-2. [] Fixtures file: tests import `test` from `list-fixtures` and request the lightest fixture (`emptyListPage`, `listWithMoviesPage`, or `listPage`).
-3. [] Helpers wrap `test.step` for readable traces.
+**beforeEach style** (`manage-lists-before-each.spec.ts`): one shared setup block creates a list for every test.
 
-This repo prefers **helpers + fixtures** over a heavy Page Object layer.
+**Fixture style** (`manage-lists-fixtures.spec.ts`): request only the seed you need:
 
-## Practice
+```typescript
+import { expect, test } from '../helpers/list-fixtures';
 
-1. [] Ask your agent (with **movies-playwright**) to create a scratch spec under `tests/logged-in/` that:
-   - Imports `test` from `../helpers/list-fixtures`
-   - Uses `{ listPage }`
-   - Edits the list name (short version of the fixtures edit test)
-2. [] Run it with `--project="logged-in chrome"`.
-3. [] Compare with [`learn/solutions/07-fixture-edit.spec.ts`](./solutions/07-fixture-edit.spec.ts); delete or keep the scratch file.
+test('editing an existing list', async ({ listPage }) => {
+  const page = listPage;
 
-**Honest note:** `list-fixtures.ts` exposes three optional seeds. Request only the lightest fixture the scenario needs.
+  await page.getByRole('link', { name: 'Edit' }).click();
+  await page.getByRole('textbox', { name: 'Name' }).fill('my action movies');
+  await page.getByRole('button', { name: 'Save' }).click();
 
-## Check-in
+  await expect(page.getByRole('textbox', { name: 'Name' }))
+    .toHaveValue('my action movies');
+});
+```
 
-- [] You know when to reach for `listPage` vs `listWithMoviesPage` vs `beforeEach`
-- [] New test imports from helpers / `list-fixtures`, not duplicated login or list-create clicks
-- [] Assertions stay web-first
+Three optional fixtures live on one `test` export:
 
-Next: [Lab 08 — Network and API](./08-network-and-api.md).
+| Fixture | Page state | Use when |
+|---------|------------|----------|
+| `emptyListPage` | New list, no movies | Empty-state UI |
+| `listWithMoviesPage` | List with movies, no cover | Add, remove, search |
+| `listPage` | Full seed on View List | Edit, share, navigation |
+
+```typescript
+import { expect, test } from '../../helpers/list-fixtures';
+
+test('empty state', async ({ emptyListPage }) => { /* ... */ });
+test('add a movie', async ({ listWithMoviesPage }) => { /* ... */ });
+test('share a list', async ({ listPage }) => { /* ... */ });
+```
+
+Helpers such as `createList`, `addMovie`, and `selectCoverImage` live in `list-utilities.ts`.
+
+## Practice on a clone
+
+Write a short spec that imports `test` from `list-fixtures`, uses `{ listPage }`, and edits the list name. Run with `--project="logged-in chrome"`.
+
+## Key takeaways
+
+- You know when to use `listPage`, `listWithMoviesPage`, or `beforeEach`.
+- New tests import from helpers and `list-fixtures`, not duplicated setup clicks.
+- Assertions stay web-first.
+
+Next: [08 Network and API](/08-network-and-api).
