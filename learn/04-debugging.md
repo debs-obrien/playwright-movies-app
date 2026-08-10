@@ -20,17 +20,29 @@ npx playwright test --ui
 
 Filter projects in the sidebar (`chromium`, `logged-in chrome`, etc.). Run one test, click actions in the timeline, and time-travel through page snapshots.
 
-Break an assertion on purpose, open the **Errors** tab, and use **Copy Prompt** with your coding agent. Fix from evidence, then revert the intentional breakage.
+## Practice: intentional failure lab
+
+Use the checked-in lab instead of editing a teaching spec:
+
+1. Open `tests/logged-out/lessons/debug-intentional-fail.spec.ts`.
+2. Remove `test.fixme` so the test runs.
+3. Run with a forced trace:
+
+```bash
+npx playwright test tests/logged-out/lessons/debug-intentional-fail.spec.ts --project=chromium --trace on
+```
+
+4. Open the trace (`npx playwright show-trace test-results/.../trace.zip` or `npx playwright trace open` + `trace actions`).
+5. In UI Mode, open the **Errors** tab and try **Copy Prompt** with a coding agent if you want.
+6. Fix the snapshot heading to `"Twisters"`, re-run green, then restore `test.fixme` (or leave your fixed version local without committing).
 
 ## Traces
 
-Config sets `trace: 'on-first-retry'`. Force a trace locally:
+Config sets `trace: 'on-first-retry'`. You can also force a trace on a passing file:
 
 ```bash
 npx playwright test tests/logged-out/search.spec.ts --project=chromium --trace on
 ```
-
-Open the result:
 
 ```bash
 npx playwright show-trace test-results/.../trace.zip
@@ -40,6 +52,12 @@ npx playwright trace actions
 ```
 
 Heal using trace or snapshot evidence, not blind locator retries.
+
+## Done when
+
+- UI Mode opened at least once (`npx playwright test --ui`).
+- You inspected a failure or a trace before changing an assertion.
+- The intentional-fail lab was run with `--trace on` (then fixed or re-`fixme`d).
 
 ## Key takeaways
 

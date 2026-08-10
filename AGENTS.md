@@ -4,7 +4,7 @@ House style for Playwright work in this repository. Full learning path: [Testing
 
 **Learning:** open a coding agent on this repo and say which module you are on (for example, "I'm on 01") using the **learn-lab-coach** skill. Do not teach Codegen or an IDE Testing UI as the course path.
 
-**Maintainer QA:** after changing `learn/`, say “dogfood the learn path” to use the **learn-dogfood** skill (docs walk, fresh clone setup, practice steps). That is not learner coaching.
+**Maintainer QA:** after changing `learn/`, say “dogfood the learn path” to use the **learn-dogfood** skill (docs walk, fresh clone setup, practice steps), or the thin prompt [`learn-dogfood.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/learn-dogfood.prompt.md). That is not learner coaching.
 
 ## Preferred tool path
 

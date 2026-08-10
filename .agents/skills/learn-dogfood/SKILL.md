@@ -78,8 +78,9 @@ a worktree of the current branch) for Layers A–C instead of `main` on GitHub.
 For each in-scope module, read `learn/<module>.md` and execute only:
 
 1. Shell/code blocks a learner is told to run (Start the app, run test, CLI explore, …).
-2. Sections titled **Practice on a clone** (or equivalent practice wording).
-3. After 01–04 (beginner path): foundations smoke from `learn/index.md`:
+2. Sections titled **Practice on a clone**, **Practice:**, or **Done when**.
+3. Linked [exercises](docs/exercises/) when the module points to them (03, 07, 09).
+4. After 01–04 (beginner path): foundations smoke from `learn/index.md`:
 
 ```bash
 npx playwright test tests/logged-out/movie-list.spec.ts --project=chromium

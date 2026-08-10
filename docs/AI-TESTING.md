@@ -100,6 +100,7 @@ npx playwright init-skills --loop=claude             # → .claude/skills
 | [`playwright-test-heal.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/playwright-test-heal.prompt.md) | Run and fix failures |
 | [`playwright-test-coverage.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/playwright-test-coverage.prompt.md) | Full plan, generate, heal |
 | [`lab-coach.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/lab-coach.prompt.md) | “I'm on 01” invokes **learn-lab-coach** |
+| [`learn-dogfood.prompt.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.github/prompts/learn-dogfood.prompt.md) | Maintainer QA: dogfood the course with **learn-dogfood** |
 
 Seed for list flows: [`seed.spec.ts` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/tests/logged-in/seed.spec.ts) (uses `list-fixtures`). Example plan: [`movies-list-plan.md` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/specs/movies-list-plan.md).
 

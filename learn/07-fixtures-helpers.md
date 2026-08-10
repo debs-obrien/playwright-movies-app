@@ -39,18 +39,28 @@ Three optional fixtures live on one `test` export:
 | `listPage` | Full seed on View List | Edit, share, navigation |
 
 ```typescript
-import { expect, test } from '../../helpers/list-fixtures';
+// From tests/logged-in/your-spec.spec.ts — one level up to helpers/
+import { expect, test } from '../helpers/list-fixtures';
 
 test('empty state', async ({ emptyListPage }) => { /* ... */ });
 test('add a movie', async ({ listWithMoviesPage }) => { /* ... */ });
 test('share a list', async ({ listPage }) => { /* ... */ });
 ```
 
-Helpers such as `createList`, `addMovie`, and `selectCoverImage` live in `list-utilities.ts`.
+Specs under `tests/logged-in/lists/` import `../../helpers/list-fixtures` instead (two levels up). Helpers such as `createList`, `addMovie`, and `selectCoverImage` live in `list-utilities.ts`.
+
+Import `test` from `list-fixtures` only — do not use a deprecated `list-test` helper path in new work.
 
 ## Practice on a clone
 
-Write a short spec that imports `test` from `list-fixtures`, uses `{ listPage }`, and edits the list name. Run with `--project="logged-in chrome"`.
+Write a short spec under `tests/logged-in/` that imports `test` from `../helpers/list-fixtures`, uses `{ listPage }`, and edits the list name. Run with `--project="logged-in chrome"`.
+
+## Done when
+
+- Your scratch spec imports from `list-fixtures` and uses the lightest fixture you need.
+- It passes with `--project="logged-in chrome"`.
+
+Extra practice: [Exercise 01 — beforeEach to fixtures](/docs/exercises/01-beforeeach-to-fixtures).
 
 ## Key takeaways
 

@@ -89,6 +89,16 @@ npx playwright test tests/logged-out/movie-list.spec.ts --ui
 
 Playwright launches a browser, drives the UI like a user, and uses **web-first assertions** that retry until timeout. `baseURL` lets tests call `page.goto('')` or short paths like `'/?category=Top+Rated&page=1'`.
 
+## Done when
+
+- `movies-app/`, `mock-api/`, `tests/`, and `playwright.config.ts` are where you expect.
+- `npm run dev` serves the app on port 3000 (or you used the hosted demo).
+- This passes:
+
+```bash
+npx playwright test tests/logged-out/movie-list.spec.ts --project=chromium
+```
+
 ## Key takeaways
 
 - Know where app code, mock API, and tests live in the repo.

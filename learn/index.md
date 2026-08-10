@@ -51,8 +51,13 @@ npx playwright test tests/logged-out/auth.spec.ts --project=chromium
 npx playwright test tests/logged-out/search.spec.ts --project=chromium
 ```
 
+## Extra practice
+
+After the matching modules (especially 03, 07, and 09), try the [exercises](/docs/exercises/) on a clone. Solutions live next to each exercise—attempt the task first.
+
 ## Reference on this site
 
 - [Testing guide](/docs/TESTING)
 - [AI testing](/docs/AI-TESTING)
 - [Agent house style](/AGENTS)
+- [Exercises](/docs/exercises/)

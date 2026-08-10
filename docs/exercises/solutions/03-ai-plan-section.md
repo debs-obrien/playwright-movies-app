@@ -17,4 +17,4 @@ A minimal section looks like:
 - URL textbox contains `/list?id=`
 ```
 
-Then generate one test, rewrite onto `listPage`, and check the rubric in `docs/AI-TESTING.md`. Full example plan: `specs/movies-list-plan.md`. Agent loop prompts: `.github/prompts/`.
+Then generate one test with `.github/prompts/playwright-test-generate.prompt.md`, rewrite onto `listPage` with the **movies-playwright** skill, and check the rubric in `docs/AI-TESTING.md`. Full example plan: `specs/movies-list-plan.md`. Planner prompt: `.github/prompts/playwright-test-plan.prompt.md`.

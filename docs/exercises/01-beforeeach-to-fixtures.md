@@ -13,6 +13,6 @@ Take a test that creates a list in `beforeEach` (or inline) and rewrite it to us
 
 ## Done when
 
-- The test imports `test` from `list-fixtures`.
+- The test imports `test` from `list-fixtures` (`../helpers/list-fixtures` from `tests/logged-in/`).
 - Setup is only the fixture you need.
-- `npx playwright test <your-file>` passes.
+- `npx playwright test <your-file> --project="logged-in chrome"` passes.

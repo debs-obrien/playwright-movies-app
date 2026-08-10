@@ -54,6 +54,16 @@ npx playwright test tests/logged-out/search.spec.ts --project=chromium
 - Values that change every run without a regex: prefer `/pattern/` in the YAML snapshot.
 - Pure navigation checks: `toHaveURL` is enough.
 
+## Done when
+
+```bash
+npx playwright test tests/logged-out/search.spec.ts --project=chromium
+```
+
+passes, and you can explain when to prefer `toMatchAriaSnapshot` over a single text assert.
+
+Extra practice: [Exercise 02 — ARIA snapshot](/docs/exercises/02-aria-snapshot).
+
 ## Key takeaways
 
 - You can explain snapshot vs text assert in one sentence.

@@ -11,23 +11,14 @@ Tag tests for selective runs and add annotations (skip, issue links) visible in 
 
 ## Tags
 
-Add a tag on a test in `movie-list.spec.ts` or a scratch file:
-
-```typescript
-test('Avengers: Infinity is the first top rated movie', {
-  tag: '@movies',
-}, async ({ page }) => {
-  await page.goto('/?category=Top+Rated&page=1');
-  // ...
-});
-```
-
-Run only tagged tests:
+`movie-list.spec.ts` already tags the Dark Knight test with `@movies`. Run it selectively:
 
 ```bash
 npx playwright test --grep "@movies" --project=chromium
 npx playwright test --grep-invert "@movies" --project=chromium
 ```
+
+Optional: add `@movies` (or your own tag) on another test or a scratch file under `tests/logged-out/`. Grep with no matches exits with “No tests found”.
 
 Generated coverage in this repo often uses `@agent` on describe blocks. Teaching style still lives in `manage-lists-*`. Tags organize **runs**; they do not replace good structure.
 
@@ -41,11 +32,21 @@ test('dynamic content for first upcoming movie', {
     description: 'https://github.com/microsoft/playwright/issues/23180',
   },
 }, async ({ page }) => {
-  // ...
+  // same body as in movie-list.spec.ts
 });
 ```
 
-Run tests and open `npx playwright show-report` to see the annotation on the test details.
+Run with the HTML reporter, then open the report to see tags and annotations on the test details:
+
+```bash
+npx playwright test --grep "@movies" --project=chromium --reporter=html
+npx playwright show-report
+```
+
+## Done when
+
+- `--grep "@movies"` runs the Dark Knight test on chromium.
+- You have opened the HTML report at least once.
 
 ## Key takeaways
 

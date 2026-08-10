@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 
-test('The Dark Knight is the first top rated movie', async ({
+test('The Dark Knight is the first top rated movie', {
+  tag: '@movies',
+}, async ({
   page,
 }) => {
   await page.goto('/?category=Top+Rated&page=1');
