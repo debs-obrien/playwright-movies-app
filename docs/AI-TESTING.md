@@ -39,6 +39,7 @@ flowchart TB
 |-------|------|
 | [`movies-playwright` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/movies-playwright/SKILL.md) | House style, fixtures, explore, draft, rewrite, heal policy |
 | [`learn-lab-coach` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/learn-lab-coach/SKILL.md) | Walk labs one step at a time in a local clone |
+| [`learn-dogfood` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/learn-dogfood/SKILL.md) | Maintainer QA: simulate a new learner after `learn/` changes |
 | [`playwright-cli` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/playwright-cli/SKILL.md) | Official CLI explore and attach (from `init-skills`) |
 | [`playwright-trace` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/playwright-trace/SKILL.md) | Official trace CLI (from `init-skills`) |
 
