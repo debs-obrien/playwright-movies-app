@@ -1,11 +1,11 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { expect } from '@playwright/test';
-import { addMovie, createList, openLists, addImageToList, navigateToMovieList } from '../helpers/list-utilities';
-import { listTest as test } from '../helpers/list-test';
+import { test } from '../helpers/list-fixtures';
 
-
+/**
+ * Seed file for Playwright test agents. Skipped in normal runs so the heavy
+ * listPage fixture is not paid for an empty body.
+ */
 test.describe('Test group', () => {
-  test('seed', async ({ listPage }) => {
-    const page = listPage; //set the page to the list page fixture
+  test.skip('seed', async ({ listPage }) => {
+    void listPage;
   });
 });

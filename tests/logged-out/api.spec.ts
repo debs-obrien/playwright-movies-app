@@ -92,6 +92,7 @@ test('movie search', async ({ request }) => {
 test('movie credits', async ({ request }) => {
   const response = await request.get(`/3/movie/tt12584954/credits`);
   await expect(response).toBeOK();
+  // Fixtures are trimmed for Workers size limits: slim cast fields, no crew.
   const credits = await response.json();
   expect(credits).toEqual(
     expect.objectContaining({

@@ -41,7 +41,7 @@ export async function createList(
 export async function openLists(page: Page, name: string = 'My Lists') {
   await test.step('open list from menu', async () => {
     await page.getByRole('button', { name: 'User Profile' }).click();
-    await page.getByRole('link', { name }).click();
+    await page.getByRole('link', { name: name }).click();
   });
 }
 
@@ -62,11 +62,29 @@ export async function addMovie(page: Page, movieName: string) {
     const searchBox = page.getByRole('textbox', { name: 'Add Item' });
     await searchBox.clear();
     await searchBox.fill(movieName);
-    
+
     // Use Playwright's built-in auto-waiting with getByRole - it will wait for the button to appear
     await page.getByRole('button', { name: new RegExp(movieName, 'i') }).first().click();
     // Verify movie was added by checking for the movie text (partial match)
     await expect(page.getByLabel('movies').getByText(new RegExp(movieName, 'i'))).toBeVisible();
+  });
+}
+
+/**
+ * Selects a cover image for the list from a movie backdrop.
+ * Uses the accessible button name (`SELECT for <movie>`) so hover/force is unnecessary.
+ */
+export async function selectCoverImage(page: Page, movieName: string) {
+  await test.step(`select cover image for ${movieName}`, async () => {
+    const selectButton = page.getByRole('button', {
+      name: new RegExp(`^SELECT for ${movieName}$`, 'i'),
+    });
+    await selectButton.click();
+    await expect(
+      page.getByRole('button', {
+        name: new RegExp(`^SELECTED for ${movieName}$`, 'i'),
+      }),
+    ).toBeVisible();
   });
 }
 
@@ -90,13 +108,7 @@ export async function addImageToList(page: Page, movieName: string) {
     const movie = page.getByRole('listitem', { name: 'movie' });
     await expect(movie.getByRole('heading')).toHaveText(movieName);
 
-    // Hover over the movie list item and select the image
-    await movie.hover();
-    await expect(movie).toContainText('SELECT');
-    await movie.click();
-
-    // Verify that the button text has changed to "SELECTED"
-    await expect(movie.getByRole('button')).toHaveText('SELECTED');
+    await selectCoverImage(page, movieName);
 
     // Navigate back to the the "My Lists" section of the user profile
     await openLists(page, 'My Lists');

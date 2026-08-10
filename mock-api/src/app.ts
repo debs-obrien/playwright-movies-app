@@ -41,6 +41,11 @@ type List = {
 const listStore = new Map<string, List>()
 const accountListIds = new Map<string, Set<string>>()
 
+// Approved request_tokens from /auth/access. Used so /4/auth/access_token does not
+// depend on third-party cookies (blocked by many browsers for GitHub Pages → Workers).
+type ApprovedAuth = { access_token: string; account_id: string }
+const approvedTokens = new Map<string, ApprovedAuth>()
+
 const dedupedMovies = enrichedMovies.filter((movie, index) => enrichedMovies.findIndex(m => m.id === movie.id) === index)
 
 // Lazy-init Orama: insertMultiple uses setTimeout, which Workers disallow at global scope.
@@ -114,6 +119,7 @@ app.post('/test/reset', (c) => {
   }
   listStore.clear()
   accountListIds.clear()
+  approvedTokens.clear()
   return c.json({ success: true })
 })
 
@@ -127,22 +133,24 @@ app.post("/4/auth/request_token", async (c) => {
   })
 })
 app.get("/auth/access", async (c) => {
-  return c.html(`
-    <!--
-// v0 by Vercel.
-// https://v0.dev/t/boP1S5LAB4n
--->
-
-<script src="https://cdn.tailwindcss.com"></script>
-<style>:root{--background:0 0% 100%;--foreground:240 10% 3.9%;--card:0 0% 100%;--card-foreground:240 10% 3.9%;--popover:0 0% 100%;--popover-foreground:240 10% 3.9%;--primary:240 5.9% 10%;--primary-foreground:0 0% 98%;--secondary:240 4.8% 95.9%;--secondary-foreground:240 5.9% 10%;--muted:240 4.8% 95.9%;--muted-foreground:240 3.8% 45%;--accent:240 4.8% 95.9%;--accent-foreground:240 5.9% 10%;--destructive:0 72% 51%;--destructive-foreground:0 0% 98%;--border:240 5.9% 90%;--input:240 5.9% 90%;--ring:240 5.9% 10%;--chart-1:173 58% 39%;--chart-2:12 76% 61%;--chart-3:197 37% 24%;--chart-4:43 74% 66%;--chart-5:27 87% 67%;--radius:0.5rem;}img[src="/placeholder.svg"],img[src="/placeholder-user.jpg"]{filter:sepia(.3) hue-rotate(-60deg) saturate(.5) opacity(0.8) }</style>
-<style>h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; --font-sans-serif: 'Inter'; }
-</style>
-<style>body { font-family: 'Inter', sans-serif; --font-sans-serif: 'Inter'; }
-</style>
-<div class="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#1A2B34] to-[#2C4452] px-4 py-12 sm:px-6 lg:px-8">
-  <div class="w-full max-w-md space-y-8">
-    <div>
-      <div class="flex items-center justify-center">
+  return c.html(`<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Login to the Playwright Stage</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="flex min-h-screen min-h-[100dvh] items-center justify-center bg-gradient-to-br from-[#1A2B34] to-[#2C4452] px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <div class="w-full max-w-md space-y-6 sm:space-y-8">
+      <div class="flex flex-col items-center justify-center gap-3 text-center sm:gap-4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -153,79 +161,102 @@ app.get("/auth/access", async (c) => {
           stroke-width="2"
           stroke-linecap="round"
           stroke-linejoin="round"
-          class="h-12 w-12 text-white"
+          class="h-10 w-10 text-white sm:h-12 sm:w-12"
+          aria-hidden="true"
         >
           <polygon points="6 3 20 12 6 21 6 3"></polygon>
         </svg>
-        <h2 class="text-center text-3xl font-bold tracking-tight text-white">Login to the Playwright Stage</h2>
+        <h1 class="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+          Login to the Playwright Stage
+        </h1>
       </div>
+      <form class="space-y-5 sm:space-y-6" action="#" method="POST">
+        <div>
+          <label
+            class="text-sm font-medium text-white"
+            for="email"
+          >
+            Email address
+          </label>
+          <div class="mt-1">
+            <input
+              class="block min-h-11 w-full rounded-md border border-gray-300 bg-[#1A2B34] px-3 py-2.5 text-base text-white shadow-sm placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              id="email"
+              autocomplete="email"
+              required
+              placeholder="you@example.com"
+              type="email"
+              name="email"
+              inputmode="email"
+            />
+          </div>
+        </div>
+        <div>
+          <label
+            class="text-sm font-medium text-white"
+            for="password"
+          >
+            Password
+          </label>
+          <div class="mt-1">
+            <input
+              class="block min-h-11 w-full rounded-md border border-gray-300 bg-[#1A2B34] px-3 py-2.5 text-base text-white shadow-sm placeholder:text-gray-400 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+              id="password"
+              autocomplete="current-password"
+              required
+              placeholder="Password"
+              type="password"
+              name="password"
+            />
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="flex min-h-11 w-full items-center justify-center rounded-md bg-[#4a5568] px-4 py-2.5 text-base font-medium text-white hover:bg-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#4a5568] focus:ring-offset-2 focus:ring-offset-[#1A2B34]"
+        >
+          Login
+        </button>
+      </form>
     </div>
-    <form class="space-y-6" action="#" method="POST">
-      <div>
-        <label
-          class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium text-white"
-          for="email"
-        >
-          Email address
-        </label>
-        <div class="mt-1">
-          <input
-            class="h-10 border text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full rounded-md border-gray-300 bg-[#1A2B34] px-3 py-2 text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            id="email"
-            autocomplete="email"
-            required=""
-            placeholder="you@example.com"
-            type="email"
-            name="email"
-          />
-        </div>
-      </div>
-      <div>
-        <label
-          class="peer-disabled:cursor-not-allowed peer-disabled:opacity-70 text-sm font-medium text-white"
-          for="password"
-        >
-          Password
-        </label>
-        <div class="mt-1">
-          <input
-            class="h-10 border text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 block w-full rounded-md border-gray-300 bg-[#1A2B34] px-3 py-2 text-white shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-            id="password"
-            autocomplete="current-password"
-            required=""
-            placeholder="Password"
-            type="password"
-            name="password"
-          />
-        </div>
-      </div>
-      <button
-        type="submit"
-        class="w-full px-4 py-2 font-medium text-white bg-[#4a5568] rounded-md hover:bg-[#6b7280] focus:outline-none focus:ring-2 focus:ring-[#4a5568]"
-      >
-        Login
-      </button>
-    </form>
   </div>
-</div>
-  `)
+</body>
+</html>`)
 })
 app.post("/auth/access", async (c) => {
   const request_token = c.req.query("request_token")
+  if (!request_token) return c.text("missing request_token", { status: 400 })
   const form = await c.req.formData()
   const email = form.get("email") as string
   const { redirect_to } = JSON.parse(Buffer.from(request_token, "base64").toString())
   const account_id = encodeURIComponent(email);
   const access_token = Buffer.from(JSON.stringify({ account_id })).toString("base64")
+  // Keep cookies for same-site local/Playwright flows.
   setCookie(c, request_token.slice(0, 6), access_token, cookieSettings);
   setCookie(c, "current_account", account_id, cookieSettings);
-  return c.redirect(redirect_to)
+  approvedTokens.set(request_token, { access_token, account_id })
+
+  // Hand tokens back in the URL hash so cross-site login works when browsers
+  // block third-party cookies. Hash avoids Next.js query-string sync issues.
+  let redirectUrl: URL
+  try {
+    redirectUrl = new URL(redirect_to)
+  } catch {
+    return c.text("invalid redirect_to", { status: 400 })
+  }
+  const authHash = new URLSearchParams({ access_token, account_id })
+  redirectUrl.hash = authHash.toString()
+  return c.redirect(redirectUrl.toString())
 })
 app.post("/4/auth/access_token", async (c) => {
   const { request_token } = await c.req.json()
-  const access_token = getCookie(c, request_token.slice(0, 6));
+  const approved = approvedTokens.get(request_token)
+  const access_token = approved?.access_token || getCookie(c, request_token.slice(0, 6));
   if (!access_token) return c.text("unauthenticated", { status: 401 })
-  const { account_id } = JSON.parse(Buffer.from(access_token, "base64").toString())
+  const account_id = approved?.account_id
+    || JSON.parse(Buffer.from(access_token, "base64").toString()).account_id
+
+  // One-time use when present in memory (cookie path may still re-read).
+  approvedTokens.delete(request_token)
 
   return c.json({
     success: true,

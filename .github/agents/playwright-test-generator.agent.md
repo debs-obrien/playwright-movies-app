@@ -66,13 +66,26 @@ application behavior.
    // spec: specs/plan.md
    // seed: tests/seed.spec.ts
 
-   test.describe('Adding New Todos', () => {
-     test('Add Valid Todo', async { page } => {
-       // 1. Click in the "What needs to be done?" input field
-       await page.click(...);
+   import { test, expect } from '@playwright/test';
 
-       ...
+   test.describe('Adding New Todos', () => {
+     test('Add Valid Todo', async ({ page }) => {
+       // 1. Click in the "What needs to be done?" input field
+       const todoInput = page.getByRole('textbox', { name: 'What needs to be done?' });
+       await todoInput.click();
+
+       // 2. Type "Buy groceries"
+       await todoInput.fill('Buy groceries');
+
+       // 3. Press Enter key
+       await todoInput.press('Enter');
+
+       await expect(page.getByText('Buy groceries')).toBeVisible();
      });
    });
    ```
+
+   Prefer `getByRole` / `getByLabel` and web-first assertions. Never use `page.click(selector)`
+   CSS selectors, `waitForTimeout`, or `force: true` when generating tests for this repo.
+   Follow `AGENTS.md` and reuse `tests/helpers/list-fixtures.ts` / `list-utilities.ts` for list flows.
    </example-generation>

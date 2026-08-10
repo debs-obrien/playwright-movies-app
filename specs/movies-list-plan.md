@@ -92,7 +92,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 2. Adding Movies to Lists
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 2.1 Add Single Movie by Search
 **Steps:**
@@ -161,7 +161,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 3. Removing Movies from Lists
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 3.1 Remove Single Movie
 **Steps:**
@@ -216,7 +216,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 4. Editing List Details
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 4.1 Edit List Name
 **Steps:**
@@ -308,7 +308,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 5. Selecting List Cover Images
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 5.1 Select Cover Image from Movie
 **Steps:**
@@ -367,7 +367,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 6. Viewing Movie Lists
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 6.1 View List with Multiple Movies
 **Steps:**
@@ -440,7 +440,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 7. Sharing Movie Lists
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 7.1 Open Share Dialog
 **Steps:**
@@ -509,7 +509,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 8. Deleting Movie Lists
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 8.1 Delete List with Confirmation
 **Steps:**
@@ -577,7 +577,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 9. Navigation and User Experience
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 9.1 Navigate Between List Management Tabs
 **Steps:**
@@ -654,7 +654,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 10. "My Lists" Overview Page
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 10.1 View All Lists
 **Steps:**
@@ -819,7 +819,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 12. Integration with Search Functionality
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 12.1 Search for Movie in Add Item Field
 **Steps:**
@@ -865,7 +865,7 @@ The Movies List Feature is a core component of the Movies App that allows authen
 
 ### 13. Persistence and Data Integrity
 
-**Seed:** Use `listTest` fixture from `tests/helpers/list-test.ts`
+**Seed:** Use fixtures from `tests/helpers/list-fixtures.ts` (via `tests/logged-in/seed.spec.ts`)
 
 #### 13.1 Verify List Persists After Logout/Login
 **Steps:**
@@ -919,7 +919,7 @@ This comprehensive test plan covers all major functionality of the Movies List f
 - **13 test categories** covering the full feature set
 - **60+ individual test scenarios** including happy paths, edge cases, and negative tests
 - **Reusable utilities** from `list-utilities.ts` for common operations like `createList()`, `addMovie()`, `openLists()`, `addImageToList()`, and `navigateToMovieList()`
-- **Test fixtures** using `listTest` fixture for pre-populated test data
+- **Test fixtures** using `list-fixtures` (`emptyListPage` / `listWithMoviesPage` / `listPage`) for pre-populated test data
 - **Comprehensive coverage** of user flows, error handling, and data integrity
 
 Each scenario is designed to be independent and can be executed in any order, assuming a fresh/blank state or using the specified seed file/fixture. The test plan is structured to enable efficient test automation using Playwright while ensuring thorough coverage of all user-facing functionality and potential edge cases.

@@ -1,32 +1,39 @@
 // spec: specs/movies-list-plan.md
 // seed: tests/logged-in/seed.spec.ts
 
-import { expect } from '@playwright/test';
-import { listTest as test } from '../helpers/list-test';
+import { expect, test } from '../helpers/list-fixtures';
 
 test.describe('Error Handling and Edge Cases', { tag: '@agent' }, () => {
-  // FIXME: The application allows access to public lists without authentication.
-  // This test expects access to be denied, but the list fixture creates a public list by default.
-  // The application behavior is: public lists are viewable without authentication, 
-  // but editing/managing requires authentication. To test access denial, a private list
-  // would need to be created first.
-  test.fixme('Access List Without Authentication', async ({ listPage }) => {
+  test('Manage List Pages Require Authentication', async ({ listPage, browser }) => {
     const page = listPage;
+    const url = new URL(page.url());
+    const listId = url.searchParams.get('id') ?? url.searchParams.get('listId');
+    expect(listId, `expected list id in URL: ${page.url()}`).toBeTruthy();
 
-    // Store list URL from authenticated session
-    const listUrl = page.url();
+    // Public list view is available without auth; management routes are gated.
+    // Auth tokens live in localStorage (via storageState), so create an explicitly empty context.
+    const guestContext = await browser.newContext({
+      storageState: { cookies: [], origins: [] },
+    });
+    const guest = await guestContext.newPage();
 
-    // 1. Logout using the Logout button in User Profile menu
-    await page.getByRole('button', { name: 'User Profile' }).click();
-    await page.getByRole('button', { name: 'Logout' }).click();
-    await expect(page.getByRole('button', { name: 'Log In' })).toBeVisible();
+    await guest.goto(`/list/add-or-remove-items?listId=${listId}&page=1`);
+    await expect(guest.getByRole('banner').getByLabel('Log In')).toBeVisible();
+    await expect(
+      guest.getByRole('heading', { name: "You don't have permission to access this page!" }),
+    ).toBeVisible();
+    await expect(
+      guest.getByText(/requires you to be logged in/i),
+    ).toBeVisible();
 
-    // 2. Attempt to navigate to the list URL directly while logged out
-    await page.goto(listUrl, { waitUntil: 'domcontentloaded' });
+    await guest.goto('/my-lists?page=1');
+    await expect(
+      guest.getByRole('heading', { name: "You don't have permission to access this page!" }),
+    ).toBeVisible();
 
-    // 3. Observe the behavior - Access is denied with a message requiring authentication
-    await expect(page.getByRole('heading', { name: "You don't have permission to access this page!" }).first()).toBeVisible({ timeout: 10000 });
-    await expect(page.getByRole('heading', { name: "You've tried to request a page that requires you to be logged in. Log in to your account." }).first()).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Log In' })).toBeVisible();
+    await guest.goto(`/list?id=${listId}&page=1`);
+    await expect(guest.getByRole('heading', { name: 'my favorite movies', exact: true })).toBeVisible();
+
+    await guestContext.close();
   });
 });

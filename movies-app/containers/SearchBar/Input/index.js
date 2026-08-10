@@ -13,40 +13,40 @@ const Input = React.forwardRef(({
     <style jsx>{`
       .input {
         font-size: 1.5rem;
-        line-height: 1;
+        line-height: 1.2;
         font-weight: ${theme.typography.fontWeightLight};
         background-color: transparent;
-        width: 100%;
-        margin-left: ${opened ? '1rem' : '0rem'};
+        width: ${opened ? '100%' : '0'};
+        margin-left: ${opened ? '0.75rem' : '0rem'};
         color: var(--palette-secondary-contrast-text);
         border: none;
-        transition: margin-left ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
+        opacity: ${opened ? 1 : 0};
+        pointer-events: ${opened ? 'auto' : 'none'};
+        transition: margin-left ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut},
+          opacity ${theme.transitions.duration.standard}ms ${theme.transitions.easing.easeInOut};
       }
-    
+
       @media ${theme.mediaQueries.large} {
         .input {
-          font-size: 1.25rem;
+          /* Keep at least 16px on mobile to avoid iOS input zoom and stay readable */
+          font-size: 16px;
         }
       }
 
-      @media ${theme.mediaQueries.medium} {
-        .input {
-          font-size: 1rem;
-        }
-      }
-      @media ${theme.mediaQueries.small} {
-        .input {
-          font-size: 0.875rem;
-        }
-      }
-    
-      input:focus,
-      input:active {
+      .input:focus,
+      .input:active {
         outline: none;
       }
 
-      input::placeholder {
+      .input::placeholder {
         color: var(--palette-secondary-contrast-text);
+        opacity: 0.85;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .input {
+          transition: none;
+        }
       }
     `}</style>
   </>

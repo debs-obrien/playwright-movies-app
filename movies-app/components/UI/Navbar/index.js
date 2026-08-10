@@ -41,13 +41,21 @@ const NavbarItem = withTheme(({
         font-weight: 500;
         color: var(--palette-text-secondary);
         padding: 12px 16px;
+        min-height: 44px;
         text-align: center;
         text-decoration: none;
         border-radius: 6px;
-        transition: all 0.2s ease-in-out;
+        transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
         position: relative;
         width: 100%;
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      li > :global(a:focus-visible) {
+        outline: 2px solid var(--palette-primary-main);
+        outline-offset: 2px;
       }
 
       li > :global(a):hover {
@@ -98,7 +106,7 @@ const Navbar = ({
   theme,
   ...rest
 }) => (
-  <nav aria-labelledby="list-options">
+  <nav aria-label='List options'>
     <ul {...rest} />
     <style jsx>{`
       ul {
@@ -113,18 +121,25 @@ const Navbar = ({
         background: linear-gradient(135deg, var(--palette-background-paper) 0%, var(--palette-background-elevated) 100%);
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
         border: none;
-        transition: all var(--duration) var(--timing);
+        transition: box-shadow var(--duration) var(--timing);
       }
 
       ul:hover {
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
-        transform: translateY(-1px);
       }
 
       @media ${theme.mediaQueries.small} {
         ul {
           flex-direction: column;
           min-height: auto;
+        }
+
+        ul :global(li > a) {
+          min-height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 12px 16px;
         }
       }
     `}</style>

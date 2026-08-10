@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 
-test('Avengers: Infinity is the first top rated movie', async ({
+test('The Dark Knight is the first top rated movie', async ({
   page,
 }) => {
   await page.goto('/?category=Top+Rated&page=1');
@@ -9,8 +9,8 @@ test('Avengers: Infinity is the first top rated movie', async ({
   const firstMovieRating = page.getByLabel('rating').first();
 
   await expect(firstMovie).toMatchAriaSnapshot(`
-    - 'link /Avengers: Infinity/':
-      - 'img "poster of Avengers: Infinity War"'
+    - 'link /The Dark Knight/':
+      - 'img "poster of The Dark Knight"'
   `);
   await expect(firstMovieRating).toHaveAccessibleName('rating');
 
@@ -27,8 +27,8 @@ test('Avengers: Infinity is the first top rated movie', async ({
   await test.step('Click on movie and verify details page', async () => {
     await firstMovie.click();
     await expect(page.getByRole('main')).toMatchAriaSnapshot(`
-    - 'heading "Avengers: Infinity War" [level=1]'
-    - heading "Destiny arrives all the same." [level=2]
+    - 'heading "The Dark Knight" [level=1]'
+    - heading "Some men just want to watch the world burn." [level=2]
     - text: /★/
     - paragraph: /\\d+\\.\\d+/
     - heading "The Genres" [level=3]
@@ -36,7 +36,6 @@ test('Avengers: Infinity is the first top rated movie', async ({
     - heading "The Cast" [level=3]
     - link "Website"
     - link "IMDB"
-    - button "Trailer"
     - button "Back"
     `);
   });
@@ -80,6 +79,7 @@ test('dynamic content for first upcoming movie', async ({ page }, testInfo) => {
     await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - 'heading "${movieName ?? ''}" [level=1]'
     `);
+    // Mock fixtures currently omit trailer videos and spoken languages.
     await expect(page.getByRole('main')).toMatchAriaSnapshot(`
     - 'heading "${movieName ?? ''}" [level=1]'
     - heading [level=2]
@@ -90,7 +90,6 @@ test('dynamic content for first upcoming movie', async ({ page }, testInfo) => {
     - heading "The Cast" [level=3]
     - link "Website"
     - link "IMDB"
-    - button "Trailer"
     - button "Back"
     `);
   });

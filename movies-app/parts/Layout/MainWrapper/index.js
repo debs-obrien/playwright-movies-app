@@ -15,7 +15,6 @@ const MainWrapper = ({
         position: relative;
         display: flex;
         align-items: flex-start;
-        user-select: none;
       }
 
       @media ${theme.mediaQueries.large} {

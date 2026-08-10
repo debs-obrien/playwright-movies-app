@@ -23,6 +23,32 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     (async () => {
       try {
+        // Prefer tokens returned on the login redirect hash (works cross-site
+        // without third-party cookies). Strip them so they are not bookmarked.
+        const hash = window.location.hash.startsWith('#')
+          ? window.location.hash.slice(1)
+          : window.location.hash;
+        const redirectParams = new URLSearchParams(hash);
+        const redirectAccessToken = redirectParams.get('access_token') || '';
+        const redirectAccountId = redirectParams.get('account_id') || '';
+        if (redirectAccessToken && redirectAccountId) {
+          saveState({
+            request_token: '',
+            access_token: redirectAccessToken,
+            account_id: redirectAccountId
+          });
+          const cleanUrl = window.location.pathname + window.location.search;
+          window.history.replaceState({}, document.title, cleanUrl);
+
+          setState({
+            status: STATUSES.RESOLVED,
+            error: null,
+            accessToken: redirectAccessToken,
+            accountId: redirectAccountId
+          });
+          return;
+        }
+
         const {
           request_token: requestToken = '',
           access_token: initialAccessToken = '',
@@ -65,7 +91,7 @@ const AuthProvider = ({ children }) => {
         });
       } catch (error) {
         if (error.status === 401)
-          alert('Authentication failed. If you are using Safari, please disable "Prevent cross-site tracking" in your privacy settings. It blocks cross-domain cookies, which this demo site uses storing your state.');
+          alert('Authentication failed. Cross-site login cookies were blocked. Please try again; if it keeps failing, allow third-party cookies for this demo or use a non-private window.');
         
         console.log('[AuthProvider useEffect] error => ', error);
         setState({
