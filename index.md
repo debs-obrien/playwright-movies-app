@@ -25,9 +25,3 @@ features:
   - title: AI-assisted
     details: Skills, planner, generator, and healer. Module 09.
 ---
-
-## Credits
-
-Course, demo app, and learn site by **[Debbie O'Brien](https://debbie.codes/)**.
-
-Fork of [next-movies](https://github.com/tastejs/next-movies), customized for learning Playwright.
