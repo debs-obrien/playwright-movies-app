@@ -8,7 +8,10 @@ export default defineConfig({
     'Hands-on Playwright workshop using the Movies app. Concepts live on playwright.dev; practice lives here.',
   base,
   srcDir: '.',
-  head: [['link', { rel: 'icon', href: `${base}favicon.svg`, type: 'image/svg+xml' }]],
+  head: [
+    ['link', { rel: 'icon', href: `${base}favicon.svg`, type: 'image/svg+xml' }],
+    ['link', { rel: 'alternate icon', href: `${base}favicon.ico`, type: 'image/x-icon' }],
+  ],
   rewrites: {
     'learn/index.md': 'course.md',
     'learn/:page.md': ':page.md',
