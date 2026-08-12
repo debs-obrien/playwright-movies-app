@@ -62,6 +62,10 @@ Write a short spec under `tests/logged-in/` that imports `test` from `../helpers
 
 Extra practice: [Exercise 01 — beforeEach to fixtures](/docs/exercises/01-beforeeach-to-fixtures).
 
+## Optional: Page Object Model
+
+This course's default is helpers and fixtures. If your team uses classic POM (or you are filming a POM demo), see [11 Bonus: page objects](/11-bonus-page-objects). Do not POM list flows — those stay on `list-utilities` and `list-fixtures`.
+
 ## Key takeaways
 
 - You know when to use `listPage`, `listWithMoviesPage`, or `beforeEach`.

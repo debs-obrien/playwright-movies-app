@@ -1,6 +1,6 @@
 # Playwright Movies App
 
-Hands-on guide to end-to-end testing with [Playwright](https://playwright.dev/) on a demo Movies app (Next.js). Covers authentication, search, sorting, API and network mocking, ARIA snapshots, fixtures/helpers, and **AI-assisted** workflows — taken from a **coding agent**, not an IDE Testing UI or Codegen.
+Hands-on guide to end-to-end testing with [Playwright](https://playwright.dev/) on a demo Movies app (Next.js). Covers authentication, search, sorting, API and network mocking, ARIA snapshots, fixtures/helpers, an optional Page Object example, and **AI-assisted** workflows — taken from a **coding agent**, not an IDE Testing UI or Codegen.
 
 Movie data and login come from the local **TMDB mock API** in [`mock-api/`](mock-api/) (no cloud account required for login). Images may still load from [TMDB](https://www.themoviedb.org/). Fork of [next-movies](https://github.com/tastejs/next-movies), customized for learning.
 

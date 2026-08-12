@@ -19,6 +19,7 @@ Clone the [repository on GitHub](https://github.com/debs-obrien/playwright-movie
 | 8 | Isolation (`workers: 1`, mock reset) | Config and `base-test.ts` on GitHub |
 | 9 | AI writing path | [09 AI path](/09-ai-writing-path), [AI testing](/docs/AI-TESTING) |
 | 10 | Exercises | [Exercises](/docs/exercises/) ([GitHub](https://github.com/debs-obrien/playwright-movies-app/tree/main/docs/exercises)) |
+| Bonus | Classic POM (optional) | [11 Page objects](/11-bonus-page-objects) |
 
 Learn **style** from `manage-lists-*`. Treat `lists/*` as broader product coverage, not the primary style guide.
 
@@ -40,7 +41,8 @@ Learn **style** from `manage-lists-*`. Treat `lists/*` as broader product covera
 | File | Concepts |
 |------|----------|
 | `auth.spec.ts` | Login/logout UI, permission gate |
-| `search.spec.ts` | Search + ARIA snapshots |
+| `search.spec.ts` | Search + ARIA snapshots (local helper; canonical for this flow) |
+| `lessons/pom-search.spec.ts` | Same search flows via a Page Object (comparison only) |
 | `sort-by.spec.ts` | Sorting UI + `page.route` JSON fixtures |
 | `movie.spec.ts` / `movie-list.spec.ts` | Detail pages, links, mocking external sites |
 | `navigation.spec.ts` | Menus, genres, `test.use({ viewport })` |
@@ -111,7 +113,15 @@ See `tests/logged-in/access-list-without-authentication.spec.ts` and `tests/logg
 
 ## Helpers vs Page Objects
 
-This suite uses **flow helpers** (`list-utilities.ts`) and **fixtures** instead of classic Page Object classes. Helpers stay thin, compose with fixtures, and match how Playwright Test Agents generate steps. Reach for a Page Object only if a surface grows large enough that shared locators become noisy. Default here is helpers.
+This suite uses **flow helpers** (`list-utilities.ts`) and **fixtures** instead of classic Page Object classes. Helpers stay thin, compose with fixtures, and match how Playwright Test Agents generate steps. Playwright's own docs also lean on locators and fixtures. Default here is helpers.
+
+One **optional** POM example exists for teams and video/AI demos that already live in that pattern:
+
+- Page object: `tests/pages/search-page.ts`
+- Lesson spec: `tests/logged-out/lessons/pom-search.spec.ts`
+- Helper-style twin: `tests/logged-out/search.spec.ts` (canonical search coverage)
+
+Do not POM list flows, and do not rewrite the suite. Course walkthrough: [11 Bonus: page objects](/11-bonus-page-objects).
 
 ## Config notes worth learning
 
@@ -136,6 +146,7 @@ npx playwright test --ui          # interactive
 npx playwright test tests/logged-in/lists   # list feature specs only
 npx playwright test --grep @agent   # agent-generated coverage only
 npx playwright test tests/logged-in/lessons # teaching lessons only
+npx playwright test tests/logged-out/lessons/pom-search.spec.ts --project=chromium  # optional POM example
 ```
 
 CI shards the suite across four machines. Each shard still uses one Playwright worker because the mock list store is process-global.

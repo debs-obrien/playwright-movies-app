@@ -30,6 +30,7 @@ Project teaching skills (keep across regenerations): `movies-playwright`, `learn
 - Forbidden: `waitForTimeout`, `force: true`, `waitForLoadState('networkidle')`, sync `.count()` for waits.
 - List tests: import `test` / `expect` from `tests/helpers/list-fixtures.ts` and request the **lightest** fixture (`emptyListPage` → `listWithMoviesPage` → `listPage`).
 - Reuse `tests/helpers/list-utilities.ts` (`createList`, `addMovie`, `openLists`, `selectCoverImage`, …).
+- Prefer helpers and list fixtures. One optional POM teaching example lives at `tests/pages/search-page.ts` and `tests/logged-out/lessons/pom-search.spec.ts` (logged-out search only). Do not POM list flows.
 - Prefer `test.step` for multi-step flows so traces stay readable.
 - Generated suites: tag with `@agent`. Learn style from `manage-lists-*`, not from dense `@agent` coverage.
 - Seeds and plans must reference `tests/logged-in/seed.spec.ts` and `list-fixtures`, not deprecated `list-test.ts`.

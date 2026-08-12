@@ -78,7 +78,13 @@ export default defineConfig({
         text: 'AI-assisted',
         items: [
           { text: '09 AI writing path', link: '/09-ai-writing-path' },
+        ],
+      },
+      {
+        text: 'Bonus',
+        items: [
           { text: '10 Bonus: sharding', link: '/10-bonus-sharding' },
+          { text: '11 Bonus: page objects', link: '/11-bonus-page-objects' },
         ],
       },
       {

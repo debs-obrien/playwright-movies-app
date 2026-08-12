@@ -1,3 +1,7 @@
+/**
+ * Canonical logged-out search coverage (local helper). For the same flows as a
+ * classic Page Object, see `tests/logged-out/lessons/pom-search.spec.ts`.
+ */
 import { test, expect, Page } from '@playwright/test';
 
 test('search for "Twisters" movie', async ({ page }) => {
