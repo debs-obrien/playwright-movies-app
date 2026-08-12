@@ -26,6 +26,7 @@ Start with [00 Start here](/00-start-here) once.
 8. [Network mocking and API testing](/08-network-and-api)
 9. [AI writing path](/09-ai-writing-path)
 10. [Bonus: sharding](/10-bonus-sharding)
+11. [Bonus: page objects](/11-bonus-page-objects)
 
 ## Course outcomes
 

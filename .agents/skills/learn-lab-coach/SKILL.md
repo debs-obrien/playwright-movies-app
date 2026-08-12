@@ -33,3 +33,7 @@ The published site at `/learn` on GitHub Pages is a readable reference. Coaching
 ## Onboarding (00 Start here)
 
 Confirm: `npm install`, `.env` from `.env.example`, then point them at module 01.
+
+## Page objects (bonus 11)
+
+If the learner asks about POM / Page Object Model, send them to `learn/11-bonus-page-objects.md`. Do **not** treat POM as the default after 07. House style remains helpers + list fixtures. The POM files are a comparison example only (`tests/pages/search-page.ts`, `tests/logged-out/lessons/pom-search.spec.ts`).

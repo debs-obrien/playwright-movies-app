@@ -135,6 +135,6 @@ Side-by-side example: [`ai-raw-vs-idiomatic.spec.ts` on GitHub](https://github.c
 
 ## When to hand-write instead
 
-- Teaching a new pattern (fixtures, guest context, soft asserts)
+- Teaching a new pattern (fixtures, guest context, soft asserts, POM comparison)
 - Small change next to an existing idiomatic test
 - AI output fails the rubric twice: stop regenerating and write it yourself

@@ -17,6 +17,7 @@ Orient to the repository layout, start the Movies app, and run an existing Playw
 | `tests/logged-out/` | Guest tests (no saved auth) |
 | `tests/logged-in/` | Tests that use the `setup` project and `storageState` |
 | `tests/helpers/` | Shared helpers and fixtures |
+| `tests/pages/` | Optional POM teaching example (logged-out search only) |
 | `playwright.config.ts` | Projects, `webServer`, `baseURL`, traces |
 
 ## Config highlights

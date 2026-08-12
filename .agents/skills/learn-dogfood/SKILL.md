@@ -28,7 +28,7 @@ Ask once if unclear. Defaults:
 
 | Scope | Modules |
 |-------|---------|
-| **beginner** (default) | 00 → 04, then foundations smoke, then 05 → 10 if time |
+| **beginner** (default) | 00 → 04, then foundations smoke, then 05 → 11 if time |
 | **ai-first** | 00 setup, `AGENTS.md`, 07, 09 |
 | **module N** | 00 setup (if needed) + that module only |
 | **docs-only** | Layer A only |
