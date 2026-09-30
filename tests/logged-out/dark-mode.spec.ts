@@ -25,8 +25,8 @@ test.describe('Theme Mode Switching', () => {
   }) => {
     // The visible control is the label; the checkbox itself is partially covered
     // by the sliding knob, so click the label rather than check()/uncheck().
-    const themeToggle = page.getByRole('banner').getByRole('checkbox', { name: 'Toggle Switch' });
-    const themeToggleLabel = page.getByRole('banner').getByText('Toggle Switch');
+    const themeToggle = page.getByRole('banner').getByRole('checkbox', { name: 'Dark mode' });
+    const themeToggleLabel = page.getByRole('banner').getByText('Dark mode');
 
     await themeToggleLabel.click();
     await expect(page.locator('body')).toHaveClass(/dark/);
