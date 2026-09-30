@@ -16,6 +16,7 @@ const BasicsSection = ({
     <div className={clsx('basics-section', className)}>
       <RatingInfo
         voteAverage={voteAverage}
+        voteCount={voteCount}
         withValue
         tooltip={`${voteAverage} average rating on ${voteCount} votes`}
       />

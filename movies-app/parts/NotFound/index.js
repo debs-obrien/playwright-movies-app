@@ -9,6 +9,7 @@ import withTheme from 'utils/hocs/withTheme';
 import HomeIcon from 'public/assets/svgs/icons/home.svg';
 import QUERY_PARAMS from 'utils/constants/query-params';
 import STATIC_MOVIE_CATEGORIES from 'utils/constants/static-movie-categories';
+import { EMPTY_IMAGE_PATH } from 'utils/constants/image-paths';
 
 const NotFound = ({
   theme,
@@ -22,7 +23,7 @@ const NotFound = ({
         <h4 className='subtitle'>{subtitle}</h4>
       </div>
       <NotFoundImage
-        src='/assets/svgs/empty.svg'
+        src={EMPTY_IMAGE_PATH}
         alt='Not found!' />
       <LinkButton
         href={{

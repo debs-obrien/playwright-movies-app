@@ -8,34 +8,41 @@ import Tooltip from 'components/UI/Tooltip';
 const RatingInfo = ({
   className,
   voteAverage,
+  voteCount,
   tooltip,
   withValue
-}) => (
-  <>
-    <div className={clsx('rating-info', className)}>
-      <Rating withValue={withValue} voteAverage={voteAverage} />
-      <Tooltip className='tooltip-position tooltip-show'>{tooltip}</Tooltip>
-    </div>
-    <style jsx>{`
-      .rating-info {
-        display: flex;
-        position: relative;
-        align-items: center;
-        margin-bottom: 0.5rem;
-      }
+}) => {
+  if (!voteCount) {
+    return null;
+  }
 
-      :global(.tooltip-position) {
-        position: absolute;
-        bottom: 100%;
-        left: 50%;
-        transform: translate(-50%, 0);
-      }
+  return (
+    <>
+      <div className={clsx('rating-info', className)}>
+        <Rating withValue={withValue} voteAverage={voteAverage} />
+        <Tooltip className='tooltip-position tooltip-show'>{tooltip}</Tooltip>
+      </div>
+      <style jsx>{`
+        .rating-info {
+          display: flex;
+          position: relative;
+          align-items: center;
+          margin-bottom: 0.5rem;
+        }
 
-      .rating-info:hover :global(.tooltip-show) {
-        visibility: visible;
-      }
-    `}</style>
-  </>
-);
+        :global(.tooltip-position) {
+          position: absolute;
+          bottom: 100%;
+          left: 50%;
+          transform: translate(-50%, 0);
+        }
+
+        .rating-info:hover :global(.tooltip-show) {
+          visibility: visible;
+        }
+      `}</style>
+    </>
+  );
+};
 
 export default RatingInfo;

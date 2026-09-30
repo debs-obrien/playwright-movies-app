@@ -2,6 +2,7 @@
 const BASE_PATH = process.env.NEXT_PUBLIC_BASEPATH || process.env.BASEPATH || '';
 
 const NOTHING_PLACEHOLDER_IMAGE_PATH = `${BASE_PATH}/assets/svgs/nothing.svg`;
+const EMPTY_IMAGE_PATH = `${BASE_PATH}/assets/svgs/empty.svg`;
 const PROFILE_PLACEHOLDER_IMAGE_PATH = `${BASE_PATH}/assets/svgs/person.svg`;
 const ERROR_IMAGE_PATH = `${BASE_PATH}/assets/svgs/error.svg`;
 const LOGO_IMAGE_PATH = `${BASE_PATH}/assets/svgs/logo.svg`;
@@ -11,6 +12,7 @@ const LIGHT_TMDB_IMAGE_PATH = `${BASE_PATH}/assets/svgs/tmdb.svg`;
 
 export {
   NOTHING_PLACEHOLDER_IMAGE_PATH,
+  EMPTY_IMAGE_PATH,
   PROFILE_PLACEHOLDER_IMAGE_PATH,
   ERROR_IMAGE_PATH,
   LOGO_IMAGE_PATH,

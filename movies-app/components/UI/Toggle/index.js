@@ -18,7 +18,7 @@ const Toggle = ({
       <label
         style={{color: 'transparent'}}
         htmlFor={`toggle-track-${id}`}>
-        Toggle Switch
+        Dark mode
       </label>
     </span>
     <style jsx>{`

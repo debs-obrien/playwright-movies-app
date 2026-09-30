@@ -51,6 +51,7 @@ const MovieListItem = ({
             <RatingInfo
               className={RATING_INFO_CLASS_NAME}
               voteAverage={movie.vote_average}
+              voteCount={movie.vote_count}
               tooltip={`${movie.vote_average} average rating on ${movie.vote_count} votes`} />
           </DetailsPanelWrapper>
         </PosterLink>
