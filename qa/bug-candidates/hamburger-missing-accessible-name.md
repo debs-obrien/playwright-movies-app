@@ -35,6 +35,10 @@ The control is a nameless `<button>` (only bars / decorative spans). Screen-read
 
 ## Suggested next step
 
-- [x] Fix via site-bugfix
+- [x] Fixed via site-bugfix (see draft PR from `cursor/fix-endform-seed-bugs-e1e9`)
 - [ ] Needs human
 - [ ] Defer
+
+## Fix notes
+
+Restored `aria-label` on `HamburgerButton`. Regression: `tests/logged-out/endform-demo-regressions.spec.ts`.

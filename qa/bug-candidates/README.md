@@ -1,8 +1,8 @@
 # Endform demo seed bugs
 
-**Speaker start branch:** `cursor/endform-seed-bugs-e1e9`
+**Speaker start branch for the talk:** `cursor/endform-seed-bugs-e1e9` (bugs present).
 
-This branch intentionally introduces **three photogenic, fixable bugs** for Debbie’s Endform talk (“Bug Report In, Pull Request Out”). Main stays clean for learners.
+**Fix / “PR out” branch:** `cursor/fix-endform-seed-bugs-e1e9` (this tree when on the fix PR).
 
 | Candidate | Symptom | Area |
 |-----------|---------|------|
@@ -12,9 +12,9 @@ This branch intentionally introduces **three photogenic, fixable bugs** for Debb
 
 ## Talk flow
 
-1. Checkout this branch; `npm run dev` → `http://127.0.0.1:3000`
-2. Run **site-bug-hunt** (skills on PR / branch `cursor/site-bug-skills-e1e9`) against local; candidates already match what hunters should find
+1. Checkout `cursor/endform-seed-bugs-e1e9`; `npm run dev` → `http://127.0.0.1:3000`
+2. Run **site-bug-hunt** (skills on PR #89) against local; compare with these candidates
 3. Show screenshots / axe / playwright-cli snapshots
-4. Open the draft **fix** PR that restores the three behaviors + regression tests
+4. Open the draft **fix** PR (`cursor/fix-endform-seed-bugs-e1e9` → base `cursor/endform-seed-bugs-e1e9`) and run `npx playwright test tests/logged-out/endform-demo-regressions.spec.ts`
 
-Do not merge this branch into `main` for the course path.
+Do not merge the seed branch into `main`.

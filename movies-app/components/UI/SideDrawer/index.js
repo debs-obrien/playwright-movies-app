@@ -35,7 +35,27 @@ const SideDrawer = ({
         return;
       }
 
-      // DEMO BUG (Endform): Tab is not trapped inside the dialog — focus escapes to the page behind
+      if (event.key !== 'Tab' || !drawerRef.current) {
+        return;
+      }
+
+      const focusable = drawerRef.current.querySelectorAll(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      );
+      if (focusable.length === 0) {
+        return;
+      }
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
     document.addEventListener('keydown', onKeyDown);
