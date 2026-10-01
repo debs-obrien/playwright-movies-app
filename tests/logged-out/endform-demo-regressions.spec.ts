@@ -17,11 +17,10 @@ test.describe('Endform a11y / mobile regressions', () => {
     });
 
     await test.step('drawer is a labeled dialog', async () => {
+      const drawer = page.getByRole('dialog', { name: 'Navigation menu' });
+      await expect(drawer).toBeVisible();
       await expect(
-        page.getByRole('dialog', { name: 'Navigation menu' }),
-      ).toBeVisible();
-      await expect(
-        page.getByRole('button', { name: 'Close navigation menu' }),
+        drawer.getByRole('button', { name: 'Close navigation menu' }),
       ).toBeVisible();
     });
   });
@@ -47,10 +46,11 @@ test.describe('Endform a11y / mobile regressions', () => {
     const drawer = page.getByRole('dialog', { name: 'Navigation menu' });
     await expect(drawer).toBeVisible();
 
+    const closeInDrawer = drawer.getByRole('button', {
+      name: 'Close navigation menu',
+    });
     // Focus starts on the close control; Tab should cycle within the dialog.
-    await expect(
-      page.getByRole('button', { name: 'Close navigation menu' }),
-    ).toBeFocused();
+    await expect(closeInDrawer).toBeFocused();
 
     for (let i = 0; i < 12; i++) {
       await page.keyboard.press('Tab');
