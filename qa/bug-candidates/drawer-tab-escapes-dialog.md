@@ -33,6 +33,10 @@ Tab moves focus into page content behind the open drawer (backdrop still visible
 
 ## Suggested next step
 
-- [x] Fix via site-bugfix
+- [x] Fixed via site-bugfix (see draft PR from `cursor/fix-endform-seed-bugs-e1e9`)
 - [ ] Needs human
 - [ ] Defer
+
+## Fix notes
+
+Restored Tab focus trap in `SideDrawer`. Regression: `tests/logged-out/endform-demo-regressions.spec.ts`.

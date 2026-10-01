@@ -33,6 +33,10 @@ Poster goes full-bleed / oversized; on smaller breakpoints it pulls up with a ne
 
 ## Suggested next step
 
-- [x] Fix via site-bugfix
+- [x] Fixed via site-bugfix (see draft PR from `cursor/fix-endform-seed-bugs-e1e9`)
 - [ ] Needs human
 - [ ] Defer
+
+## Fix notes
+
+Restored mobile `max-width` / padding / `margin-top: 0` on `parts/Artwork`. Regression: `tests/logged-out/endform-demo-regressions.spec.ts`.
