@@ -35,29 +35,24 @@ const Artwork = ({
         }
       }
 
-      /* Stacked summary: keep the poster a readable size, not full-bleed */
+      /* DEMO BUG (Endform): mobile poster full-bleed / overlaps title */
       @media ${theme.mediaQueries.medium} {
         .artwork {
           width: 100%;
-          max-width: 22rem;
-          margin-left: auto;
-          margin-right: auto;
-          padding: 1.5rem 1.5rem 0;
+          padding: 0;
         }
       }
 
       @media ${theme.mediaQueries.small} {
         .artwork {
-          max-width: 18rem;
-          padding: 1.25rem 1.25rem 0;
+          padding: 0;
         }
       }
 
       @media ${theme.mediaQueries.smaller} {
         .artwork {
-          max-width: 16rem;
-          padding: 1rem 1rem 0;
-          margin-top: 0;
+          padding: 0;
+          margin-top: -102px;
         }
       }
     `}</style>
