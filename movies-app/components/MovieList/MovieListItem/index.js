@@ -29,6 +29,8 @@ const MovieListItem = ({
       >
         <PosterLink
           className={POSTER_LINK_CLASS_NAME}
+          // Name the card by title only — poster alt + rating must not pollute the link name.
+          aria-label={movie.title}
           href={{
             pathname: LINKS.MOVIE.HREF,
             query: {
