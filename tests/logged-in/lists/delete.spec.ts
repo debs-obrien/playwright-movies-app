@@ -24,11 +24,11 @@ test.describe('Deleting Movie Lists', { tag: '@agent' }, () => {
 
     await expect(page.getByRole('list', { name: 'movies' })).toMatchAriaSnapshot(`
 - listitem "movie":
-  - link /poster of Twisters/:
+  - link "Twisters":
     - img "poster of Twisters"
     - heading "Twisters" [level=2]
 - listitem "movie":
-  - link /poster of The Garfield Movie/:
+  - link "The Garfield Movie":
     - img "poster of The Garfield Movie"
     - heading "The Garfield Movie" [level=2]
 - listitem "movie":
