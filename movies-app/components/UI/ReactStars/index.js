@@ -68,7 +68,41 @@ class ReactStars extends Component {
     this.setState({
       stars: this.getStars(this.state.value)
     });
+    this.ensureHalfStarStylesInHead();
   };
+
+  componentDidUpdate() {
+    this.ensureHalfStarStylesInHead();
+  }
+
+  componentWillUnmount() {
+    if (typeof document === 'undefined') {
+      return;
+    }
+    document.getElementById(this.halfStarStyleId())?.remove();
+  }
+
+  halfStarStyleId() {
+    return `react-stars-style-${this.state.uniqueness}`;
+  }
+
+  // Keep half-star CSS out of the accessibility tree / link accessible names.
+  ensureHalfStarStylesInHead() {
+    if (typeof document === 'undefined' || !this.state.config.half) {
+      return;
+    }
+    const id = this.halfStarStyleId();
+    let styleEl = document.getElementById(id);
+    if (!styleEl) {
+      styleEl = document.createElement('style');
+      styleEl.id = id;
+      document.head.appendChild(styleEl);
+    }
+    styleEl.textContent = getHalfStarStyles(
+      this.state.config.color2,
+      this.state.uniqueness
+    );
+  }
 
   UNSAFE_componentWillReceiveProps(props) {
     this.setState({
@@ -174,15 +208,6 @@ class ReactStars extends Component {
     this.props.onChange(value);
   }
 
-  renderHalfStarStyleElement() {
-    const { config, uniqueness } = this.state;
-    return (
-      <style dangerouslySetInnerHTML={{
-        __html: getHalfStarStyles(config.color2, uniqueness)
-      }}></style>
-    )
-  }
-
   renderStars() {
     const { halfStar, stars, uniqueness, config } = this.state;
     const { color1, color2, size, char, half, edit } = config;
@@ -222,8 +247,6 @@ class ReactStars extends Component {
 
     return (
       <div className={className} style={parentStyles}>
-        {this.state.config.half ?
-          this.renderHalfStarStyleElement() : ''}
         {this.renderStars()}
       </div>
     );

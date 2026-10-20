@@ -49,7 +49,7 @@ test.describe('Viewing Movie Lists', { tag: '@agent' }, () => {
   test('Click Movie Poster to View Details', async ({ listPage }) => {
     const page = listPage;
 
-    await page.getByRole('link', { name: 'poster of Twisters Twisters' }).click();
+    await page.getByRole('link', { name: 'Twisters', exact: true }).click();
 
     await expect(page).toHaveURL(/\/movie\?id=718821&page=1/);
     await expect(page.getByRole('heading', { name: 'Twisters', level: 1 })).toBeVisible();
