@@ -42,6 +42,8 @@ flowchart TB
 | [`learn-dogfood` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/learn-dogfood/SKILL.md) | Maintainer QA: simulate a new learner after `learn/` changes |
 | [`playwright-cli` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/playwright-cli/SKILL.md) | Official CLI explore and attach (from `init-skills`) |
 | [`playwright-trace` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/playwright-trace/SKILL.md) | Official trace CLI (from `init-skills`) |
+| [`site-bug-hunt` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/site-bug-hunt/SKILL.md) | Exploratory QA → `qa/bug-candidates/` (optional issue filing) |
+| [`site-bugfix` on GitHub](https://github.com/debs-obrien/playwright-movies-app/blob/main/.agents/skills/site-bugfix/SKILL.md) | Reproduce → fix → Playwright regression |
 
 ```bash
 npx playwright cli --help
