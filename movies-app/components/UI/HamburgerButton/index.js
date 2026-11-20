@@ -24,7 +24,7 @@ const HamburgerButton = ({
     <button
       type='button'
       className='hamburger-button'
-      aria-label={opened ? 'Close navigation menu' : 'Open navigation menu'}
+      // DEMO BUG (Endform): icon-only control missing accessible name
       aria-expanded={opened}
       aria-controls='mobile-navigation-drawer'
       {...rest}>
