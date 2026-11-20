@@ -1,5 +1,9 @@
 # Playwright Movies App
 
+![Playwright Movies App](movies-app-ui-mode.jpg)
+
+This is a demo Movies app for learning Playwright end-to-end testing. Try it when you want a real Next.js UI to practice writing, debugging, and AI-assisted Playwright tests.
+
 Hands-on guide to end-to-end testing with [Playwright](https://playwright.dev/) on a demo Movies app (Next.js). Covers authentication, search, sorting, API and network mocking, ARIA snapshots, fixtures/helpers, an optional Page Object example, and **AI-assisted** workflows — taken from a **coding agent**, not an IDE Testing UI or Codegen.
 
 Movie data and login come from the local **TMDB mock API** in [`mock-api/`](mock-api/) (no cloud account required for login). Images may still load from [TMDB](https://www.themoviedb.org/). Fork of [next-movies](https://github.com/tastejs/next-movies), customized for learning.
@@ -18,8 +22,6 @@ Movie data and login come from the local **TMDB mock API** in [`mock-api/`](mock
 | **Reference** | [`docs/TESTING.md`](docs/TESTING.md), [`docs/AI-TESTING.md`](docs/AI-TESTING.md) |
 | **Exercises** | [`docs/exercises/`](docs/exercises/index.md) |
 | **House style** | [`AGENTS.md`](AGENTS.md) |
-
-![Playwright Movies App](movies-app-ui-mode.jpg)
 
 ## Installation
 
