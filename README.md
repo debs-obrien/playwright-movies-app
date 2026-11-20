@@ -1,6 +1,6 @@
 # Playwright Movies App
 
-![Playwright Movies App](movies-app-ui-mode.jpg)
+![Playwright UI Mode running the Movies app tests, with the Top Rated page in the trace preview](movies-app-ui-mode.jpg)
 
 This is a demo Movies app for learning Playwright end-to-end testing. Try it when you want a real Next.js UI to practice writing, debugging, and AI-assisted Playwright tests.
 
